@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requisitos do Sistema de Vendas | Prof. Tiago Segato</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>JavaScript BackEnd</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../sobre.html">Sobre o Curso</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Módulos <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../modulos/lpjs.html">Lógica de Programação com JavaScript</a></li>
+                            <li><a href="../modulos/git.html">Git, GitHub e GitLab</a></li>
+                            <li><a href="../modulos/jstob.html">JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="../modulos/pds.html">Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="../modulos/iws.html">Introdução a WebServices</a></li>
+                            <li><a href="../modulos/nodejs.html">Node.js</a></li>
+                            <li><a href="../modulos/nbd.html">Noções de Banco de Dados</a></li>
+                            <li><a href="../modulos/scrum.html">Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active">Projeto <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html">Visão Geral</a></li>
+                            <li><a href="requisitos.html" class="active">Requisitos</a></li>
+                            <li><a href="modelagem.html">Modelagem</a></li>
+                            <li><a href="arquitetura.html">Arquitetura</a></li>
+                            <li><a href="passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../ead.html">Conteúdo EaD</a></li>
+                    <li><a href="../recursos.html">Recursos</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Requisitos do Sistema de Vendas</h1>
+            <p>Especificação das funcionalidades baseadas no modelo de dados `script_vendas.sql`</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-layout">
+                <div class="main-content">
+                    <h2>Visão Geral</h2>
+                    <p>O Sistema de Vendas é uma aplicação web desenvolvida com Node.js e Express que permite o gerenciamento básico de clientes, vendedores, produtos e pedidos, utilizando um banco de dados PostgreSQL estruturado conforme o `script_vendas.sql`. Este documento apresenta os requisitos funcionais e não funcionais que orientarão o desenvolvimento, respeitando estritamente o modelo de dados fornecido.</p>
+                    
+                    <h2>Requisitos Funcionais</h2>
+                    <p>Os requisitos funcionais descrevem as funcionalidades que o sistema deve oferecer, baseadas nas tabelas `cliente`, `vendedor`, `pedido`, `produto` e `item_pedido`:</p>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>RF01 - Gerenciamento de Produtos</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li><strong>RF01.1:</strong> O sistema deve permitir o cadastro de novos produtos com os seguintes atributos: código do produto (único), unidade, descrição e valor unitário.</li>
+                                    <li><strong>RF01.2:</strong> O sistema deve validar se o código do produto já existe no banco de dados antes de realizar o cadastro.</li>
+                                    <li><strong>RF01.3:</strong> O sistema deve permitir a edição das informações de produtos existentes (unidade, descrição, valor unitário).</li>
+                                    <li><strong>RF01.4:</strong> O sistema deve permitir a exclusão de produtos (se não houver dependências em `item_pedido`).</li>
+                                    <li><strong>RF01.5:</strong> O sistema deve permitir a listagem de produtos com opções de filtro por código e descrição.</li>
+                                    <li><strong>RF01.6:</strong> O sistema deve permitir a ordenação da lista de produtos por código, descrição e valor unitário.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>RF02 - Gerenciamento de Clientes</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li><strong>RF02.1:</strong> O sistema deve permitir o cadastro de novos clientes com os seguintes atributos: código do cliente (único), nome, endereço, cidade, CEP, UF, CNPJ e IE.</li>
+                                    <li><strong>RF02.2:</strong> O sistema deve validar se o código do cliente já existe no banco de dados antes de realizar o cadastro.</li>
+                                    <li><strong>RF02.3:</strong> O sistema deve permitir a edição das informações de clientes existentes.</li>
+                                    <li><strong>RF02.4:</strong> O sistema deve permitir a exclusão de clientes (se não houver dependências em `pedido`).</li>
+                                    <li><strong>RF02.5:</strong> O sistema deve permitir a listagem de clientes com opções de filtro por código, nome e cidade.</li>
+                                    <li><strong>RF02.6:</strong> O sistema deve permitir a ordenação da lista de clientes por código e nome.</li>
+                                    <li><strong>RF02.7:</strong> O sistema deve permitir a visualização dos pedidos associados a cada cliente.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>RF03 - Gerenciamento de Vendedores</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li><strong>RF03.1:</strong> O sistema deve permitir o cadastro de novos vendedores com os seguintes atributos: código do vendedor (único), nome, salário fixo e faixa de comissão.</li>
+                                    <li><strong>RF03.2:</strong> O sistema deve validar se o código do vendedor já existe no banco de dados antes de realizar o cadastro.</li>
+                                    <li><strong>RF03.3:</strong> O sistema deve permitir a edição das informações de vendedores existentes.</li>
+                                    <li><strong>RF03.4:</strong> O sistema deve permitir a exclusão de vendedores (se não houver dependências em `pedido`).</li>
+                                    <li><strong>RF03.5:</strong> O sistema deve permitir a listagem de vendedores com opções de filtro por código e nome.</li>
+                                    <li><strong>RF03.6:</strong> O sistema deve permitir a ordenação da lista de vendedores por código e nome.</li>
+                                    <li><strong>RF03.7:</strong> O sistema deve permitir a visualização dos pedidos associados a cada vendedor.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>RF04 - Registro de Pedidos</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li><strong>RF04.1:</strong> O sistema deve permitir o registro de novos pedidos com os seguintes atributos: número do pedido (único), prazo de entrega, código do cliente e código do vendedor.</li>
+                                    <li><strong>RF04.2:</strong> O sistema deve validar se o número do pedido já existe e se os códigos de cliente e vendedor são válidos.</li>
+                                    <li><strong>RF04.3:</strong> O sistema deve permitir a adição de múltiplos itens (produtos) a um pedido, especificando o código do produto e a quantidade.</li>
+                                    <li><strong>RF04.4:</strong> O sistema deve validar se o código do produto existe ao adicionar um item ao pedido.</li>
+                                    <li><strong>RF04.5:</strong> O sistema deve permitir a edição de pedidos existentes (prazo de entrega, cliente, vendedor) e seus itens (quantidade).</li>
+                                    <li><strong>RF04.6:</strong> O sistema deve permitir a exclusão de pedidos e seus itens associados.</li>
+                                    <li><strong>RF04.7:</strong> O sistema deve permitir a listagem de pedidos com opções de filtro por número do pedido, código do cliente e código do vendedor.</li>
+                                    <li><strong>RF04.8:</strong> O sistema deve permitir a visualização detalhada de um pedido específico, incluindo todos os seus itens (produto, quantidade, valor unitário do produto, subtotal do item).</li>
+                                    <li><strong>RF04.9:</strong> O sistema deve calcular e exibir o valor total de um pedido (soma dos subtotais dos itens).</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- RF05 (Autenticação) e RF04 (Relatórios complexos) removidos por não serem suportados diretamente pelo script_vendas.sql -->
+                        
+                    </div>
+                    
+                    <h2>Requisitos Não Funcionais</h2>
+                    <p>Os requisitos não funcionais descrevem as características e restrições do sistema:</p>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>RNF01 - Usabilidade</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li><strong>RNF01.1:</strong> A interface do sistema deve ser intuitiva e de fácil utilização, seguindo princípios de design responsivo.</li>
+                                    <li><strong>RNF01.2:</strong> O sistema deve ser compatível com os principais navegadores web (Chrome, Firefox, Safari, Edge).</li>
+                                    <li><strong>RNF01.3:</strong> O sistema deve fornecer feedback claro sobre as ações realizadas pelos usuários.</li>
+                                    <li><strong>RNF01.4:</strong> O sistema deve implementar validação de formulários no lado do cliente e do servidor.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>RNF02 - Desempenho</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li><strong>RNF02.1:</strong> O sistema deve responder a requisições em tempo hábil (ex: menos de 3 segundos).</li>
+                                    <li><strong>RNF02.2:</strong> O sistema deve implementar paginação para listas com grande volume de dados.</li>
+                                    <li><strong>RNF02.3:</strong> O sistema deve otimizar consultas ao banco de dados PostgreSQL.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>RNF03 - Tecnologia</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li><strong>RNF03.1:</strong> O backend da aplicação deve ser desenvolvido em Node.js utilizando o framework Express.</li>
+                                    <li><strong>RNF03.2:</strong> O banco de dados utilizado deve ser o PostgreSQL.</li>
+                                    <li><strong>RNF03.3:</strong> O frontend pode ser desenvolvido com HTML, CSS e JavaScript puro ou com um framework simples (a definir).</li>
+                                    <li><strong>RNF03.4:</strong> O controle de versão deve ser feito utilizando Git.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>RNF04 - Segurança</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li><strong>RNF04.1:</strong> O sistema deve proteger contra ataques comuns como SQL Injection (utilizando consultas parametrizadas).</li>
+                                    <li><strong>RNF04.2:</strong> Dados sensíveis (se houver, como senhas futuras) devem ser armazenados de forma segura (hash).</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Outros RNF como Manutenibilidade, Escalabilidade podem ser mantidos se relevantes -->
+                        
+                    </div>
+
+                    <div class="cta-section">
+                        <h2>Próximos Passos</h2>
+                        <p>Com os requisitos alinhados ao modelo de dados, podemos prosseguir para a modelagem detalhada e a arquitetura da aplicação.</p>
+                        <div class="cta-buttons">
+                            <a href="index.html" class="btn btn-secondary">Visão Geral do Projeto</a>
+                            <a href="modelagem.html" class="btn btn-primary">Ver Modelagem</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-nav">
+                        <h3>Projeto Prático</h3>
+                        <ul>
+                            <li><a href="index.html">Visão Geral</a></li>
+                            <li><a href="requisitos.html" class="active">Requisitos</a></li>
+                            <li><a href="modelagem.html">Modelagem</a></li>
+                            <li><a href="arquitetura.html">Arquitetura</a></li>
+                            <li><a href="passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                    <div class="instructor-card">
+                        <div class="instructor-image">
+                            <img src="../img/tiago-segato.jpg" alt="Prof. Tiago Segato">
+                        </div>
+                        <div class="instructor-info">
+                            <h3>Prof. Tiago Segato</h3>
+                            <p>Desenvolvedor e educador.</p>
+                            <div class="social-links">
+                                <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Prof. Tiago Segato</h2>
+                    <p>Desenvolvimento Backend com JavaScript: Do Zero à Aplicação Completa</p>
+                    <div class="social-links mt-3">
+                        <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../sobre.html">Sobre o Curso</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../contato.html">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Módulos</h3>
+                        <ul>
+                            <li><a href="../modulos/lpjs.html">Lógica de Programação</a></li>
+                            <li><a href="../modulos/git.html">Git e GitHub</a></li>
+                            <li><a href="../modulos/jstob.html">JavaScript e OO</a></li>
+                            <li><a href="../modulos/pds.html">Padrões de Desenvolvimento</a></li>
+                            <li><a href="../modulos/iws.html">WebServices</a></li>
+                            <li><a href="../modulos/nodejs.html">Node.js</a></li>
+                            <li><a href="../modulos/nbd.html">Banco de Dados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Projeto</h3>
+                        <ul>
+                            <li><a href="index.html">Visão Geral</a></li>
+                            <li><a href="requisitos.html">Requisitos</a></li>
+                            <li><a href="modelagem.html">Modelagem</a></li>
+                            <li><a href="arquitetura.html">Arquitetura</a></li>
+                            <li><a href="passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prof. Tiago Segato. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:contato@tiagosegato.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

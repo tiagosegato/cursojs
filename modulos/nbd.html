@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noções de Banco de Dados | Prof. Tiago Segato</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>JavaScript BackEnd</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../sobre.html">Sobre o Curso</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active">Módulos <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="lpjs.html">Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html">Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html">Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html" class="active">Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Projeto <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../ead.html">Conteúdo EaD</a></li>
+                    <li><a href="../recursos.html">Recursos</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Módulo 7: Noções de Banco de Dados</h1>
+            <p>Fundamentos de bancos de dados relacionais com foco em PostgreSQL</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-layout">
+                <div class="main-content">
+                    <h2>Visão Geral do Módulo</h2>
+                    <p>Neste módulo, você aprenderá os conceitos fundamentais de bancos de dados relacionais, com foco no PostgreSQL. Vamos explorar desde a modelagem de dados até a implementação de consultas SQL e a integração com aplicações Node.js, utilizando como base o modelo de dados do nosso projeto prático de sistema de vendas.</p>
+                    
+                    <div class="module-info">
+                        <div class="module-info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Carga Horária</h3>
+                                <p>24 horas</p> 
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-book"></i>
+                            <div>
+                                <h3>Material de aula</h3>
+                                <p><a href="#" class="btn btn-sm">Acessar slides</a></p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-code-branch"></i>
+                            <div>
+                                <h3>Pré-requisitos</h3>
+                                <p>Módulos 1 a 6</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Conteúdo Programático</h2>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>1. Introdução a Bancos de Dados Relacionais</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>O que são bancos de dados e sua importância</li>
+                                    <li>Conceito de banco de dados relacional</li>
+                                    <li>Tabelas, colunas, linhas e tipos de dados</li>
+                                    <li>Sistemas de Gerenciamento de Bancos de Dados (SGBD) Relacionais</li>
+                                    <li>Visão geral do PostgreSQL: características e vantagens</li>
+                                    <li>Outros SGBDs relacionais (SQL Server, Oracle, etc. - menção breve)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>2. Modelagem de Dados Relacionais</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Conceitos básicos de modelagem de dados</li>
+                                    <li>Modelo Entidade-Relacionamento (ER)
+                                        <ul>
+                                            <li>Entidades (Ex: Cliente, Produto, Pedido)</li>
+                                            <li>Atributos (Ex: nome_cliente, descricao_produto)</li>
+                                            <li>Relacionamentos (Ex: um Cliente faz muitos Pedidos)</li>
+                                            <li>Cardinalidade (1:1, 1:N, N:M)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Diagrama Entidade-Relacionamento (DER)</li>
+                                    <li>Normalização de dados (conceito e importância)
+                                        <ul>
+                                            <li>Primeira Forma Normal (1FN)</li>
+                                            <li>Segunda Forma Normal (2FN)</li>
+                                            <li>Terceira Forma Normal (3FN)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Chaves
+                                        <ul>
+                                            <li>Chave primária (PK)</li>
+                                            <li>Chave estrangeira (FK)</li>
+                                            <li>Chave candidata</li>
+                                            <li>Chave composta</li>
+                                        </ul>
+                                    </li>
+                                    <li>Integridade referencial</li>
+                                    <li>Aplicação da modelagem no script `script_vendas.sql`</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>3. Linguagem SQL (Structured Query Language)</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Introdução ao SQL</li>
+                                    <li>Tipos de dados em PostgreSQL</li>
+                                    <li>DDL (Data Definition Language) - Linguagem de Definição de Dados
+                                        <ul>
+                                            <li><code>CREATE TABLE</code> (Ex: criando as tabelas cliente, produto)</li>
+                                            <li><code>ALTER TABLE</code> (Ex: adicionando uma coluna)</li>
+                                            <li><code>DROP TABLE</code> (Ex: removendo uma tabela)</li>
+                                        </ul>
+                                    </li>
+                                    <li>DML (Data Manipulation Language) - Linguagem de Manipulação de Dados
+                                        <ul>
+                                            <li><code>SELECT</code> (Consultando dados de produtos, clientes)</li>
+                                            <li><code>INSERT INTO</code> (Inserindo um novo vendedor)</li>
+                                            <li><code>UPDATE</code> (Atualizando o endereço de um cliente)</li>
+                                            <li><code>DELETE FROM</code> (Removendo um pedido)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Consultas SQL Fundamentais
+                                        <ul>
+                                            <li><code>WHERE</code> (Filtrando clientes por cidade)</li>
+                                            <li><code>ORDER BY</code> (Ordenando produtos por preço)</li>
+                                            <li><code>LIMIT</code> / <code>OFFSET</code> (Paginação de resultados)</li>
+                                            <li>Funções agregadas (<code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code>)</li>
+                                            <li><code>GROUP BY</code> (Agrupando itens de pedido por pedido)</li>
+                                            <li><code>HAVING</code> (Filtrando grupos)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Junções (JOINs)
+                                        <ul>
+                                            <li><code>INNER JOIN</code> (Combinando pedido com cliente e vendedor)</li>
+                                            <li><code>LEFT JOIN</code> / <code>RIGHT JOIN</code> (Listando todos os clientes e seus pedidos, mesmo sem pedidos)</li>
+                                            <li><code>FULL OUTER JOIN</code> (Menção)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Subconsultas (Consultas aninhadas)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>4. PostgreSQL na Prática</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Instalação e configuração do PostgreSQL</li>
+                                    <li>Ferramentas de administração
+                                        <ul>
+                                            <li>pgAdmin (Interface gráfica)</li>
+                                            <li>psql (Linha de comando)</li>
+                                            <li>DBeaver (Cliente universal)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Criação de bancos de dados e schemas</li>
+                                    <li>Executando o script `script_vendas.sql`</li>
+                                    <li>Gerenciamento de tabelas e constraints (PK, FK, UNIQUE)</li>
+                                    <li>Realizando consultas e manipulação de dados (INSERT, UPDATE, DELETE, SELECT)</li>
+                                    <li>Backup e restauração básicos (pg_dump, pg_restore)</li>
+                                    <li>Gerenciamento de usuários e permissões (GRANT, REVOKE)</li>
+                                    <li>Introdução a Índices: criação e impacto no desempenho de consultas</li>
+                                    <li>Introdução a Visões (Views)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>5. Integração com Node.js</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Visão geral de ORMs e Query Builders (Sequelize, Knex.js - menção)</li>
+                                    <li>Utilizando o driver `pg` para Node.js</li>
+                                    <li>Configurando a conexão com o PostgreSQL na aplicação Node.js</li>
+                                    <li>Executando consultas SQL (SELECT, INSERT, UPDATE, DELETE) a partir do Node.js</li>
+                                    <li>Tratamento de resultados e erros</li>
+                                    <li>Prevenção de SQL Injection (Consultas parametrizadas)</li>
+                                    <li>Gerenciamento de pool de conexões</li>
+                                    <li>Exemplos práticos: CRUD de Produtos na API do projeto</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Objetivos de Aprendizagem</h2>
+                    <p>Ao final deste módulo, você será capaz de:</p>
+                    <ul>
+                        <li>Explicar os conceitos fundamentais de bancos de dados relacionais.</li>
+                        <li>Modelar um banco de dados relacional usando o Modelo Entidade-Relacionamento.</li>
+                        <li>Interpretar e aplicar os conceitos de normalização.</li>
+                        <li>Escrever consultas SQL para criar, ler, atualizar e deletar dados (CRUD).</li>
+                        <li>Utilizar JOINs para combinar dados de múltiplas tabelas.</li>
+                        <li>Instalar, configurar e administrar um banco de dados PostgreSQL básico.</li>
+                        <li>Integrar uma aplicação Node.js com um banco de dados PostgreSQL.</li>
+                        <li>Executar consultas SQL de forma segura a partir do Node.js.</li>
+                    </ul>
+
+                    <div class="cta-section">
+                        <h2>Próximo Módulo</h2>
+                        <p>Continue sua jornada no desenvolvimento backend explorando Metodologias Ágeis e Scrum.</p>
+                        <div class="cta-buttons">
+                            <a href="scrum.html" class="btn btn-primary">Ir para Módulo 8</a>
+                            <a href="../projeto/index.html" class="btn btn-secondary">Revisitar o Projeto Prático</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-nav">
+                        <h3>Módulos do Curso</h3>
+                        <ul>
+                            <li><a href="lpjs.html">1. Lógica de Programação</a></li>
+                            <li><a href="git.html">2. Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">3. JavaScript e OO</a></li>
+                            <li><a href="pds.html">4. Padrões de Desenvolvimento</a></li>
+                            <li><a href="iws.html">5. Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">6. Node.js</a></li>
+                            <li><a href="nbd.html" class="active">7. Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">8. Metodologias Ágeis</a></li>
+                        </ul>
+                    </div>
+                    <div class="instructor-card">
+                        <div class="instructor-image">
+                            <img src="../img/tiago-segato.jpg" alt="Prof. Tiago Segato">
+                        </div>
+                        <div class="instructor-info">
+                            <h3>Prof. Tiago Segato</h3>
+                            <p>Desenvolvedor e educador.</p>
+                            <div class="social-links">
+                                <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Prof. Tiago Segato</h2>
+                    <p>Desenvolvimento Backend com JavaScript: Do Zero à Aplicação Completa</p>
+                    <div class="social-links mt-3">
+                        <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../sobre.html">Sobre o Curso</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../contato.html">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Módulos</h3>
+                        <ul>
+                            <li><a href="lpjs.html">Lógica de Programação</a></li>
+                            <li><a href="git.html">Git e GitHub</a></li>
+                            <li><a href="jstob.html">JavaScript e OO</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento</a></li>
+                            <li><a href="iws.html">WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Banco de Dados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Projeto</h3>
+                        <ul>
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prof. Tiago Segato. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:contato@tiagosegato.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

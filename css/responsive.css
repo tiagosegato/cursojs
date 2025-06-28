@@ -1,0 +1,145 @@
+/* Estilos responsivos para o curso */
+
+/* Tablets */
+@media (max-width: 992px) {
+    .container {
+        width: 95%;
+    }
+
+    .hero-content {
+        padding: 60px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .content-layout {
+        flex-direction: column;
+    }
+
+    .main-content {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    .feature-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .module-card {
+        width: calc(50% - 20px);
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-logo {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .footer-links {
+        width: 100%;
+    }
+}
+
+/* Smartphones */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .main-nav .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-dark);
+        flex-direction: column;
+        padding: 20px;
+        z-index: 100;
+    }
+
+    .main-nav .nav-links.active {
+        display: flex;
+    }
+
+    .main-nav .nav-links li {
+        margin: 10px 0;
+    }
+
+    .main-nav .dropdown-menu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        padding: 10px 0 10px 20px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .feature-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .module-card {
+        width: 100%;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .footer-section {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .code-example {
+        overflow-x: auto;
+    }
+
+    .code-example pre {
+        max-width: 100%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+}
+
+/* Pequenos ajustes para telas muito pequenas */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    /*
+    .breadcrumbs {
+        display: none;
+    }*/
+
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+}

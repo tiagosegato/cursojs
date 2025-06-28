@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquitetura e Rotas - Sistema de Vendas | Prof. Tiago Segato</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>JavaScript BackEnd</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../sobre.html">Sobre o Curso</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Módulos <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../modulos/lpjs.html">Lógica de Programação com JavaScript</a></li>
+                            <li><a href="../modulos/git.html">Git, GitHub e GitLab</a></li>
+                            <li><a href="../modulos/jstob.html">JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="../modulos/pds.html">Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="../modulos/iws.html">Introdução a WebServices</a></li>
+                            <li><a href="../modulos/nodejs.html">Node.js</a></li>
+                            <li><a href="../modulos/nbd.html">Noções de Banco de Dados</a></li>
+                            <li><a href="../modulos/scrum.html">Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active">Projeto <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html">Visão Geral</a></li>
+                            <li><a href="requisitos.html">Requisitos</a></li>
+                            <li><a href="modelagem.html">Modelagem</a></li>
+                            <li><a href="arquitetura.html" class="active">Arquitetura</a></li>
+                            <li><a href="passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../ead.html">Conteúdo EaD</a></li>
+                    <li><a href="../recursos.html">Recursos</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Arquitetura e Rotas do Sistema de Vendas</h1>
+            <p>Estrutura do projeto Node.js/Express e definição de endpoints da API RESTful para o modelo `script_vendas.sql`</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-layout">
+                <div class="main-content">
+                    <h2>Visão Geral da Arquitetura</h2>
+                    <p>O Sistema de Vendas será desenvolvido com Node.js e Express, seguindo uma arquitetura organizada para separar responsabilidades (Rotas, Controladores, Modelos/Acesso a Dados). Utilizaremos o padrão de API RESTful para a comunicação e o PostgreSQL como banco de dados, conforme o `script_vendas.sql`.</p>
+                    
+                    <div class="diagram-container">
+                        <pre class="ascii-diagram">
++----------------------------------+
+|           CLIENTE                |
+|  (Browser / Frontend / Postman)  |
++----------------------------------+
+              |
+              | HTTP Requests (GET, POST, PUT, DELETE)
+              v
++----------------------------------+
+|           EXPRESS                |
+|      (Servidor Node.js)          |
++----------------------------------+
+              |
+              v
++----------------------------------+
+|           ROTAS                  |
+|    (Definição dos Endpoints      |
+|     /api/clientes, /api/produtos...)
++----------------------------------+
+              |
+              v
++----------------------------------+
+|        CONTROLLERS               |
+|  (Lógica de Negócio e Validação) |
+|  (clienteController, produtoController...)
++----------------------------------+
+              |
+              v
++----------------------------------+
+|    MODELS / DATA ACCESS LAYER    |
+|    (Interação com BD via driver pg)|
+|  (clienteModel, produtoModel...) |
++----------------------------------+
+              |
+              v
++----------------------------------+
+|        BANCO DE DADOS            |
+|         (PostgreSQL)             |
+|   (Tabelas: cliente, vendedor,   |
+|    pedido, produto, item_pedido)|
++----------------------------------+
+</pre>
+                    </div>
+                    
+                    <h2>Estrutura de Diretórios Sugerida</h2>
+                    <p>A organização dos diretórios do projeto buscará clareza e modularidade:</p>
+                    
+                    <div class="code-example">
+                        <pre><code>sistema-vendas/
+├── node_modules/
+├── src/
+│   ├── config/
+│   │   └── database.js       # Configuração da conexão PostgreSQL
+│   ├── controllers/
+│   │   ├── clienteController.js
+│   │   ├── vendedorController.js
+│   │   ├── produtoController.js
+│   │   ├── pedidoController.js
+│   │   └── itemPedidoController.js # (Opcional, pode ser parte do pedidoController)
+│   ├── models/             # Ou 'data-access', 'repositories'
+│   │   ├── clienteModel.js
+│   │   ├── vendedorModel.js
+│   │   ├── produtoModel.js
+│   │   ├── pedidoModel.js
+│   │   └── itemPedidoModel.js
+│   ├── routes/
+│   │   ├── clienteRoutes.js
+│   │   ├── vendedorRoutes.js
+│   │   ├── produtoRoutes.js
+│   │   ├── pedidoRoutes.js
+│   │   └── index.js          # Arquivo principal que agrega as rotas
+│   ├── utils/
+│   │   └── dbUtils.js        # Funções utilitárias para o BD (ex: pool de conexão)
+│   └── app.js              # Arquivo principal da aplicação Express
+├── .env                    # Variáveis de ambiente (DB_HOST, DB_USER, etc.)
+├── .gitignore
+├── package.json
+├── README.md
+└── server.js               # Ponto de entrada (inicia o servidor)
+</code></pre>
+                    </div>
+                    
+                    <h3>Descrição dos Diretórios Principais (Foco no Backend)</h3>
+                    <ul>
+                        <li><strong>src/</strong>: Contém o código-fonte da aplicação backend.
+                            <ul>
+                                <li><strong>config/</strong>: Configurações, como os detalhes da conexão com o PostgreSQL.</li>
+                                <li><strong>controllers/</strong>: Responsáveis por receber as requisições das rotas, validar dados, chamar os modelos e retornar as respostas. Cada controlador foca em uma entidade (`cliente`, `produto`, etc.).</li>
+                                <li><strong>models/</strong> (ou camada de acesso a dados): Contém a lógica para interagir diretamente com o banco de dados PostgreSQL (usando o driver `pg`), executando as queries SQL para buscar, inserir, atualizar ou deletar dados das tabelas (`cliente`, `produto`, etc.).</li>
+                                <li><strong>routes/</strong>: Define os endpoints da API RESTful (ex: `/api/clientes`, `/api/produtos/:codigo`) e direciona as requisições para os controladores apropriados.</li>
+                                <li><strong>utils/</strong>: Funções auxiliares, como a configuração do pool de conexões com o PostgreSQL.</li>
+                                <li><strong>app.js</strong>: Configura o Express, aplica middlewares (como o `express.json()`) e conecta as rotas.</li>
+                            </ul>
+                        </li>
+                        <li><strong>server.js</strong>: Importa o `app.js` e inicia o servidor HTTP para escutar as requisições.</li>
+                        <li><strong>.env</strong>: Armazena de forma segura as credenciais do banco de dados e outras variáveis de ambiente.</li>
+                    </ul>
+                    
+                    <h2>Definição das Rotas da API (Baseado no `script_vendas.sql`)</h2>
+                    <p>A API RESTful terá endpoints para gerenciar as cinco entidades principais do sistema:</p>
+                    
+                    <div class="accordion">
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>Rotas de Clientes (`/api/clientes`)</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <table class="table">
+                                    <thead><tr><th>Método</th><th>Rota</th><th>Descrição</th><th>Retorno</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>GET</td><td>/</td><td>Lista todos os clientes</td><td>Array de clientes</td></tr>
+                                        <tr><td>GET</td><td>/:codigo</td><td>Obtém um cliente específico pelo código</td><td>Dados do cliente</td></tr>
+                                        <tr><td>POST</td><td>/</td><td>Cria um novo cliente</td><td>Cliente criado</td></tr>
+                                        <tr><td>PUT</td><td>/:codigo</td><td>Atualiza um cliente existente</td><td>Cliente atualizado</td></tr>
+                                        <tr><td>DELETE</td><td>/:codigo</td><td>Remove um cliente</td><td>Mensagem de sucesso</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>Rotas de Vendedores (`/api/vendedores`)</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <table class="table">
+                                    <thead><tr><th>Método</th><th>Rota</th><th>Descrição</th><th>Retorno</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>GET</td><td>/</td><td>Lista todos os vendedores</td><td>Array de vendedores</td></tr>
+                                        <tr><td>GET</td><td>/:codigo</td><td>Obtém um vendedor específico pelo código</td><td>Dados do vendedor</td></tr>
+                                        <tr><td>POST</td><td>/</td><td>Cria um novo vendedor</td><td>Vendedor criado</td></tr>
+                                        <tr><td>PUT</td><td>/:codigo</td><td>Atualiza um vendedor existente</td><td>Vendedor atualizado</td></tr>
+                                        <tr><td>DELETE</td><td>/:codigo</td><td>Remove um vendedor</td><td>Mensagem de sucesso</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>Rotas de Produtos (`/api/produtos`)</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <table class="table">
+                                    <thead><tr><th>Método</th><th>Rota</th><th>Descrição</th><th>Retorno</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>GET</td><td>/</td><td>Lista todos os produtos</td><td>Array de produtos</td></tr>
+                                        <tr><td>GET</td><td>/:codigo</td><td>Obtém um produto específico pelo código</td><td>Dados do produto</td></tr>
+                                        <tr><td>POST</td><td>/</td><td>Cria um novo produto</td><td>Produto criado</td></tr>
+                                        <tr><td>PUT</td><td>/:codigo</td><td>Atualiza um produto existente</td><td>Produto atualizado</td></tr>
+                                        <tr><td>DELETE</td><td>/:codigo</td><td>Remove um produto</td><td>Mensagem de sucesso</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>Rotas de Pedidos (`/api/pedidos`)</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <table class="table">
+                                    <thead><tr><th>Método</th><th>Rota</th><th>Descrição</th><th>Retorno</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>GET</td><td>/</td><td>Lista todos os pedidos (cabeçalho)</td><td>Array de pedidos</td></tr>
+                                        <tr><td>GET</td><td>/:numero</td><td>Obtém um pedido específico com seus itens</td><td>Dados do pedido e itens</td></tr>
+                                        <tr><td>POST</td><td>/</td><td>Cria um novo pedido (cabeçalho)</td><td>Pedido criado</td></tr>
+                                        <tr><td>PUT</td><td>/:numero</td><td>Atualiza dados do cabeçalho do pedido</td><td>Pedido atualizado</td></tr>
+                                        <tr><td>DELETE</td><td>/:numero</td><td>Remove um pedido e seus itens</td><td>Mensagem de sucesso</td></tr>
+                                        <tr><td>POST</td><td>/:numero/itens</td><td>Adiciona um item a um pedido existente</td><td>Item adicionado</td></tr>
+                                        <tr><td>PUT</td><td>/:numero/itens/:produtoCodigo</td><td>Atualiza a quantidade de um item</td><td>Item atualizado</td></tr>
+                                        <tr><td>DELETE</td><td>/:numero/itens/:produtoCodigo</td><td>Remove um item de um pedido</td><td>Mensagem de sucesso</td></tr>
+                                    </tbody>
+                                </table>
+                                <p><small>Nota: A gestão de itens pode ser feita através de sub-rotas de pedidos ou rotas dedicadas `/api/itens_pedido`, dependendo da preferência de design da API.</small></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="cta-section">
+                        <h2>Próximos Passos</h2>
+                        <p>Com a arquitetura e as rotas definidas, podemos iniciar o desenvolvimento passo a passo da aplicação.</p>
+                        <div class="cta-buttons">
+                            <a href="modelagem.html" class="btn btn-secondary">Revisitar Modelagem</a>
+                            <a href="passo-a-passo.html" class="btn btn-primary">Ver Passo a Passo</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-nav">
+                        <h3>Projeto Prático</h3>
+                        <ul>
+                            <li><a href="index.html">Visão Geral</a></li>
+                            <li><a href="requisitos.html">Requisitos</a></li>
+                            <li><a href="modelagem.html">Modelagem</a></li>
+                            <li><a href="arquitetura.html" class="active">Arquitetura</a></li>
+                            <li><a href="passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                    <div class="instructor-card">
+                        <div class="instructor-image">
+                            <img src="../img/tiago-segato.jpg" alt="Prof. Tiago Segato">
+                        </div>
+                        <div class="instructor-info">
+                            <h3>Prof. Tiago Segato</h3>
+                            <p>Desenvolvedor e educador.</p>
+                            <div class="social-links">
+                                <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Prof. Tiago Segato</h2>
+                    <p>Desenvolvimento Backend com JavaScript: Do Zero à Aplicação Completa</p>
+                    <div class="social-links mt-3">
+                        <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../sobre.html">Sobre o Curso</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../contato.html">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Módulos</h3>
+                        <ul>
+                            <li><a href="../modulos/lpjs.html">Lógica de Programação</a></li>
+                            <li><a href="../modulos/git.html">Git e GitHub</a></li>
+                            <li><a href="../modulos/jstob.html">JavaScript e OO</a></li>
+                            <li><a href="../modulos/pds.html">Padrões de Desenvolvimento</a></li>
+                            <li><a href="../modulos/iws.html">WebServices</a></li>
+                            <li><a href="../modulos/nodejs.html">Node.js</a></li>
+                            <li><a href="../modulos/nbd.html">Banco de Dados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Projeto</h3>
+                        <ul>
+                            <li><a href="index.html">Visão Geral</a></li>
+                            <li><a href="requisitos.html">Requisitos</a></li>
+                            <li><a href="modelagem.html">Modelagem</a></li>
+                            <li><a href="arquitetura.html">Arquitetura</a></li>
+                            <li><a href="passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prof. Tiago Segato. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:contato@tiagosegato.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

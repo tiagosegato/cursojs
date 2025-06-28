@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto: Sistema de Vendas | Prof. Tiago Segato</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>JavaScript BackEnd</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../sobre.html">Sobre o Curso</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Módulos <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../modulos/lpjs.html">Lógica de Programação com JavaScript</a></li>
+                            <li><a href="../modulos/git.html">Git, GitHub e GitLab</a></li>
+                            <li><a href="../modulos/jstob.html">JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="../modulos/pds.html">Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="../modulos/iws.html">Introdução a WebServices</a></li>
+                            <li><a href="../modulos/nodejs.html">Node.js</a></li>
+                            <li><a href="../modulos/nbd.html">Noções de Banco de Dados</a></li>
+                            <li><a href="../modulos/scrum.html">Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active">Projeto <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html" class="active">Visão Geral</a></li>
+                            <li><a href="requisitos.html">Requisitos</a></li>
+                            <li><a href="modelagem.html">Modelagem</a></li>
+                            <li><a href="arquitetura.html">Arquitetura</a></li>
+                            <li><a href="passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../ead.html">Conteúdo EaD</a></li>
+                    <li><a href="../recursos.html">Recursos</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Projeto Prático: Sistema de Vendas</h1>
+            <p>Aplicação completa em Node.js e Express para gerenciamento de vendas</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-layout">
+                <div class="main-content">
+                    <h2>Visão Geral do Projeto</h2>
+                    <p>Neste projeto prático, vamos desenvolver um sistema de vendas utilizando Node.js e Express. O sistema permitirá o gerenciamento de produtos, clientes, vendedores e pedidos, aplicando os conceitos aprendidos ao longo do curso.</p>
+                    
+                    <p>O projeto será desenvolvido de forma incremental, seguindo as melhores práticas de desenvolvimento de software e utilizando o padrão MVC (Model-View-Controller). Vamos implementar um CRUD completo para a entidade Produtos, que servirá como base para o restante do sistema.</p>
+                    
+                    <div class="project-info">
+                        <div class="project-info-item">
+                            <i class="fas fa-code-branch"></i>
+                            <div>
+                                <h3>Tecnologias</h3>
+                                <p>Node.js, Express, PostgreSQL, JavaScript</p>
+                            </div>
+                        </div>
+                        <div class="project-info-item">
+                            <i class="fas fa-tasks"></i>
+                            <div>
+                                <h3>Complexidade</h3>
+                                <p>Intermediária</p>
+                            </div>
+                        </div>
+                        <div class="project-info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Tempo Estimado</h3>
+                                <p>24 horas (conforme plano de curso)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Objetivos do Projeto</h2>
+                    <p>Ao desenvolver este sistema de vendas, você terá a oportunidade de:</p>
+                    
+                    <ul>
+                        <li>Aplicar os conceitos de lógica de programação com JavaScript em um contexto real</li>
+                        <li>Utilizar o Git para controle de versão do projeto</li>
+                        <li>Implementar conceitos de orientação a objetos em JavaScript</li>
+                        <li>Aplicar padrões de desenvolvimento de software</li>
+                        <li>Desenvolver uma API RESTful com Node.js e Express</li>
+                        <li>Integrar a aplicação com um banco de dados PostgreSQL</li>
+                        <li>Aplicar boas práticas de desenvolvimento e segurança</li>
+                        <li>Utilizar metodologias ágeis para gerenciar o desenvolvimento</li>
+                    </ul>
+                    
+                    <h2>Estrutura do Banco de Dados (PostgreSQL)</h2>
+                    <p>O sistema utilizará um banco de dados PostgreSQL com as seguintes tabelas principais, conforme o script `script_vendas.sql`:</p>
+                    
+                    <div class="code-example">
+                        <pre><code>/* Criando a Tabela Cliente */
+create table cliente( 
+    codigo_cliente integer not null unique,
+    nome_cliente varchar(40),
+    endereco varchar(50),
+    cidade varchar(30),
+    cep char(10),
+    uf char(2),
+    cnpj char(16),
+    ie char(20),
+    constraint pk_cliente primary key (codigo_cliente)
+); 
+
+/* Criando a Tabela Vendedor*/
+create table vendedor( 
+    codigo_vendedor integer not null unique,
+    nome_vendedor varchar(40),
+    salario_fixo numeric(10,2),
+    faixa_comissao char(1),
+    constraint pk_vendedor primary key(codigo_vendedor)
+);
+
+/* Criando a Tabela Pedido */
+create table pedido(
+    num_pedido integer not null unique,
+    prazo_entrega smallint not null,
+    codigo_cliente integer not null,
+    codigo_vendedor integer not null,
+    constraint pk_pedido primary key (num_pedido),
+    constraint fk_pedido_cli foreign key (codigo_cliente) references cliente,
+    constraint fk_pedido_ven foreign key (codigo_vendedor) references vendedor
+);
+
+/* Criando a Tabela Produto */
+create table produto( 
+    codigo_produto integer not null unique,
+    unidade char(3),
+    descricao_produto varchar(30),
+    val_unit numeric(10,2),
+    constraint pk_produto primary key (codigo_produto)
+);
+
+/* Criando a Tabela Item do Pedido */
+create table item_pedido( 
+    num_pedido integer not null,
+    codigo_produto integer not null,
+    quantidade numeric(10,2),
+    constraint pk_item_pedido primary key (num_pedido,codigo_produto),
+    constraint fk_item_pedido_ped foreign key (num_pedido) references pedido,
+    constraint fk_item_pedido_pro foreign key (codigo_produto) references produto
+);</code></pre>
+                    </div>
+                    
+                    <h2>Funcionalidades Principais</h2>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>1. Gerenciamento de Produtos</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Cadastro de produtos (CRUD básico)</li>
+                                    <li>Listagem de produtos</li>
+                                    <li>Edição de informações de produtos</li>
+                                    <li>Exclusão de produtos</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>2. Gerenciamento de Clientes</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Cadastro de clientes (CRUD básico)</li>
+                                    <li>Listagem de clientes</li>
+                                    <li>Edição de informações de clientes</li>
+                                    <li>Exclusão de clientes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>3. Gerenciamento de Vendedores</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Cadastro de vendedores (CRUD básico)</li>
+                                    <li>Listagem de vendedores</li>
+                                    <li>Edição de informações de vendedores</li>
+                                    <li>Exclusão de vendedores</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>4. Registro de Pedidos</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Criação de novos pedidos</li>
+                                    <li>Adição de itens (produtos) ao pedido</li>
+                                    <li>Listagem de pedidos</li>
+                                    <li>Consulta de detalhes de um pedido</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Arquitetura do Sistema</h2>
+                    <p>O sistema será desenvolvido seguindo a arquitetura MVC (Model-View-Controller), com uma API RESTful no backend. A estrutura de diretórios será organizada da seguinte forma:</p>
+                    
+                    <div class="code-example">
+                        <pre><code>sistema-vendas/
+├── src/
+│   ├── config/
+│   │   ├── database.js     # Configuração de conexão com o PostgreSQL
+│   │   └── server.js       # Configuração do servidor Express
+│   ├── controllers/
+│   │   ├── produtoController.js
+│   │   ├── clienteController.js
+│   │   ├── vendedorController.js
+│   │   └── pedidoController.js
+│   ├── models/
+│   │   ├── Produto.js
+│   │   ├── Cliente.js
+│   │   ├── Vendedor.js
+│   │   └── Pedido.js
+│   ├── routes/
+│   │   ├── produtoRoutes.js
+│   │   ├── clienteRoutes.js
+│   │   ├── vendedorRoutes.js
+│   │   └── pedidoRoutes.js
+│   ├── middlewares/
+│   │   └── validator.js    # Middleware de validação de dados (opcional)
+│   ├── utils/
+│   │   └── helpers.js      # Funções auxiliares (opcional)
+│   └── main.js             # Ponto de entrada da aplicação
+├── .env                    # Variáveis de ambiente
+├── .gitignore              # Arquivos a serem ignorados pelo Git
+├── package.json            # Dependências e scripts
+└── README.md               # Documentação do projeto</code></pre>
+                    </div>
+                    
+                    <h2>Tecnologias Utilizadas</h2>
+                    
+                    <div class="tech-stack">
+                        <div class="tech-item">
+                            <i class="fab fa-node-js"></i>
+                            <h3>Node.js</h3>
+                            <p>Ambiente de execução JavaScript server-side</p>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-js"></i>
+                            <h3>Express</h3>
+                            <p>Framework web para Node.js</p>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-database"></i>
+                            <h3>PostgreSQL</h3>
+                            <p>Sistema de gerenciamento de banco de dados relacional</p>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-git-alt"></i>
+                            <h3>Git</h3>
+                            <p>Sistema de controle de versão</p>
+                        </div>
+                    </div>
+
+                    <div class="cta-section">
+                        <h2>Próximos Passos</h2>
+                        <p>Explore as seções de Requisitos, Modelagem, Arquitetura e Passo a Passo para entender em detalhes como o projeto será desenvolvido.</p>
+                        <div class="cta-buttons">
+                            <a href="requisitos.html" class="btn btn-primary">Ver Requisitos</a>
+                            <a href="modelagem.html" class="btn btn-secondary">Ver Modelagem</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-nav">
+                        <h3>Projeto Prático</h3>
+                        <ul>
+                            <li><a href="index.html" class="active">Visão Geral</a></li>
+                            <li><a href="requisitos.html">Requisitos</a></li>
+                            <li><a href="modelagem.html">Modelagem</a></li>
+                            <li><a href="arquitetura.html">Arquitetura</a></li>
+                            <li><a href="passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                    <div class="instructor-card">
+                        <div class="instructor-image">
+                            <img src="../img/tiago-segato.jpg" alt="Prof. Tiago Segato">
+                        </div>
+                        <div class="instructor-info">
+                            <h3>Prof. Tiago Segato</h3>
+                            <p>Desenvolvedor e educador.</p>
+                            <div class="social-links">
+                                <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Prof. Tiago Segato</h2>
+                    <p>Desenvolvimento Backend com JavaScript: Do Zero à Aplicação Completa</p>
+                    <div class="social-links mt-3">
+                        <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../sobre.html">Sobre o Curso</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../contato.html">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Módulos</h3>
+                        <ul>
+                            <li><a href="../modulos/lpjs.html">Lógica de Programação</a></li>
+                            <li><a href="../modulos/git.html">Git e GitHub</a></li>
+                            <li><a href="../modulos/jstob.html">JavaScript e OO</a></li>
+                            <li><a href="../modulos/pds.html">Padrões de Desenvolvimento</a></li>
+                            <li><a href="../modulos/iws.html">WebServices</a></li>
+                            <li><a href="../modulos/nodejs.html">Node.js</a></li>
+                            <li><a href="../modulos/nbd.html">Banco de Dados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Projeto</h3>
+                        <ul>
+                            <li><a href="index.html">Visão Geral</a></li>
+                            <li><a href="requisitos.html">Requisitos</a></li>
+                            <li><a href="modelagem.html">Modelagem</a></li>
+                            <li><a href="arquitetura.html">Arquitetura</a></li>
+                            <li><a href="passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prof. Tiago Segato. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:contato@tiagosegato.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

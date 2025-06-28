@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git, GitHub e GitLab | Prof. Tiago Segato</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>JavaScript BackEnd</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../sobre.html">Sobre o Curso</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active">Módulos <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="lpjs.html">Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html" class="active">Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html">Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Projeto <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../ead.html">Conteúdo EaD</a></li>
+                    <li><a href="../recursos.html">Recursos</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="page-header">
+        <div class="container">
+            <h1>Módulo 2: Git, GitHub e GitLab</h1>
+            <p>Controle de versão, colaboração em equipe e gerenciamento de código-fonte</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-layout">
+                <div class="main-content">
+                    <h2>Visão Geral do Módulo</h2>
+                    <p>Neste módulo, você aprenderá sobre sistemas de controle de versão, com foco no Git e nas plataformas GitHub e GitLab. Essas ferramentas são essenciais para o desenvolvimento de software moderno, permitindo o trabalho colaborativo, o controle de alterações no código e a gestão eficiente de projetos.</p>
+                    
+                    <div class="module-info">
+                        <div class="module-info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Carga Horária</h3>
+                                <p>3 horas</p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-book"></i>
+                            <div>
+                                <h3>Material de aula</h3>
+                                <p><a href="../aulas/m2-git.html" class="btn btn-sm" target="_blank">Acessar slides</a></p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-code-branch"></i>
+                            <div>
+                                <h3>Pré-requisitos</h3>
+                                <p>Módulo 1</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Conteúdo Programático</h2>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>1. Introdução ao Controle de Versão</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>O que é controle de versão e por que é importante</li>
+                                    <li>Sistemas de controle de versão centralizados vs. distribuídos</li>
+                                    <li>História e evolução do Git</li>
+                                    <li>Benefícios do Git para desenvolvimento de software</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>2. Configuração e Conceitos Básicos do Git</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Instalação e configuração inicial do Git</li>
+                                    <li>Configuração de usuário e email</li>
+                                    <li>Inicialização de repositórios (git init)</li>
+                                    <li>Entendendo o ciclo de vida dos arquivos no Git</li>
+                                    <li>Áreas do Git: working directory, staging area e repository</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>3. Operações Básicas do Git</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Adicionando arquivos ao staging area (git add)</li>
+                                    <li>Criando commits (git commit)</li>
+                                    <li>Visualizando o histórico de commits (git log)</li>
+                                    <li>Verificando o status do repositório (git status)</li>
+                                    <li>Visualizando diferenças entre versões (git diff)</li>
+                                    <li>Desfazendo alterações (git checkout, git reset, git revert)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>4. Trabalhando com Branches</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>O que são branches e por que usá-los</li>
+                                    <li>Criando e alternando entre branches (git branch, git checkout)</li>
+                                    <li>Mesclando branches (git merge)</li>
+                                    <li>Resolvendo conflitos de merge</li>
+                                    <li>Estratégias de branching (feature branches, release branches)</li>
+                                    <li>Rebasing vs. Merging</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>5. Trabalhando com Repositórios Remotos</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Adicionando repositórios remotos (git remote)</li>
+                                    <li>Clonando repositórios (git clone)</li>
+                                    <li>Enviando alterações para o repositório remoto (git push)</li>
+                                    <li>Obtendo alterações do repositório remoto (git pull, git fetch)</li>
+                                    <li>Trabalhando com forks</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>6. GitHub: Plataforma de Hospedagem de Código</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Criando uma conta no GitHub</li>
+                                    <li>Criando e configurando repositórios</li>
+                                    <li>Trabalhando com Issues</li>
+                                    <li>Pull Requests: criação, revisão e aprovação</li>
+                                    <li>GitHub Actions: automação de CI/CD</li>
+                                    <li>GitHub Pages: hospedagem de sites estáticos</li>
+                                    <li>Colaboração em projetos open source</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>7. GitLab: Alternativa ao GitHub</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Diferenças entre GitHub e GitLab</li>
+                                    <li>Criando uma conta no GitLab</li>
+                                    <li>Criando e configurando projetos</li>
+                                    <li>GitLab CI/CD: pipelines de integração contínua</li>
+                                    <li>Merge Requests no GitLab</li>
+                                    <li>GitLab Pages</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>8. Boas Práticas e Fluxos de Trabalho</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Escrevendo boas mensagens de commit</li>
+                                    <li>Gitflow: um modelo de branching para equipes</li>
+                                    <li>GitHub Flow: um fluxo de trabalho simplificado</li>
+                                    <li>Conventional Commits: padronização de mensagens</li>
+                                    <li>Gerenciamento de versões com tags</li>
+                                    <li>Ignorando arquivos com .gitignore</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Exemplos Práticos</h2>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 1: Configuração Inicial do Git</h3>
+                        <pre><code># Configurando nome de usuário e email
+git config --global user.name "Seu Nome"
+git config --global user.email "seu.email@exemplo.com"
+
+# Verificando as configurações
+git config --list
+
+# Configurando o editor padrão
+git config --global core.editor "code --wait"  # Para VS Code
+
+# Configurando aliases úteis
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit</code></pre>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 2: Criando um Repositório para o Sistema de Vendas</h3>
+                        <pre><code># Criando um novo diretório para o projeto
+mkdir sistema-vendas
+cd sistema-vendas
+
+# Inicializando o repositório Git
+git init
+
+# Criando um arquivo README.md
+echo "# Sistema de Vendas" > README.md
+echo "" >> README.md
+echo "Sistema de gerenciamento de vendas desenvolvido com Node.js e Express." >> README.md
+
+# Adicionando o arquivo ao staging area
+git add README.md
+
+# Criando o primeiro commit
+git commit -m "Inicialização do projeto: Sistema de Vendas"
+
+# Criando um arquivo para o modelo de Produto
+mkdir models
+echo "// Modelo de Produto para o Sistema de Vendas" > models/Produto.js
+echo "" >> models/Produto.js
+echo "class Produto {" >> models/Produto.js
+echo "  constructor(codigo, unidade, descricao, valor_unitario) {" >> models/Produto.js
+echo "    this.codigo = codigo;" >> models/Produto.js
+echo "    this.unidade = unidade;" >> models/Produto.js
+echo "    this.descricao = descricao;" >> models/Produto.js
+echo "    this.valor_unitario = valor_unitario;" >> models/Produto.js
+echo "  }" >> models/Produto.js
+echo "}" >> models/Produto.js
+echo "" >> models/Produto.js
+echo "module.exports = Produto;" >> models/Produto.js
+
+# Adicionando o arquivo de modelo ao staging area
+git add models/Produto.js
+
+# Criando um novo commit
+git commit -m "Adiciona modelo de Produto"
+
+# Verificando o histórico de commits
+git log --oneline</code></pre>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 3: Trabalhando com Branches no Projeto de Vendas</h3>
+                        <pre><code># Criando uma nova branch para desenvolver a funcionalidade de listagem de produtos
+git checkout -b feature/listagem-produtos
+
+# Criando um arquivo para o controlador de produtos
+mkdir controllers
+echo "// Controlador de Produtos" > controllers/ProdutoController.js
+echo "" >> controllers/ProdutoController.js
+echo "const Produto = require('../models/Produto');" >> controllers/ProdutoController.js
+echo "" >> controllers/ProdutoController.js
+echo "class ProdutoController {" >> controllers/ProdutoController.js
+echo "  constructor() {" >> controllers/ProdutoController.js
+echo "    this.produtos = [" >> controllers/ProdutoController.js
+echo "      new Produto(25, 'Kg', 'Queijo', 0.97)," >> controllers/ProdutoController.js
+echo "      new Produto(31, 'BAR', 'Chocolate', 0.87)," >> controllers/ProdutoController.js
+echo "      new Produto(78, 'L', 'Vinho', 2.00)," >> controllers/ProdutoController.js
+echo "      new Produto(22, 'M', 'Linho', 0.11)," >> controllers/ProdutoController.js
+echo "      new Produto(30, 'SAC', 'Açúcar', 0.30)" >> controllers/ProdutoController.js
+echo "    ];" >> controllers/ProdutoController.js
+echo "  }" >> controllers/ProdutoController.js
+echo "" >> controllers/ProdutoController.js
+echo "  listarTodos() {" >> controllers/ProdutoController.js
+echo "    return this.produtos;" >> controllers/ProdutoController.js
+echo "  }" >> controllers/ProdutoController.js
+echo "}" >> controllers/ProdutoController.js
+echo "" >> controllers/ProdutoController.js
+echo "module.exports = ProdutoController;" >> controllers/ProdutoController.js
+
+# Adicionando o arquivo ao staging area
+git add controllers/ProdutoController.js
+
+# Criando um commit na branch feature
+git commit -m "Adiciona controlador de produtos com método de listagem"
+
+# Voltando para a branch principal
+git checkout main
+
+# Criando outra branch para desenvolver a funcionalidade de busca de produtos
+git checkout -b feature/busca-produtos
+
+# Modificando o controlador para adicionar a funcionalidade de busca
+echo "// Controlador de Produtos" > controllers/ProdutoController.js
+echo "" >> controllers/ProdutoController.js
+echo "const Produto = require('../models/Produto');" >> controllers/ProdutoController.js
+echo "" >> controllers/ProdutoController.js
+echo "class ProdutoController {" >> controllers/ProdutoController.js
+echo "  constructor() {" >> controllers/ProdutoController.js
+echo "    this.produtos = [" >> controllers/ProdutoController.js
+echo "      new Produto(25, 'Kg', 'Queijo', 0.97)," >> controllers/ProdutoController.js
+echo "      new Produto(31, 'BAR', 'Chocolate', 0.87)," >> controllers/ProdutoController.js
+echo "      new Produto(78, 'L', 'Vinho', 2.00)," >> controllers/ProdutoController.js
+echo "      new Produto(22, 'M', 'Linho', 0.11)," >> controllers/ProdutoController.js
+echo "      new Produto(30, 'SAC', 'Açúcar', 0.30)" >> controllers/ProdutoController.js
+echo "    ];" >> controllers/ProdutoController.js
+echo "  }" >> controllers/ProdutoController.js
+echo "" >> controllers/ProdutoController.js
+echo "  listarTodos() {" >> controllers/ProdutoController.js
+echo "    return this.produtos;" >> controllers/ProdutoController.js
+echo "  }" >> controllers/ProdutoController.js
+echo "" >> controllers/ProdutoController.js
+echo "  buscarPorCodigo(codigo) {" >> controllers/ProdutoController.js
+echo "    return this.produtos.find(produto => produto.codigo === codigo);" >> controllers/ProdutoController.js
+echo "  }" >> controllers/ProdutoController.js
+echo "" >> controllers/ProdutoController.js
+echo "  buscarPorDescricao(termo) {" >> controllers/ProdutoController.js
+echo "    return this.produtos.filter(produto => " >> controllers/ProdutoController.js
+echo "      produto.descricao.toLowerCase().includes(termo.toLowerCase())" >> controllers/ProdutoController.js
+echo "    );" >> controllers/ProdutoController.js
+echo "  }" >> controllers/ProdutoController.js
+echo "}" >> controllers/ProdutoController.js
+echo "" >> controllers/ProdutoController.js
+echo "module.exports = ProdutoController;" >> controllers/ProdutoController.js
+
+# Adicionando as alterações ao staging area
+git add controllers/ProdutoController.js
+
+# Criando um commit na branch de busca
+git commit -m "Adiciona métodos de busca por código e descrição"
+
+# Voltando para a branch principal
+git checkout main
+
+# Mesclando a branch de listagem
+git merge feature/listagem-produtos
+
+# Mesclando a branch de busca (pode gerar conflitos que precisarão ser resolvidos)
+git merge feature/busca-produtos</code></pre>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 4: Configurando um Repositório Remoto no GitHub</h3>
+                        <pre><code># Criando um repositório no GitHub (via interface web)
+# Após criar o repositório, conecte seu repositório local ao remoto
+
+# Adicionando o repositório remoto
+git remote add origin https://github.com/seu-usuario/sistema-vendas.git
+
+# Verificando os repositórios remotos configurados
+git remote -v
+
+# Enviando o código para o repositório remoto
+git push -u origin main
+
+# Criando um arquivo .gitignore para ignorar arquivos desnecessários
+echo "# Arquivos e diretórios a serem ignorados pelo Git" > .gitignore
+echo "" >> .gitignore
+echo "# Dependências" >> .gitignore
+echo "node_modules/" >> .gitignore
+echo "package-lock.json" >> .gitignore
+echo "" >> .gitignore
+echo "# Arquivos de ambiente" >> .gitignore
+echo ".env" >> .gitignore
+echo ".env.local" >> .gitignore
+echo "" >> .gitignore
+echo "# Logs" >> .gitignore
+echo "logs/" >> .gitignore
+echo "*.log" >> .gitignore
+echo "" >> .gitignore
+echo "# Diretório de build" >> .gitignore
+echo "dist/" >> .gitignore
+echo "build/" >> .gitignore
+echo "" >> .gitignore
+echo "# Arquivos do sistema" >> .gitignore
+echo ".DS_Store" >> .gitignore
+echo "Thumbs.db" >> .gitignore
+
+# Adicionando o .gitignore ao staging area
+git add .gitignore
+
+# Criando um commit
+git commit -m "Adiciona arquivo .gitignore"
+
+# Enviando as alterações para o repositório remoto
+git push origin main</code></pre>
+                    </div>
+                    
+                    <h2>Exercícios Práticos</h2>
+                    <p>Para fixar os conceitos aprendidos neste módulo, recomendamos a realização dos seguintes exercícios:</p>
+                    
+                    <ol>
+                        <li>Configure o Git em sua máquina local com seu nome e email.</li>
+                        <li>Crie um repositório local para o projeto do Sistema de Vendas.</li>
+                        <li>Adicione arquivos iniciais ao repositório e faça commits com mensagens descritivas.</li>
+                        <li>Crie branches para desenvolver diferentes funcionalidades do sistema.</li>
+                        <li>Pratique a mesclagem de branches e resolução de conflitos.</li>
+                        <li>Crie uma conta no GitHub (se ainda não tiver) e crie um repositório remoto.</li>
+                        <li>Conecte seu repositório local ao remoto e envie seu código.</li>
+                        <li>Crie um arquivo README.md detalhado para o projeto.</li>
+                        <li>Configure um arquivo .gitignore adequado para projetos Node.js.</li>
+                        <li>Simule um fluxo de trabalho colaborativo com um colega, utilizando pull requests.</li>
+                    </ol>
+                    
+                    <p>Você encontrará mais exercícios e desafios na seção de <a href="../exercicios.html">Exercícios</a>.</p>
+                    
+                    <div class="cta mt-5">
+                        <h3>Pronto para avançar?</h3>
+                        <p>Após dominar os conceitos de Git, GitHub e GitLab, você estará preparado para avançar para o próximo módulo.</p>
+                        <a href="jstob.html" class="btn btn-primary">Próximo Módulo: JavaScript e Orientação a Objetos</a>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-nav">
+                        <h3>Módulos do Curso</h3>
+                        <ul>
+                            <li><a href="lpjs.html">1. Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html" class="active">2. Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">3. JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html">4. Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html">5. Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">6. Node.js</a></li>
+                            <li><a href="nbd.html">7. Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">8. Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-nav">
+                        <h3>Recursos Adicionais</h3>
+                        <div class="recursos-links">
+                            <a href="../recursos.html#videos" class="recurso-link">
+                                <i class="fas fa-video"></i> Vídeos Recomendados
+                            </a>
+                            <a href="../exercicios.html#modulo2" class="recurso-link">
+                                <i class="fas fa-code"></i> Exercícios Práticos
+                            </a>
+                            <a href="https://git-scm.com/doc" target="_blank" class="recurso-link">
+                                <i class="fas fa-book"></i> Documentação Git
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-nav">
+                        <h3>Projeto Relacionado</h3>
+                        <div class="projeto-preview">
+                            <h4>Sistema de Vendas</h4>
+                            <p>O Git será utilizado para controle de versão e colaboração no desenvolvimento do nosso sistema de vendas.</p>
+                            <a href="../projeto/index.html" class="btn btn-outline btn-sm">Ver Projeto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Prof. Tiago Segato</h2>
+                    <p>Desenvolvimento Backend com JavaScript: Do Zero à Aplicação Completa</p>
+                    <div class="social-links mt-3">
+                        <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../sobre.html">Sobre o Curso</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../contato.html">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Módulos</h3>
+                        <ul>
+                            <li><a href="lpjs.html">Lógica de Programação</a></li>
+                            <li><a href="git.html">Git e GitHub</a></li>
+                            <li><a href="jstob.html">JavaScript e OO</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento</a></li>
+                            <li><a href="iws.html">WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Banco de Dados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Projeto</h3>
+                        <ul>
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prof. Tiago Segato. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:contato@tiagosegato.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js | Prof. Tiago Segato</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>JavaScript BackEnd</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../sobre.html">Sobre o Curso</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active">Módulos <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="lpjs.html">Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html">Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html">Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html" class="active">Node.js</a></li>
+                            <li><a href="nbd.html">Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Projeto <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../ead.html">Conteúdo EaD</a></li>
+                    <li><a href="../recursos.html">Recursos</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Módulo 6: Node.js</h1>
+            <p>Desenvolvimento backend com JavaScript e Express</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-layout">
+                <div class="main-content">
+                    <h2>Visão Geral do Módulo</h2>
+                    <p>Neste módulo, você aprenderá a utilizar o Node.js para desenvolvimento backend, criando aplicações e APIs robustas com JavaScript. Vamos explorar o ecossistema Node.js, o framework Express, e como construir aplicações completas do lado do servidor.</p>
+                    
+                    <div class="module-info">
+                        <div class="module-info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Carga Horária</h3>
+                                <p>24 horas</p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-book"></i>
+                            <div>
+                                <h3>Material de aula</h3>
+                                <p><a href="#" class="btn btn-sm">Acessar slides</a></p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-code-branch"></i>
+                            <div>
+                                <h3>Pré-requisitos</h3>
+                                <p>Módulos 1 a 5</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Conteúdo Programático</h2>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>1. Introdução ao Node.js</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>O que é Node.js</li>
+                                    <li>História e evolução do Node.js</li>
+                                    <li>Arquitetura e funcionamento interno
+                                        <ul>
+                                            <li>V8 JavaScript Engine</li>
+                                            <li>Event Loop</li>
+                                            <li>Non-blocking I/O</li>
+                                            <li>Single-threaded, mas escalável</li>
+                                        </ul>
+                                    </li>
+                                    <li>Instalação e configuração do ambiente</li>
+                                    <li>Node Version Manager (NVM)</li>
+                                    <li>Executando scripts JavaScript com Node.js</li>
+                                    <li>REPL (Read-Eval-Print Loop)</li>
+                                    <li>Casos de uso e aplicações do Node.js</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>2. Módulos e NPM</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Sistema de módulos no Node.js
+                                        <ul>
+                                            <li>CommonJS</li>
+                                            <li>ES Modules</li>
+                                            <li>Diferenças e compatibilidade</li>
+                                        </ul>
+                                    </li>
+                                    <li>Criando e exportando módulos</li>
+                                    <li>Importando módulos</li>
+                                    <li>Módulos nativos do Node.js</li>
+                                    <li>NPM (Node Package Manager)
+                                        <ul>
+                                            <li>Instalação e uso básico</li>
+                                            <li>package.json</li>
+                                            <li>Dependências e devDependencies</li>
+                                            <li>Versionamento semântico</li>
+                                            <li>Scripts NPM</li>
+                                        </ul>
+                                    </li>
+                                    <li>Gerenciadores de pacotes alternativos (Yarn, pnpm)</li>
+                                    <li>Publicando pacotes no NPM</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>3. Módulos Nativos do Node.js</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>fs (File System)
+                                        <ul>
+                                            <li>Operações síncronas vs. assíncronas</li>
+                                            <li>Leitura e escrita de arquivos</li>
+                                            <li>Manipulação de diretórios</li>
+                                            <li>Streams de arquivos</li>
+                                        </ul>
+                                    </li>
+                                    <li>path
+                                        <ul>
+                                            <li>Manipulação de caminhos de arquivos</li>
+                                            <li>Resolução de caminhos</li>
+                                            <li>Normalização de caminhos</li>
+                                        </ul>
+                                    </li>
+                                    <li>http/https
+                                        <ul>
+                                            <li>Criação de servidores HTTP</li>
+                                            <li>Requisições HTTP</li>
+                                            <li>Manipulação de cabeçalhos e cookies</li>
+                                        </ul>
+                                    </li>
+                                    <li>url e querystring
+                                        <ul>
+                                            <li>Parsing de URLs</li>
+                                            <li>Manipulação de parâmetros de query</li>
+                                        </ul>
+                                    </li>
+                                    <li>events
+                                        <ul>
+                                            <li>EventEmitter</li>
+                                            <li>Criação e manipulação de eventos</li>
+                                        </ul>
+                                    </li>
+                                    <li>util
+                                        <ul>
+                                            <li>Utilitários diversos</li>
+                                            <li>Promisify</li>
+                                        </ul>
+                                    </li>
+                                    <li>buffer
+                                        <ul>
+                                            <li>Manipulação de dados binários</li>
+                                        </ul>
+                                    </li>
+                                    <li>stream
+                                        <ul>
+                                            <li>Streams de leitura e escrita</li>
+                                            <li>Pipes</li>
+                                            <li>Transform streams</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>4. Programação Assíncrona em Node.js</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Callbacks
+                                        <ul>
+                                            <li>Padrão de callback no Node.js</li>
+                                            <li>Error-first callbacks</li>
+                                            <li>Callback hell e suas soluções</li>
+                                        </ul>
+                                    </li>
+                                    <li>Promises
+                                        <ul>
+                                            <li>Criação e consumo de Promises</li>
+                                            <li>Encadeamento de Promises</li>
+                                            <li>Promise.all, Promise.race, Promise.allSettled</li>
+                                            <li>Tratamento de erros com Promises</li>
+                                        </ul>
+                                    </li>
+                                    <li>Async/Await
+                                        <ul>
+                                            <li>Sintaxe e uso</li>
+                                            <li>Tratamento de erros com try/catch</li>
+                                            <li>Execução paralela vs. sequencial</li>
+                                            <li>Melhores práticas</li>
+                                        </ul>
+                                    </li>
+                                    <li>Util.promisify</li>
+                                    <li>Event Loop em detalhes</li>
+                                    <li>Microtasks e Macrotasks</li>
+                                    <li>Evitando bloqueios no Event Loop</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>5. Express.js</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Introdução ao Express.js</li>
+                                    <li>Instalação e configuração básica</li>
+                                    <li>Roteamento
+                                        <ul>
+                                            <li>Métodos HTTP (GET, POST, PUT, DELETE, etc.)</li>
+                                            <li>Parâmetros de rota</li>
+                                            <li>Query parameters</li>
+                                            <li>Organização de rotas</li>
+                                        </ul>
+                                    </li>
+                                    <li>Middleware
+                                        <ul>
+                                            <li>Conceito e funcionamento</li>
+                                            <li>Middleware de aplicação</li>
+                                            <li>Middleware de rota</li>
+                                            <li>Middleware de erro</li>
+                                            <li>Middleware de terceiros</li>
+                                        </ul>
+                                    </li>
+                                    <li>Processamento de requisições
+                                        <ul>
+                                            <li>Body parsing (express.json, express.urlencoded)</li>
+                                            <li>Manipulação de formulários</li>
+                                            <li>Upload de arquivos (multer)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Respostas
+                                        <ul>
+                                            <li>Formatos de resposta (JSON, HTML, etc.)</li>
+                                            <li>Status codes</li>
+                                            <li>Headers</li>
+                                            <li>Redirecionamentos</li>
+                                        </ul>
+                                    </li>
+                                    <li>Templates engines
+                                        <ul>
+                                            <li>EJS, Pug, Handlebars</li>
+                                            <li>Renderização de views</li>
+                                            <li>Layouts e partials</li>
+                                        </ul>
+                                    </li>
+                                    <li>Servindo arquivos estáticos</li>
+                                    <li>Tratamento de erros</li>
+                                    <li>Configuração de ambientes (development, production)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>6. Autenticação e Autorização</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Sessões e cookies
+                                        <ul>
+                                            <li>express-session</li>
+                                            <li>cookie-parser</li>
+                                            <li>Armazenamento de sessões</li>
+                                        </ul>
+                                    </li>
+                                    <li>Autenticação baseada em tokens
+                                        <ul>
+                                            <li>JWT (JSON Web Tokens)</li>
+                                            <li>Geração e verificação de tokens</li>
+                                            <li>Armazenamento de tokens</li>
+                                        </ul>
+                                    </li>
+                                    <li>Estratégias de autenticação
+                                        <ul>
+                                            <li>Local (username/password)</li>
+                                            <li>OAuth</li>
+                                            <li>Passport.js</li>
+                                        </ul>
+                                    </li>
+                                    <li>Autorização
+                                        <ul>
+                                            <li>Controle de acesso baseado em funções (RBAC)</li>
+                                            <li>Middleware de autorização</li>
+                                            <li>Proteção de rotas</li>
+                                        </ul>
+                                    </li>
+                                    <li>Segurança
+                                        <ul>
+                                            <li>Hashing de senhas (bcrypt)</li>
+                                            <li>Proteção contra ataques comuns</li>
+                                            <li>Helmet.js</li>
+                                            <li>Rate limiting</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>7. Integração com Banco de Dados</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Conexão com bancos de dados
+                                        <ul>
+                                            <li>MySQL/MariaDB</li>
+                                            <li>PostgreSQL</li>
+                                            <li>MongoDB</li>
+                                            <li>SQLite</li>
+                                        </ul>
+                                    </li>
+                                    <li>ORMs e ODMs
+                                        <ul>
+                                            <li>Sequelize (SQL)</li>
+                                            <li>Mongoose (MongoDB)</li>
+                                            <li>Prisma</li>
+                                            <li>TypeORM</li>
+                                        </ul>
+                                    </li>
+                                    <li>Query builders
+                                        <ul>
+                                            <li>Knex.js</li>
+                                        </ul>
+                                    </li>
+                                    <li>Migrations e seeds</li>
+                                    <li>Transações</li>
+                                    <li>Padrões de acesso a dados
+                                        <ul>
+                                            <li>Repository pattern</li>
+                                            <li>Data Access Object (DAO)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Caching de dados</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>8. Testes em Node.js</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Tipos de testes
+                                        <ul>
+                                            <li>Testes unitários</li>
+                                            <li>Testes de integração</li>
+                                            <li>Testes end-to-end</li>
+                                        </ul>
+                                    </li>
+                                    <li>Frameworks de teste
+                                        <ul>
+                                            <li>Jest</li>
+                                            <li>Mocha</li>
+                                            <li>Chai</li>
+                                        </ul>
+                                    </li>
+                                    <li>Mocking e stubbing
+                                        <ul>
+                                            <li>Sinon.js</li>
+                                            <li>Nock</li>
+                                            <li>Mock de módulos</li>
+                                        </ul>
+                                    </li>
+                                    <li>Testes de API
+                                        <ul>
+                                            <li>Supertest</li>
+                                            <li>Postman/Newman</li>
+                                        </ul>
+                                    </li>
+                                    <li>Test-Driven Development (TDD)</li>
+                                    <li>Cobertura de testes</li>
+                                    <li>Integração contínua</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>9. Logging, Monitoramento e Depuração</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Logging
+                                        <ul>
+                                            <li>Console.log e suas limitações</li>
+                                            <li>Bibliotecas de logging (Winston, Pino)</li>
+                                            <li>Níveis de log</li>
+                                            <li>Formatação de logs</li>
+                                            <li>Rotação de arquivos de log</li>
+                                        </ul>
+                                    </li>
+                                    <li>Monitoramento
+                                        <ul>
+                                            <li>Métricas de aplicação</li>
+                                            <li>Monitoramento de saúde</li>
+                                            <li>Ferramentas de APM (Application Performance Monitoring)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Depuração
+                                        <ul>
+                                            <li>Node.js Debugger</li>
+                                            <li>Depuração com VS Code</li>
+                                            <li>Depuração remota</li>
+                                            <li>Profiling</li>
+                                            <li>Memory leaks</li>
+                                        </ul>
+                                    </li>
+                                    <li>Tratamento de erros
+                                        <ul>
+                                            <li>Captura e registro de exceções</li>
+                                            <li>Erros assíncronos</li>
+                                            <li>Middleware de erro no Express</li>
+                                            <li>Centralização de tratamento de erros</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>10. Deployment e Boas Práticas</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Preparação para produção
+                                        <ul>
+                                            <li>Variáveis de ambiente</li>
+                                            <li>Configuração baseada em ambiente</li>
+                                            <li>Segurança</li>
+                                            <li>Performance</li>
+                                        </ul>
+                                    </li>
+                                    <li>Process managers
+                                        <ul>
+                                            <li>PM2</li>
+                                            <li>Forever</li>
+                                            <li>Nodemon (desenvolvimento)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Containerização
+                                        <ul>
+                                            <li>Docker</li>
+                                            <li>Docker Compose</li>
+                                            <li>Kubernetes</li>
+                                        </ul>
+                                    </li>
+                                    <li>Plataformas de deployment
+                                        <ul>
+                                            <li>Heroku</li>
+                                            <li>AWS</li>
+                                            <li>Google Cloud</li>
+                                            <li>Azure</li>
+                                            <li>Vercel</li>
+                                            <li>Netlify</li>
+                                        </ul>
+                                    </li>
+                                    <li>CI/CD (Integração Contínua/Entrega Contínua)</li>
+                                    <li>Escalabilidade
+                                        <ul>
+                                            <li>Balanceamento de carga</li>
+                                            <li>Cluster module</li>
+                                            <li>Arquitetura de microsserviços</li>
+                                        </ul>
+                                    </li>
+                                    <li>Boas práticas
+                                        <ul>
+                                            <li>Estrutura de projeto</li>
+                                            <li>Convenções de código</li>
+                                            <li>Documentação</li>
+                                            <li>Versionamento semântico</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Exemplos Práticos</h2>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 1: Servidor HTTP Básico com Node.js</h3>
+                        <pre><code>// Exemplo de servidor HTTP básico com Node.js nativo
+const http = require('http');
+
+// Criando o servidor
+const server = http.createServer((req, res) => {
+  // Definindo o cabeçalho de resposta
+  res.setHeader('Content-Type', 'application/json');
+  
+  // Obtendo a URL da requisição
+  const url = req.url;
+  const method = req.method;
+  
+  // Roteamento básico
+  if (url === '/api/produtos' && method === 'GET') {
+    // Dados de exemplo
+    const produtos = [
+      { codigo: 25, unidade: 'Kg', descricao: 'Queijo', valorUnitario: 0.97, estoque: 50 },
+      { codigo: 31, unidade: 'BAR', descricao: 'Chocolate', valorUnitario: 0.87, estoque: 100 },
+      { codigo: 78, unidade: 'L', descricao: 'Vinho', valorUnitario: 2.00, estoque: 30 }
+    ];
+    
+    // Enviando resposta
+    res.statusCode = 200;
+    res.end(JSON.stringify({
+      status: 'success',
+      data: produtos
+    }));
+  } 
+  else if (url.match(/\/api\/produtos\/\d+/) && method === 'GET') {
+    // Extraindo o código do produto da URL
+    const codigo = parseInt(url.split('/').pop());
+    
+    // Dados de exemplo
+    const produtos = [
+      { codigo: 25, unidade: 'Kg', descricao: 'Queijo', valorUnitario: 0.97, estoque: 50 },
+      { codigo: 31, unidade: 'BAR', descricao: 'Chocolate', valorUnitario: 0.87, estoque: 100 },
+      { codigo: 78, unidade: 'L', descricao: 'Vinho', valorUnitario: 2.00, estoque: 30 }
+    ];
+    
+    // Buscando o produto pelo código
+    const produto = produtos.find(p => p.codigo === codigo);
+    
+    if (produto) {
+      res.statusCode = 200;
+      res.end(JSON.stringify({
+        status: 'success',
+        data: produto
+      }));
+    } else {
+      res.statusCode = 404;
+      res.end(JSON.stringify({
+        status: 'error',
+        message: `Produto com código ${codigo} não encontrado.`
+      }));
+    }
+  }
+  else if (url === '/api/produtos' && method === 'POST') {
+    // Coletando dados da requisição
+    let body = '';
+    
+    req.on('data', (chunk) => {
+      body += chunk.toString();
+    });
+    
+    req.on('end', () => {
+      try {
+        const novoProduto = JSON.parse(body);
+        
+        // Validação básica
+        if (!novoProduto.codigo || !novoProduto.descricao || !novoProduto.unidade || novoProduto.valorUnitario === undefined) {
+          res.statusCode = 400;
+          res.end(JSON.stringify({
+            status: 'error',
+            message: 'Dados incompletos. Código, descrição, unidade e valor unitário são obrigatórios.'
+          }));
+          return;
+        }
+        
+        // Em uma aplicação real, aqui salvaríamos no banco de dados
+        // Simulando resposta de sucesso
+        res.statusCode = 201;
+        res.end(JSON.stringify({
+          status: 'success',
+          message: 'Produto criado com sucesso',
+          data: novoProduto
+        }));
+      } catch (error) {
+        res.statusCode = 400;
+        res.end(JSON.stringify({
+          status: 'error',
+          message: 'JSON inválido'
+        }));
+      }
+    });
+  }
+  else {
+    // Rota não encontrada
+    res.statusCode = 404;
+    res.end(JSON.stringify({
+      status: 'error',
+      message: 'Rota não encontrada'
+    }));
+  }
+});
+
+// Definindo a porta
+const PORT = process.env.PORT || 3000;
+
+// Iniciando o servidor
+server.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});</code></pre>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 2: API REST com Express.js</h3>
+                        <pre><code>// Exemplo de API REST com Express.js
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const morgan = require('morgan');
+
+// Criando a aplicação Express
+const app = express();
+
+// Configurações
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(cors()); // Habilita CORS
+app.use(bodyParser.json()); // Parse de JSON
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan('dev')); // Logging de requisições
+
+// Simulando um banco de dados com um array
+let produtos = [
+  { codigo: 25, unidade: 'Kg', descricao: 'Queijo', valorUnitario: 0.97, estoque: 50 },
+  { codigo: 31, unidade: 'BAR', descricao: 'Chocolate', valorUnitario: 0.87, estoque: 100 },
+  { codigo: 78, unidade: 'L', descricao: 'Vinho', valorUnitario: 2.00, estoque: 30 }
+];
+
+// Middleware para verificar se o produto existe
+function verificarProdutoExistente(req, res, next) {
+  const codigo = parseInt(req.params.codigo);
+  const produto = produtos.find(p => p.codigo === codigo);
+  
+  if (!produto) {
+    return res.status(404).json({ 
+      status: 'error', 
+      message: `Produto com código ${codigo} não encontrado.` 
+    });
+  }
+  
+  req.produto = produto;
+  req.produtoIndex = produtos.findIndex(p => p.codigo === codigo);
+  next();
+}
+
+// Rotas
+
+// GET /api/produtos - Listar todos os produtos
+app.get('/api/produtos', (req, res) => {
+  // Implementando filtros via query params
+  let resultado = [...produtos];
+  
+  // Filtro por descrição
+  if (req.query.descricao) {
+    const termo = req.query.descricao.toLowerCase();
+    resultado = resultado.filter(p => 
+      p.descricao.toLowerCase().includes(termo)
+    );
+  }
+  
+  // Filtro por valor mínimo
+  if (req.query.valorMinimo) {
+    const valorMinimo = parseFloat(req.query.valorMinimo);
+    resultado = resultado.filter(p => p.valorUnitario >= valorMinimo);
+  }
+  
+  // Filtro por valor máximo
+  if (req.query.valorMaximo) {
+    const valorMaximo = parseFloat(req.query.valorMaximo);
+    resultado = resultado.filter(p => p.valorUnitario <= valorMaximo);
+  }
+  
+  // Ordenação
+  if (req.query.ordenarPor) {
+    const campo = req.query.ordenarPor;
+    const ordem = req.query.ordem === 'desc' ? -1 : 1;
+    
+    resultado.sort((a, b) => {
+      if (a[campo] < b[campo]) return -1 * ordem;
+      if (a[campo] > b[campo]) return 1 * ordem;
+      return 0;
+    });
+  }
+  
+  res.json({
+    status: 'success',
+    count: resultado.length,
+    data: resultado
+  });
+});
+
+// GET /api/produtos/:codigo - Buscar um produto específico
+app.get('/api/produtos/:codigo', verificarProdutoExistente, (req, res) => {
+  res.json({
+    status: 'success',
+    data: req.produto
+  });
+});
+
+// POST /api/produtos - Criar um novo produto
+app.post('/api/produtos', (req, res) => {
+  // Validação básica
+  const { codigo, unidade, descricao, valorUnitario } = req.body;
+  
+  if (!codigo || !unidade || !descricao || valorUnitario === undefined) {
+    return res.status(400).json({ 
+      status: 'error', 
+      message: 'Dados incompletos. Código, unidade, descrição e valor unitário são obrigatórios.' 
+    });
+  }
+  
+  // Verificar se o código já existe
+  if (produtos.some(p => p.codigo === parseInt(codigo))) {
+    return res.status(409).json({ 
+      status: 'error', 
+      message: `Produto com código ${codigo} já existe.` 
+    });
+  }
+  
+  // Criar o novo produto
+  const novoProduto = {
+    codigo: parseInt(codigo),
+    unidade,
+    descricao,
+    valorUnitario: parseFloat(valorUnitario),
+    estoque: req.body.estoque ? parseInt(req.body.estoque) : 0
+  };
+  
+  produtos.push(novoProduto);
+  
+  res.status(201).json({
+    status: 'success',
+    message: 'Produto criado com sucesso',
+    data: novoProduto
+  });
+});
+
+// PUT /api/produtos/:codigo - Atualizar um produto existente
+app.put('/api/produtos/:codigo', verificarProdutoExistente, (req, res) => {
+  // Validação básica
+  const { unidade, descricao, valorUnitario } = req.body;
+  
+  if (!unidade || !descricao || valorUnitario === undefined) {
+    return res.status(400).json({ 
+      status: 'error', 
+      message: 'Dados incompletos. Unidade, descrição e valor unitário são obrigatórios.' 
+    });
+  }
+  
+  // Atualizar o produto
+  const produtoAtualizado = {
+    codigo: parseInt(req.params.codigo), // Mantém o código original
+    unidade,
+    descricao,
+    valorUnitario: parseFloat(valorUnitario),
+    estoque: req.body.estoque !== undefined ? parseInt(req.body.estoque) : req.produto.estoque
+  };
+  
+  produtos[req.produtoIndex] = produtoAtualizado;
+  
+  res.json({
+    status: 'success',
+    message: 'Produto atualizado com sucesso',
+    data: produtoAtualizado
+  });
+});
+
+// PATCH /api/produtos/:codigo - Atualizar parcialmente um produto
+app.patch('/api/produtos/:codigo', verificarProdutoExistente, (req, res) => {
+  // Atualizar apenas os campos fornecidos
+  const produtoAtualizado = { ...req.produto };
+  
+  if (req.body.unidade !== undefined) {
+    produtoAtualizado.unidade = req.body.unidade;
+  }
+  
+  if (req.body.descricao !== undefined) {
+    produtoAtualizado.descricao = req.body.descricao;
+  }
+  
+  if (req.body.valorUnitario !== undefined) {
+    produtoAtualizado.valorUnitario = parseFloat(req.body.valorUnitario);
+  }
+  
+  if (req.body.estoque !== undefined) {
+    produtoAtualizado.estoque = parseInt(req.body.estoque);
+  }
+  
+  produtos[req.produtoIndex] = produtoAtualizado;
+  
+  res.json({
+    status: 'success',
+    message: 'Produto atualizado com sucesso',
+    data: produtoAtualizado
+  });
+});
+
+// DELETE /api/produtos/:codigo - Excluir um produto
+app.delete('/api/produtos/:codigo', verificarProdutoExistente, (req, res) => {
+  produtos.splice(req.produtoIndex, 1);
+  
+  res.json({
+    status: 'success',
+    message: `Produto com código ${req.params.codigo} excluído com sucesso`
+  });
+});
+
+// Rota para gerenciar estoque
+app.post('/api/produtos/:codigo/estoque', verificarProdutoExistente, (req, res) => {
+  const { operacao, quantidade } = req.body;
+  
+  if (!operacao || !quantidade) {
+    return res.status(400).json({ 
+      status: 'error', 
+      message: 'Operação e quantidade são obrigatórios.' 
+    });
+  }
+  
+  const qtd = parseInt(quantidade);
+  
+  if (isNaN(qtd) || qtd <= 0) {
+    return res.status(400).json({ 
+      status: 'error', 
+      message: 'Quantidade deve ser um número positivo.' 
+    });
+  }
+  
+  if (operacao === 'adicionar') {
+    produtos[req.produtoIndex].estoque += qtd;
+    res.json({ 
+      status: 'success',
+      message: `Estoque do produto ${produtos[req.produtoIndex].descricao} aumentado em ${qtd} ${produtos[req.produtoIndex].unidade}.`,
+      estoqueAtual: produtos[req.produtoIndex].estoque
+    });
+  } else if (operacao === 'remover') {
+    if (produtos[req.produtoIndex].estoque < qtd) {
+      return res.status(400).json({ 
+        status: 'error', 
+        message: 'Estoque insuficiente.' 
+      });
+    }
+    
+    produtos[req.produtoIndex].estoque -= qtd;
+    res.json({ 
+      status: 'success',
+      message: `Estoque do produto ${produtos[req.produtoIndex].descricao} reduzido em ${qtd} ${produtos[req.produtoIndex].unidade}.`,
+      estoqueAtual: produtos[req.produtoIndex].estoque
+    });
+  } else {
+    return res.status(400).json({ 
+      status: 'error', 
+      message: 'Operação inválida. Use "adicionar" ou "remover".' 
+    });
+  }
+});
+
+// Middleware para tratamento de erros
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ 
+    status: 'error', 
+    message: 'Erro interno do servidor.' 
+  });
+});
+
+// Middleware para rotas não encontradas
+app.use((req, res) => {
+  res.status(404).json({ 
+    status: 'error', 
+    message: 'Rota não encontrada.' 
+  });
+});
+
+// Iniciando o servidor
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`API disponível em http://localhost:${PORT}/api/produtos`);
+});</code></pre>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 3: Integração com Banco de Dados MySQL</h3>
+                        <pre><code>// Exemplo de integração com MySQL usando Sequelize
+const express = require('express');
+const { Sequelize, DataTypes } = require('sequelize');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+// Criando a aplicação Express
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Configuração do Sequelize
+const sequelize = new Sequelize('sistema_vendas', 'root', 'password', {
+  host: 'localhost',
+  dialect: 'mysql',
+  logging: false // Desativa logs de SQL
+});
+
+// Definindo o modelo Produto
+const Produto = sequelize.define('Produto', {
+  codigo: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: false,
+    allowNull: false
+  },
+  unidade: {
+    type: DataTypes.STRING(3),
+    allowNull: false
+  },
+  descricao: {
+    type: DataTypes.STRING(50),
+    allowNull: false
+  },
+  valorUnitario: {
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false,
+    field: 'valor_unitario'
+  },
+  estoque: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0
+  }
+}, {
+  tableName: 'produtos',
+  timestamps: true,
+  createdAt: 'data_criacao',
+  updatedAt: 'data_atualizacao'
+});
+
+// Sincronizando o modelo com o banco de dados
+sequelize.sync()
+  .then(() => {
+    console.log('Banco de dados sincronizado');
+    
+    // Inserindo dados iniciais se a tabela estiver vazia
+    return Produto.count();
+  })
+  .then(count => {
+    if (count === 0) {
+      return Produto.bulkCreate([
+        { codigo: 25, unidade: 'Kg', descricao: 'Queijo', valorUnitario: 0.97, estoque: 50 },
+        { codigo: 31, unidade: 'BAR', descricao: 'Chocolate', valorUnitario: 0.87, estoque: 100 },
+        { codigo: 78, unidade: 'L', descricao: 'Vinho', valorUnitario: 2.00, estoque: 30 }
+      ]);
+    }
+    return Promise.resolve();
+  })
+  .then(() => {
+    console.log('Dados iniciais inseridos (se necessário)');
+  })
+  .catch(err => {
+    console.error('Erro ao sincronizar banco de dados:', err);
+  });
+
+// Middleware para verificar se o produto existe
+async function verificarProdutoExistente(req, res, next) {
+  try {
+    const codigo = parseInt(req.params.codigo);
+    const produto = await Produto.findByPk(codigo);
+    
+    if (!produto) {
+      return res.status(404).json({ 
+        status: 'error', 
+        message: `Produto com código ${codigo} não encontrado.` 
+      });
+    }
+    
+    req.produto = produto;
+    next();
+  } catch (error) {
+    next(error);
+  }
+}
+
+// Rotas
+
+// GET /api/produtos - Listar todos os produtos
+app.get('/api/produtos', async (req, res, next) => {
+  try {
+    // Construindo as opções de consulta
+    const options = {
+      where: {}
+    };
+    
+    // Filtro por descrição
+    if (req.query.descricao) {
+      options.where.descricao = {
+        [Sequelize.Op.like]: `%${req.query.descricao}%`
+      };
+    }
+    
+    // Filtro por valor mínimo
+    if (req.query.valorMinimo) {
+      options.where.valorUnitario = {
+        ...options.where.valorUnitario,
+        [Sequelize.Op.gte]: parseFloat(req.query.valorMinimo)
+      };
+    }
+    
+    // Filtro por valor máximo
+    if (req.query.valorMaximo) {
+      options.where.valorUnitario = {
+        ...options.where.valorUnitario,
+        [Sequelize.Op.lte]: parseFloat(req.query.valorMaximo)
+      };
+    }
+    
+    // Ordenação
+    if (req.query.ordenarPor) {
+      options.order = [
+        [req.query.ordenarPor, req.query.ordem === 'desc' ? 'DESC' : 'ASC']
+      ];
+    }
+    
+    const produtos = await Produto.findAll(options);
+    
+    res.json({
+      status: 'success',
+      count: produtos.length,
+      data: produtos
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// GET /api/produtos/:codigo - Buscar um produto específico
+app.get('/api/produtos/:codigo', verificarProdutoExistente, (req, res) => {
+  res.json({
+    status: 'success',
+    data: req.produto
+  });
+});
+
+// POST /api/produtos - Criar um novo produto
+app.post('/api/produtos', async (req, res, next) => {
+  try {
+    // Validação básica
+    const { codigo, unidade, descricao, valorUnitario } = req.body;
+    
+    if (!codigo || !unidade || !descricao || valorUnitario === undefined) {
+      return res.status(400).json({ 
+        status: 'error', 
+        message: 'Dados incompletos. Código, unidade, descrição e valor unitário são obrigatórios.' 
+      });
+    }
+    
+    // Verificar se o código já existe
+    const produtoExistente = await Produto.findByPk(parseInt(codigo));
+    
+    if (produtoExistente) {
+      return res.status(409).json({ 
+        status: 'error', 
+        message: `Produto com código ${codigo} já existe.` 
+      });
+    }
+    
+    // Criar o novo produto
+    const novoProduto = await Produto.create({
+      codigo: parseInt(codigo),
+      unidade,
+      descricao,
+      valorUnitario: parseFloat(valorUnitario),
+      estoque: req.body.estoque ? parseInt(req.body.estoque) : 0
+    });
+    
+    res.status(201).json({
+      status: 'success',
+      message: 'Produto criado com sucesso',
+      data: novoProduto
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// PUT /api/produtos/:codigo - Atualizar um produto existente
+app.put('/api/produtos/:codigo', verificarProdutoExistente, async (req, res, next) => {
+  try {
+    // Validação básica
+    const { unidade, descricao, valorUnitario } = req.body;
+    
+    if (!unidade || !descricao || valorUnitario === undefined) {
+      return res.status(400).json({ 
+        status: 'error', 
+        message: 'Dados incompletos. Unidade, descrição e valor unitário são obrigatórios.' 
+      });
+    }
+    
+    // Atualizar o produto
+    await req.produto.update({
+      unidade,
+      descricao,
+      valorUnitario: parseFloat(valorUnitario),
+      estoque: req.body.estoque !== undefined ? parseInt(req.body.estoque) : req.produto.estoque
+    });
+    
+    res.json({
+      status: 'success',
+      message: 'Produto atualizado com sucesso',
+      data: req.produto
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// PATCH /api/produtos/:codigo - Atualizar parcialmente um produto
+app.patch('/api/produtos/:codigo', verificarProdutoExistente, async (req, res, next) => {
+  try {
+    // Preparar dados para atualização
+    const dadosAtualizacao = {};
+    
+    if (req.body.unidade !== undefined) {
+      dadosAtualizacao.unidade = req.body.unidade;
+    }
+    
+    if (req.body.descricao !== undefined) {
+      dadosAtualizacao.descricao = req.body.descricao;
+    }
+    
+    if (req.body.valorUnitario !== undefined) {
+      dadosAtualizacao.valorUnitario = parseFloat(req.body.valorUnitario);
+    }
+    
+    if (req.body.estoque !== undefined) {
+      dadosAtualizacao.estoque = parseInt(req.body.estoque);
+    }
+    
+    // Atualizar o produto
+    await req.produto.update(dadosAtualizacao);
+    
+    res.json({
+      status: 'success',
+      message: 'Produto atualizado com sucesso',
+      data: req.produto
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// DELETE /api/produtos/:codigo - Excluir um produto
+app.delete('/api/produtos/:codigo', verificarProdutoExistente, async (req, res, next) => {
+  try {
+    await req.produto.destroy();
+    
+    res.json({
+      status: 'success',
+      message: `Produto com código ${req.params.codigo} excluído com sucesso`
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Rota para gerenciar estoque
+app.post('/api/produtos/:codigo/estoque', verificarProdutoExistente, async (req, res, next) => {
+  try {
+    const { operacao, quantidade } = req.body;
+    
+    if (!operacao || !quantidade) {
+      return res.status(400).json({ 
+        status: 'error', 
+        message: 'Operação e quantidade são obrigatórios.' 
+      });
+    }
+    
+    const qtd = parseInt(quantidade);
+    
+    if (isNaN(qtd) || qtd <= 0) {
+      return res.status(400).json({ 
+        status: 'error', 
+        message: 'Quantidade deve ser um número positivo.' 
+      });
+    }
+    
+    if (operacao === 'adicionar') {
+      await req.produto.increment('estoque', { by: qtd });
+      await req.produto.reload();
+      
+      res.json({ 
+        status: 'success',
+        message: `Estoque do produto ${req.produto.descricao} aumentado em ${qtd} ${req.produto.unidade}.`,
+        estoqueAtual: req.produto.estoque
+      });
+    } else if (operacao === 'remover') {
+      if (req.produto.estoque < qtd) {
+        return res.status(400).json({ 
+          status: 'error', 
+          message: 'Estoque insuficiente.' 
+        });
+      }
+      
+      await req.produto.decrement('estoque', { by: qtd });
+      await req.produto.reload();
+      
+      res.json({ 
+        status: 'success',
+        message: `Estoque do produto ${req.produto.descricao} reduzido em ${qtd} ${req.produto.unidade}.`,
+        estoqueAtual: req.produto.estoque
+      });
+    } else {
+      return res.status(400).json({ 
+        status: 'error', 
+        message: 'Operação inválida. Use "adicionar" ou "remover".' 
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Middleware para tratamento de erros
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ 
+    status: 'error', 
+    message: 'Erro interno do servidor.',
+    error: process.env.NODE_ENV === 'development' ? err.message : undefined
+  });
+});
+
+// Middleware para rotas não encontradas
+app.use((req, res) => {
+  res.status(404).json({ 
+    status: 'error', 
+    message: 'Rota não encontrada.' 
+  });
+});
+
+// Testando a conexão com o banco de dados
+sequelize.authenticate()
+  .then(() => {
+    console.log('Conexão com o banco de dados estabelecida com sucesso.');
+    
+    // Iniciando o servidor após confirmar a conexão com o banco
+    app.listen(PORT, () => {
+      console.log(`Servidor rodando na porta ${PORT}`);
+      console.log(`API disponível em http://localhost:${PORT}/api/produtos`);
+    });
+  })
+  .catch(err => {
+    console.error('Erro ao conectar ao banco de dados:', err);
+  });</code></pre>
+                    </div>
+                    
+                    <h2>Exercícios Práticos</h2>
+                    <p>Para fixar os conceitos aprendidos neste módulo, recomendamos a realização dos seguintes exercícios:</p>
+                    
+                    <ol>
+                        <li>Crie um servidor HTTP básico com Node.js nativo que responda a diferentes rotas.</li>
+                        <li>Desenvolva uma API REST completa para gerenciar produtos usando Express.js.</li>
+                        <li>Implemente autenticação JWT em sua API de produtos.</li>
+                        <li>Integre sua API com um banco de dados MySQL usando Sequelize.</li>
+                        <li>Adicione validação de dados nas rotas de criação e atualização de produtos.</li>
+                        <li>Implemente um sistema de logging para sua aplicação.</li>
+                        <li>Crie testes unitários e de integração para sua API.</li>
+                        <li>Implemente tratamento de erros centralizado em sua aplicação Express.</li>
+                        <li>Adicione documentação Swagger à sua API.</li>
+                        <li>Configure sua aplicação para diferentes ambientes (desenvolvimento, teste, produção).</li>
+                    </ol>
+                    
+                    <p>Você encontrará mais exercícios e desafios na seção de <a href="../exercicios.html">Exercícios</a>.</p>
+                    
+                    <div class="cta mt-5">
+                        <h3>Pronto para avançar?</h3>
+                        <p>Após dominar os conceitos de Node.js, você estará preparado para avançar para o próximo módulo.</p>
+                        <a href="nbd.html" class="btn btn-primary">Próximo Módulo: Noções de Banco de Dados</a>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-nav">
+                        <h3>Módulos do Curso</h3>
+                        <ul>
+                            <li><a href="lpjs.html">1. Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html">2. Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">3. JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html">4. Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html">5. Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html" class="active">6. Node.js</a></li>
+                            <li><a href="nbd.html">7. Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">8. Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-nav">
+                        <h3>Recursos Adicionais</h3>
+                        <div class="recursos-links">
+                            <a href="../recursos.html#videos" class="recurso-link">
+                                <i class="fas fa-video"></i> Vídeos Recomendados
+                            </a>
+                            <a href="../exercicios.html#modulo6" class="recurso-link">
+                                <i class="fas fa-code"></i> Exercícios Práticos
+                            </a>
+                            <a href="https://nodejs.org/docs/latest-v16.x/api/" target="_blank" class="recurso-link">
+                                <i class="fas fa-book"></i> Documentação Node.js
+                            </a>
+                            <a href="https://expressjs.com/pt-br/" target="_blank" class="recurso-link">
+                                <i class="fas fa-book"></i> Documentação Express
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-nav">
+                        <h3>Projeto Relacionado</h3>
+                        <div class="projeto-preview">
+                            <h4>Sistema de Vendas</h4>
+                            <p>O Node.js será a base para o desenvolvimento do backend do sistema de vendas, utilizando Express para criar a API e integrar com o banco de dados.</p>
+                            <a href="../projeto/index.html" class="btn btn-outline btn-sm">Ver Projeto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Prof. Tiago Segato</h2>
+                    <p>Desenvolvimento Backend com JavaScript: Do Zero à Aplicação Completa</p>
+                    <div class="social-links mt-3">
+                        <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../sobre.html">Sobre o Curso</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../contato.html">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Módulos</h3>
+                        <ul>
+                            <li><a href="lpjs.html">Lógica de Programação</a></li>
+                            <li><a href="git.html">Git e GitHub</a></li>
+                            <li><a href="jstob.html">JavaScript e OO</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento</a></li>
+                            <li><a href="iws.html">WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Banco de Dados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Projeto</h3>
+                        <ul>
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prof. Tiago Segato. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:contato@tiagosegato.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

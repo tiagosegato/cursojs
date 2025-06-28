@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lógica de Programação com JavaScript | Prof. Tiago Segato</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>JavaScript BackEnd</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../sobre.html">Sobre o Curso</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active">Módulos <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="lpjs.html" class="active">Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html">Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html">Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Projeto <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../ead.html">Conteúdo EaD</a></li>
+                    <li><a href="../recursos.html">Recursos</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Módulo 1: Lógica de Programação com JavaScript</h1>
+            <p>Fundamentos da programação, estruturas de controle, funções e manipulação de dados com JavaScript</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-layout">
+                <div class="main-content">
+                    <h2>Visão Geral do Módulo</h2>
+                    <p>Neste módulo, você aprenderá os fundamentos da lógica de programação utilizando JavaScript como linguagem base. Vamos explorar desde os conceitos básicos de algoritmos e variáveis até estruturas de controle, funções e manipulação de dados, construindo uma base sólida para o desenvolvimento de aplicações backend.</p>
+                    
+                    <div class="module-info">
+                        <div class="module-info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Carga Horária</h3>
+                                <p>24 horas</p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-book"></i>
+                            <div>
+                                <h3>Material de aula</h3>
+                                <p><a href="../aulas/m1-js.html" class="btn btn-sm" target="_blank">Acessar slides</a></p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-code-branch"></i>
+                            <div>
+                                <h3>Pré-requisitos</h3>
+                                <p>Nenhum</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Conteúdo Programático</h2>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>1. Introdução à Lógica de Programação</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>O que é lógica de programação</li>
+                                    <li>Algoritmos e sua importância</li>
+                                    <li>Formas de representação de algoritmos</li>
+                                    <li>Pseudocódigo e fluxogramas</li>
+                                    <li>Introdução ao JavaScript</li>
+                                    <li>Configuração do ambiente de desenvolvimento</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>2. Variáveis e Tipos de Dados</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>O que são variáveis e constantes</li>
+                                    <li>Declaração e atribuição de valores</li>
+                                    <li>Tipos de dados primitivos (number, string, boolean)</li>
+                                    <li>Tipos de dados compostos (array, object)</li>
+                                    <li>Conversão entre tipos de dados</li>
+                                    <li>Escopo de variáveis</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>3. Operadores</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Operadores aritméticos (+, -, *, /, %)</li>
+                                    <li>Operadores de atribuição (=, +=, -=, *=, /=)</li>
+                                    <li>Operadores de comparação (==, ===, !=, !==, >, <, >=, <=)</li>
+                                    <li>Operadores lógicos (&&, ||, !)</li>
+                                    <li>Operadores de incremento e decremento (++, --)</li>
+                                    <li>Precedência de operadores</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>4. Estruturas de Controle: Condicionais</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Estrutura if-else</li>
+                                    <li>Estrutura switch-case</li>
+                                    <li>Operador ternário</li>
+                                    <li>Aninhamento de condicionais</li>
+                                    <li>Boas práticas no uso de condicionais</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>5. Estruturas de Controle: Repetição</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Loop for</li>
+                                    <li>Loop while</li>
+                                    <li>Loop do-while</li>
+                                    <li>Controle de loops (break, continue)</li>
+                                    <li>Loops aninhados</li>
+                                    <li>Iteração em arrays e objetos (for...of, for...in)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>6. Funções</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Declaração e chamada de funções</li>
+                                    <li>Parâmetros e argumentos</li>
+                                    <li>Retorno de valores</li>
+                                    <li>Escopo de variáveis em funções</li>
+                                    <li>Funções anônimas e expressões de função</li>
+                                    <li>Arrow functions</li>
+                                    <li>Callbacks</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>7. Arrays</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Criação e inicialização de arrays</li>
+                                    <li>Acesso e modificação de elementos</li>
+                                    <li>Métodos de arrays (push, pop, shift, unshift, splice)</li>
+                                    <li>Iteração em arrays</li>
+                                    <li>Arrays multidimensionais</li>
+                                    <li>Métodos de alto nível (map, filter, reduce, forEach)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>8. Objetos</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Criação e inicialização de objetos</li>
+                                    <li>Propriedades e métodos</li>
+                                    <li>Acesso e modificação de propriedades</li>
+                                    <li>Objetos aninhados</li>
+                                    <li>Iteração em objetos</li>
+                                    <li>Desestruturação de objetos</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>9. Manipulação de Strings</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Criação e concatenação de strings</li>
+                                    <li>Template literals</li>
+                                    <li>Métodos de strings (length, indexOf, substring, slice, replace)</li>
+                                    <li>Conversão de strings para arrays e vice-versa</li>
+                                    <li>Expressões regulares básicas</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>10. Tratamento de Erros</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Tipos de erros em JavaScript</li>
+                                    <li>Estrutura try-catch-finally</li>
+                                    <li>Lançamento de exceções (throw)</li>
+                                    <li>Criação de erros personalizados</li>
+                                    <li>Depuração de código</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Exemplos Práticos</h2>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 1: Manipulação de Produtos</h3>
+                        <pre><code>// Criando um array de produtos
+const produtos = [
+  { codigo: 25, unidade: 'Kg', descricao: 'Queijo', valor_unitario: 0.97 },
+  { codigo: 31, unidade: 'BAR', descricao: 'Chocolate', valor_unitario: 0.87 },
+  { codigo: 78, unidade: 'L', descricao: 'Vinho', valor_unitario: 2.00 },
+  { codigo: 22, unidade: 'M', descricao: 'Linho', valor_unitario: 0.11 },
+  { codigo: 30, unidade: 'SAC', descricao: 'Açúcar', valor_unitario: 0.30 }
+];
+
+// Função para calcular o valor total de um produto com base na quantidade
+function calcularValorTotal(produto, quantidade) {
+  return produto.valor_unitario * quantidade;
+}
+
+// Função para encontrar um produto pelo código
+function encontrarProduto(codigo) {
+  return produtos.find(produto => produto.codigo === codigo);
+}
+
+// Função para listar todos os produtos
+function listarProdutos() {
+  console.log('Lista de Produtos:');
+  console.log('------------------');
+  
+  produtos.forEach(produto => {
+    console.log(`Código: ${produto.codigo}`);
+    console.log(`Descrição: ${produto.descricao}`);
+    console.log(`Unidade: ${produto.unidade}`);
+    console.log(`Valor Unitário: R$ ${produto.valor_unitario.toFixed(2)}`);
+    console.log('------------------');
+  });
+}
+
+// Função para filtrar produtos por valor
+function filtrarProdutosPorValor(valorMinimo, valorMaximo) {
+  return produtos.filter(produto => 
+    produto.valor_unitario >= valorMinimo && 
+    produto.valor_unitario <= valorMaximo
+  );
+}
+
+// Função para calcular o valor total de uma lista de produtos
+function calcularValorTotalPedido(itensPedido) {
+  return itensPedido.reduce((total, item) => {
+    const produto = encontrarProduto(item.codigoProduto);
+    if (produto) {
+      return total + calcularValorTotal(produto, item.quantidade);
+    }
+    return total;
+  }, 0);
+}
+
+// Exemplo de uso
+listarProdutos();
+
+const produtoEncontrado = encontrarProduto(78);
+console.log(`Produto encontrado: ${produtoEncontrado.descricao}`);
+
+const valorTotal = calcularValorTotal(produtoEncontrado, 10);
+console.log(`Valor total para 10 unidades: R$ ${valorTotal.toFixed(2)}`);
+
+const produtosBaratos = filtrarProdutosPorValor(0, 0.50);
+console.log('Produtos com valor até R$ 0,50:');
+produtosBaratos.forEach(produto => console.log(`- ${produto.descricao}: R$ ${produto.valor_unitario.toFixed(2)}`));
+
+const itensPedido = [
+  { codigoProduto: 25, quantidade: 5 },
+  { codigoProduto: 31, quantidade: 2 },
+  { codigoProduto: 78, quantidade: 1 }
+];
+
+const valorTotalPedido = calcularValorTotalPedido(itensPedido);
+console.log(`Valor total do pedido: R$ ${valorTotalPedido.toFixed(2)}`);</code></pre>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 2: Estruturas de Controle com Produtos</h3>
+                        <pre><code>// Array de produtos
+const produtos = [
+  { codigo: 25, unidade: 'Kg', descricao: 'Queijo', valor_unitario: 0.97 },
+  { codigo: 31, unidade: 'BAR', descricao: 'Chocolate', valor_unitario: 0.87 },
+  { codigo: 78, unidade: 'L', descricao: 'Vinho', valor_unitario: 2.00 },
+  { codigo: 22, unidade: 'M', descricao: 'Linho', valor_unitario: 0.11 },
+  { codigo: 30, unidade: 'SAC', descricao: 'Açúcar', valor_unitario: 0.30 }
+];
+
+// Exemplo de estrutura condicional
+function verificarEstoqueProduto(codigo, quantidadeDesejada) {
+  const produto = produtos.find(p => p.codigo === codigo);
+  
+  if (!produto) {
+    console.log(`Produto com código ${codigo} não encontrado.`);
+    return;
+  }
+  
+  // Simulando um estoque
+  const estoque = Math.floor(Math.random() * 50);
+  
+  if (estoque === 0) {
+    console.log(`O produto ${produto.descricao} está em falta.`);
+  } else if (estoque < quantidadeDesejada) {
+    console.log(`Estoque insuficiente para ${produto.descricao}. Disponível: ${estoque} unidades.`);
+  } else {
+    console.log(`Produto ${produto.descricao} disponível em estoque. Quantidade: ${estoque} unidades.`);
+  }
+}
+
+// Exemplo de estrutura de repetição
+function listarProdutosPorCategoria() {
+  // Simulando categorias
+  const categorias = {
+    'Alimentos': [25, 30],
+    'Bebidas': [78],
+    'Outros': [31, 22]
+  };
+  
+  for (const categoria in categorias) {
+    console.log(`\nCategoria: ${categoria}`);
+    console.log('------------------------');
+    
+    const codigosProdutos = categorias[categoria];
+    
+    for (let i = 0; i < codigosProdutos.length; i++) {
+      const produto = produtos.find(p => p.codigo === codigosProdutos[i]);
+      if (produto) {
+        console.log(`${i+1}. ${produto.descricao} - R$ ${produto.valor_unitario.toFixed(2)} por ${produto.unidade}`);
+      }
+    }
+  }
+}
+
+// Exemplo de switch-case
+function verificarUnidadeProduto(codigo) {
+  const produto = produtos.find(p => p.codigo === codigo);
+  
+  if (!produto) {
+    console.log(`Produto com código ${codigo} não encontrado.`);
+    return;
+  }
+  
+  switch (produto.unidade) {
+    case 'Kg':
+      console.log(`${produto.descricao} é vendido por quilo.`);
+      break;
+    case 'L':
+      console.log(`${produto.descricao} é vendido por litro.`);
+      break;
+    case 'BAR':
+      console.log(`${produto.descricao} é vendido por barra.`);
+      break;
+    case 'M':
+      console.log(`${produto.descricao} é vendido por metro.`);
+      break;
+    case 'SAC':
+      console.log(`${produto.descricao} é vendido por saco.`);
+      break;
+    default:
+      console.log(`${produto.descricao} é vendido por unidade não especificada.`);
+  }
+}
+
+// Exemplo de loop while
+function simularVendaProdutos() {
+  let totalVendas = 0;
+  let produtosVendidos = 0;
+  
+  while (totalVendas < 100 && produtosVendidos < 10) {
+    // Seleciona um produto aleatório
+    const indiceAleatorio = Math.floor(Math.random() * produtos.length);
+    const produto = produtos[indiceAleatorio];
+    
+    // Simula uma quantidade aleatória
+    const quantidade = Math.floor(Math.random() * 5) + 1;
+    
+    // Calcula o valor da venda
+    const valorVenda = produto.valor_unitario * quantidade;
+    
+    console.log(`Venda: ${quantidade} ${produto.unidade} de ${produto.descricao} - R$ ${valorVenda.toFixed(2)}`);
+    
+    totalVendas += valorVenda;
+    produtosVendidos += quantidade;
+  }
+  
+  console.log(`\nSimulação encerrada.`);
+  console.log(`Total de vendas: R$ ${totalVendas.toFixed(2)}`);
+  console.log(`Produtos vendidos: ${produtosVendidos} unidades`);
+}
+
+// Executando os exemplos
+verificarEstoqueProduto(78, 10);
+listarProdutosPorCategoria();
+verificarUnidadeProduto(25);
+simularVendaProdutos();</code></pre>
+                    </div>
+                    
+                    <h2>Exercícios Práticos</h2>
+                    <p>Para fixar os conceitos aprendidos neste módulo, recomendamos a realização dos seguintes exercícios:</p>
+                    
+                    <ol>
+                        <li>Crie um algoritmo que calcule o preço médio dos produtos cadastrados.</li>
+                        <li>Desenvolva uma função que encontre o produto mais caro e o mais barato.</li>
+                        <li>Implemente um sistema de busca de produtos por descrição (parcial ou completa).</li>
+                        <li>Crie uma função que aplique um desconto percentual a todos os produtos.</li>
+                        <li>Desenvolva um algoritmo que simule um carrinho de compras, permitindo adicionar e remover produtos.</li>
+                        <li>Implemente uma função que calcule o valor total de um pedido, considerando quantidades variadas de cada produto.</li>
+                        <li>Crie um sistema de categorização de produtos baseado em seu valor (barato, médio, caro).</li>
+                        <li>Desenvolva uma função que ordene os produtos por preço (crescente ou decrescente).</li>
+                    </ol>
+                    
+                    <p>Você encontrará mais exercícios e desafios na seção de <a href="../exercicios.html">Exercícios</a>.</p>
+                    
+                    <div class="cta mt-5">
+                        <h3>Pronto para avançar?</h3>
+                        <p>Após dominar os conceitos de Lógica de Programação com JavaScript, você estará preparado para avançar para o próximo módulo.</p>
+                        <a href="git.html" class="btn btn-primary">Próximo Módulo: Git, GitHub e GitLab</a>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-nav">
+                        <h3>Módulos do Curso</h3>
+                        <ul>
+                            <li><a href="lpjs.html" class="active">1. Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html">2. Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">3. JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html">4. Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html">5. Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">6. Node.js</a></li>
+                            <li><a href="nbd.html">7. Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">8. Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-nav">
+                        <h3>Recursos Adicionais</h3>
+                        <div class="recursos-links">
+                            <a href="../recursos.html#videos" class="recurso-link">
+                                <i class="fas fa-video"></i> Vídeos Recomendados
+                            </a>
+                            <a href="../exercicios.html#modulo1" class="recurso-link">
+                                <i class="fas fa-code"></i> Exercícios Práticos
+                            </a>
+                            <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank" class="recurso-link">
+                                <i class="fas fa-book"></i> Documentação JavaScript
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-nav">
+                        <h3>Projeto Relacionado</h3>
+                        <div class="projeto-preview">
+                            <h4>Sistema de Vendas</h4>
+                            <p>Os conceitos de Lógica de Programação serão aplicados no desenvolvimento do sistema de vendas, nosso projeto prático do curso.</p>
+                            <a href="../projeto/index.html" class="btn btn-outline btn-sm">Ver Projeto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Prof. Tiago Segato</h2>
+                    <p>Desenvolvimento Backend com JavaScript: Do Zero à Aplicação Completa</p>
+                    <div class="social-links mt-3">
+                        <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../sobre.html">Sobre o Curso</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../contato.html">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Módulos</h3>
+                        <ul>
+                            <li><a href="lpjs.html">Lógica de Programação</a></li>
+                            <li><a href="git.html">Git e GitHub</a></li>
+                            <li><a href="jstob.html">JavaScript e OO</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento</a></li>
+                            <li><a href="iws.html">WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Banco de Dados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Projeto</h3>
+                        <ul>
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prof. Tiago Segato. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:contato@tiagosegato.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

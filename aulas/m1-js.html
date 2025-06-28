@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Lógica de Programação com JavaScript</title>
+    <style>
+        :root {
+            --primary-color: #f7df1e; /* Amarelo JavaScript */
+            --secondary-color: #323330; /* Cinza escuro JavaScript */
+            --accent-color: #4682A0; /* Azul para destaque */
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --background-color: #ffffff;
+            --code-background: #f1f1f1;
+            --header-color: #f7df1e; /* Amarelo para cabeçalhos */
+            --footer-color: #f7df1e; /* Amarelo para rodapés */
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .slide {
+            display: none;
+            height: 100vh;
+            box-sizing: border-box;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slide-header {
+            background-color: var(--header-color);
+            padding: 1rem 2rem;
+            border-bottom: 5px solid var(--secondary-color);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .slide-body {
+            flex: 1;
+            padding: 2rem;
+            background-color: white;
+            overflow-y: auto;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            padding-bottom: 4rem; /* Espaço extra para evitar sobreposição com os botões */
+        }
+        
+        .slide-footer {
+            background-color: var(--footer-color);
+            padding: 0.5rem 2rem;
+            border-top: 5px solid var(--secondary-color);
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .slide-number {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .js-logo {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 2rem;
+            padding: 0.5rem;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+        }
+        
+        .bfd-logo {
+            height: 60px;
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-background);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background-color: var(--code-background);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        
+        blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+            margin-left: 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .controls {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        button {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        button:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-background);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            white-space: pre;
+        }
+        
+        .cover-slide .slide-content {
+            background-color: white;
+            color: var(--secondary-color);
+        }
+        
+        .cover-slide .slide-header {
+            background-color: var(--primary-color);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .cover-slide .slide-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .cover-slide h1 {
+            color: var(--secondary-color);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cover-slide h3 {
+            color: var(--secondary-color);
+            font-weight: normal;
+            margin-bottom: 2rem;
+        }
+        
+        .cover-slide h4 {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+        
+        .cover-logos {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 2rem;
+        }
+        
+        .cover-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .cover-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        @media print {
+            .slide {
+                display: block;
+                page-break-after: always;
+                height: auto;
+            }
+            
+            .controls, .slide-number {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Capa -->
+    <div class="slide cover-slide active" id="slide-1">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <div class="js-logo">JS</div>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <div class="cover-left">
+                    <h3>Formação BackEnd</h3>
+                    <h1>JavaScript</h1>
+                    <h4>Módulo 1: Lógica de Programação com JavaScript</h4>
+                    <p>Prof. Tiago Segato</p>
+                </div>
+                <div class="cover-right">
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" height="200">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">1</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Visão Geral do Curso -->
+    <div class="slide" id="slide-2">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Visão Geral do Curso</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Bem-vindo ao Módulo 1: Lógica de Programação com JavaScript! Este módulo é a sua porta de entrada para o mundo do desenvolvimento web.</p>
+                <h3>O que você vai aprender:</h3>
+                <ul>
+                    <li>Os fundamentos da lógica de programação, essenciais para qualquer linguagem.</li>
+                    <li>Como o JavaScript funciona no navegador e interage com HTML.</li>
+                    <li>Criar seus primeiros programas e entender como o código ganha vida.</li>
+                    <li>Manipular variáveis, tomar decisões com condicionais e repetir tarefas com loops.</li>
+                    <li>Organizar seu código com funções, tornando-o mais legível e reutilizável.</li>
+                </ul>
+                <blockquote>"A lógica é o alicerce da programação. Dominá-la é o primeiro passo para se tornar um desenvolvedor de sucesso."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">2</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Introdução à Web e Suas Tecnologias -->
+    <div class="slide" id="slide-3">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Introdução à Web e Suas Tecnologias</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>A World Wide Web é um sistema complexo construído sobre algumas tecnologias fundamentais:</p>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>HTML (HyperText Markup Language)</h3>
+                        <p>A espinha dorsal da web. Define a estrutura e o conteúdo das páginas.</p>
+                        <div class="code-block">&lt;h1&gt;Olá, Mundo!&lt;/h1&gt;
+&lt;p&gt;Este é um parágrafo.&lt;/p&gt;</div>
+                        
+                        <h3>CSS (Cascading Style Sheets)</h3>
+                        <p>Responsável pela apresentação e estilo visual das páginas HTML.</p>
+                        <div class="code-block">h1 {
+    color: blue;
+    font-size: 24px;
+}</div>
+                    </div>
+                    <div class="column">
+                        <h3>JavaScript (JS)</h3>
+                        <p>Torna as páginas interativas e dinâmicas. É a linguagem de programação do navegador.</p>
+                        <div class="code-block">document.getElementById("meuBotao")
+    .addEventListener("click", function() {
+        alert("Botão clicado!");
+    });</div>
+                        
+                        <h3>Como funciona?</h3>
+                        <p>O navegador requisita uma página (HTML), que pode referenciar arquivos CSS e JS. O navegador então interpreta esses arquivos para renderizar a página visual e interativa para o usuário.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">3</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Papel do Desenvolvedor Front-end e Back-end -->
+    <div class="slide" id="slide-4">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Papel do Desenvolvedor Front-end e Back-end</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>No desenvolvimento web, as responsabilidades são frequentemente divididas entre Front-end e Back-end:</p>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Desenvolvedor Front-end</h3>
+                        <p>Focado na parte da aplicação com a qual o usuário interage diretamente (o "cliente" ou navegador).</p>
+                        <ul>
+                            <li><strong>Tecnologias:</strong> HTML, CSS, JavaScript (e frameworks como React, Angular, Vue.js).</li>
+                            <li><strong>Responsabilidades:</strong> Interface do usuário (UI), experiência do usuário (UX), responsividade, interatividade.</li>
+                            <li><strong>Objetivo:</strong> Criar interfaces atraentes, intuitivas e eficientes.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Desenvolvedor Back-end</h3>
+                        <p>Trabalha nos "bastidores" da aplicação, lidando com o servidor, banco de dados e lógica de negócios.</p>
+                        <ul>
+                            <li><strong>Tecnologias:</strong> Node.js (com JavaScript), Python, Java, Ruby, PHP, bancos de dados (SQL, NoSQL).</li>
+                            <li><strong>Responsabilidades:</strong> APIs, lógica de servidor, gerenciamento de dados, segurança, performance.</li>
+                            <li><strong>Objetivo:</strong> Garantir que a aplicação funcione corretamente, seja segura e escalável.</li>
+                        </ul>
+                    </div>
+                </div>
+                <p><strong>Desenvolvedor Full-stack:</strong> Profissional que possui habilidades tanto em Front-end quanto em Back-end.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">4</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Algoritmo e Suas Representações -->
+    <div class="slide" id="slide-5">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Algoritmo e Suas Representações</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Um algoritmo é uma sequência finita de passos bem definidos para resolver um problema ou realizar uma tarefa.</p>
+                <h3>Representações de Algoritmos:</h3>
+                <ul>
+                    <li><strong>Descrição Narrativa:</strong> Usando linguagem natural para descrever os passos. Ex: "Para somar dois números, pegue o primeiro número, adicione o segundo número a ele, e o resultado é a soma."</li>
+                    <li><strong>Fluxograma:</strong> Representação gráfica usando símbolos padronizados para ilustrar o fluxo de controle do algoritmo.</li>
+                    <li><strong>Pseudocódigo:</strong> Uma linguagem informal, semelhante a uma linguagem de programação, mas mais flexível e focada na lógica. Ex:
+                        <div class="code-block">INÍCIO
+  LER numero1
+  LER numero2
+  soma = numero1 + numero2
+  ESCREVER soma
+FIM</div>
+                    </li>
+                </ul>
+                <p>Entender algoritmos é crucial, pois eles são a base de qualquer programa de computador.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">5</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Ferramentas e Ambientes de Desenvolvimento -->
+    <div class="slide" id="slide-6">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Ferramentas e Ambientes de Desenvolvimento</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Para desenvolver com JavaScript, algumas ferramentas são essenciais:</p>
+                <ul>
+                    <li><strong>Navegador Web:</strong> O ambiente principal onde o JavaScript do lado do cliente é executado. Ferramentas de desenvolvedor embutidas (Console, Debugger, Inspector) são cruciais. (Ex: Chrome, Firefox, Edge).</li>
+                    <li><strong>Editor de Código ou IDE (Ambiente de Desenvolvimento Integrado):</strong> Programas para escrever, editar e gerenciar código. (Ex: VS Code, Sublime Text, WebStorm).</li>
+                    <li><strong>Node.js:</strong> Permite executar JavaScript fora do navegador, no lado do servidor. Útil para ferramentas de build, automação e desenvolvimento back-end.</li>
+                    <li><strong>Controle de Versão (Git):</strong> Ferramenta para rastrear mudanças no código, colaborar com outros desenvolvedores e gerenciar diferentes versões do projeto. (Plataformas como GitHub, GitLab, Bitbucket).</li>
+                </ul>
+                <p>Configurar um bom ambiente de desenvolvimento aumenta a produtividade e facilita o processo de criação de software.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">6</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Definição de Memória -->
+    <div class="slide" id="slide-7">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Definição de Memória</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Em computação, memória refere-se à capacidade de um sistema de armazenar dados e instruções, temporária ou permanentemente.</p>
+                <h3>Tipos de Memória (Conceitual):</h3>
+                <ul>
+                    <li><strong>Memória Principal (RAM - Random Access Memory):</strong> Memória volátil usada pelo processador para armazenar dados e programas em execução. É rápida, mas perde seu conteúdo quando a energia é desligada.</li>
+                    <li><strong>Memória Secundária (Armazenamento):</strong> Memória não volátil usada para armazenamento de longo prazo de arquivos e programas (Ex: HDs, SSDs, pen drives).</li>
+                </ul>
+                <h3>Gerenciamento de Memória em JavaScript:</h3>
+                <p>JavaScript possui um sistema de gerenciamento automático de memória, incluindo um "coletor de lixo" (garbage collector).</p>
+                <ul>
+                    <li><strong>Alocação:</strong> Quando você cria variáveis, objetos ou arrays, o JavaScript aloca espaço na memória para eles.</li>
+                    <li><strong>Coleta de Lixo:</strong> O coletor de lixo periodicamente identifica e libera memória que não está mais sendo usada pelo programa, prevenindo vazamentos de memória.</li>
+                </ul>
+                <p>Embora automático, entender como a memória funciona ajuda a escrever código mais eficiente.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">7</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Definição de Variáveis -->
+    <div class="slide" id="slide-8">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Definição de Variáveis</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Variáveis são "contêineres" nomeados usados para armazenar dados na memória que podem ser referenciados e manipulados em um programa.</p>
+                <h3>Declarando Variáveis em JavaScript:</h3>
+                <ul>
+                    <li><strong><code>var</code> (Legado):</strong> Forma mais antiga de declarar variáveis. Possui escopo de função ou global. Evite em código moderno.
+                        <div class="code-block">var nome = "João";</div>
+                    </li>
+                    <li><strong><code>let</code> (Moderno):</strong> Permite declarar variáveis com escopo de bloco. O valor pode ser reatribuído.
+                        <div class="code-block">let idade = 30;
+idade = 31; // Válido</div>
+                    </li>
+                    <li><strong><code>const</code> (Moderno):</strong> Permite declarar constantes com escopo de bloco. O valor não pode ser reatribuído após a inicialização (para tipos primitivos; para objetos, a referência é constante, mas o conteúdo pode mudar).
+                        <div class="code-block">const PI = 3.14159;
+// PI = 3.14; // Erro!
+
+const pessoa = { nome: "Ana" };
+pessoa.nome = "Maria"; // Válido</div>
+                    </li>
+                </ul>
+                <p>Escolher entre <code>let</code> e <code>const</code> depende se o valor da variável precisará mudar.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">8</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Conceitos Básicos de Lógica de Programação -->
+    <div class="slide" id="slide-9">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Conceitos Básicos de Lógica de Programação</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Lógica de programação é a organização coerente de instruções para que um programa execute uma tarefa específica.</p>
+                <h3>Elementos Fundamentais:</h3>
+                <ul>
+                    <li><strong>Sequência:</strong> Instruções são executadas na ordem em que aparecem.</li>
+                    <li><strong>Decisão (Condicionais):</strong> Permitem que o programa escolha diferentes caminhos de execução com base em condições (Ex: <code>if</code>, <code>else if</code>, <code>else</code>, <code>switch</code>).</li>
+                    <li><strong>Repetição (Loops):</strong> Permitem que um bloco de código seja executado múltiplas vezes (Ex: <code>for</code>, <code>while</code>, <code>do...while</code>).</li>
+                    <li><strong>Entrada e Saída de Dados:</strong> Como o programa recebe informações (Ex: do usuário, de um arquivo) e como ele apresenta resultados (Ex: na tela, em um arquivo).</li>
+                    <li><strong>Operadores:</strong> Símbolos que realizam operações sobre valores (Ex: aritméticos <code>+</code>, <code>-</code>; lógicos <code>&&</code>, <code>||</code>; comparação <code>></code>, <code>===</code>).</li>
+                    <li><strong>Tipos de Dados:</strong> Classificação dos valores que uma variável pode armazenar (Ex: números, strings, booleanos).</li>
+                </ul>
+                <p>Dominar esses conceitos é essencial para construir qualquer tipo de software.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">9</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Estruturas de Controle (Condicionais) -->
+    <div class="slide" id="slide-10">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Estruturas de Controle (Condicionais)</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Estruturas condicionais permitem que seu programa tome decisões e execute diferentes blocos de código com base em certas condições serem verdadeiras ou falsas.</p>
+                <h3><code>if</code>, <code>else if</code>, <code>else</code>:</h3>
+                <div class="code-block">let temperatura = 25;
+
+if (temperatura > 30) {
+    console.log("Está muito quente!");
+} else if (temperatura > 20) {
+    console.log("Temperatura agradável.");
+} else {
+    console.log("Está frio!");
+}</div>
+                <h3><code>switch</code>:</h3>
+                <p>Útil para múltiplas verificações contra um único valor.</p>
+                <div class="code-block">let diaDaSemana = "segunda";
+
+switch (diaDaSemana) {
+    case "sábado":
+    case "domingo":
+        console.log("Fim de semana!");
+        break;
+    case "segunda":
+        console.log("Início da semana de trabalho.");
+        break;
+    default:
+        console.log("Dia útil.");
+}</div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">10</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Estruturas de Controle (Loops) -->
+    <div class="slide" id="slide-11">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Estruturas de Controle (Loops)</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Estruturas de repetição (loops) permitem executar um bloco de código várias vezes.</p>
+                <h3><code>for</code> loop:</h3>
+                <p>Ideal quando o número de iterações é conhecido.</p>
+                <div class="code-block">for (let i = 0; i < 5; i++) {
+    console.log("Iteração número: " + i);
+}</div>
+                <h3><code>while</code> loop:</h3>
+                <p>Executa enquanto uma condição for verdadeira. A condição é verificada antes da execução do bloco.</p>
+                <div class="code-block">let contador = 0;
+while (contador < 3) {
+    console.log("Contador (while): " + contador);
+    contador++;
+}</div>
+                <h3><code>do...while</code> loop:</h3>
+                <p>Similar ao <code>while</code>, mas o bloco de código é executado pelo menos uma vez, pois a condição é verificada após a execução.</p>
+                <div class="code-block">let j = 0;
+do {
+    console.log("Contador (do...while): " + j);
+    j++;
+} while (j < 3);</div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">11</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Funções e Modularização -->
+    <div class="slide" id="slide-12">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Funções e Modularização</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Funções são blocos de código reutilizáveis que realizam uma tarefa específica. Modularização é a prática de dividir um programa em partes menores e independentes (módulos ou funções).</p>
+                <h3>Declarando Funções:</h3>
+                <div class="code-block">// Declaração de função
+function somar(a, b) {
+    return a + b;
+}
+
+// Chamando a função
+let resultado = somar(5, 3);
+console.log(resultado); // 8</div>
+                <h3>Arrow Functions (ES6+):</h3>
+                <p>Uma sintaxe mais concisa para criar funções.</p>
+                <div class="code-block">const multiplicar = (x, y) => {
+    return x * y;
+};
+
+// Ou ainda mais conciso para retornos simples
+const subtrair = (a, b) => a - b;
+
+console.log(multiplicar(4, 2)); // 8
+console.log(subtrair(10, 7));  // 3</div>
+                <h3>Benefícios da Modularização:</h3>
+                <ul>
+                    <li><strong>Reutilização de Código:</strong> Evita repetição.</li>
+                    <li><strong>Legibilidade:</strong> Código mais fácil de entender.</li>
+                    <li><strong>Manutenção:</strong> Alterações em uma parte não afetam outras drasticamente.</li>
+                    <li><strong>Testabilidade:</strong> Módulos menores são mais fáceis de testar.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">12</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Conclusão do Módulo 1 -->
+    <div class="slide" id="slide-13">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Conclusão do Módulo 1</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <h3>Parabéns!</h3>
+                <p>Você concluiu o Módulo 1: Lógica de Programação com JavaScript. Agora você tem uma base sólida sobre:</p>
+                <ul>
+                    <li>O que é a web e como o JavaScript se encaixa nela.</li>
+                    <li>A importância dos algoritmos e como representá-los.</li>
+                    <li>Ferramentas essenciais para o desenvolvimento.</li>
+                    <li>Como a memória funciona e o papel das variáveis.</li>
+                    <li>Os pilares da lógica de programação: sequência, decisão e repetição.</li>
+                    <li>Como criar e usar funções para modularizar seu código.</li>
+                </ul>
+                <h3>Próximos Passos:</h3>
+                <p>Continue praticando! Crie pequenos projetos, resolva desafios de lógica e explore mais a fundo cada um dos conceitos aprendidos. A programação é uma jornada de aprendizado contínuo.</p>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <h3>Sucesso na sua jornada de aprendizado!</h3>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">13</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prev-btn">Anterior</button>
+        <button id="next-btn">Próximo</button>
+        <button id="print-btn">Imprimir</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const printBtn = document.getElementById('print-btn');
+            let currentSlide = 0;
+            
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[index].classList.add('active');
+                currentSlide = index;
+                
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === slides.length - 1;
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentSlide < slides.length - 1) {
+                    showSlide(currentSlide + 1);
+                }
+            });
+            
+            printBtn.addEventListener('click', function() {
+                window.print();
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') {
+                    if (currentSlide > 0) {
+                        showSlide(currentSlide - 1);
+                    }
+                } else if (e.key === 'ArrowRight') {
+                    if (currentSlide < slides.length - 1) {
+                        showSlide(currentSlide + 1);
+                    }
+                }
+            });
+            
+            showSlide(0);
+        });
+    </script>
+</body>
+</html>

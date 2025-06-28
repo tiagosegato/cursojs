@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metodologias Ágeis e Scrum | Prof. Tiago Segato</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>JavaScript BackEnd</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../sobre.html">Sobre o Curso</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active">Módulos <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="lpjs.html">Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html">Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html">Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html" class="active">Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Projeto <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../ead.html">Conteúdo EaD</a></li>
+                    <li><a href="../recursos.html">Recursos</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Módulo 8: Metodologias Ágeis e Scrum</h1>
+            <p>Princípios e práticas ágeis para desenvolvimento de software</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-layout">
+                <div class="main-content">
+                    <h2>Visão Geral do Módulo</h2>
+                    <p>Neste módulo, você aprenderá sobre metodologias ágeis de desenvolvimento de software, com foco especial no framework Scrum. Vamos explorar os princípios, valores, papéis e cerimônias que compõem o Scrum, além de outras metodologias ágeis populares no mercado.</p>
+                    
+                    <div class="module-info">
+                        <div class="module-info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Carga Horária</h3>
+                                <p>8 horas</p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-book"></i>
+                            <div>
+                                <h3>Material de aula</h3>
+                                <p><a href="../aulas/m7-scrum.html" class="btn btn-sm" target="_blank">Acessar slides</a></p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-code-branch"></i>
+                            <div>
+                                <h3>Pré-requisitos</h3>
+                                <p>Módulos 1 a 7</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Conteúdo Programático</h2>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>1. Introdução às Metodologias Ágeis</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Histórico do desenvolvimento de software
+                                        <ul>
+                                            <li>Modelo Cascata (Waterfall)</li>
+                                            <li>Problemas do desenvolvimento tradicional</li>
+                                            <li>Surgimento das metodologias ágeis</li>
+                                        </ul>
+                                    </li>
+                                    <li>Manifesto Ágil
+                                        <ul>
+                                            <li>Os quatro valores</li>
+                                            <li>Os doze princípios</li>
+                                            <li>Signatários e contexto histórico</li>
+                                        </ul>
+                                    </li>
+                                    <li>Benefícios da abordagem ágil
+                                        <ul>
+                                            <li>Adaptabilidade a mudanças</li>
+                                            <li>Entrega contínua de valor</li>
+                                            <li>Feedback constante</li>
+                                            <li>Qualidade do produto</li>
+                                            <li>Satisfação do cliente</li>
+                                        </ul>
+                                    </li>
+                                    <li>Panorama das metodologias ágeis
+                                        <ul>
+                                            <li>Scrum</li>
+                                            <li>Kanban</li>
+                                            <li>Extreme Programming (XP)</li>
+                                            <li>Lean Software Development</li>
+                                            <li>Feature-Driven Development (FDD)</li>
+                                            <li>Crystal</li>
+                                            <li>Dynamic Systems Development Method (DSDM)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Ágil vs. Tradicional: comparações e contextos de aplicação</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>2. Scrum: Visão Geral</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>O que é Scrum
+                                        <ul>
+                                            <li>Definição e história</li>
+                                            <li>Scrum como framework</li>
+                                            <li>Empirismo e pilares do Scrum (transparência, inspeção e adaptação)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Valores do Scrum
+                                        <ul>
+                                            <li>Comprometimento</li>
+                                            <li>Coragem</li>
+                                            <li>Foco</li>
+                                            <li>Respeito</li>
+                                            <li>Abertura</li>
+                                        </ul>
+                                    </li>
+                                    <li>Visão geral do processo Scrum
+                                        <ul>
+                                            <li>Fluxo de trabalho</li>
+                                            <li>Ciclo de vida do Scrum</li>
+                                            <li>Timeboxing</li>
+                                        </ul>
+                                    </li>
+                                    <li>Quando usar (e quando não usar) Scrum</li>
+                                    <li>Scrum e escalabilidade</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>3. Papéis no Scrum</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Scrum Team
+                                        <ul>
+                                            <li>Composição e características</li>
+                                            <li>Auto-organização</li>
+                                            <li>Multifuncionalidade</li>
+                                            <li>Tamanho ideal</li>
+                                        </ul>
+                                    </li>
+                                    <li>Product Owner
+                                        <ul>
+                                            <li>Responsabilidades</li>
+                                            <li>Maximização de valor</li>
+                                            <li>Gerenciamento do Product Backlog</li>
+                                            <li>Comunicação com stakeholders</li>
+                                            <li>Desafios comuns</li>
+                                        </ul>
+                                    </li>
+                                    <li>Scrum Master
+                                        <ul>
+                                            <li>Responsabilidades</li>
+                                            <li>Facilitação</li>
+                                            <li>Remoção de impedimentos</li>
+                                            <li>Coaching e mentoria</li>
+                                            <li>Promoção das práticas Scrum</li>
+                                            <li>Diferença entre Scrum Master e gerente de projetos tradicional</li>
+                                        </ul>
+                                    </li>
+                                    <li>Developers
+                                        <ul>
+                                            <li>Responsabilidades</li>
+                                            <li>Criação de incrementos de valor</li>
+                                            <li>Qualidade e definição de "Pronto"</li>
+                                            <li>Colaboração e auto-organização</li>
+                                        </ul>
+                                    </li>
+                                    <li>Stakeholders
+                                        <ul>
+                                            <li>Papel no processo Scrum</li>
+                                            <li>Interação com o Scrum Team</li>
+                                            <li>Feedback e validação</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>4. Artefatos do Scrum</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Product Backlog
+                                        <ul>
+                                            <li>Definição e características</li>
+                                            <li>Itens do Product Backlog (PBIs)</li>
+                                            <li>Priorização</li>
+                                            <li>Refinamento</li>
+                                            <li>Técnicas de escrita de histórias de usuário</li>
+                                            <li>Critérios de aceitação</li>
+                                            <li>Estimativas</li>
+                                        </ul>
+                                    </li>
+                                    <li>Sprint Backlog
+                                        <ul>
+                                            <li>Definição e características</li>
+                                            <li>Seleção de itens do Product Backlog</li>
+                                            <li>Planejamento de tarefas</li>
+                                            <li>Atualização durante a Sprint</li>
+                                            <li>Visualização do trabalho</li>
+                                        </ul>
+                                    </li>
+                                    <li>Incremento
+                                        <ul>
+                                            <li>Definição e características</li>
+                                            <li>Definição de "Pronto" (Definition of Done)</li>
+                                            <li>Qualidade e valor</li>
+                                            <li>Incremento potencialmente entregável</li>
+                                        </ul>
+                                    </li>
+                                    <li>Outros artefatos complementares
+                                        <ul>
+                                            <li>Burndown Chart</li>
+                                            <li>Burnup Chart</li>
+                                            <li>Velocity Chart</li>
+                                            <li>Quadro Kanban</li>
+                                            <li>Radiadores de informação</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>5. Eventos do Scrum</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Sprint
+                                        <ul>
+                                            <li>Definição e características</li>
+                                            <li>Duração (timeboxing)</li>
+                                            <li>Objetivo da Sprint</li>
+                                            <li>Cancelamento de Sprint</li>
+                                        </ul>
+                                    </li>
+                                    <li>Sprint Planning
+                                        <ul>
+                                            <li>Objetivo e duração</li>
+                                            <li>Participantes</li>
+                                            <li>Entradas e saídas</li>
+                                            <li>Definição do Objetivo da Sprint</li>
+                                            <li>Seleção de itens do Product Backlog</li>
+                                            <li>Planejamento do trabalho</li>
+                                            <li>Técnicas e boas práticas</li>
+                                        </ul>
+                                    </li>
+                                    <li>Daily Scrum
+                                        <ul>
+                                            <li>Objetivo e duração</li>
+                                            <li>Participantes</li>
+                                            <li>Formato e estrutura</li>
+                                            <li>As três perguntas clássicas</li>
+                                            <li>Identificação de impedimentos</li>
+                                            <li>Adaptação do plano</li>
+                                            <li>Boas práticas</li>
+                                        </ul>
+                                    </li>
+                                    <li>Sprint Review
+                                        <ul>
+                                            <li>Objetivo e duração</li>
+                                            <li>Participantes</li>
+                                            <li>Demonstração do incremento</li>
+                                            <li>Feedback dos stakeholders</li>
+                                            <li>Atualização do Product Backlog</li>
+                                            <li>Boas práticas</li>
+                                        </ul>
+                                    </li>
+                                    <li>Sprint Retrospective
+                                        <ul>
+                                            <li>Objetivo e duração</li>
+                                            <li>Participantes</li>
+                                            <li>Inspeção do processo</li>
+                                            <li>Identificação de melhorias</li>
+                                            <li>Plano de ação</li>
+                                            <li>Técnicas e formatos</li>
+                                            <li>Boas práticas</li>
+                                        </ul>
+                                    </li>
+                                    <li>Refinamento do Product Backlog
+                                        <ul>
+                                            <li>Objetivo e frequência</li>
+                                            <li>Participantes</li>
+                                            <li>Detalhamento de itens</li>
+                                            <li>Estimativas</li>
+                                            <li>Priorização</li>
+                                            <li>Boas práticas</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>6. Técnicas e Práticas Ágeis</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>User Stories
+                                        <ul>
+                                            <li>Estrutura (Como... Eu quero... Para que...)</li>
+                                            <li>INVEST (Independent, Negotiable, Valuable, Estimable, Small, Testable)</li>
+                                            <li>Critérios de aceitação</li>
+                                            <li>Story mapping</li>
+                                        </ul>
+                                    </li>
+                                    <li>Estimativas ágeis
+                                        <ul>
+                                            <li>Planning Poker</li>
+                                            <li>T-Shirt Sizing</li>
+                                            <li>Dot Voting</li>
+                                            <li>Relative Sizing</li>
+                                            <li>Story Points vs. horas</li>
+                                        </ul>
+                                    </li>
+                                    <li>Priorização
+                                        <ul>
+                                            <li>MoSCoW (Must, Should, Could, Won't)</li>
+                                            <li>Valor de negócio</li>
+                                            <li>Risco</li>
+                                            <li>Dependências</li>
+                                            <li>WSJF (Weighted Shortest Job First)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Técnicas de facilitação
+                                        <ul>
+                                            <li>Brainstorming</li>
+                                            <li>Dot Voting</li>
+                                            <li>Fist of Five</li>
+                                            <li>Starfish Retrospective</li>
+                                            <li>Start-Stop-Continue</li>
+                                        </ul>
+                                    </li>
+                                    <li>Práticas de engenharia ágil
+                                        <ul>
+                                            <li>Integração contínua</li>
+                                            <li>Entrega contínua</li>
+                                            <li>Desenvolvimento orientado a testes (TDD)</li>
+                                            <li>Programação em pares</li>
+                                            <li>Refatoração</li>
+                                            <li>Automação de testes</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>7. Kanban</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Introdução ao Kanban
+                                        <ul>
+                                            <li>Origem e história</li>
+                                            <li>Princípios fundamentais</li>
+                                            <li>Kanban como método de melhoria</li>
+                                        </ul>
+                                    </li>
+                                    <li>Práticas do Kanban
+                                        <ul>
+                                            <li>Visualização do fluxo de trabalho</li>
+                                            <li>Limitação do trabalho em progresso (WIP)</li>
+                                            <li>Gerenciamento do fluxo</li>
+                                            <li>Políticas explícitas</li>
+                                            <li>Loops de feedback</li>
+                                            <li>Melhoria colaborativa</li>
+                                        </ul>
+                                    </li>
+                                    <li>Quadro Kanban
+                                        <ul>
+                                            <li>Estrutura e colunas</li>
+                                            <li>Cartões e itens de trabalho</li>
+                                            <li>Limites de WIP</li>
+                                            <li>Swimlanes</li>
+                                            <li>Classes de serviço</li>
+                                        </ul>
+                                    </li>
+                                    <li>Métricas e análises
+                                        <ul>
+                                            <li>Lead time e cycle time</li>
+                                            <li>Throughput</li>
+                                            <li>Diagrama de fluxo cumulativo (CFD)</li>
+                                            <li>Distribuição de lead time</li>
+                                            <li>Eficiência do fluxo</li>
+                                        </ul>
+                                    </li>
+                                    <li>Kanban vs. Scrum
+                                        <ul>
+                                            <li>Semelhanças e diferenças</li>
+                                            <li>Quando usar cada um</li>
+                                            <li>Combinação de práticas (Scrumban)</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>8. Implementação de Metodologias Ágeis</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Avaliação e preparação
+                                        <ul>
+                                            <li>Análise do contexto organizacional</li>
+                                            <li>Identificação de desafios e oportunidades</li>
+                                            <li>Definição de objetivos</li>
+                                            <li>Seleção da abordagem adequada</li>
+                                        </ul>
+                                    </li>
+                                    <li>Transição para o ágil
+                                        <ul>
+                                            <li>Abordagens de transição</li>
+                                            <li>Formação de equipes</li>
+                                            <li>Treinamento e capacitação</li>
+                                            <li>Mudança cultural</li>
+                                            <li>Gestão da resistência</li>
+                                        </ul>
+                                    </li>
+                                    <li>Desafios comuns
+                                        <ul>
+                                            <li>Resistência à mudança</li>
+                                            <li>Falta de apoio da liderança</li>
+                                            <li>Cultura organizacional</li>
+                                            <li>Equipes distribuídas</li>
+                                            <li>Integração com processos existentes</li>
+                                            <li>Escalabilidade</li>
+                                        </ul>
+                                    </li>
+                                    <li>Métricas e medição de sucesso
+                                        <ul>
+                                            <li>Indicadores de desempenho</li>
+                                            <li>Métricas de produto</li>
+                                            <li>Métricas de processo</li>
+                                            <li>Métricas de equipe</li>
+                                            <li>Avaliação contínua</li>
+                                        </ul>
+                                    </li>
+                                    <li>Melhoria contínua
+                                        <ul>
+                                            <li>Ciclo PDCA (Plan-Do-Check-Act)</li>
+                                            <li>Kaizen</li>
+                                            <li>Experimentação</li>
+                                            <li>Adaptação de práticas</li>
+                                            <li>Comunidades de prática</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>9. Ferramentas para Metodologias Ágeis</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Ferramentas físicas
+                                        <ul>
+                                            <li>Quadros e painéis</li>
+                                            <li>Post-its e cartões</li>
+                                            <li>Gráficos e diagramas</li>
+                                            <li>Timers e cronômetros</li>
+                                        </ul>
+                                    </li>
+                                    <li>Ferramentas digitais
+                                        <ul>
+                                            <li>Jira</li>
+                                            <li>Trello</li>
+                                            <li>Azure DevOps</li>
+                                            <li>GitHub Projects</li>
+                                            <li>Asana</li>
+                                            <li>Monday.com</li>
+                                            <li>ClickUp</li>
+                                        </ul>
+                                    </li>
+                                    <li>Ferramentas de comunicação e colaboração
+                                        <ul>
+                                            <li>Slack</li>
+                                            <li>Microsoft Teams</li>
+                                            <li>Zoom</li>
+                                            <li>Miro</li>
+                                            <li>Mural</li>
+                                            <li>Confluence</li>
+                                        </ul>
+                                    </li>
+                                    <li>Critérios de seleção de ferramentas
+                                        <ul>
+                                            <li>Necessidades da equipe</li>
+                                            <li>Integração com outros sistemas</li>
+                                            <li>Usabilidade</li>
+                                            <li>Escalabilidade</li>
+                                            <li>Custo</li>
+                                        </ul>
+                                    </li>
+                                    <li>Implementação e adoção de ferramentas</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>10. Estudo de Caso: Aplicando Scrum no Desenvolvimento de um Sistema de Vendas</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Contexto do projeto
+                                        <ul>
+                                            <li>Visão do produto</li>
+                                            <li>Objetivos de negócio</li>
+                                            <li>Stakeholders</li>
+                                            <li>Restrições e premissas</li>
+                                        </ul>
+                                    </li>
+                                    <li>Formação do Scrum Team
+                                        <ul>
+                                            <li>Seleção do Product Owner</li>
+                                            <li>Papel do Scrum Master</li>
+                                            <li>Composição da equipe de desenvolvimento</li>
+                                        </ul>
+                                    </li>
+                                    <li>Criação do Product Backlog
+                                        <ul>
+                                            <li>Identificação de épicos e histórias</li>
+                                            <li>Escrita de histórias de usuário</li>
+                                            <li>Definição de critérios de aceitação</li>
+                                            <li>Priorização inicial</li>
+                                        </ul>
+                                    </li>
+                                    <li>Planejamento e execução de Sprints
+                                        <ul>
+                                            <li>Sprint Planning</li>
+                                            <li>Daily Scrums</li>
+                                            <li>Desenvolvimento e testes</li>
+                                            <li>Sprint Review</li>
+                                            <li>Sprint Retrospective</li>
+                                        </ul>
+                                    </li>
+                                    <li>Desafios e soluções
+                                        <ul>
+                                            <li>Mudanças de requisitos</li>
+                                            <li>Impedimentos técnicos</li>
+                                            <li>Estimativas imprecisas</li>
+                                            <li>Integração com sistemas existentes</li>
+                                        </ul>
+                                    </li>
+                                    <li>Resultados e lições aprendidas
+                                        <ul>
+                                            <li>Métricas de desempenho</li>
+                                            <li>Feedback dos stakeholders</li>
+                                            <li>Melhorias no processo</li>
+                                            <li>Impacto no produto final</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Exemplos Práticos</h2>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 1: Product Backlog para Sistema de Vendas</h3>
+                        <pre><code>// Exemplo de Product Backlog para um Sistema de Vendas
+
+// Épico: Gerenciamento de Produtos
+- Como gerente de estoque, eu quero cadastrar novos produtos no sistema, para que possam ser vendidos.
+  * Critérios de Aceitação:
+    - Deve ser possível informar código, descrição, unidade, valor unitário e estoque inicial
+    - O sistema deve validar se o código já existe
+    - O sistema deve validar se todos os campos obrigatórios foram preenchidos
+    - O produto deve ser salvo no banco de dados
+  * Estimativa: 5 pontos
+  * Prioridade: Alta
+
+- Como gerente de estoque, eu quero editar informações de produtos existentes, para manter os dados atualizados.
+  * Critérios de Aceitação:
+    - Deve ser possível alterar descrição, unidade e valor unitário
+    - O sistema deve validar se todos os campos obrigatórios foram preenchidos
+    - As alterações devem ser salvas no banco de dados
+  * Estimativa: 3 pontos
+  * Prioridade: Alta
+
+- Como gerente de estoque, eu quero visualizar a lista de todos os produtos, para ter uma visão geral do estoque.
+  * Critérios de Aceitação:
+    - A lista deve mostrar código, descrição, unidade, valor unitário e quantidade em estoque
+    - Deve ser possível ordenar por qualquer coluna
+    - Deve ser possível filtrar por descrição ou código
+  * Estimativa: 3 pontos
+  * Prioridade: Alta
+
+- Como gerente de estoque, eu quero atualizar o estoque de produtos, para manter o controle de entradas e saídas.
+  * Critérios de Aceitação:
+    - Deve ser possível adicionar ou remover quantidades do estoque
+    - O sistema deve impedir que o estoque fique negativo
+    - O sistema deve registrar a data e o usuário que fez a alteração
+  * Estimativa: 5 pontos
+  * Prioridade: Alta
+
+// Épico: Gerenciamento de Clientes
+- Como vendedor, eu quero cadastrar novos clientes, para registrar suas compras.
+  * Critérios de Aceitação:
+    - Deve ser possível informar nome, email, telefone e endereço
+    - O sistema deve validar se o email já existe
+    - O sistema deve validar se todos os campos obrigatórios foram preenchidos
+    - O cliente deve ser salvo no banco de dados
+  * Estimativa: 5 pontos
+  * Prioridade: Alta
+
+- Como vendedor, eu quero editar informações de clientes existentes, para manter os dados atualizados.
+  * Critérios de Aceitação:
+    - Deve ser possível alterar nome, email, telefone e endereço
+    - O sistema deve validar se o email já existe
+    - O sistema deve validar se todos os campos obrigatórios foram preenchidos
+    - As alterações devem ser salvas no banco de dados
+  * Estimativa: 3 pontos
+  * Prioridade: Média
+
+- Como vendedor, eu quero visualizar a lista de todos os clientes, para facilitar o atendimento.
+  * Critérios de Aceitação:
+    - A lista deve mostrar nome, email, telefone e data de cadastro
+    - Deve ser possível ordenar por qualquer coluna
+    - Deve ser possível filtrar por nome ou email
+  * Estimativa: 3 pontos
+  * Prioridade: Média
+
+// Épico: Registro de Vendas
+- Como vendedor, eu quero registrar uma nova venda, para controlar as saídas de produtos e faturamento.
+  * Critérios de Aceitação:
+    - Deve ser possível selecionar um cliente existente
+    - Deve ser possível adicionar múltiplos produtos à venda
+    - Deve ser possível definir a quantidade de cada produto
+    - O sistema deve calcular automaticamente o subtotal de cada item e o total da venda
+    - O sistema deve validar se há estoque suficiente para cada produto
+    - O sistema deve atualizar o estoque após a confirmação da venda
+    - A venda deve ser salva no banco de dados
+  * Estimativa: 8 pontos
+  * Prioridade: Alta
+
+- Como vendedor, eu quero visualizar o histórico de vendas, para acompanhar o desempenho.
+  * Critérios de Aceitação:
+    - A lista deve mostrar data, cliente, valor total e status da venda
+    - Deve ser possível filtrar por período, cliente ou status
+    - Deve ser possível ordenar por qualquer coluna
+  * Estimativa: 5 pontos
+  * Prioridade: Média
+
+- Como vendedor, eu quero visualizar os detalhes de uma venda específica, para verificar os itens vendidos.
+  * Critérios de Aceitação:
+    - Deve mostrar data, cliente, valor total e status da venda
+    - Deve listar todos os itens da venda com código, descrição, quantidade, valor unitário e subtotal
+    - Deve ser possível imprimir ou exportar os detalhes da venda
+  * Estimativa: 5 pontos
+  * Prioridade: Média
+
+// Épico: Relatórios
+- Como gerente, eu quero gerar relatórios de vendas por período, para analisar o desempenho do negócio.
+  * Critérios de Aceitação:
+    - Deve ser possível selecionar o período de análise
+    - O relatório deve mostrar o total de vendas, quantidade de vendas e ticket médio
+    - Deve ser possível visualizar os dados em formato de gráfico
+    - Deve ser possível exportar o relatório em PDF ou Excel
+  * Estimativa: 8 pontos
+  * Prioridade: Baixa
+
+- Como gerente de estoque, eu quero gerar relatórios de produtos mais vendidos, para otimizar o estoque.
+  * Critérios de Aceitação:
+    - Deve ser possível selecionar o período de análise
+    - O relatório deve mostrar os produtos, quantidade vendida e valor total
+    - Deve ser possível ordenar por quantidade ou valor
+    - Deve ser possível exportar o relatório em PDF ou Excel
+  * Estimativa: 8 pontos
+  * Prioridade: Baixa</code></pre>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 2: Sprint Backlog para Sistema de Vendas</h3>
+                        <pre><code>// Exemplo de Sprint Backlog para a primeira Sprint do Sistema de Vendas
+
+Sprint 1: Gerenciamento de Produtos
+Objetivo da Sprint: Implementar as funcionalidades básicas de gerenciamento de produtos.
+Duração: 2 semanas
+Capacidade da equipe: 30 pontos
+
+Histórias selecionadas:
+1. Como gerente de estoque, eu quero cadastrar novos produtos no sistema, para que possam ser vendidos. (5 pontos)
+2. Como gerente de estoque, eu quero editar informações de produtos existentes, para manter os dados atualizados. (3 pontos)
+3. Como gerente de estoque, eu quero visualizar a lista de todos os produtos, para ter uma visão geral do estoque. (3 pontos)
+4. Como gerente de estoque, eu quero atualizar o estoque de produtos, para manter o controle de entradas e saídas. (5 pontos)
+
+Tarefas:
+
+História 1: Cadastro de produtos (5 pontos)
+- Criar tabela 'produtos' no banco de dados (Responsável: Ana, 2h)
+- Desenvolver API para cadastro de produtos (Responsável: Carlos, 4h)
+- Implementar validações de entrada (Responsável: Carlos, 2h)
+- Criar interface de usuário para cadastro (Responsável: Mariana, 4h)
+- Integrar frontend com backend (Responsável: Mariana, 2h)
+- Escrever testes unitários (Responsável: Carlos, 2h)
+- Escrever testes de integração (Responsável: Ana, 2h)
+- Revisar código e documentar (Responsável: Equipe, 1h)
+
+História 2: Edição de produtos (3 pontos)
+- Desenvolver API para edição de produtos (Responsável: Carlos, 3h)
+- Implementar validações de entrada (Responsável: Carlos, 1h)
+- Criar interface de usuário para edição (Responsável: Mariana, 3h)
+- Integrar frontend com backend (Responsável: Mariana, 1h)
+- Escrever testes unitários (Responsável: Carlos, 1h)
+- Escrever testes de integração (Responsável: Ana, 1h)
+- Revisar código e documentar (Responsável: Equipe, 1h)
+
+História 3: Listagem de produtos (3 pontos)
+- Desenvolver API para listagem de produtos (Responsável: Ana, 2h)
+- Implementar filtros e ordenação (Responsável: Ana, 2h)
+- Criar interface de usuário para listagem (Responsável: Mariana, 3h)
+- Implementar paginação (Responsável: Mariana, 2h)
+- Integrar frontend com backend (Responsável: Mariana, 1h)
+- Escrever testes unitários (Responsável: Ana, 1h)
+- Escrever testes de integração (Responsável: Carlos, 1h)
+- Revisar código e documentar (Responsável: Equipe, 1h)
+
+História 4: Atualização de estoque (5 pontos)
+- Desenvolver API para atualização de estoque (Responsável: Carlos, 3h)
+- Implementar validações de estoque (Responsável: Carlos, 2h)
+- Criar interface de usuário para atualização de estoque (Responsável: Mariana, 3h)
+- Implementar registro de histórico de alterações (Responsável: Ana, 3h)
+- Integrar frontend com backend (Responsável: Mariana, 1h)
+- Escrever testes unitários (Responsável: Carlos, 2h)
+- Escrever testes de integração (Responsável: Ana, 2h)
+- Revisar código e documentar (Responsável: Equipe, 1h)
+
+Definição de Pronto:
+- Código implementado e revisado
+- Testes unitários e de integração passando
+- Documentação atualizada
+- Interface de usuário funcional e responsiva
+- Aprovado pelo Product Owner</code></pre>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 3: Quadro Kanban para Sistema de Vendas</h3>
+                        <pre><code>// Exemplo de Quadro Kanban para o Sistema de Vendas
+
++----------------+----------------+----------------+----------------+----------------+
+|    BACKLOG     |   EM ANÁLISE   |  EM PROGRESSO  |   EM TESTE     |   CONCLUÍDO    |
+| (Sem limite)   |  (Limite: 3)   |  (Limite: 5)   |  (Limite: 3)   |                |
++----------------+----------------+----------------+----------------+----------------+
+| [Alta]         | [Alta]         | [Alta]         | [Alta]         | [Alta]         |
+| Relatório de   | Cadastro de    | Edição de      | Visualização   | Atualização de |
+| vendas por     | produtos       | produtos       | de produtos    | estoque        |
+| período        |                |                |                |                |
+|                |                |                |                |                |
+| [Alta]         | [Média]        | [Alta]         |                | [Alta]         |
+| Relatório de   | Visualização   | Cadastro de    |                | Visualização   |
+| produtos mais  | de clientes    | clientes       |                | de vendas      |
+| vendidos       |                |                |                |                |
+|                |                |                |                |                |
+| [Média]        |                | [Alta]         |                | [Média]        |
+| Edição de      |                | Registro de    |                | Detalhes de    |
+| clientes       |                | vendas         |                | vendas         |
+|                |                |                |                |                |
++----------------+----------------+----------------+----------------+----------------+
+
+// Políticas do Kanban:
+
+// Políticas de Entrada:
+// - Itens só podem entrar em "Em Análise" se tiverem descrição clara, critérios de aceitação e estimativa
+// - Prioridade Alta tem precedência sobre Média e Baixa
+
+// Políticas de Desenvolvimento:
+// - Desenvolvedores só podem trabalhar em um item por vez
+// - Itens em progresso devem ter um responsável designado
+// - Código deve seguir os padrões definidos no guia de estilo
+
+// Políticas de Teste:
+// - Todos os itens devem ter testes unitários e de integração
+// - Testes devem ser automatizados quando possível
+// - Bugs encontrados têm prioridade sobre novos desenvolvimentos
+
+// Políticas de Conclusão:
+// - Item só é considerado concluído quando atende a todos os critérios de aceitação
+// - Item concluído deve ser revisado pelo Product Owner
+// - Documentação deve ser atualizada antes de considerar o item concluído
+
+// Classes de Serviço:
+// - Expedited: Bugs críticos que bloqueiam o uso do sistema (tempo máximo: 1 dia)
+// - Fixed Date: Itens com data de entrega fixa (identificados com prazo)
+// - Standard: Itens regulares de desenvolvimento (maioria dos itens)
+// - Intangible: Melhorias técnicas e refatorações (identificados com [TECH])</code></pre>
+                    </div>
+                    
+                    <h2>Exercícios Práticos</h2>
+                    <p>Para fixar os conceitos aprendidos neste módulo, recomendamos a realização dos seguintes exercícios:</p>
+                    
+                    <ol>
+                        <li>Crie um Product Backlog para um sistema de vendas, com pelo menos 10 histórias de usuário.</li>
+                        <li>Priorize as histórias de usuário do Product Backlog usando a técnica MoSCoW.</li>
+                        <li>Estime as histórias de usuário usando Planning Poker ou T-Shirt Sizing.</li>
+                        <li>Crie um Sprint Backlog para a primeira Sprint, selecionando histórias do Product Backlog.</li>
+                        <li>Quebre as histórias selecionadas em tarefas técnicas.</li>
+                        <li>Desenhe um quadro Kanban para o projeto, definindo as colunas e limites de WIP.</li>
+                        <li>Simule uma Sprint Review, apresentando o incremento desenvolvido.</li>
+                        <li>Conduza uma Sprint Retrospective, identificando pontos positivos, negativos e ações de melhoria.</li>
+                        <li>Crie um Burndown Chart para acompanhar o progresso da Sprint.</li>
+                        <li>Compare as metodologias Scrum e Kanban, identificando quando usar cada uma.</li>
+                    </ol>
+                    
+                    <p>Você encontrará mais exercícios e desafios na seção de <a href="../exercicios.html">Exercícios</a>.</p>
+                    
+                    <div class="cta mt-5">
+                        <h3>Pronto para aplicar na prática?</h3>
+                        <p>Após dominar os conceitos de metodologias ágeis, você estará preparado para aplicá-los no projeto prático do curso.</p>
+                        <a href="../projeto/index.html" class="btn btn-primary">Ver Projeto Prático: Sistema de Vendas</a>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-nav">
+                        <h3>Módulos do Curso</h3>
+                        <ul>
+                            <li><a href="lpjs.html">1. Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html">2. Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">3. JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html">4. Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html">5. Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">6. Node.js</a></li>
+                            <li><a href="nbd.html">7. Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html" class="active">8. Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-nav">
+                        <h3>Recursos Adicionais</h3>
+                        <div class="recursos-links">
+                            <a href="../recursos.html#videos" class="recurso-link">
+                                <i class="fas fa-video"></i> Vídeos Recomendados
+                            </a>
+                            <a href="../exercicios.html#modulo8" class="recurso-link">
+                                <i class="fas fa-code"></i> Exercícios Práticos
+                            </a>
+                            <a href="https://www.scrum.org/resources/scrum-guide" target="_blank" class="recurso-link">
+                                <i class="fas fa-book"></i> Guia do Scrum
+                            </a>
+                            <a href="https://www.atlassian.com/agile/kanban" target="_blank" class="recurso-link">
+                                <i class="fas fa-book"></i> Guia de Kanban
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-nav">
+                        <h3>Projeto Relacionado</h3>
+                        <div class="projeto-preview">
+                            <h4>Sistema de Vendas</h4>
+                            <p>As metodologias ágeis serão aplicadas no desenvolvimento do sistema de vendas, utilizando Scrum para gerenciar o projeto e Kanban para visualizar o fluxo de trabalho.</p>
+                            <a href="../projeto/index.html" class="btn btn-outline btn-sm">Ver Projeto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Prof. Tiago Segato</h2>
+                    <p>Desenvolvimento Backend com JavaScript: Do Zero à Aplicação Completa</p>
+                    <div class="social-links mt-3">
+                        <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../sobre.html">Sobre o Curso</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../contato.html">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Módulos</h3>
+                        <ul>
+                            <li><a href="lpjs.html">Lógica de Programação</a></li>
+                            <li><a href="git.html">Git e GitHub</a></li>
+                            <li><a href="jstob.html">JavaScript e OO</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento</a></li>
+                            <li><a href="iws.html">WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Banco de Dados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Projeto</h3>
+                        <ul>
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prof. Tiago Segato. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:contato@tiagosegato.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

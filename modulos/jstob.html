@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript e Orientação a Objetos | Prof. Tiago Segato</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>JavaScript BackEnd</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../sobre.html">Sobre o Curso</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active">Módulos <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="lpjs.html">Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html">Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html" class="active">JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html">Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Projeto <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../ead.html">Conteúdo EaD</a></li>
+                    <li><a href="../recursos.html">Recursos</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Módulo 3: JavaScript e Orientação a Objetos</h1>
+            <p>Classes, objetos, herança, polimorfismo e padrões de projeto em JavaScript, aplicados ao contexto do Sistema de Vendas.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-layout">
+                <div class="main-content">
+                    <h2>Visão Geral do Módulo</h2>
+                    <p>Neste módulo, você aprenderá os conceitos fundamentais da Programação Orientada a Objetos (POO) aplicados ao JavaScript. Vamos explorar como criar e utilizar classes e objetos para representar as entidades do nosso Sistema de Vendas (como `Cliente`, `Produto`, `Pedido`), além de entender herança, polimorfismo e encapsulamento no contexto do JavaScript.</p>
+                    
+                    <div class="module-info">
+                        <div class="module-info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Carga Horária</h3>
+                                <p>24 horas</p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-book"></i>
+                            <div>
+                                <h3>Material de aula</h3>
+                                <p><a href="../aulas/m3-poo.html" class="btn btn-sm" target="_blank">Acessar slides</a></p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-code-branch"></i>
+                            <div>
+                                <h3>Pré-requisitos</h3>
+                                <p>Módulos 1 e 2</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Conteúdo Programático</h2>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>1. Introdução à Orientação a Objetos</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>O que é Programação Orientada a Objetos (POO)</li>
+                                    <li>Paradigmas de programação: imperativo vs. orientado a objetos</li>
+                                    <li>Benefícios: Reutilização, Manutenibilidade, Organização</li>
+                                    <li>Conceitos chave: Classes, Objetos, Atributos, Métodos</li>
+                                    <li>JavaScript como linguagem multi-paradigma (funcional, OO, procedural)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>2. Objetos em JavaScript</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Revisão de objetos literais: Representando um produto ou cliente</li>
+                                    <li>Propriedades (Ex: `nome_cliente`, `val_unit`) e Métodos (Ex: `calcularSubtotal()`)</li>
+                                    <li>Acessando e modificando propriedades (dot notation, bracket notation)</li>
+                                    <li>O `this` em métodos de objetos</li>
+                                    <li>Object.create() e a cadeia de protótipos</li>
+                                    <li>Desestruturação de objetos para acessar dados (Ex: `const { nome_cliente, cidade } = cliente;`)</li>
+                                </ul>
+                                <div class="code-example">
+                                    <pre><code>// Exemplo de objeto literal representando um produto
+const produto1 = {
+  codigo_produto: 25,
+  unidade: 'Kg',
+  descricao_produto: 'Queijo',
+  val_unit: 0.97,
+  mostrarDetalhes: function() {
+    console.log(`Produto: ${this.descricao_produto} (${this.codigo_produto}) - R$ ${this.val_unit}/${this.unidade}`);
+  }
+};
+
+produto1.mostrarDetalhes(); // Saída: Produto: Queijo (25) - R$ 0.97/Kg
+console.log(produto1.val_unit); // Saída: 0.97</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>3. Princípios da Orientação a Objetos</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li><strong>Encapsulamento:</strong> Ocultar detalhes internos e expor apenas o necessário (Ex: Saldo de estoque só pode ser alterado por métodos específicos).</li>
+                                    <li><strong>Herança:</strong> Criar novas classes baseadas em existentes (Ex: `ClientePessoaFisica` e `ClientePessoaJuridica` herdando de `Cliente` - conceitual, não no script).</li>
+                                    <li><strong>Polimorfismo:</strong> Objetos de diferentes classes respondendo à mesma mensagem (Ex: Método `gerarRelatorio()` em `Pedido` e `Vendedor`).</li>
+                                    <li><strong>Abstração:</strong> Focar nos aspectos essenciais, ignorando detalhes irrelevantes (Ex: A classe `Produto` abstrai os detalhes de armazenamento físico).</li>
+                                    <li>Associação, agregação e composição (Ex: `Pedido` *contém* `ItemPedido` - composição).</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>4. Funções Construtoras e Protótipos (Forma Clássica)</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Criando "moldes" com funções construtoras (Ex: `function Cliente(...)`)</li>
+                                    <li>Operador `new` para criar instâncias (objetos)</li>
+                                    <li>A propriedade `prototype` para adicionar métodos compartilhados</li>
+                                    <li>Herança baseada em protótipos (`Object.setPrototypeOf` ou `Object.create`)</li>
+                                </ul>
+                                <div class="code-example">
+                                    <pre><code>// Exemplo com Função Construtora para Vendedor
+function Vendedor(codigo, nome, salario, comissao) {
+  this.codigo_vendedor = codigo;
+  this.nome_vendedor = nome;
+  this.salario_fixo = salario;
+  this.faixa_comissao = comissao;
+}
+
+Vendedor.prototype.apresentar = function() {
+  console.log(`Vendedor: ${this.nome_vendedor} (Cód: ${this.codigo_vendedor}), Salário: R$ ${this.salario_fixo}`);
+};
+
+const vendedor1 = new Vendedor(209, 'José', 1800.00, 'C');
+const vendedor2 = new Vendedor(111, 'Carlos', 2490.00, 'A');
+
+vendedor1.apresentar();
+vendedor2.apresentar();</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>5. Classes em JavaScript (ES6+)</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Sintaxe moderna com a palavra-chave `class`</li>
+                                    <li>Método `constructor` para inicializar objetos</li>
+                                    <li>Definição de métodos diretamente na classe</li>
+                                    <li>Métodos e propriedades estáticas (pertencem à classe, não à instância)</li>
+                                    <li>Getters e setters para controlar acesso a propriedades</li>
+                                </ul>
+                                <div class="code-example">
+                                    <pre><code>// Exemplo com Classe para Produto
+class Produto {
+  constructor(codigo, unidade, descricao, valor) {
+    this.codigo_produto = codigo;
+    this.unidade = unidade;
+    this.descricao_produto = descricao;
+    this.val_unit = valor;
+  }
+
+  // Método de instância
+  obterPrecoFormatado() {
+    return `R$ ${this.val_unit.toFixed(2).replace('.', ',')}`;
+  }
+
+  // Getter
+  get descricaoMaiuscula() {
+    return this.descricao_produto.toUpperCase();
+  }
+
+  // Método estático
+  static info() {
+    console.log("Classe para representar produtos do sistema de vendas.");
+  }
+}
+
+const produtoA = new Produto(31, 'BAR', 'Chocolate', 0.87);
+const produtoB = new Produto(78, 'L', 'Vinho', 2.00);
+
+console.log(produtoA.obterPrecoFormatado()); // Saída: R$ 0,87
+console.log(produtoB.descricaoMaiuscula); // Saída: VINHO
+Produto.info(); // Saída: Classe para representar produtos do sistema de vendas.</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>6. Herança com Classes</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Palavra-chave `extends` para criar subclasses</li>
+                                    <li>Método `super()` para chamar o construtor da classe pai</li>
+                                    <li>Sobrescrita de métodos da classe pai</li>
+                                    <li>Exemplo conceitual: `PedidoOnline extends Pedido` (não aplicável diretamente ao script)</li>
+                                    <li>Composição como alternativa à herança em muitos casos</li>
+                                </ul>
+                                 <div class="code-example">
+                                    <pre><code>// Exemplo Simples de Herança (Conceitual)
+class Entidade {
+    constructor(codigo) {
+        if (new.target === Entidade) {
+            throw new Error("Não é possível instanciar Entidade diretamente.");
+        }
+        this.codigo = codigo;
+        console.log(`Criando entidade com código ${codigo}`);
+    }
+
+    identificar() {
+        console.log(`Entidade com código: ${this.codigo}`);
+    }
+}
+
+class Cliente extends Entidade {
+    constructor(codigo, nome) {
+        super(codigo); // Chama o construtor de Entidade
+        this.nome_cliente = nome;
+        console.log(`Criando cliente ${nome}`);
+    }
+
+    // Sobrescrevendo o método identificar
+    identificar() {
+        super.identificar(); // Chama o método da classe pai
+        console.log(`Nome do Cliente: ${this.nome_cliente}`);
+    }
+}
+
+const clienteAna = new Cliente(720, 'Ana');
+clienteAna.identificar();
+// Saída:
+// Criando entidade com código 720
+// Criando cliente Ana
+// Entidade com código: 720
+// Nome do Cliente: Ana</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>7. Encapsulamento e Modificadores de Acesso</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Conceito de proteger dados internos</li>
+                                    <li>Convenção com underscore (`_propriedade`)</li>
+                                    <li>Campos privados com `#` (hash) - sintaxe mais recente</li>
+                                    <li>Getters e Setters para acesso controlado</li>
+                                </ul>
+                                <div class="code-example">
+                                    <pre><code>class Pedido {
+  #itens = []; // Campo privado
+  #status = 'aberto'; // Campo privado
+
+  constructor(numero, clienteCodigo, vendedorCodigo) {
+    this.num_pedido = numero;
+    this.codigo_cliente = clienteCodigo;
+    this.codigo_vendedor = vendedorCodigo;
+    this.prazo_entrega = 15; // Valor padrão
+  }
+
+  adicionarItem(item) {
+    if (this.#status !== 'aberto') {
+        console.error("Não é possível adicionar itens a um pedido fechado/cancelado.");
+        return;
+    }
+    this.#itens.push(item);
+    console.log(`Item ${item.codigo_produto} adicionado ao pedido ${this.num_pedido}`);
+  }
+
+  listarItens() {
+    console.log(`Itens do Pedido ${this.num_pedido}:`);
+    this.#itens.forEach(item => console.log(` - Produto ${item.codigo_produto}, Qtd: ${item.quantidade}`));
+  }
+
+  // Getter para status
+  get status() {
+    return this.#status;
+  }
+
+  // Setter (exemplo simples, poderia ter mais lógica)
+  set status(novoStatus) {
+      if (['aberto', 'faturado', 'cancelado'].includes(novoStatus)) {
+          this.#status = novoStatus;
+          console.log(`Status do pedido ${this.num_pedido} alterado para ${novoStatus}`);
+      } else {
+          console.error("Status inválido.");
+      }
+  }
+}
+
+const pedido121 = new Pedido(121, 410, 209);
+pedido121.adicionarItem({ codigo_produto: 25, quantidade: 10 });
+pedido121.adicionarItem({ codigo_produto: 31, quantidade: 35 });
+pedido121.listarItens();
+console.log(pedido121.status); // Acessando via getter
+pedido121.status = 'faturado'; // Modificando via setter
+// pedido121.#itens; // Erro! Não pode acessar campo privado diretamente
+</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>8. Polimorfismo em JavaScript</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Conceito: "Muitas formas" - objetos diferentes respondendo à mesma mensagem.</li>
+                                    <li>Polimorfismo de subtipo (via herança e sobrescrita).</li>
+                                    <li>Polimorfismo Ad-hoc (Duck Typing - "Se anda como um pato e grasna como um pato...").</li>
+                                    <li>Exemplo: Uma função `imprimirDetalhes` que funciona para `Cliente` e `Vendedor`.</li>
+                                </ul>
+                                 <div class="code-example">
+                                    <pre><code>class Cliente {
+    constructor(codigo, nome) { this.codigo_cliente = codigo; this.nome_cliente = nome; }
+    getDetalhes() { return `Cliente: ${this.nome_cliente} (Cód: ${this.codigo_cliente})`; }
+}
+
+class Vendedor {
+    constructor(codigo, nome) { this.codigo_vendedor = codigo; this.nome_vendedor = nome; }
+    getDetalhes() { return `Vendedor: ${this.nome_vendedor} (Cód: ${this.codigo_vendedor})`; }
+}
+
+function imprimirEntidade(entidade) {
+    // Verifica se a entidade tem o método getDetalhes (Duck Typing)
+    if (typeof entidade.getDetalhes === 'function') {
+        console.log(entidade.getDetalhes());
+    } else {
+        console.log("Entidade não possui método getDetalhes.");
+    }
+}
+
+const cli = new Cliente(110, 'Jorge');
+const vend = new Vendedor(240, 'Antônio');
+
+imprimirEntidade(cli);   // Saída: Cliente: Jorge (Cód: 110)
+imprimirEntidade(vend);  // Saída: Vendedor: Antônio (Cód: 240)</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>9. Padrões de Projeto Comuns em JavaScript</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Introdução aos Design Patterns e sua importância.</li>
+                                    <li>Padrões Criacionais (Ex: Factory para criar diferentes tipos de `ItemPedido`).</li>
+                                    <li>Padrões Estruturais (Ex: Module para organizar código relacionado a `Produto`).</li>
+                                    <li>Padrões Comportamentais (Ex: Observer para notificar quando um `Pedido` muda de status).</li>
+                                    <li>Foco nos padrões mais aplicáveis ao desenvolvimento backend com Node.js.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>10. Aplicações Práticas da POO no Sistema de Vendas</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Modelagem das entidades do `script_vendas.sql` como classes (`Cliente`, `Vendedor`, `Produto`, `Pedido`, `ItemPedido`).</li>
+                                    <li>Organização dos `models` e `controllers` na arquitetura do projeto.</li>
+                                    <li>Criação de métodos nas classes para encapsular lógicas de negócio (Ex: `Pedido.calcularTotal()`).</li>
+                                    <li>Reutilização de código através de classes e herança (quando aplicável).</li>
+                                    <li>Facilitação dos testes unitários ao isolar funcionalidades em classes.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Objetivos de Aprendizagem</h2>
+                    <p>Ao final deste módulo, você será capaz de:</p>
+                    <ul>
+                        <li>Explicar os princípios fundamentais da Programação Orientada a Objetos.</li>
+                        <li>Criar e utilizar objetos literais e funções construtoras em JavaScript.</li>
+                        <li>Implementar classes, construtores, métodos e propriedades no ES6+.</li>
+                        <li>Aplicar herança para criar hierarquias de classes.</li>
+                        <li>Utilizar encapsulamento para proteger dados internos dos objetos.</li>
+                        <li>Implementar polimorfismo em JavaScript.</li>
+                        <li>Reconhecer e aplicar padrões de projeto comuns.</li>
+                        <li>Modelar entidades de um sistema real (como o Sistema de Vendas) usando POO em JavaScript.</li>
+                    </ul>
+
+                    <div class="cta-section">
+                        <h2>Próximo Módulo</h2>
+                        <p>Avance para o próximo módulo e aprenda sobre Padrões de Desenvolvimento de Software.</p>
+                        <div class="cta-buttons">
+                            <a href="pds.html" class="btn btn-primary">Ir para Módulo 4</a>
+                            <a href="../projeto/index.html" class="btn btn-secondary">Revisitar o Projeto Prático</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-nav">
+                        <h3>Módulos do Curso</h3>
+                        <ul>
+                            <li><a href="lpjs.html">1. Lógica de Programação</a></li>
+                            <li><a href="git.html">2. Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html" class="active">3. JavaScript e OO</a></li>
+                            <li><a href="pds.html">4. Padrões de Desenvolvimento</a></li>
+                            <li><a href="iws.html">5. Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">6. Node.js</a></li>
+                            <li><a href="nbd.html">7. Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">8. Metodologias Ágeis</a></li>
+                        </ul>
+                    </div>
+                    <div class="instructor-card">
+                        <div class="instructor-image">
+                            <img src="../img/tiago-segato.jpg" alt="Prof. Tiago Segato">
+                        </div>
+                        <div class="instructor-info">
+                            <h3>Prof. Tiago Segato</h3>
+                            <p>Desenvolvedor e educador.</p>
+                            <div class="social-links">
+                                <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Prof. Tiago Segato</h2>
+                    <p>Desenvolvimento Backend com JavaScript: Do Zero à Aplicação Completa</p>
+                    <div class="social-links mt-3">
+                        <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../sobre.html">Sobre o Curso</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../contato.html">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Módulos</h3>
+                        <ul>
+                            <li><a href="lpjs.html">Lógica de Programação</a></li>
+                            <li><a href="git.html">Git e GitHub</a></li>
+                            <li><a href="jstob.html">JavaScript e OO</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento</a></li>
+                            <li><a href="iws.html">WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Banco de Dados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Projeto</h3>
+                        <ul>
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prof. Tiago Segato. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:contato@tiagosegato.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

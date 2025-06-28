@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passo a Passo - Sistema de Vendas | Prof. Tiago Segato</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>JavaScript BackEnd</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../sobre.html">Sobre o Curso</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Módulos <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../modulos/lpjs.html">Lógica de Programação com JavaScript</a></li>
+                            <li><a href="../modulos/git.html">Git, GitHub e GitLab</a></li>
+                            <li><a href="../modulos/jstob.html">JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="../modulos/pds.html">Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="../modulos/iws.html">Introdução a WebServices</a></li>
+                            <li><a href="../modulos/nodejs.html">Node.js</a></li>
+                            <li><a href="../modulos/nbd.html">Noções de Banco de Dados</a></li>
+                            <li><a href="../modulos/scrum.html">Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active">Projeto <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html">Visão Geral</a></li>
+                            <li><a href="requisitos.html">Requisitos</a></li>
+                            <li><a href="modelagem.html">Modelagem</a></li>
+                            <li><a href="arquitetura.html">Arquitetura</a></li>
+                            <li><a href="passo-a-passo.html" class="active">Passo a Passo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../ead.html">Conteúdo EaD</a></li>
+                    <li><a href="../recursos.html">Recursos</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Passo a Passo: Implementação do CRUD de Produtos (PostgreSQL)</h1>
+            <p>Guia detalhado para implementação do cadastro de produtos no Sistema de Vendas usando Node.js, Express e PostgreSQL, conforme `script_vendas.sql`.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-layout">
+                <div class="main-content">
+                    <h2>Introdução</h2>
+                    <p>Neste guia passo a passo, vamos implementar um CRUD (Create, Read, Update, Delete) básico para a entidade `produto` do Sistema de Vendas, utilizando Node.js, Express e PostgreSQL. Seguiremos a estrutura definida no `script_vendas.sql`.</p>
+                    
+                    <p>Vamos focar na implementação do backend, criando uma API RESTful que permitirá:</p>
+                    <ul>
+                        <li>Listar todos os produtos</li>
+                        <li>Obter detalhes de um produto específico pelo código</li>
+                        <li>Cadastrar novos produtos</li>
+                        <li>Atualizar produtos existentes</li>
+                        <li>Remover produtos</li>
+                    </ul>
+                    
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Este guia assume que você já configurou o ambiente com Node.js, npm e PostgreSQL instalados e que o banco de dados foi criado e populado com o `script_vendas.sql`. Consulte os módulos anteriores se necessário.</p>
+                    </div>
+                    
+                    <h2>Passo 1: Configuração Inicial do Projeto</h2>
+                    
+                    <h3>1.1. Estrutura e Inicialização</h3>
+                    <p>Se ainda não o fez, crie a estrutura do projeto e inicialize o npm:</p>
+                    <div class="code-example">
+                        <pre><code>mkdir sistema-vendas-pg
+cd sistema-vendas-pg
+npm init -y
+mkdir -p src/config src/controllers src/models src/routes src/utils</code></pre>
+                    </div>
+                    
+                    <h3>1.2. Instalar Dependências</h3>
+                    <p>Instale as dependências necessárias para Express e PostgreSQL:</p>
+                    <div class="code-example">
+                        <pre><code>npm install express pg dotenv cors
+npm install --save-dev nodemon</code></pre>
+                    </div>
+                    <ul>
+                        <li><strong>express</strong>: Framework web.</li>
+                        <li><strong>pg</strong>: Driver Node.js para PostgreSQL.</li>
+                        <li><strong>dotenv</strong>: Carregar variáveis de ambiente.</li>
+                        <li><strong>cors</strong>: Habilitar CORS.</li>
+                        <li><strong>nodemon</strong>: Reiniciar servidor automaticamente (desenvolvimento).</li>
+                    </ul>
+
+                    <h3>1.3. Configurar `package.json` e `.gitignore`</h3>
+                    <p>Adicione os scripts `start` e `dev` ao `package.json` e crie um `.gitignore` para ignorar `node_modules/` e `.env`.</p>
+                    <div class="code-example">
+                        <pre><code>// package.json (scripts section)
+"scripts": {
+  "start": "node server.js",
+  "dev": "nodemon server.js"
+},</code></pre>
+                    </div>
+                    <div class="code-example">
+                        <pre><code># .gitignore
+node_modules/
+.env</code></pre>
+                    </div>
+
+                    <h3>1.4. Criar Arquivo `.env`</h3>
+                    <p>Crie o arquivo `.env` na raiz com as credenciais do seu banco PostgreSQL:</p>
+                    <div class="code-example">
+                        <pre><code># .env
+PORT=3000
+DB_USER=seu_usuario_pg
+DB_HOST=localhost
+DB_DATABASE=seu_banco_pg
+DB_PASSWORD=sua_senha_pg
+DB_PORT=5432</code></pre>
+                    </div>
+                    <p><strong>Importante:</strong> Certifique-se de que o banco de dados (`DB_DATABASE`) já existe e que o `script_vendas.sql` foi executado nele.</p>
+
+                    <h2>Passo 2: Configuração da Conexão PostgreSQL</h2>
+                    <p>Vamos configurar um pool de conexões com o PostgreSQL.</p>
+                    <div class="code-example">
+                        <pre><code>// src/config/database.js
+const { Pool } = require("pg");
+require("dotenv").config();
+
+const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+});
+
+// Teste de conexão (opcional)
+pool.query("SELECT NOW()", (err, res) => {
+  if (err) {
+    console.error("Erro ao conectar ao PostgreSQL:", err);
+  } else {
+    console.log("Conexão com PostgreSQL estabelecida.");
+  }
+});
+
+module.exports = pool;</code></pre>
+                    </div>
+
+                    <h2>Passo 3: Implementação do Model (`produtoModel.js`)</h2>
+                    <p>Criaremos o model para interagir com a tabela `produto` no PostgreSQL.</p>
+                    <div class="code-example">
+                        <pre><code>// src/models/produtoModel.js
+const pool = require("../config/database");
+
+class ProdutoModel {
+  static async listarTodos() {
+    const client = await pool.connect();
+    try {
+      const res = await client.query("SELECT * FROM produto ORDER BY descricao_produto");
+      return res.rows;
+    } finally {
+      client.release();
+    }
+  }
+
+  static async buscarPorCodigo(codigo) {
+    const client = await pool.connect();
+    try {
+      const res = await client.query("SELECT * FROM produto WHERE codigo_produto = $1", [codigo]);
+      return res.rows.length > 0 ? res.rows[0] : null;
+    } finally {
+      client.release();
+    }
+  }
+
+  static async criar(produto) {
+    const { codigo_produto, unidade, descricao_produto, val_unit } = produto;
+    const client = await pool.connect();
+    try {
+      const res = await client.query(
+        "INSERT INTO produto (codigo_produto, unidade, descricao_produto, val_unit) VALUES ($1, $2, $3, $4) RETURNING *",
+        [codigo_produto, unidade, descricao_produto, val_unit]
+      );
+      return res.rows[0];
+    } finally {
+      client.release();
+    }
+  }
+
+  static async atualizar(codigo, produto) {
+    const { unidade, descricao_produto, val_unit } = produto;
+    const client = await pool.connect();
+    try {
+      const res = await client.query(
+        "UPDATE produto SET unidade = $1, descricao_produto = $2, val_unit = $3 WHERE codigo_produto = $4 RETURNING *",
+        [unidade, descricao_produto, val_unit, codigo]
+      );
+      return res.rows.length > 0 ? res.rows[0] : null;
+    } finally {
+      client.release();
+    }
+  }
+
+  static async excluir(codigo) {
+    const client = await pool.connect();
+    try {
+      // Verificar dependências em item_pedido antes de excluir (IMPORTANTE!)
+      const depRes = await client.query("SELECT 1 FROM item_pedido WHERE codigo_produto = $1 LIMIT 1", [codigo]);
+      if (depRes.rows.length > 0) {
+        throw new Error("Não é possível excluir o produto pois ele existe em um ou mais pedidos.");
+      }
+      
+      const res = await client.query("DELETE FROM produto WHERE codigo_produto = $1 RETURNING *", [codigo]);
+      return res.rows.length > 0;
+    } finally {
+      client.release();
+    }
+  }
+}
+
+module.exports = ProdutoModel;</code></pre>
+                    </div>
+                    <p><strong>Observação:</strong> A função `excluir` inclui uma verificação básica de dependência na tabela `item_pedido`. Em um sistema real, tratamentos de erro e validações mais robustas seriam necessários.</p>
+
+                    <h2>Passo 4: Implementação do Controller (`produtoController.js`)</h2>
+                    <p>Criaremos o controller para lidar com a lógica das requisições para produtos.</p>
+                    <div class="code-example">
+                        <pre><code>// src/controllers/produtoController.js
+const ProdutoModel = require("../models/produtoModel");
+
+class ProdutoController {
+  static async listar(req, res) {
+    try {
+      const produtos = await ProdutoModel.listarTodos();
+      res.json(produtos);
+    } catch (error) {
+      console.error("Erro no controller ao listar produtos:", error);
+      res.status(500).json({ message: "Erro interno ao buscar produtos", error: error.message });
+    }
+  }
+
+  static async buscar(req, res) {
+    const { codigo } = req.params;
+    try {
+      const produto = await ProdutoModel.buscarPorCodigo(parseInt(codigo)); // Garante que o código seja número
+      if (produto) {
+        res.json(produto);
+      } else {
+        res.status(404).json({ message: "Produto não encontrado" });
+      }
+    } catch (error) {
+      console.error(`Erro no controller ao buscar produto ${codigo}:`, error);
+      res.status(500).json({ message: "Erro interno ao buscar produto", error: error.message });
+    }
+  }
+
+  static async criar(req, res) {
+    const novoProduto = req.body;
+    // Adicionar validações aqui (ex: verificar se campos obrigatórios existem)
+    if (!novoProduto.codigo_produto || !novoProduto.descricao_produto || !novoProduto.val_unit) {
+        return res.status(400).json({ message: "Código, descrição e valor unitário são obrigatórios." });
+    }
+    try {
+      const produtoCriado = await ProdutoModel.criar(novoProduto);
+      res.status(201).json(produtoCriado);
+    } catch (error) {
+      console.error("Erro no controller ao criar produto:", error);
+      // Verificar erro de chave duplicada (código já existe)
+      if (error.code === '23505') { // Código de erro do PostgreSQL para unique_violation
+          return res.status(409).json({ message: "Código do produto já existe.", error: error.message });
+      }
+      res.status(500).json({ message: "Erro interno ao criar produto", error: error.message });
+    }
+  }
+
+  static async atualizar(req, res) {
+    const { codigo } = req.params;
+    const dadosProduto = req.body;
+    // Adicionar validações aqui
+    try {
+      const produtoAtualizado = await ProdutoModel.atualizar(parseInt(codigo), dadosProduto);
+      if (produtoAtualizado) {
+        res.json(produtoAtualizado);
+      } else {
+        res.status(404).json({ message: "Produto não encontrado para atualização" });
+      }
+    } catch (error) {
+      console.error(`Erro no controller ao atualizar produto ${codigo}:`, error);
+      res.status(500).json({ message: "Erro interno ao atualizar produto", error: error.message });
+    }
+  }
+
+  static async excluir(req, res) {
+    const { codigo } = req.params;
+    try {
+      const excluido = await ProdutoModel.excluir(parseInt(codigo));
+      if (excluido) {
+        res.status(200).json({ message: "Produto excluído com sucesso" }); // Ou 204 No Content
+      } else {
+        res.status(404).json({ message: "Produto não encontrado para exclusão" });
+      }
+    } catch (error) {
+      console.error(`Erro no controller ao excluir produto ${codigo}:`, error);
+      // Tratar erro específico de dependência
+      if (error.message.includes("existe em um ou mais pedidos")) {
+          return res.status(409).json({ message: error.message });
+      }
+      res.status(500).json({ message: "Erro interno ao excluir produto", error: error.message });
+    }
+  }
+}
+
+module.exports = ProdutoController;</code></pre>
+                    </div>
+
+                    <h2>Passo 5: Implementação das Rotas (`produtoRoutes.js`)</h2>
+                    <p>Definiremos as rotas da API para produtos.</p>
+                    <div class="code-example">
+                        <pre><code>// src/routes/produtoRoutes.js
+const express = require("express");
+const ProdutoController = require("../controllers/produtoController");
+
+const router = express.Router();
+
+router.get("/", ProdutoController.listar);
+router.get("/:codigo", ProdutoController.buscar);
+router.post("/", ProdutoController.criar);
+router.put("/:codigo", ProdutoController.atualizar);
+router.delete("/:codigo", ProdutoController.excluir);
+
+module.exports = router;</code></pre>
+                    </div>
+
+                    <h2>Passo 6: Configuração do Servidor Express (`app.js` e `server.js`)</h2>
+                    <p>Configuraremos o aplicativo Express principal e o ponto de entrada do servidor.</p>
+                    <div class="code-example">
+                        <pre><code>// src/app.js
+const express = require("express");
+const cors = require("cors");
+const produtoRoutes = require("./routes/produtoRoutes");
+// Importar outras rotas (cliente, vendedor, pedido) aqui quando criadas
+
+const app = express();
+
+// Middlewares
+app.use(cors()); // Habilita CORS para todas as origens (ajustar em produção)
+app.use(express.json()); // Para parsear JSON no corpo das requisições
+
+// Rotas
+app.use("/api/produtos", produtoRoutes);
+// app.use("/api/clientes", clienteRoutes);
+// app.use("/api/vendedores", vendedorRoutes);
+// app.use("/api/pedidos", pedidoRoutes);
+
+// Rota raiz (opcional)
+app.get("/", (req, res) => {
+  res.send("API Sistema de Vendas - Backend Curso");
+});
+
+// Middleware de tratamento de erro básico (opcional, pode ser mais elaborado)
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Algo deu errado!");
+});
+
+module.exports = app;</code></pre>
+                    </div>
+                    <div class="code-example">
+                        <pre><code>// server.js (na raiz do projeto)
+require("dotenv").config();
+const app = require("./src/app");
+
+const port = process.env.PORT || 3001; // Usa a porta do .env ou 3001 como padrão
+
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
+});</code></pre>
+                    </div>
+
+                    <h2>Passo 7: Executando e Testando a API</h2>
+                    <p>Inicie o servidor em modo de desenvolvimento:</p>
+                    <div class="code-example">
+                        <pre><code>npm run dev</code></pre>
+                    </div>
+                    <p>Agora você pode usar uma ferramenta como Postman, Insomnia ou `curl` para testar os endpoints da API:</p>
+                    <ul>
+                        <li><strong>Listar Produtos:</strong> `GET http://localhost:3000/api/produtos`</li>
+                        <li><strong>Buscar Produto 25:</strong> `GET http://localhost:3000/api/produtos/25`</li>
+                        <li><strong>Criar Produto:</strong> `POST http://localhost:3000/api/produtos` com JSON no corpo:</li>
+                    </ul>
+                    <div class="code-example">
+                        <pre><code>{
+    "codigo_produto": 99,
+    "unidade": "UN",
+    "descricao_produto": "Produto Teste API",
+    "val_unit": 15.75
+}</code></pre>
+                    </div>
+                    <ul>
+                        <li><strong>Atualizar Produto 99:</strong> `PUT http://localhost:3000/api/produtos/99` com JSON no corpo:</li>
+                    </ul>
+                     <div class="code-example">
+                        <pre><code>{
+    "unidade": "CX",
+    "descricao_produto": "Produto Teste API Atualizado",
+    "val_unit": 18.50
+}</code></pre>
+                    </div>
+                    <ul>
+                        <li><strong>Excluir Produto 99:</strong> `DELETE http://localhost:3000/api/produtos/99`</li>
+                    </ul>
+
+                    <h2>Conclusão</h2>
+                    <p>Este guia demonstrou a implementação básica de um CRUD para a entidade `produto` usando Node.js, Express e PostgreSQL, seguindo o modelo do `script_vendas.sql`. A partir daqui, você pode expandir a API para incluir as outras entidades (cliente, vendedor, pedido, item_pedido), adicionar validações mais robustas, implementar autenticação e construir um frontend para interagir com o backend.</p>
+
+                    <div class="cta-section">
+                        <h2>Próximos Passos</h2>
+                        <p>Explore a implementação das outras entidades ou reveja os conceitos nos módulos do curso.</p>
+                        <div class="cta-buttons">
+                            <a href="arquitetura.html" class="btn btn-secondary">Revisitar Arquitetura</a>
+                            <a href="../modulos/nodejs.html" class="btn btn-primary">Ver Módulo Node.js</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-nav">
+                        <h3>Projeto Prático</h3>
+                        <ul>
+                            <li><a href="index.html">Visão Geral</a></li>
+                            <li><a href="requisitos.html">Requisitos</a></li>
+                            <li><a href="modelagem.html">Modelagem</a></li>
+                            <li><a href="arquitetura.html">Arquitetura</a></li>
+                            <li><a href="passo-a-passo.html" class="active">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                    <div class="instructor-card">
+                        <div class="instructor-image">
+                            <img src="../img/tiago-segato.jpg" alt="Prof. Tiago Segato">
+                        </div>
+                        <div class="instructor-info">
+                            <h3>Prof. Tiago Segato</h3>
+                            <p>Desenvolvedor e educador.</p>
+                            <div class="social-links">
+                                <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Prof. Tiago Segato</h2>
+                    <p>Desenvolvimento Backend com JavaScript: Do Zero à Aplicação Completa</p>
+                    <div class="social-links mt-3">
+                        <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../sobre.html">Sobre o Curso</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../contato.html">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Módulos</h3>
+                        <ul>
+                            <li><a href="../modulos/lpjs.html">Lógica de Programação</a></li>
+                            <li><a href="../modulos/git.html">Git e GitHub</a></li>
+                            <li><a href="../modulos/jstob.html">JavaScript e OO</a></li>
+                            <li><a href="../modulos/pds.html">Padrões de Desenvolvimento</a></li>
+                            <li><a href="../modulos/iws.html">WebServices</a></li>
+                            <li><a href="../modulos/nodejs.html">Node.js</a></li>
+                            <li><a href="../modulos/nbd.html">Banco de Dados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Projeto</h3>
+                        <ul>
+                            <li><a href="index.html">Visão Geral</a></li>
+                            <li><a href="requisitos.html">Requisitos</a></li>
+                            <li><a href="modelagem.html">Modelagem</a></li>
+                            <li><a href="arquitetura.html">Arquitetura</a></li>
+                            <li><a href="passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prof. Tiago Segato. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:contato@tiagosegato.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

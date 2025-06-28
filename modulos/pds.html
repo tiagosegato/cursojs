@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padrões de Desenvolvimento de Software | Prof. Tiago Segato</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>JavaScript BackEnd</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../sobre.html">Sobre o Curso</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active">Módulos <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="lpjs.html">Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html">Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html" class="active">Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html">Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Projeto <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../ead.html">Conteúdo EaD</a></li>
+                    <li><a href="../recursos.html">Recursos</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Módulo 4: Padrões de Desenvolvimento de Software</h1>
+            <p>Arquitetura MVC, padrões de projeto e boas práticas de desenvolvimento</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-layout">
+                <div class="main-content">
+                    <h2>Visão Geral do Módulo</h2>
+                    <p>Neste módulo, você aprenderá sobre padrões de desenvolvimento de software, com foco especial na arquitetura MVC (Model-View-Controller) e outros padrões de projeto comumente utilizados no desenvolvimento de aplicações JavaScript. Esses padrões são fundamentais para criar código organizado, manutenível e escalável.</p>
+                    
+                    <div class="module-info">
+                        <div class="module-info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Carga Horária</h3>
+                                <p>12 horas</p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-book"></i>
+                            <div>
+                                <h3>Material de aula</h3>
+                                <p><a href="../aulas/m5-pds.html" class="btn btn-sm" target="_blank">Acessar slides</a></p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-code-branch"></i>
+                            <div>
+                                <h3>Pré-requisitos</h3>
+                                <p>Módulos 1, 2 e 3</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Conteúdo Programático</h2>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>1. Introdução aos Padrões de Desenvolvimento</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>O que são padrões de desenvolvimento</li>
+                                    <li>Importância dos padrões no desenvolvimento de software</li>
+                                    <li>Histórico e evolução dos padrões</li>
+                                    <li>Categorias de padrões: criacionais, estruturais e comportamentais</li>
+                                    <li>Benefícios da utilização de padrões</li>
+                                    <li>Quando e como aplicar padrões</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>2. Arquitetura MVC (Model-View-Controller)</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Conceitos fundamentais do MVC</li>
+                                    <li>Model: representação dos dados e regras de negócio</li>
+                                    <li>View: apresentação e interface com o usuário</li>
+                                    <li>Controller: coordenação entre Model e View</li>
+                                    <li>Fluxo de dados e comunicação entre componentes</li>
+                                    <li>Vantagens e desvantagens do MVC</li>
+                                    <li>Implementação do MVC em JavaScript</li>
+                                    <li>Variações do MVC: MVP, MVVM</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>3. Padrões Criacionais</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Factory Method: criação de objetos sem especificar a classe concreta</li>
+                                    <li>Abstract Factory: famílias de objetos relacionados</li>
+                                    <li>Builder: construção passo a passo de objetos complexos</li>
+                                    <li>Singleton: garantia de uma única instância de uma classe</li>
+                                    <li>Prototype: clonagem de objetos existentes</li>
+                                    <li>Implementação em JavaScript</li>
+                                    <li>Casos de uso e exemplos práticos</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>4. Padrões Estruturais</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Adapter: compatibilidade entre interfaces incompatíveis</li>
+                                    <li>Decorator: adição de responsabilidades a objetos dinamicamente</li>
+                                    <li>Facade: interface simplificada para um subsistema complexo</li>
+                                    <li>Composite: tratamento de objetos individuais e composições uniformemente</li>
+                                    <li>Proxy: representante ou substituto de outro objeto</li>
+                                    <li>Module: organização de código em unidades independentes</li>
+                                    <li>Implementação em JavaScript</li>
+                                    <li>Casos de uso e exemplos práticos</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>5. Padrões Comportamentais</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Observer: notificação de mudanças para objetos dependentes</li>
+                                    <li>Strategy: algoritmos intercambiáveis</li>
+                                    <li>Command: encapsulamento de solicitações como objetos</li>
+                                    <li>Iterator: acesso sequencial a elementos de uma coleção</li>
+                                    <li>Mediator: redução de dependências entre objetos</li>
+                                    <li>State: alteração do comportamento quando o estado interno muda</li>
+                                    <li>Implementação em JavaScript</li>
+                                    <li>Casos de uso e exemplos práticos</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>6. Padrões Arquiteturais para Aplicações JavaScript</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Arquitetura em camadas</li>
+                                    <li>Arquitetura baseada em componentes</li>
+                                    <li>Arquitetura orientada a serviços</li>
+                                    <li>Arquitetura de microsserviços</li>
+                                    <li>Arquitetura Flux e Redux</li>
+                                    <li>Arquitetura para aplicações Node.js</li>
+                                    <li>Comparação entre diferentes arquiteturas</li>
+                                    <li>Escolhendo a arquitetura adequada para seu projeto</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>7. Implementação de MVC em Node.js</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Estrutura de diretórios para projetos MVC</li>
+                                    <li>Implementação de Models com JavaScript</li>
+                                    <li>Implementação de Views com templates</li>
+                                    <li>Implementação de Controllers</li>
+                                    <li>Roteamento em aplicações MVC</li>
+                                    <li>Integração com banco de dados</li>
+                                    <li>Validação de dados</li>
+                                    <li>Tratamento de erros</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>8. Boas Práticas e Princípios de Design</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Princípios SOLID:
+                                        <ul>
+                                            <li>Single Responsibility Principle (SRP)</li>
+                                            <li>Open/Closed Principle (OCP)</li>
+                                            <li>Liskov Substitution Principle (LSP)</li>
+                                            <li>Interface Segregation Principle (ISP)</li>
+                                            <li>Dependency Inversion Principle (DIP)</li>
+                                        </ul>
+                                    </li>
+                                    <li>DRY (Don't Repeat Yourself)</li>
+                                    <li>KISS (Keep It Simple, Stupid)</li>
+                                    <li>YAGNI (You Aren't Gonna Need It)</li>
+                                    <li>Separation of Concerns</li>
+                                    <li>Law of Demeter</li>
+                                    <li>Composição sobre herança</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>9. Refatoração e Melhoria de Código</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Identificação de code smells</li>
+                                    <li>Técnicas de refatoração</li>
+                                    <li>Refatoração para padrões</li>
+                                    <li>Melhoria de legibilidade e manutenibilidade</li>
+                                    <li>Ferramentas de análise estática de código</li>
+                                    <li>Testes automatizados para refatoração segura</li>
+                                    <li>Métricas de qualidade de código</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>10. Aplicação Prática de Padrões em Projetos Reais</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Estudo de caso: aplicação de padrões em um sistema de vendas</li>
+                                    <li>Identificação de padrões em frameworks populares</li>
+                                    <li>Combinação de múltiplos padrões</li>
+                                    <li>Evolução de arquitetura ao longo do tempo</li>
+                                    <li>Desafios comuns e soluções</li>
+                                    <li>Balanceamento entre padrões e simplicidade</li>
+                                    <li>Documentação de padrões utilizados</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Exemplos Práticos</h2>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 1: Implementação do MVC para Produtos</h3>
+                        <pre><code>// Estrutura MVC para gerenciamento de produtos
+
+// MODEL - Representa os dados e regras de negócio
+class ProdutoModel {
+  constructor(codigo, unidade, descricao, valorUnitario) {
+    this.codigo = codigo;
+    this.unidade = unidade;
+    this.descricao = descricao;
+    this.valorUnitario = valorUnitario;
+    this.estoque = 0;
+  }
+  
+  adicionarEstoque(quantidade) {
+    if (quantidade > 0) {
+      this.estoque += quantidade;
+      return true;
+    }
+    return false;
+  }
+  
+  removerEstoque(quantidade) {
+    if (quantidade > 0 && quantidade <= this.estoque) {
+      this.estoque -= quantidade;
+      return true;
+    }
+    return false;
+  }
+  
+  calcularValorTotal(quantidade) {
+    return this.valorUnitario * quantidade;
+  }
+  
+  aplicarDesconto(percentual) {
+    if (percentual > 0 && percentual < 100) {
+      const fator = 1 - (percentual / 100);
+      this.valorUnitario *= fator;
+      return true;
+    }
+    return false;
+  }
+}
+
+// Repositório de produtos (parte do Model)
+class ProdutoRepository {
+  constructor() {
+    this.produtos = [];
+  }
+  
+  adicionar(produto) {
+    const produtoExistente = this.buscarPorCodigo(produto.codigo);
+    if (produtoExistente) {
+      return false; // Produto com este código já existe
+    }
+    this.produtos.push(produto);
+    return true;
+  }
+  
+  remover(codigo) {
+    const indice = this.produtos.findIndex(p => p.codigo === codigo);
+    if (indice !== -1) {
+      this.produtos.splice(indice, 1);
+      return true;
+    }
+    return false;
+  }
+  
+  buscarPorCodigo(codigo) {
+    return this.produtos.find(p => p.codigo === codigo);
+  }
+  
+  buscarPorDescricao(termo) {
+    return this.produtos.filter(p => 
+      p.descricao.toLowerCase().includes(termo.toLowerCase())
+    );
+  }
+  
+  listarTodos() {
+    return [...this.produtos]; // Retorna uma cópia do array
+  }
+  
+  atualizar(codigo, dadosAtualizados) {
+    const produto = this.buscarPorCodigo(codigo);
+    if (!produto) {
+      return false;
+    }
+    
+    // Atualiza apenas os campos fornecidos
+    Object.keys(dadosAtualizados).forEach(key => {
+      if (key !== 'codigo') { // Não permitir alterar o código
+        produto[key] = dadosAtualizados[key];
+      }
+    });
+    
+    return true;
+  }
+}
+
+// CONTROLLER - Coordena as interações entre Model e View
+class ProdutoController {
+  constructor(produtoRepository, produtoView) {
+    this.repository = produtoRepository;
+    this.view = produtoView;
+  }
+  
+  criarProduto(codigo, unidade, descricao, valorUnitario) {
+    const novoProduto = new ProdutoModel(codigo, unidade, descricao, valorUnitario);
+    
+    if (this.repository.adicionar(novoProduto)) {
+      this.view.exibirMensagem(`Produto ${descricao} criado com sucesso!`);
+      return true;
+    } else {
+      this.view.exibirErro(`Erro: Produto com código ${codigo} já existe.`);
+      return false;
+    }
+  }
+  
+  listarProdutos() {
+    const produtos = this.repository.listarTodos();
+    this.view.exibirListaProdutos(produtos);
+  }
+  
+  buscarProduto(codigo) {
+    const produto = this.repository.buscarPorCodigo(codigo);
+    
+    if (produto) {
+      this.view.exibirDetalhesProduto(produto);
+    } else {
+      this.view.exibirErro(`Erro: Produto com código ${codigo} não encontrado.`);
+    }
+  }
+  
+  atualizarProduto(codigo, dadosAtualizados) {
+    if (this.repository.atualizar(codigo, dadosAtualizados)) {
+      this.view.exibirMensagem(`Produto ${codigo} atualizado com sucesso!`);
+      return true;
+    } else {
+      this.view.exibirErro(`Erro: Produto com código ${codigo} não encontrado.`);
+      return false;
+    }
+  }
+  
+  removerProduto(codigo) {
+    if (this.repository.remover(codigo)) {
+      this.view.exibirMensagem(`Produto ${codigo} removido com sucesso!`);
+      return true;
+    } else {
+      this.view.exibirErro(`Erro: Produto com código ${codigo} não encontrado.`);
+      return false;
+    }
+  }
+  
+  gerenciarEstoque(codigo, operacao, quantidade) {
+    const produto = this.repository.buscarPorCodigo(codigo);
+    
+    if (!produto) {
+      this.view.exibirErro(`Erro: Produto com código ${codigo} não encontrado.`);
+      return false;
+    }
+    
+    let resultado = false;
+    
+    if (operacao === 'adicionar') {
+      resultado = produto.adicionarEstoque(quantidade);
+      if (resultado) {
+        this.view.exibirMensagem(`Estoque do produto ${produto.descricao} aumentado em ${quantidade} ${produto.unidade}.`);
+      } else {
+        this.view.exibirErro(`Erro: Quantidade inválida.`);
+      }
+    } else if (operacao === 'remover') {
+      resultado = produto.removerEstoque(quantidade);
+      if (resultado) {
+        this.view.exibirMensagem(`Estoque do produto ${produto.descricao} reduzido em ${quantidade} ${produto.unidade}.`);
+      } else {
+        this.view.exibirErro(`Erro: Quantidade inválida ou estoque insuficiente.`);
+      }
+    }
+    
+    return resultado;
+  }
+}
+
+// VIEW - Interface com o usuário
+class ProdutoView {
+  constructor() {
+    // Em uma aplicação real, aqui teríamos referências aos elementos DOM
+    // ou métodos para renderizar templates
+    this.outputElement = console; // Usando console para simplificar o exemplo
+  }
+  
+  exibirMensagem(mensagem) {
+    this.outputElement.log(`INFO: ${mensagem}`);
+  }
+  
+  exibirErro(mensagem) {
+    this.outputElement.error(mensagem);
+  }
+  
+  exibirListaProdutos(produtos) {
+    this.outputElement.log('===== LISTA DE PRODUTOS =====');
+    
+    if (produtos.length === 0) {
+      this.outputElement.log('Nenhum produto cadastrado.');
+    } else {
+      produtos.forEach(produto => {
+        this.outputElement.log(`Código: ${produto.codigo} | Descrição: ${produto.descricao} | Valor: R$ ${produto.valorUnitario.toFixed(2)} | Estoque: ${produto.estoque} ${produto.unidade}`);
+      });
+    }
+    
+    this.outputElement.log('=============================');
+  }
+  
+  exibirDetalhesProduto(produto) {
+    this.outputElement.log('===== DETALHES DO PRODUTO =====');
+    this.outputElement.log(`Código: ${produto.codigo}`);
+    this.outputElement.log(`Descrição: ${produto.descricao}`);
+    this.outputElement.log(`Unidade: ${produto.unidade}`);
+    this.outputElement.log(`Valor Unitário: R$ ${produto.valorUnitario.toFixed(2)}`);
+    this.outputElement.log(`Estoque: ${produto.estoque} ${produto.unidade}`);
+    this.outputElement.log('===============================');
+  }
+}
+
+// Demonstração do uso do MVC
+// Criando as instâncias
+const produtoRepository = new ProdutoRepository();
+const produtoView = new ProdutoView();
+const produtoController = new ProdutoController(produtoRepository, produtoView);
+
+// Utilizando o controller para interagir com o sistema
+produtoController.criarProduto(25, 'Kg', 'Queijo', 0.97);
+produtoController.criarProduto(31, 'BAR', 'Chocolate', 0.87);
+produtoController.criarProduto(78, 'L', 'Vinho', 2.00);
+produtoController.criarProduto(22, 'M', 'Linho', 0.11);
+produtoController.criarProduto(30, 'SAC', 'Açúcar', 0.30);
+
+// Listando produtos
+produtoController.listarProdutos();
+
+// Gerenciando estoque
+produtoController.gerenciarEstoque(25, 'adicionar', 50);
+produtoController.gerenciarEstoque(31, 'adicionar', 100);
+produtoController.gerenciarEstoque(78, 'adicionar', 30);
+
+// Buscando detalhes de um produto
+produtoController.buscarProduto(25);
+
+// Atualizando um produto
+produtoController.atualizarProduto(25, { descricao: 'Queijo Minas', valorUnitario: 1.05 });
+
+// Verificando a atualização
+produtoController.buscarProduto(25);
+
+// Removendo um produto
+produtoController.removerProduto(22);
+
+// Verificando a lista após remoção
+produtoController.listarProdutos();</code></pre>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 2: Padrões de Projeto Aplicados ao Sistema de Vendas</h3>
+                        <pre><code>// Implementação de padrões de projeto para o sistema de vendas
+
+// SINGLETON - Gerenciador de Produtos
+class GerenciadorProdutos {
+  constructor() {
+    if (GerenciadorProdutos.instancia) {
+      return GerenciadorProdutos.instancia;
+    }
+    
+    this.produtos = [];
+    GerenciadorProdutos.instancia = this;
+  }
+  
+  adicionarProduto(produto) {
+    const produtoExistente = this.buscarPorCodigo(produto.codigo);
+    if (produtoExistente) {
+      return false;
+    }
+    this.produtos.push(produto);
+    return true;
+  }
+  
+  removerProduto(codigo) {
+    const indice = this.produtos.findIndex(p => p.codigo === codigo);
+    if (indice !== -1) {
+      this.produtos.splice(indice, 1);
+      return true;
+    }
+    return false;
+  }
+  
+  buscarPorCodigo(codigo) {
+    return this.produtos.find(p => p.codigo === codigo);
+  }
+  
+  listarTodos() {
+    return [...this.produtos];
+  }
+}
+
+// FACTORY - Fábrica de Produtos
+class ProdutoFactory {
+  criarProduto(tipo, dados) {
+    switch (tipo.toLowerCase()) {
+      case 'alimento':
+        return new ProdutoAlimenticio(
+          dados.codigo,
+          dados.unidade,
+          dados.descricao,
+          dados.valorUnitario,
+          dados.dataValidade
+        );
+      case 'bebida':
+        return new ProdutoBebida(
+          dados.codigo,
+          dados.unidade,
+          dados.descricao,
+          dados.valorUnitario,
+          dados.teorAlcoolico
+        );
+      default:
+        return new Produto(
+          dados.codigo,
+          dados.unidade,
+          dados.descricao,
+          dados.valorUnitario
+        );
+    }
+  }
+}
+
+// Classes de produtos (simplificadas)
+class Produto {
+  constructor(codigo, unidade, descricao, valorUnitario) {
+    this.codigo = codigo;
+    this.unidade = unidade;
+    this.descricao = descricao;
+    this.valorUnitario = valorUnitario;
+    this.estoque = 0;
+  }
+}
+
+class ProdutoAlimenticio extends Produto {
+  constructor(codigo, unidade, descricao, valorUnitario, dataValidade) {
+    super(codigo, unidade, descricao, valorUnitario);
+    this.dataValidade = dataValidade;
+    this.categoria = 'Alimento';
+  }
+}
+
+class ProdutoBebida extends Produto {
+  constructor(codigo, unidade, descricao, valorUnitario, teorAlcoolico) {
+    super(codigo, unidade, descricao, valorUnitario);
+    this.teorAlcoolico = teorAlcoolico;
+    this.categoria = 'Bebida';
+  }
+}
+
+// OBSERVER - Sistema de Notificação
+class SistemaNotificacao {
+  constructor() {
+    this.observadores = [];
+  }
+  
+  inscrever(observador) {
+    this.observadores.push(observador);
+  }
+  
+  cancelarInscricao(observador) {
+    this.observadores = this.observadores.filter(obs => obs !== observador);
+  }
+  
+  notificar(produto, mensagem) {
+    this.observadores.forEach(observador => {
+      observador.atualizar(produto, mensagem);
+    });
+  }
+}
+
+// Observadores concretos
+class ObservadorEstoqueBaixo {
+  constructor(limiteMinimo) {
+    this.limiteMinimo = limiteMinimo;
+  }
+  
+  atualizar(produto, mensagem) {
+    if (produto.estoque < this.limiteMinimo) {
+      console.log(`ALERTA: Estoque baixo para ${produto.descricao}. ${mensagem}`);
+      console.log(`Estoque atual: ${produto.estoque} ${produto.unidade}`);
+      console.log(`Limite mínimo: ${this.limiteMinimo} ${produto.unidade}`);
+    }
+  }
+}
+
+class ObservadorLog {
+  atualizar(produto, mensagem) {
+    const data = new Date().toLocaleString();
+    console.log(`[${data}] ${mensagem} - Produto: ${produto.codigo} - ${produto.descricao}`);
+  }
+}
+
+// STRATEGY - Estratégias de Desconto
+class EstrategiaDesconto {
+  calcular(valorTotal) {
+    // Método abstrato a ser implementado pelas subclasses
+    throw new Error("Método calcular deve ser implementado pelas subclasses");
+  }
+}
+
+class DescontoPercentual extends EstrategiaDesconto {
+  constructor(percentual) {
+    super();
+    this.percentual = percentual;
+  }
+  
+  calcular(valorTotal) {
+    return valorTotal * (this.percentual / 100);
+  }
+}
+
+class DescontoFixo extends EstrategiaDesconto {
+  constructor(valorFixo) {
+    super();
+    this.valorFixo = valorFixo;
+  }
+  
+  calcular(valorTotal) {
+    return Math.min(this.valorFixo, valorTotal);
+  }
+}
+
+class DescontoProgressivo extends EstrategiaDesconto {
+  constructor(limites, percentuais) {
+    super();
+    this.limites = limites;
+    this.percentuais = percentuais;
+  }
+  
+  calcular(valorTotal) {
+    let percentual = 0;
+    
+    for (let i = 0; i < this.limites.length; i++) {
+      if (valorTotal >= this.limites[i]) {
+        percentual = this.percentuais[i];
+      } else {
+        break;
+      }
+    }
+    
+    return valorTotal * (percentual / 100);
+  }
+}
+
+// FACADE - Fachada para o Sistema de Vendas
+class SistemaVendasFacade {
+  constructor() {
+    this.gerenciadorProdutos = new GerenciadorProdutos();
+    this.produtoFactory = new ProdutoFactory();
+    this.sistemaNotificacao = new SistemaNotificacao();
+    
+    // Configurando observadores
+    const observadorEstoque = new ObservadorEstoqueBaixo(10);
+    const observadorLog = new ObservadorLog();
+    this.sistemaNotificacao.inscrever(observadorEstoque);
+    this.sistemaNotificacao.inscrever(observadorLog);
+  }
+  
+  cadastrarProduto(tipo, dados) {
+    const produto = this.produtoFactory.criarProduto(tipo, dados);
+    const resultado = this.gerenciadorProdutos.adicionarProduto(produto);
+    
+    if (resultado) {
+      console.log(`Produto ${produto.descricao} cadastrado com sucesso.`);
+    } else {
+      console.log(`Erro: Produto com código ${dados.codigo} já existe.`);
+    }
+    
+    return resultado;
+  }
+  
+  adicionarEstoque(codigo, quantidade) {
+    const produto = this.gerenciadorProdutos.buscarPorCodigo(codigo);
+    
+    if (!produto) {
+      console.log(`Erro: Produto com código ${codigo} não encontrado.`);
+      return false;
+    }
+    
+    produto.estoque += quantidade;
+    this.sistemaNotificacao.notificar(produto, `Estoque adicionado: +${quantidade} ${produto.unidade}`);
+    
+    return true;
+  }
+  
+  realizarVenda(codigo, quantidade, estrategiaDesconto = null) {
+    const produto = this.gerenciadorProdutos.buscarPorCodigo(codigo);
+    
+    if (!produto) {
+      console.log(`Erro: Produto com código ${codigo} não encontrado.`);
+      return null;
+    }
+    
+    if (produto.estoque < quantidade) {
+      console.log(`Erro: Estoque insuficiente para ${produto.descricao}.`);
+      return null;
+    }
+    
+    let valorTotal = produto.valorUnitario * quantidade;
+    let valorDesconto = 0;
+    
+    if (estrategiaDesconto) {
+      valorDesconto = estrategiaDesconto.calcular(valorTotal);
+      valorTotal -= valorDesconto;
+    }
+    
+    produto.estoque -= quantidade;
+    this.sistemaNotificacao.notificar(produto, `Venda realizada: -${quantidade} ${produto.unidade}`);
+    
+    return {
+      produto,
+      quantidade,
+      valorUnitario: produto.valorUnitario,
+      valorBruto: produto.valorUnitario * quantidade,
+      valorDesconto,
+      valorTotal
+    };
+  }
+  
+  gerarRelatorioEstoque() {
+    const produtos = this.gerenciadorProdutos.listarTodos();
+    
+    console.log('===== RELATÓRIO DE ESTOQUE =====');
+    produtos.forEach(produto => {
+      console.log(`${produto.codigo} | ${produto.descricao} | Estoque: ${produto.estoque} ${produto.unidade} | Valor: R$ ${produto.valorUnitario.toFixed(2)}`);
+    });
+    console.log('================================');
+  }
+}
+
+// Demonstração do uso dos padrões
+console.log('===== DEMONSTRAÇÃO DE PADRÕES DE PROJETO =====');
+
+// Criando a fachada do sistema
+const sistemaVendas = new SistemaVendasFacade();
+
+// Cadastrando produtos usando Factory
+sistemaVendas.cadastrarProduto('padrao', { codigo: 25, unidade: 'Kg', descricao: 'Queijo', valorUnitario: 0.97 });
+sistemaVendas.cadastrarProduto('alimento', { codigo: 30, unidade: 'SAC', descricao: 'Açúcar', valorUnitario: 0.30, dataValidade: '2025-12-31' });
+sistemaVendas.cadastrarProduto('bebida', { codigo: 78, unidade: 'L', descricao: 'Vinho', valorUnitario: 2.00, teorAlcoolico: 12.5 });
+
+// Adicionando estoque (Observer será notificado)
+sistemaVendas.adicionarEstoque(25, 50);
+sistemaVendas.adicionarEstoque(30, 5); // Estoque baixo, deve gerar alerta
+sistemaVendas.adicionarEstoque(78, 30);
+
+// Relatório de estoque
+sistemaVendas.gerarRelatorioEstoque();
+
+// Realizando vendas com diferentes estratégias de desconto
+console.log('\n===== VENDAS COM DIFERENTES ESTRATÉGIAS DE DESCONTO =====');
+
+// Sem desconto
+const venda1 = sistemaVendas.realizarVenda(25, 10);
+console.log('Venda sem desconto:', venda1);
+
+// Com desconto percentual (10%)
+const descontoPercentual = new DescontoPercentual(10);
+const venda2 = sistemaVendas.realizarVenda(78, 5, descontoPercentual);
+console.log('Venda com desconto percentual:', venda2);
+
+// Com desconto fixo (R$ 2,00)
+const descontoFixo = new DescontoFixo(2);
+const venda3 = sistemaVendas.realizarVenda(30, 10, descontoFixo);
+console.log('Venda com desconto fixo:', venda3);
+
+// Com desconto progressivo (5% acima de R$ 5,00, 10% acima de R$ 10,00)
+const descontoProgressivo = new DescontoProgressivo([5, 10], [5, 10]);
+const venda4 = sistemaVendas.realizarVenda(25, 20, descontoProgressivo);
+console.log('Venda com desconto progressivo:', venda4);
+
+// Relatório final de estoque
+sistemaVendas.gerarRelatorioEstoque();</code></pre>
+                    </div>
+                    
+                    <h2>Exercícios Práticos</h2>
+                    <p>Para fixar os conceitos aprendidos neste módulo, recomendamos a realização dos seguintes exercícios:</p>
+                    
+                    <ol>
+                        <li>Implemente a arquitetura MVC para um sistema de gerenciamento de produtos, com modelos, visualizações e controladores bem definidos.</li>
+                        <li>Crie uma classe Singleton para gerenciar o acesso a um banco de dados simulado.</li>
+                        <li>Implemente o padrão Factory para criar diferentes tipos de produtos (perecíveis, não perecíveis, etc.).</li>
+                        <li>Desenvolva um sistema de notificação utilizando o padrão Observer, que alerte sobre mudanças no estoque de produtos.</li>
+                        <li>Implemente o padrão Strategy para diferentes estratégias de cálculo de preço (preço normal, com desconto, promocional, etc.).</li>
+                        <li>Crie uma Facade que simplifique o uso do sistema de vendas, encapsulando operações complexas.</li>
+                        <li>Refatore um código existente aplicando os princípios SOLID.</li>
+                        <li>Implemente o padrão Decorator para adicionar funcionalidades extras a produtos básicos.</li>
+                        <li>Desenvolva um sistema de log utilizando o padrão Chain of Responsibility.</li>
+                        <li>Crie uma estrutura de diretórios para um projeto MVC em Node.js, seguindo as melhores práticas.</li>
+                    </ol>
+                    
+                    <p>Você encontrará mais exercícios e desafios na seção de <a href="../exercicios.html">Exercícios</a>.</p>
+                    
+                    <div class="cta mt-5">
+                        <h3>Pronto para avançar?</h3>
+                        <p>Após dominar os conceitos de Padrões de Desenvolvimento de Software, você estará preparado para avançar para o próximo módulo.</p>
+                        <a href="iws.html" class="btn btn-primary">Próximo Módulo: Introdução a WebServices</a>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-nav">
+                        <h3>Módulos do Curso</h3>
+                        <ul>
+                            <li><a href="lpjs.html">1. Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html">2. Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">3. JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html" class="active">4. Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html">5. Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">6. Node.js</a></li>
+                            <li><a href="nbd.html">7. Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">8. Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-nav">
+                        <h3>Recursos Adicionais</h3>
+                        <div class="recursos-links">
+                            <a href="../recursos.html#videos" class="recurso-link">
+                                <i class="fas fa-video"></i> Vídeos Recomendados
+                            </a>
+                            <a href="../exercicios.html#modulo4" class="recurso-link">
+                                <i class="fas fa-code"></i> Exercícios Práticos
+                            </a>
+                            <a href="https://refactoring.guru/design-patterns" target="_blank" class="recurso-link">
+                                <i class="fas fa-book"></i> Catálogo de Padrões
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-nav">
+                        <h3>Projeto Relacionado</h3>
+                        <div class="projeto-preview">
+                            <h4>Sistema de Vendas</h4>
+                            <p>Os padrões de desenvolvimento serão aplicados na arquitetura do sistema de vendas, utilizando MVC e outros padrões para criar um código organizado e manutenível.</p>
+                            <a href="../projeto/index.html" class="btn btn-outline btn-sm">Ver Projeto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Prof. Tiago Segato</h2>
+                    <p>Desenvolvimento Backend com JavaScript: Do Zero à Aplicação Completa</p>
+                    <div class="social-links mt-3">
+                        <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../sobre.html">Sobre o Curso</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../contato.html">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Módulos</h3>
+                        <ul>
+                            <li><a href="lpjs.html">Lógica de Programação</a></li>
+                            <li><a href="git.html">Git e GitHub</a></li>
+                            <li><a href="jstob.html">JavaScript e OO</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento</a></li>
+                            <li><a href="iws.html">WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Banco de Dados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Projeto</h3>
+                        <ul>
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prof. Tiago Segato. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:contato@tiagosegato.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

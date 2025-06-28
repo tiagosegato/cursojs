@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | JavaScript Backend - Prof. Tiago Segato</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>JavaScript BackEnd</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sobre.html">Sobre o Curso</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Módulos <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="modulos/lpjs.html">Lógica de Programação com JavaScript</a></li>
+                            <li><a href="modulos/git.html">Git, GitHub e GitLab</a></li>
+                            <li><a href="modulos/jstob.html">JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="modulos/pds.html">Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="modulos/iws.html">Introdução a WebServices</a></li>
+                            <li><a href="modulos/nodejs.html">Node.js</a></li>
+                            <li><a href="modulos/nbd.html">Noções de Banco de Dados</a></li>
+                            <li><a href="modulos/scrum.html">Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Projeto <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="projeto/index.html">Visão Geral</a></li>
+                            <li><a href="projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="ead.html">Conteúdo EaD</a></li>
+                    <li><a href="recursos.html">Recursos</a></li>
+                    <li><a href="contato.html" class="active">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Entre em Contato</h1>
+            <p>Tem alguma dúvida, sugestão ou feedback? Fale comigo!</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="main-content">
+                <h2>Informações de Contato</h2>
+                <p>Você pode entrar em contato comigo através dos seguintes canais:</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:tiago.segato@ifb.edu.br">tiago.segato@ifb.edu.br</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <h3>Website</h3>
+                            <p><a href="https://tiagosegato.com/" target="_blank">tiagosegato.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-share-alt"></i>
+                        <div>
+                            <h3>Redes Sociais</h3>
+                            <div class="social-links-contact">
+                                <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                                <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i> GitHub</a>
+                                <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i> YouTube</a>
+                                <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i> TikTok</a>
+                                <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="mt-5">Formulário de Contato</h2>
+                <p>Ou, se preferir, preencha o formulário abaixo:</p>
+                
+                <form action="#" method="post" class="contact-form">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="assunto">Assunto:</label>
+                        <input type="text" id="assunto" name="assunto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem:</label>
+                        <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Mensagem</button>
+                </form>
+                <p><small>Observação: O envio de mensagens através deste formulário é apenas demonstrativo e não está funcional.</small></p>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Prof. Tiago Segato</h2>
+                    <p>Desenvolvimento Backend com JavaScript: Do Zero à Aplicação Completa</p>
+                    <div class="social-links mt-3">
+                        <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="sobre.html">Sobre o Curso</a></li>
+                            <li><a href="ead.html">Conteúdo EaD</a></li>
+                            <li><a href="recursos.html">Recursos</a></li>
+                            <li><a href="contato.html">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Módulos</h3>
+                        <ul>
+                            <li><a href="modulos/lpjs.html">Lógica de Programação</a></li>
+                            <li><a href="modulos/git.html">Git e GitHub</a></li>
+                            <li><a href="modulos/jstob.html">JavaScript e OO</a></li>
+                            <li><a href="modulos/pds.html">Padrões de Desenvolvimento</a></li>
+                            <li><a href="modulos/iws.html">WebServices</a></li>
+                            <li><a href="modulos/nodejs.html">Node.js</a></li>
+                            <li><a href="modulos/nbd.html">Banco de Dados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Projeto</h3>
+                        <ul>
+                            <li><a href="projeto/index.html">Visão Geral</a></li>
+                            <li><a href="projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prof. Tiago Segato. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:tiago.segato@ifb.edu.br" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

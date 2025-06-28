@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução a WebServices</title>
+    <style>
+        :root {
+            --primary-color: #4682A0; /* Azul para destaque */
+            --secondary-color: #343746; /* Cinza escuro */
+            --accent-color: #4682A0; /* Azul para destaque */
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --background-color: #ffffff;
+            --code-background: #f1f1f1;
+            --header-color: #4682A0; /* Azul para cabeçalhos */
+            --footer-color: #4682A0; /* Azul para rodapés */
+        }
+        
+        body {
+            font-family: 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .slide {
+            display: none;
+            height: 100vh;
+            box-sizing: border-box;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slide-header {
+            background-color: var(--header-color);
+            padding: 1rem 2rem;
+            border-bottom: 5px solid var(--secondary-color);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .slide-body {
+            flex: 1;
+            padding: 2rem;
+            background-color: white;
+            overflow-y: auto;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            padding-bottom: 4rem; /* Espaço extra para evitar sobreposição com os botões */
+        }
+        
+        .slide-footer {
+            background-color: var(--footer-color);
+            padding: 0.5rem 2rem;
+            border-top: 5px solid var(--secondary-color);
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .slide-number {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .js-logo {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 2rem;
+            padding: 0.5rem;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+        }
+        
+        .bfd-logo {
+            height: 60px;
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-size: 2.5rem;
+            font-family: 'Advent Pro', sans-serif;
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin: 0;
+            font-family: 'Advent Pro', sans-serif;
+        }
+        
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-family: 'Advent Pro', sans-serif;
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-background);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background-color: var(--code-background);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        
+        blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+            margin-left: 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .controls {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        button {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        button:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-background);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            white-space: pre;
+        }
+        
+        .cover-slide .slide-content {
+            background-color: white;
+            color: var(--secondary-color);
+        }
+        
+        .cover-slide .slide-header {
+            background-color: var(--primary-color);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .cover-slide .slide-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .cover-slide h1 {
+            color: var(--secondary-color);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cover-slide h3 {
+            color: var(--secondary-color);
+            font-weight: normal;
+            margin-bottom: 2rem;
+        }
+        
+        .cover-slide h4 {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+        
+        .cover-logos {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 2rem;
+        }
+        
+        .cover-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .cover-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        @media print {
+            .slide {
+                display: block;
+                page-break-after: always;
+                height: auto;
+            }
+            
+            .controls, .slide-number {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Capa -->
+    <div class="slide cover-slide active" id="slide-1">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <div class="js-logo">JS</div>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <div class="cover-left">
+                    <h3>Formação BackEnd</h3>
+                    <h1>Introdução a WebServices</h1>
+                    <h4>Módulo: JavaScript Backend</h4>
+                    <p>Prof. Tiago Segato</p>
+                </div>
+                <div class="cover-right">
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" height="200">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">1</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Visão Geral da Aula -->
+    <div class="slide" id="slide-2">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Visão Geral da Aula</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Nesta aula, exploraremos os fundamentos dos WebServices, desde os protocolos básicos da web até o design e construção de APIs modernas.</p>
+                <h3>Tópicos Abordados:</h3>
+                <ul>
+                    <li>Introdução ao serviço HTTP e demais protocolos da web;</li>
+                    <li>Fundamentos básicos (Requisição, Resposta, Parâmetros, Atributos, Redirecionamento, reescrita de URL, etc.)</li>
+                    <li>Ativação de métodos HTTP (GET, POST, etc.)</li>
+                    <li>Gerenciamento de sessão (Cookies e Sessão)</li>
+                    <li>Princípios de comunicação distribuída na Web;</li>
+                    <li>SOA e Web services: fundamentos</li>
+                    <li>Design, documentação e construção de APIs REST/SOAP;</li>
+                </ul>
+                <blockquote>"WebServices são a espinha dorsal da comunicação entre sistemas na internet, permitindo que diferentes aplicações conversem entre si."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">2</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Introdução ao HTTP e Protocolos da Web -->
+    <div class="slide" id="slide-3">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Introdução ao HTTP e Protocolos da Web</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>A comunicação na web é fundamentada em diversos protocolos, sendo o HTTP o mais conhecido para a troca de informações entre clientes (navegadores) e servidores.</p>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>HTTP (Hypertext Transfer Protocol)</h3>
+                        <p>Protocolo principal para a transferência de hipertexto. É a base para a comunicação de dados na World Wide Web.</p>
+                        <ul>
+                            <li><strong>Stateless:</strong> Cada requisição é independente da anterior.</li>
+                            <li><strong>Cliente-Servidor:</strong> O cliente envia uma requisição e o servidor envia uma resposta.</li>
+                        </ul>
+                        <h3>HTTPS (HTTP Secure)</h3>
+                        <p>Versão segura do HTTP, que utiliza SSL/TLS para criptografar a comunicação, garantindo a privacidade e integridade dos dados.</p>
+                    </div>
+                    <div class="column">
+                        <h3>Outros Protocolos Relevantes</h3>
+                        <ul>
+                            <li><strong>TCP/IP:</strong> Conjunto de protocolos que formam a base da internet, garantindo a entrega de pacotes de dados.</li>
+                            <li><strong>FTP (File Transfer Protocol):</strong> Utilizado para transferência de arquivos entre computadores.</li>
+                            <li><strong>SMTP (Simple Mail Transfer Protocol):</strong> Usado para envio de e-mails.</li>
+                            <li><strong>DNS (Domain Name System):</strong> Traduz nomes de domínio em endereços IP.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">3</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Fundamentos Básicos de Requisição e Resposta -->
+    <div class="slide" id="slide-4">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Fundamentos Básicos de Requisição e Resposta</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>A interação na web se baseia em um ciclo contínuo de requisições e respostas entre cliente e servidor.</p>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Requisição (Request)</h3>
+                        <p>Mensagem enviada pelo cliente ao servidor. Contém:</p>
+                        <ul>
+                            <li><strong>Método HTTP:</strong> (GET, POST, PUT, DELETE, etc.)</li>
+                            <li><strong>URL:</strong> Endereço do recurso desejado.</li>
+                            <li><strong>Cabeçalhos (Headers):</strong> Metadados sobre a requisição (tipo de conteúdo, autenticação, etc.).</li>
+                            <li><strong>Corpo (Body):</strong> Dados enviados ao servidor (em requisições POST, PUT, etc.).</li>
+                            <li><strong>Parâmetros de Consulta (Query Parameters):</strong> Dados adicionais na URL (ex: <code>/recursos?id=123</code>).</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Resposta (Response)</h3>
+                        <p>Mensagem enviada pelo servidor ao cliente em resposta a uma requisição. Contém:</p>
+                        <ul>
+                            <li><strong>Status Code:</strong> Indica o resultado da requisição (200 OK, 404 Not Found, 500 Internal Server Error, etc.).</li>
+                            <li><strong>Cabeçalhos (Headers):</strong> Metadados sobre a resposta (tipo de conteúdo, cache, etc.).</li>
+                            <li><strong>Corpo (Body):</strong> Os dados solicitados (HTML, JSON, XML, imagens, etc.).</li>
+                        </ul>
+                        <h3>Outros Conceitos</h3>
+                        <ul>
+                            <li><strong>Atributos:</strong> Informações associadas a um recurso ou sessão.</li>
+                            <li><strong>Redirecionamento:</strong> O servidor instrui o cliente a acessar outra URL.</li>
+                            <li><strong>Reescrita de URL:</strong> Alteração da URL para uma forma mais amigável ou para fins de roteamento interno.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">4</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Ativação de Métodos HTTP -->
+    <div class="slide" id="slide-5">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Ativação de Métodos HTTP</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Os métodos HTTP (também conhecidos como verbos HTTP) indicam a ação desejada a ser realizada em um recurso identificado pela URL.</p>
+                <ul>
+                    <li><strong>GET:</strong> Solicita uma representação do recurso especificado. Deve ser usado apenas para recuperar dados e não deve ter efeitos colaterais no servidor.</li>
+                    <li><strong>POST:</strong> Envia dados para o servidor para criar um novo recurso ou enviar dados para processamento.</li>
+                    <li><strong>PUT:</strong> Atualiza um recurso existente com os dados fornecidos. Se o recurso não existir, ele pode ser criado.</li>
+                    <li><strong>DELETE:</strong> Remove o recurso especificado.</li>
+                    <li><strong>PATCH:</strong> Aplica modificações parciais a um recurso.</li>
+                    <li><strong>HEAD:</strong> Solicita os cabeçalhos de uma resposta, sem o corpo da resposta. Útil para verificar a existência de um recurso ou o tipo de conteúdo.</li>
+                    <li><strong>OPTIONS:</strong> Descreve as opções de comunicação para o recurso de destino.</li>
+                </ul>
+                <blockquote>"A escolha correta do método HTTP é crucial para o design de APIs RESTful, seguindo os princípios do HTTP."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">5</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Gerenciamento de Sessão -->
+    <div class="slide" id="slide-6">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Gerenciamento de Sessão</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Devido à natureza stateless do HTTP, mecanismos são necessários para manter o estado entre múltiplas requisições de um mesmo usuário.</p>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Cookies</h3>
+                        <p>Pequenos arquivos de texto armazenados no navegador do cliente pelo servidor. Usados para:</p>
+                        <ul>
+                            <li>Manter o estado de login.</li>
+                            <li>Personalização de usuário.</li>
+                            <li>Rastreamento de atividades.</li>
+                        </ul>
+                        <p>Os cookies são enviados automaticamente em cada requisição subsequente para o mesmo domínio.</p>
+                    </div>
+                    <div class="column">
+                        <h3>Sessão (Session)</h3>
+                        <p>Informações armazenadas no servidor, associadas a um usuário específico. Um ID de sessão (geralmente em um cookie) é usado para identificar a sessão do usuário.</p>
+                        <ul>
+                            <li>Mais seguro que cookies para dados sensíveis.</li>
+                            <li>Permite armazenar objetos complexos no servidor.</li>
+                        </ul>
+                        <p>A sessão é mantida no servidor e o cliente apenas recebe um identificador para ela.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">6</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Princípios de Comunicação Distribuída na Web -->
+    <div class="slide" id="slide-7">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Princípios de Comunicação Distribuída na Web</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>A web moderna é construída sobre sistemas distribuídos, onde diferentes componentes de software se comunicam através de uma rede para atingir um objetivo comum.</p>
+                <ul>
+                    <li><strong>Cliente-Servidor:</strong> Modelo fundamental onde clientes requisitam serviços de servidores.</li>
+                    <li><strong>Comunicação Assíncrona:</strong> Operações que não bloqueiam o fluxo principal, permitindo maior responsividade e escalabilidade.</li>
+                    <li><strong>Tolerância a Falhas:</strong> Capacidade do sistema de continuar operando mesmo com a falha de um ou mais componentes.</li>
+                    <li><strong>Escalabilidade:</strong> Habilidade de um sistema de lidar com um aumento na carga de trabalho, seja adicionando mais recursos (escalabilidade vertical) ou mais máquinas (escalabilidade horizontal).</li>
+                    <li><strong>Consistência de Dados:</strong> Garantir que os dados permaneçam corretos e sincronizados em todos os nós do sistema distribuído.</li>
+                    <li><strong>Latência e Largura de Banda:</strong> Fatores críticos que afetam o desempenho em sistemas distribuídos.</li>
+                </ul>
+                <blockquote>"A comunicação distribuída é a chave para construir aplicações web robustas e escaláveis que atendam às demandas do mundo moderno."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">7</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: SOA e Web Services: Fundamentos -->
+    <div class="slide" id="slide-8">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>SOA e Web Services: Fundamentos</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>A Arquitetura Orientada a Serviços (SOA) é um estilo arquitetural que visa a construção de aplicações a partir de serviços fracamente acoplados e interoperáveis.</p>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>SOA (Service-Oriented Architecture)</h3>
+                        <ul>
+                            <li><strong>Serviços:</strong> Unidades de funcionalidade autocontidas e independentes.</li>
+                            <li><strong>Reusabilidade:</strong> Serviços podem ser reutilizados por diferentes aplicações.</li>
+                            <li><strong>Interoperabilidade:</strong> Permite a comunicação entre sistemas heterogêneos.</li>
+                            <li><strong>Acoplamento Fraco:</strong> Componentes são independentes e menos afetados por mudanças em outros.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Web Services</h3>
+                        <p>Implementações de serviços que utilizam padrões web para comunicação. Os dois principais tipos são:</p>
+                        <ul>
+                            <li><strong>SOAP (Simple Object Access Protocol):</strong> Protocolo baseado em XML para troca de mensagens estruturadas. Mais formal e com forte tipagem.</li>
+                            <li><strong>REST (Representational State Transfer):</strong> Estilo arquitetural que utiliza os métodos HTTP para manipular recursos. Mais leve e flexível.</li>
+                        </ul>
+                    </div>
+                </div>
+                <blockquote>"SOA e Web Services revolucionaram a forma como as aplicações se integram, promovendo a modularidade e a flexibilidade."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">8</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Design, Documentação e Construção de APIs REST/SOAP -->
+    <div class="slide" id="slide-9">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Design, Documentação e Construção de APIs REST/SOAP</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>O sucesso de um WebService depende de um bom design, documentação clara e uma construção robusta.</p>
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Design de APIs</h3>
+                        <ul>
+                            <li><strong>RESTful Principles:</strong> Utilizar recursos (nouns) e métodos HTTP (verbs) de forma consistente.</li>
+                            <li><strong>URLs Intuitivas:</strong> URLs que descrevem o recurso de forma clara (ex: <code>/users</code>, <code>/products/123</code>).</li>
+                            <li><strong>Códigos de Status HTTP:</strong> Usar os códigos de status apropriados para indicar o resultado das operações.</li>
+                            <li><strong>Versionamento:</strong> Gerenciar mudanças na API ao longo do tempo (ex: <code>/v1/users</code>).</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Documentação de APIs</h3>
+                        <ul>
+                            <li><strong>Swagger/OpenAPI:</strong> Ferramentas para descrever APIs de forma padronizada, facilitando o consumo e a geração de clientes.</li>
+                            <li><strong>Postman Documentation:</strong> Gerar documentação diretamente das coleções do Postman.</li>
+                            <li><strong>Exemplos de Requisições e Respostas:</strong> Fornecer exemplos claros de como interagir com a API.</li>
+                        </ul>
+                        <h3>Construção de APIs</h3>
+                        <ul>
+                            <li>Utilizar frameworks e bibliotecas que facilitem a criação de APIs (ex: Express.js para Node.js, Spring Boot para Java).</li>
+                            <li>Implementar validação de dados, autenticação e autorização.</li>
+                            <li>Testar exaustivamente a API para garantir seu funcionamento correto.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">9</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Exemplos Práticos com Postman -->
+    <div class="slide" id="slide-10">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Exemplos Práticos com Postman</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>O Postman é uma ferramenta poderosa para testar e interagir com APIs. Abaixo, alguns exemplos de como utilizá-lo:</p>
+                <h3>Exemplo 1: Requisição GET</h3>
+                <p>Para obter uma lista de usuários de uma API RESTful:</p>
+                <pre><code>GET https://api.example.com/users</code></pre>
+                <p>No Postman, selecione o método GET, insira a URL e clique em 'Send'.</p>
+
+                <h3>Exemplo 2: Requisição POST</h3>
+                <p>Para criar um novo usuário:</p>
+                <pre><code>POST https://api.example.com/users
+Content-Type: application/json
+
+{
+    "name": "João Silva",
+    "email": "joao.silva@example.com"
+}</code></pre>
+                <p>No Postman, selecione o método POST, insira a URL, vá na aba 'Body', selecione 'raw' e 'JSON', e insira o JSON acima. Clique em 'Send'.</p>
+
+                <h3>Exemplo 3: Requisição PUT</h3>
+                <p>Para atualizar um usuário existente:</p>
+                <pre><code>PUT https://api.example.com/users/123
+Content-Type: application/json
+
+{
+    "name": "João Silva Atualizado"
+}</code></pre>
+                <p>No Postman, selecione o método PUT, insira a URL com o ID do usuário, vá na aba 'Body', selecione 'raw' e 'JSON', e insira o JSON acima. Clique em 'Send'.</p>
+
+                <h3>Exemplo 4: Requisição DELETE</h3>
+                <p>Para deletar um usuário:</p>
+                <pre><code>DELETE https://api.example.com/users/123</code></pre>
+                <p>No Postman, selecione o método DELETE, insira a URL com o ID do usuário e clique em 'Send'.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">10</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Conclusão e Próximos Passos -->
+    <div class="slide" id="slide-11">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Conclusão e Próximos Passos</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Nesta aula, você teve uma introdução abrangente aos WebServices, compreendendo os protocolos, fundamentos de requisição/resposta, métodos HTTP, gerenciamento de sessão, princípios de comunicação distribuída, SOA, Web Services e o design/construção de APIs.</p>
+                <h3>Próximos Passos:</h3>
+                <ul>
+                    <li>Aprofundar-se em frameworks de desenvolvimento de APIs (Node.js com Express.js, Spring Boot, etc.).</li>
+                    <li>Explorar ferramentas de documentação de APIs como Swagger/OpenAPI.</li>
+                    <li>Praticar a construção e o consumo de APIs RESTful.</li>
+                    <li>Realizar mais testes com o Postman para diferentes cenários.</li>
+                </ul>
+                <blockquote>"O conhecimento em WebServices é fundamental para qualquer desenvolvedor backend, abrindo portas para a construção de sistemas distribuídos e integrados."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">11</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn">Anterior</button>
+        <button id="nextBtn">Próximo</button>
+        <button id="printBtn">Imprimir / PDF</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            updateSlideNumber();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function updateSlideNumber() {
+            const slideNumberElement = slides[currentSlide].querySelector('.slide-number');
+            if (slideNumberElement) {
+                slideNumberElement.textContent = currentSlide + 1;
+            }
+        }
+
+        document.getElementById("nextBtn").addEventListener("click", nextSlide);
+        document.getElementById("prevBtn").addEventListener("click", prevSlide);
+        document.getElementById("printBtn").addEventListener("click", function() { window.print(); });
+
+
+        // Initialize first slide
+        updateSlideNumber();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inteligência Artificial</title>
+    <style>
+        :root {
+            --primary-color: #4682A0; /* Azul para destaque */
+            --secondary-color: #343746; /* Cinza escuro */
+            --accent-color: #4682A0; /* Azul para destaque */
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --background-color: #ffffff;
+            --code-background: #f1f1f1;
+            --header-color: #4682A0; /* Azul para cabeçalhos */
+            --footer-color: #4682A0; /* Azul para rodapés */
+        }
+        
+        body {
+            font-family: 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .slide {
+            display: none;
+            height: 100vh;
+            box-sizing: border-box;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slide-header {
+            background-color: var(--header-color);
+            padding: 1rem 2rem;
+            border-bottom: 5px solid var(--secondary-color);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .slide-body {
+            flex: 1;
+            padding: 2rem;
+            background-color: white;
+            overflow-y: auto;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            padding-bottom: 4rem; /* Espaço extra para evitar sobreposição com os botões */
+        }
+        
+        .slide-footer {
+            background-color: var(--footer-color);
+            padding: 0.5rem 2rem;
+            border-top: 5px solid var(--secondary-color);
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .slide-number {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .js-logo {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 2rem;
+            padding: 0.5rem;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+        }
+        
+        .bfd-logo {
+            height: 60px;
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-size: 2.5rem;
+            font-family: 'Advent Pro', sans-serif;
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin: 0;
+            font-family: 'Advent Pro', sans-serif;
+        }
+        
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-family: 'Advent Pro', sans-serif;
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-background);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background-color: var(--code-background);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        
+        blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+            margin-left: 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .controls {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        button {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        button:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-background);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            white-space: pre;
+        }
+        
+        .cover-slide .slide-content {
+            background-color: white;
+            color: var(--secondary-color);
+        }
+        
+        .cover-slide .slide-header {
+            background-color: var(--primary-color);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .cover-slide .slide-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .cover-slide h1 {
+            color: var(--secondary-color);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cover-slide h3 {
+            color: var(--secondary-color);
+            font-weight: normal;
+            margin-bottom: 2rem;
+        }
+        
+        .cover-slide h4 {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+        
+        .cover-logos {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 2rem;
+        }
+        
+        .cover-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .cover-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        @media print {
+            .slide {
+                display: block;
+                page-break-after: always;
+                height: auto;
+            }
+            
+            .controls, .slide-number {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Capa -->
+    <div class="slide cover-slide active" id="slide-1">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <div class="js-logo">IA</div>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <div class="cover-left">
+                    <h3>Módulo Complementar</h3>
+                    <h1>Inteligência Artificial</h1>
+                    <h4>Para o seu dia a dia e produtividade</h4>
+                    <p>Prof. Manus AI</p>
+                </div>
+                <div class="cover-right">
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" height="200">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">1</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Visão Geral da Aula -->
+    <div class="slide" id="slide-2">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Visão Geral da Aula</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Olá! Nesta aula, vamos desvendar o mundo da Inteligência Artificial de forma leve e prática. Prepare-se para entender o que é IA, como ela pode turbinar sua produtividade e, o mais importante, como usá-la de forma consciente e crítica.</p>
+                <h3>O que vamos aprender?</h3>
+                <ul>
+                    <li>O que é Inteligência Artificial?</li>
+                    <li>Como a IA pode te ajudar a ser mais produtivo?</li>
+                    <li>Usando a IA de forma crítica e responsável.</li>
+                </ul>
+                <blockquote>"A inteligência artificial é a nova eletricidade." - Andrew Ng</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">2</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: O que é Inteligência Artificial? -->
+    <div class="slide" id="slide-3">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>O que é Inteligência Artificial?</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Imagine um computador que consegue aprender, raciocinar e até mesmo tomar decisões, como se tivesse um cérebro! Isso é a Inteligência Artificial (IA) em sua essência. Não é mágica, mas sim um conjunto de tecnologias que permitem às máquinas simular capacidades humanas.</p>
+                <p>Pense em como você aprende a andar de bicicleta: você tenta, cai, ajusta, e com o tempo, se torna um mestre. A IA funciona de forma parecida, mas com dados. Ela é 'treinada' com montanhas de informações para identificar padrões, fazer previsões e executar tarefas.</p>
+                <h3>Tipos de IA:</h3>
+                <ul>
+                    <li><strong>IA Fraca (Narrow AI):</strong> Projetada para realizar uma tarefa específica. Ex: um sistema que joga xadrez, um assistente de voz. A maioria das IAs que usamos hoje são fracas.</li>
+                    <li><strong>IA Forte (General AI):</strong> Uma IA que pode entender, aprender e aplicar inteligência a qualquer problema, como um ser humano. Ainda é um conceito em desenvolvimento e muito debatido.</li>
+                </ul>
+                <p>A IA está em todo lugar, desde o seu celular até os carros autônomos. Ela está transformando a maneira como vivemos e trabalhamos.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">3</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: IA e Produtividade: Seus Novos Superpoderes -->
+    <div class="slide" id="slide-4">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>IA e Produtividade: Seus Novos Superpoderes</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>A IA não veio para substituir você, mas sim para te dar superpoderes! Ela pode automatizar tarefas repetitivas, analisar dados em segundos e até mesmo te ajudar a ter ideias geniais. Vamos ver alguns exemplos práticos de como a IA pode turbinar sua produtividade:</p>
+                <h3>Assistentes de Escrita e Criação:</h3>
+                <ul>
+                    <li><strong>ChatGPT e Gemini:</strong> Já imaginou ter um assistente que escreve textos, cria roteiros, responde perguntas complexas e até te ajuda a programar? O ChatGPT e o Gemini são exemplos de Modelos de Linguagem Grandes (LLMs) que fazem exatamente isso. Eles podem te ajudar a redigir e-mails, gerar ideias para projetos, resumir documentos longos e muito mais.</li>
+                    <li><strong>NotebookLM:</strong> Pense em um assistente de pesquisa que organiza suas anotações, resume documentos e te ajuda a criar novos conteúdos a partir das suas fontes. O NotebookLM é uma ferramenta que potencializa sua capacidade de estudo e criação, agilizando o processo de pesquisa e organização de informações.</li>
+                </ul>
+                <h3>Criação de Imagens e Mídias:</h3>
+                <ul>
+                    <li><strong>IAs de Criação de Imagens (Ex: Midjourney, DALL-E, Stable Diffusion):</strong> Precisa de uma imagem para sua apresentação, um post de blog ou até mesmo uma ideia para um design? Essas IAs transformam suas descrições em imagens incríveis em segundos. Elas abrem um mundo de possibilidades para designers, artistas e qualquer pessoa que precise de recursos visuais de forma rápida e criativa.</li>
+                    <li><strong>VEO3:</strong> Se você trabalha com vídeo, o VEO3 pode ser seu novo melhor amigo. Ele é uma IA que auxilia na edição de vídeo, otimizando processos, sugerindo cortes e até mesmo gerando conteúdo. Isso acelera a produção e permite que você se concentre na parte criativa.</li>
+                </ul>
+                <h3>Seu Assistente Pessoal de Produtividade:</h3>
+                <ul>
+                    <li><strong>Manus AI (Eu!):</strong> Sim, eu sou um exemplo de IA que pode te ajudar na produtividade! Eu consigo automatizar tarefas, pesquisar informações, gerar conteúdo, analisar dados e muito mais. Pense em mim como um colega de trabalho super eficiente, pronto para te auxiliar em diversas frentes, liberando seu tempo para atividades mais estratégicas.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">4</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Usando a IA de Forma Crítica e Responsável -->
+    <div class="slide" id="slide-5">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Usando a IA de Forma Crítica e Responsável</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>A IA é uma ferramenta poderosa, mas como toda ferramenta, precisa ser usada com sabedoria. Não basta apenas usar, é preciso usar de forma crítica e responsável. Aqui estão alguns pontos importantes para você refletir:</p>
+                <h3>Verifique as Informações:</h3>
+                <ul>
+                    <li><strong>"Alucinações" da IA:</strong> As IAs generativas, como o ChatGPT e o Gemini, podem às vezes "alucinar", ou seja, gerar informações que parecem verdadeiras, mas não são. Sempre verifique os fatos, especialmente se a informação for crucial. Pense na IA como um assistente que te dá rascunhos, não como a fonte final da verdade.</li>
+                    <li><strong>Fontes e Viés:</strong> As IAs são treinadas com dados existentes na internet. Se esses dados contiverem vieses (preconceitos), a IA pode reproduzi-los. Fique atento a respostas que pareçam tendenciosas ou incompletas.</li>
+                </ul>
+                <h3>Privacidade e Segurança:</h3>
+                <ul>
+                    <li><strong>Dados Pessoais:</strong> Tenha muito cuidado ao inserir informações pessoais ou confidenciais em ferramentas de IA. Muitas delas usam os dados inseridos para melhorar seus modelos. Se a informação é sensível, evite compartilhá-la.</li>
+                    <li><strong>Segurança da Informação:</strong> Empresas e desenvolvedores de IA estão constantemente trabalhando na segurança, mas é sempre bom estar ciente dos riscos e usar as ferramentas de forma segura.</li>
+                </ul>
+                <h3>Impacto Social e Ético:</h3>
+                <ul>
+                    <li><strong>Tomada de Decisão:</strong> Em áreas críticas como saúde, finanças ou justiça, a decisão final deve sempre ser humana. A IA pode auxiliar, mas a responsabilidade é nossa.</li>
+                    <li><strong>Mercado de Trabalho:</strong> A IA vai transformar o mercado de trabalho, não eliminá-lo. O foco será em habilidades que a IA não consegue replicar facilmente, como criatividade, pensamento crítico e inteligência emocional.</li>
+                </ul>
+                <blockquote>"Com grandes poderes vêm grandes responsabilidades." - Tio Ben (Homem-Aranha)</blockquote>
+                <p>Ao usar a IA de forma consciente, você não apenas se beneficia dela, mas também contribui para um futuro onde a tecnologia serve à humanidade de forma ética e positiva.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">5</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn">Anterior</button>
+        <button id="nextBtn">Próximo</button>
+        <button id="printBtn">Imprimir / PDF</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+            updateSlideNumber(index + 1);
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function updateSlideNumber(number) {
+            document.querySelector('.slide.active .slide-footer .slide-number').textContent = number;
+        }
+
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+        document.getElementById('printBtn').addEventListener('click', function() { window.print(); });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Git, GitHub e GitLab</title>
+    <style>
+        :root {
+            --primary-color: #f7df1e; /* Amarelo JavaScript */
+            --secondary-color: #323330; /* Cinza escuro JavaScript */
+            --accent-color: #4682A0; /* Azul para destaque */
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --background-color: #ffffff;
+            --code-background: #f1f1f1;
+            --header-color: #f7df1e; /* Amarelo para cabeçalhos */
+            --footer-color: #f7df1e; /* Amarelo para rodapés */
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .slide {
+            display: none;
+            height: 100vh;
+            box-sizing: border-box;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slide-header {
+            background-color: var(--header-color);
+            padding: 1rem 2rem;
+            border-bottom: 5px solid var(--secondary-color);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .slide-body {
+            flex: 1;
+            padding: 2rem;
+            background-color: white;
+            overflow-y: auto;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            padding-bottom: 4rem; /* Espaço extra para evitar sobreposição com os botões */
+        }
+        
+        .slide-footer {
+            background-color: var(--footer-color);
+            padding: 0.5rem 2rem;
+            border-top: 5px solid var(--secondary-color);
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .slide-number {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .js-logo {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 2rem;
+            padding: 0.5rem;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+        }
+        
+        .bfd-logo {
+            height: 60px;
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-background);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background-color: var(--code-background);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        
+        blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+            margin-left: 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .controls {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        button {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        button:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-background);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            white-space: pre;
+        }
+        
+        .cover-slide .slide-content {
+            background-color: white;
+            color: var(--secondary-color);
+        }
+        
+        .cover-slide .slide-header {
+            background-color: var(--primary-color);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .cover-slide .slide-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .cover-slide h1 {
+            color: var(--secondary-color);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cover-slide h3 {
+            color: var(--secondary-color);
+            font-weight: normal;
+            margin-bottom: 2rem;
+        }
+        
+        .cover-slide h4 {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+        
+        .cover-logos {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 2rem;
+        }
+        
+        .cover-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .cover-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        @media print {
+            .slide {
+                display: block;
+                page-break-after: always;
+                height: auto;
+            }
+            
+            .controls, .slide-number {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Capa -->
+    <div class="slide cover-slide active" id="slide-1">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <div class="js-logo">Git</div>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <div class="cover-left">
+                    <h3>Formação BackEnd</h3>
+                    <h1>Git, GitHub e GitLab</h1>
+                    <h4>Módulo 2: Controle de Versão e Colaboração</h4>
+                    <p>Prof. Tiago Segato</p>
+                </div>
+                <div class="cover-right">
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" height="200">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">1</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Visão Geral do Módulo -->
+    <div class="slide" id="slide-2">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Visão Geral do Módulo</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Bem-vindo ao Módulo 2! Neste módulo, você aprenderá sobre o essencial do controle de versão com Git e como colaborar usando plataformas como GitHub e GitLab.</p>
+                <h3>O que você vai aprender:</h3>
+                <ul>
+                    <li>A importância do controle de versão no desenvolvimento de software.</li>
+                    <li>Os comandos fundamentais do Git para gerenciar seus projetos.</li>
+                    <li>Como usar ferramentas visuais para interagir com o Git.</li>
+                    <li>O que é GitHub e como utilizá-lo para hospedar seus repositórios e colaborar.</li>
+                    <li>Como trabalhar em equipe usando branches e pull requests.</li>
+                    <li>Uma introdução ao GitLab e seus diferenciais.</li>
+                </ul>
+                <blockquote>"O controle de versão é como uma máquina do tempo para o seu código, permitindo que você navegue pelo histórico e colabore sem medo."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">2</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: O que é Controle de Versão? -->
+    <div class="slide" id="slide-3">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>O que é Controle de Versão?</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p><strong>Controle de Versão</strong> (Version Control System - VCS) é um sistema que registra alterações em um arquivo ou conjunto de arquivos ao longo do tempo, para que você possa recuperar versões específicas posteriormente.</p>
+                <h3>Problemas que o Controle de Versão Resolve:</h3>
+                <ul>
+                    <li>Manter histórico de alterações: Quem mudou o quê e quando?</li>
+                    <li>Reverter para versões anteriores: Desfazer erros ou experimentos.</li>
+                    <li>Trabalho em equipe: Permitir que múltiplos desenvolvedores trabalhem no mesmo projeto simultaneamente sem sobrescrever o trabalho um do outro.</li>
+                    <li>Ramificações (Branching): Desenvolver novas funcionalidades isoladamente sem afetar a versão principal do código.</li>
+                    <li>Mesclagem (Merging): Combinar alterações de diferentes branches.</li>
+                </ul>
+                <h3>Tipos de VCS:</h3>
+                <ul>
+                    <li><strong>Centralizado (CVCS):</strong> Possui um único servidor central que contém todos os arquivos versionados (Ex: Subversion, CVS).</li>
+                    <li><strong>Distribuído (DVCS):</strong> Cada desenvolvedor tem uma cópia completa do repositório, incluindo todo o histórico (Ex: Git, Mercurial). O Git é o DVCS mais popular atualmente.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">3</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Introdução ao Git -->
+    <div class="slide" id="slide-4">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Introdução ao Git</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p><strong>Git</strong> é um sistema de controle de versão distribuído, gratuito e de código aberto, projetado para lidar com tudo, desde projetos pequenos até muito grandes, com velocidade e eficiência.</p>
+                <h3>História:</h3>
+                <p>Criado por Linus Torvalds em 2005 para o desenvolvimento do kernel do Linux, após a comunidade Linux perder o acesso ao BitKeeper (um DVCS proprietário).</p>
+                <h3>Características Principais:</h3>
+                <ul>
+                    <li><strong>Distribuído:</strong> Cada desenvolvedor tem um clone completo do repositório.</li>
+                    <li><strong>Rápido:</strong> A maioria das operações são locais, tornando-o muito rápido.</li>
+                    <li><strong>Integridade de Dados:</strong> Garante que o histórico não seja corrompido, usando checksums (SHA-1).</li>
+                    <li><strong>Ramificação e Mesclagem Poderosas:</strong> Facilita o desenvolvimento paralelo e a integração de funcionalidades.</li>
+                    <li><strong>Staging Area (Índice):</strong> Uma área intermediária que permite formatar commits com precisão.</li>
+                </ul>
+                <p>O Git se tornou o padrão de fato para controle de versão na indústria de software.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">4</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Configuração Inicial do Git -->
+    <div class="slide" id="slide-5">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Configuração Inicial do Git</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Antes de começar a usar o Git, é importante configurá-lo com suas informações pessoais.</p>
+                <h3>Instalação:</h3>
+                <p>Visite <a href="https://git-scm.com/downloads" target="_blank">git-scm.com/downloads</a> para baixar e instalar o Git para o seu sistema operacional (Windows, macOS, Linux).</p>
+                <h3>Configurações Globais:</h3>
+                <p>Essas configurações são usadas para identificar quem fez cada commit. Abra seu terminal ou prompt de comando:</p>
+                <div class="code-block"># Configurar seu nome de usuário
+git config --global user.name "Seu Nome"
+
+# Configurar seu endereço de e-mail
+git config --global user.email "seu.email@exemplo.com"</div>
+                <h3>Verificando suas Configurações:</h3>
+                <div class="code-block"># Listar todas as configurações globais
+git config --global --list
+
+# Verificar uma configuração específica
+git config user.name</div>
+                <p>Você também pode configurar seu editor de texto padrão, ferramenta de diff, entre outras opções.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">5</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Comandos Básicos - Parte 1 -->
+    <div class="slide" id="slide-6">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Comandos Básicos - Parte 1</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Vamos começar com os comandos essenciais para iniciar um repositório e salvar suas alterações.</p>
+                <h3><code>git init</code></h3>
+                <p>Inicializa um novo repositório Git em um diretório existente ou cria um novo diretório vazio e o inicializa.</p>
+                <div class="code-block"># Navegue até a pasta do seu projeto
+cd meu-projeto
+
+# Inicialize o repositório Git
+git init</div>
+                <p>Isso cria um subdiretório oculto chamado <code>.git</code> que contém todos os arquivos necessários para o repositório.</p>
+                
+                <h3><code>git status</code></h3>
+                <p>Mostra o estado dos arquivos no diretório de trabalho e na staging area (arquivos modificados, adicionados, etc.).</p>
+                <div class="code-block">git status</div>
+                
+                <h3><code>git add &lt;arquivo&gt;</code> ou <code>git add .</code></h3>
+                <p>Adiciona alterações do diretório de trabalho para a staging area, preparando-as para o próximo commit. Use <code>.</code> para adicionar todos os arquivos modificados e novos.</p>
+                <div class="code-block"># Adicionar um arquivo específico
+git add README.md
+
+# Adicionar todos os arquivos modificados e novos no diretório atual
+git add .</div>
+                
+                <h3><code>git commit -m "mensagem descritiva"</code></h3>
+                <p>Salva as alterações da staging area permanentemente no histórico do repositório com uma mensagem que descreve as mudanças.</p>
+                <div class="code-block">git commit -m "Adiciona arquivo README inicial"</div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">6</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Comandos Básicos - Parte 2 -->
+    <div class="slide" id="slide-7">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Comandos Básicos - Parte 2</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Continuando com comandos para visualizar o histórico e gerenciar alterações.</p>
+                <h3><code>git log</code></h3>
+                <p>Mostra o histórico de commits do repositório, do mais recente ao mais antigo. Cada commit tem um hash SHA-1 único.</p>
+                <div class="code-block">git log
+
+# Opções úteis:
+# git log --oneline  (mostra commits em uma linha)
+# git log --graph    (mostra o histórico como um grafo)
+# git log --stat     (mostra estatísticas das alterações)</div>
+                
+                <h3><code>git diff</code></h3>
+                <p>Mostra as diferenças entre o diretório de trabalho e a staging area, ou entre a staging area e o último commit, ou entre dois commits.</p>
+                <div class="code-block"># Diferenças não adicionadas à staging area
+git diff
+
+# Diferenças adicionadas à staging area (prontas para commit)
+git diff --staged
+
+# Diferenças entre dois commits (usando hashes)
+git diff <hash_commit1> <hash_commit2></div>
+                
+                <h3><code>git restore &lt;arquivo&gt;</code></h3>
+                <p>Descarta alterações no diretório de trabalho, restaurando o arquivo para a versão do último commit (ou da staging area se <code>--staged</code> for usado).</p>
+                <div class="code-block"># Descartar alterações em um arquivo no diretório de trabalho
+git restore nome_do_arquivo.txt
+
+# Remover um arquivo da staging area (unstage)
+git restore --staged nome_do_arquivo.txt</div>
+                <p><strong>Cuidado:</strong> <code>git reset</code> é um comando mais poderoso e complexo para desfazer commits, use com cautela.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">7</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Trabalhando com Repositórios Remotos -->
+    <div class="slide" id="slide-8">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Trabalhando com Repositórios Remotos</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Repositórios remotos são versões do seu projeto hospedadas na internet ou em uma rede (Ex: GitHub, GitLab).</p>
+                <h3><code>git remote add &lt;nome&gt; &lt;url&gt;</code></h3>
+                <p>Adiciona um novo repositório remoto. O nome comum para o principal remoto é <code>origin</code>.</p>
+                <div class="code-block">git remote add origin https://github.com/seu-usuario/seu-repositorio.git</div>
+                
+                <h3><code>git clone &lt;url&gt;</code></h3>
+                <p>Cria uma cópia local de um repositório remoto existente.</p>
+                <div class="code-block">git clone https://github.com/usuario/repositorio-existente.git</div>
+                
+                <h3><code>git pull &lt;remoto&gt; &lt;branch&gt;</code></h3>
+                <p>Busca alterações do repositório remoto e as mescla na sua branch local atual. (Equivalente a <code>git fetch</code> seguido de <code>git merge</code>).</p>
+                <div class="code-block">git pull origin main</div>
+                
+                <h3><code>git push &lt;remoto&gt; &lt;branch&gt;</code></h3>
+                <p>Envia seus commits locais para o repositório remoto.</p>
+                <div class="code-block">git push origin main</div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">8</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Ferramentas Visuais para Git -->
+    <div class="slide" id="slide-9">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Ferramentas Visuais para Git</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Embora a linha de comando seja poderosa, ferramentas visuais (GUIs) podem facilitar a visualização do histórico e a execução de operações Git.</p>
+                <h3>Exemplos Populares:</h3>
+                <ul>
+                    <li><strong>GitKraken:</strong> Interface gráfica multiplataforma, rica em recursos, com visualização de branches e histórico.</li>
+                    <li><strong>GitHub Desktop:</strong> Ferramenta oficial do GitHub, simplifica o fluxo de trabalho com repositórios do GitHub.</li>
+                    <li><strong>Sourcetree:</strong> GUI gratuita para Git e Mercurial, disponível para Windows e macOS.</li>
+                    <li><strong>Integração com IDEs:</strong> Muitos editores de código, como VS Code, WebStorm e IntelliJ IDEA, possuem excelente integração com Git, permitindo realizar operações diretamente da interface do editor.</li>
+                </ul>
+                <h3>Vantagens das Ferramentas Visuais:</h3>
+                <ul>
+                    <li>Visualização clara do histórico de commits e branches.</li>
+                    <li>Facilidade para realizar staging de partes de arquivos (hunks).</li>
+                    <li>Resolução de conflitos de merge de forma mais intuitiva para alguns usuários.</li>
+                    <li>Menor curva de aprendizado para iniciantes.</li>
+                </ul>
+                <p>Experimente diferentes ferramentas para encontrar a que melhor se adapta ao seu fluxo de trabalho.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">9</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Introdução ao GitHub -->
+    <div class="slide" id="slide-10">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Introdução ao GitHub</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p><strong>GitHub</strong> é uma plataforma de hospedagem de código-fonte e arquivos com controle de versão usando Git. É muito mais do que apenas um lugar para armazenar código; é uma plataforma de colaboração.</p>
+                <h3>Principais Funcionalidades:</h3>
+                <ul>
+                    <li>Hospedagem de repositórios Git (públicos e privados).</li>
+                    <li>Ferramentas de colaboração: Issues, Pull Requests, Code Reviews.</li>
+                    <li>Gerenciamento de projetos: Projects (Kanban boards).</li>
+                    <li>Automação: GitHub Actions (CI/CD).</li>
+                    <li>Hospedagem de sites estáticos: GitHub Pages.</li>
+                    <li>Comunidade: Milhões de desenvolvedores e projetos open source.</li>
+                </ul>
+                <h3>Primeiros Passos:</h3>
+                <ol>
+                    <li><strong>Criar uma conta:</strong> Acesse <a href="https://github.com" target="_blank">github.com</a> e crie sua conta gratuita.</li>
+                    <li><strong>Criar um repositório:</strong> Clique em "New repository", defina um nome, descrição, e se será público ou privado.</li>
+                    <li><strong>Conectar seu repositório local:</strong> Use <code>git remote add origin &lt;URL_DO_REPOSITORIO_NO_GITHUB&gt;</code> e depois <code>git push -u origin main</code> (ou a branch principal do seu projeto).</li>
+                </ol>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">10</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Recursos do GitHub (Foco em Colaboração) -->
+    <div class="slide" id="slide-11">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Recursos do GitHub (Foco em Colaboração)</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>O GitHub oferece diversas ferramentas para facilitar a colaboração em projetos.</p>
+                <h3>Issues (Problemas/Tarefas):</h3>
+                <p>Usadas para rastrear tarefas, bugs, melhorias e outras discussões relacionadas ao projeto. Cada issue pode ter responsáveis, etiquetas (labels) e marcos (milestones).</p>
+                <h3>Pull Requests (PRs ou Solicitações de Merge):</h3>
+                <p>O coração da colaboração no GitHub. Quando você quer propor alterações para um repositório (especialmente em um projeto colaborativo ou open source), você cria um Pull Request. Ele permite que outros revisem seu código, discutam as mudanças e, se aprovado, mesclem suas contribuições na branch principal.</p>
+                <p><strong>Fluxo típico de um Pull Request:</strong></p>
+                <ol>
+                    <li>Faça um fork do repositório (se não tiver permissão de escrita direta).</li>
+                    <li>Clone seu fork localmente.</li>
+                    <li>Crie uma nova branch para suas alterações (<code>git checkout -b minha-feature</code>).</li>
+                    <li>Faça seus commits nessa branch.</li>
+                    <li>Envie a branch para o seu fork no GitHub (<code>git push origin minha-feature</code>).</li>
+                    <li>Abra um Pull Request do seu fork para o repositório original.</li>
+                    <li>Participe da discussão e revisão do código.</li>
+                    <li>Após aprovação, o mantenedor do projeto mescla seu PR.</li>
+                </ol>
+                <h3>Code Reviews (Revisões de Código):</h3>
+                <p>Parte integral dos Pull Requests. Permite que outros desenvolvedores comentem linha por linha sobre as alterações propostas, sugerindo melhorias e identificando possíveis problemas antes da mesclagem.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">11</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Introdução ao GitLab -->
+    <div class="slide" id="slide-12">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Introdução ao GitLab</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p><strong>GitLab</strong> é uma plataforma DevOps completa, entregue como uma única aplicação. Assim como o GitHub, oferece hospedagem de repositórios Git, mas se destaca por integrar todo o ciclo de vida de desenvolvimento de software.</p>
+                <h3>Principais Diferenças e Recursos:</h3>
+                <ul>
+                    <li><strong>Solução Completa de DevOps:</strong> Integra planejamento, build, segurança, deploy, monitoramento e mais, em uma única interface.</li>
+                    <li><strong>CI/CD Embutido e Poderoso:</strong> GitLab CI/CD é um dos seus pontos fortes, permitindo automação robusta de testes e deploys.</li>
+                    <li><strong>Opções de Hospedagem:</strong> Oferece tanto uma versão SaaS (gitlab.com) quanto uma versão auto-hospedada (self-managed) para empresas que precisam de mais controle.</li>
+                    <li><strong>Foco em Segurança:</strong> Ferramentas integradas para análise de segurança estática (SAST), dinâmica (DAST), de dependências e de contêineres.</li>
+                    <li><strong>Gerenciamento de Projetos:</strong> Funcionalidades robustas para planejamento ágil, incluindo quadros Kanban, épicos e roteiros.</li>
+                </ul>
+                <p>Embora o GitHub seja mais popular para projetos open source, o GitLab é uma escolha forte para empresas que buscam uma solução DevOps unificada e com opções de auto-hospedagem.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">12</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Trabalhando com Branches - Conceitos -->
+    <div class="slide" id="slide-13">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Trabalhando com Branches - Conceitos</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p><strong>Branches (Ramificações)</strong> são ponteiros móveis para um commit. São uma das funcionalidades mais poderosas do Git, permitindo divergir da linha principal de desenvolvimento e continuar trabalhando sem bagunçar essa linha.</p>
+                <h3>Por que usar Branches?</h3>
+                <ul>
+                    <li><strong>Desenvolvimento Isolado:</strong> Trabalhar em novas funcionalidades ou correções de bugs sem afetar o código estável (geralmente na branch <code>main</code> ou <code>master</code>).</li>
+                    <li><strong>Experimentação:</strong> Testar novas ideias sem medo de quebrar o projeto principal. Se não der certo, a branch pode ser descartada.</li>
+                    <li><strong>Colaboração:</strong> Vários desenvolvedores podem trabalhar em diferentes branches simultaneamente.</li>
+                    <li><strong>Organização:</strong> Manter o histórico de desenvolvimento limpo e organizado.</li>
+                </ul>
+                <h3>Branch Padrão:</h3>
+                <p>Por padrão, a branch principal de um novo repositório é chamada <code>master</code> ou, mais recentemente, <code>main</code>.</p>
+                <h3>Visualização:</h3>
+                <p>Imagine branches como linhas de desenvolvimento paralelas que podem ser mescladas de volta à linha principal quando o trabalho estiver concluído.</p>
+                <blockquote>"Branches são baratos e fáceis no Git. Use-os frequentemente!"</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">13</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Comandos para Branches -->
+    <div class="slide" id="slide-14">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Comandos para Branches</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Gerenciar branches no Git é feito com alguns comandos simples.</p>
+                <h3><code>git branch</code></h3>
+                <p>Lista todas as branches locais. A branch atual é marcada com um asterisco (*).</p>
+                <div class="code-block">git branch
+
+# Criar uma nova branch (não muda para ela)
+git branch nome-da-nova-branch</div>
+                
+                <h3><code>git checkout &lt;nome-da-branch&gt;</code> ou <code>git switch &lt;nome-da-branch&gt;</code> (mais novo)</h3>
+                <p>Muda para a branch especificada.</p>
+                <div class="code-block">git checkout nome-da-branch
+# ou
+git switch nome-da-branch
+
+# Criar e mudar para uma nova branch de uma vez
+git checkout -b nova-branch-feature
+# ou
+git switch -c nova-branch-feature</div>
+                
+                <h3><code>git merge &lt;nome-da-branch&gt;</code></h3>
+                <p>Mescla as alterações da branch especificada na branch atual. Esteja na branch que vai receber as alterações (ex: <code>main</code>) antes de rodar o merge.</p>
+                <div class="code-block"># Mude para a branch principal (ex: main)
+git switch main
+
+# Mescle a branch da feature na main
+git merge nome-da-branch-feature</div>
+                
+                <h3><code>git branch -d &lt;nome-da-branch&gt;</code></h3>
+                <p>Deleta uma branch local (apenas se já foi mesclada). Use <code>-D</code> para forçar a deleção.</p>
+                <div class="code-block">git branch -d nome-da-branch-mesclada</div>
+                <p><strong>Resolução de Conflitos:</strong> Se o Git não conseguir mesclar automaticamente as alterações (arquivos modificados em ambas as branches nas mesmas linhas), ocorrerá um conflito de merge. Você precisará editar os arquivos para resolver os conflitos e depois fazer um commit.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">14</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Trabalho em Equipe com Git (Foco em GitHub Flow) -->
+    <div class="slide" id="slide-15">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Trabalho em Equipe com Git (GitHub Flow)</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>O GitHub Flow é um fluxo de trabalho simples e popular para colaboração usando Git e GitHub.</p>
+                <h3>Passos do GitHub Flow:</h3>
+                <ol>
+                    <li><strong>Crie uma Branch:</strong> Para qualquer nova funcionalidade, bugfix ou ideia, crie uma nova branch a partir da branch principal (<code>main</code>). Dê um nome descritivo (ex: <code>feature/adicionar-login</code>, <code>fix/bug-no-carrinho</code>).</li>
+                    <li><strong>Adicione Commits:</strong> Faça alterações e commits na sua branch. Faça commits pequenos e focados com mensagens claras.</li>
+                    <li><strong>Abra um Pull Request (PR):</strong> Quando sua branch estiver pronta para revisão ou discussão, abra um Pull Request no GitHub. Isso inicia uma conversa sobre suas alterações.</li>
+                    <li><strong>Discuta e Revise o Código:</strong> Outros membros da equipe revisam seu código, fazem perguntas, sugerem melhorias. Você pode continuar adicionando commits à sua branch em resposta ao feedback.</li>
+                    <li><strong>Faça o Deploy (Opcional, mas recomendado):</strong> Idealmente, teste suas alterações em um ambiente de homologação ou staging a partir da sua branch antes de mesclar.</li>
+                    <li><strong>Mescle (Merge):</strong> Uma vez que o PR é aprovado e os testes passam, mescle a branch na branch principal (<code>main</code>). A branch da feature pode ser deletada após o merge.</li>
+                </ol>
+                <h3>Boas Práticas:</h3>
+                <ul>
+                    <li>Mantenha a branch <code>main</code> sempre em estado de deploy (pronta para produção).</li>
+                    <li>Faça Pull Requests pequenos e focados.</li>
+                    <li>Comunique-se claramente nas descrições dos PRs e nos comentários.</li>
+                    <li>Atualize sua branch local com a <code>main</code> frequentemente (<code>git pull origin main</code> na sua branch e resolva conflitos) para evitar grandes divergências.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">15</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 16: Conclusão -->
+    <div class="slide" id="slide-16">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Conclusão do Módulo 2</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <h3>Parabéns!</h3>
+                <p>Você concluiu o Módulo 2: Git, GitHub e GitLab. Agora você tem uma compreensão sólida sobre:</p>
+                <ul>
+                    <li>O que é controle de versão e a importância do Git.</li>
+                    <li>Os comandos básicos do Git para gerenciar seus projetos.</li>
+                    <li>Como usar ferramentas visuais e plataformas como GitHub e GitLab.</li>
+                    <li>A importância de branches para desenvolvimento isolado e colaborativo.</li>
+                    <li>Como trabalhar em equipe usando Pull Requests e o GitHub Flow.</li>
+                </ul>
+                <h3>Próximos Passos:</h3>
+                <ul>
+                    <li>Pratique! Crie repositórios para seus projetos pessoais.</li>
+                    <li>Contribua para projetos open source no GitHub.</li>
+                    <li>Explore comandos mais avançados do Git conforme sua necessidade.</li>
+                    <li>Aprofunde-se em estratégias de branching e fluxos de CI/CD.</li>
+                </ul>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <h3>Sucesso na sua jornada de desenvolvimento colaborativo!</h3>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">16</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prev-btn">Anterior</button>
+        <button id="next-btn">Próximo</button>
+        <button id="print-btn">Imprimir</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const printBtn = document.getElementById('print-btn');
+            let currentSlide = 0;
+            
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[index].classList.add('active');
+                currentSlide = index;
+                
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === slides.length - 1;
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentSlide < slides.length - 1) {
+                    showSlide(currentSlide + 1);
+                }
+            });
+            
+            printBtn.addEventListener('click', function() {
+                window.print();
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') {
+                    if (currentSlide > 0) {
+                        showSlide(currentSlide - 1);
+                    }
+                } else if (e.key === 'ArrowRight') {
+                    if (currentSlide < slides.length - 1) {
+                        showSlide(currentSlide + 1);
+                    }
+                }
+            });
+            
+            showSlide(0);
+        });
+    </script>
+</body>
+</html>

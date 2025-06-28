@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metodologias Ágeis e Scrum para Desenvolvedores</title>
+    <style>
+        :root {
+            --primary-color: #4682A0; /* Azul para destaque */
+            --secondary-color: #343746; /* Cinza escuro */
+            --accent-color: #4682A0; /* Azul para destaque */
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --background-color: #ffffff;
+            --code-background: #f1f1f1;
+            --header-color: #4682A0; /* Azul para cabeçalhos */
+            --footer-color: #4682A0; /* Azul para rodapés */
+        }
+        
+        body {
+            font-family: 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .slide {
+            display: none;
+            height: 100vh;
+            box-sizing: border-box;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slide-header {
+            background-color: var(--header-color);
+            padding: 1rem 2rem;
+            border-bottom: 5px solid var(--secondary-color);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .slide-body {
+            flex: 1;
+            padding: 2rem;
+            background-color: white;
+            overflow-y: auto;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            padding-bottom: 4rem; /* Espaço extra para evitar sobreposição com os botões */
+        }
+        
+        .slide-footer {
+            background-color: var(--footer-color);
+            padding: 0.5rem 2rem;
+            border-top: 5px solid var(--secondary-color);
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .slide-number {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .js-logo {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 2rem;
+            padding: 0.5rem;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+        }
+        
+        .bfd-logo {
+            height: 60px;
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-size: 2.5rem;
+            font-family: 'Advent Pro', sans-serif;
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin: 0;
+            font-family: 'Advent Pro', sans-serif;
+        }
+        
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-family: 'Advent Pro', sans-serif;
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-background);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background-color: var(--code-background);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        
+        blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+            margin-left: 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .controls {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        button {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        button:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-background);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            white-space: pre;
+        }
+        
+        .cover-slide .slide-content {
+            background-color: white;
+            color: var(--secondary-color);
+        }
+        
+        .cover-slide .slide-header {
+            background-color: var(--primary-color);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .cover-slide .slide-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .cover-slide h1 {
+            color: var(--secondary-color);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cover-slide h3 {
+            color: var(--secondary-color);
+            font-weight: normal;
+            margin-bottom: 2rem;
+        }
+        
+        .cover-slide h4 {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+        
+        .cover-logos {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 2rem;
+        }
+        
+        .cover-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .cover-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        @media print {
+            .slide {
+                display: block;
+                page-break-after: always;
+                height: auto;
+            }
+            
+            .controls, .slide-number {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Capa -->
+    <div class="slide cover-slide active" id="slide-1">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <div class="js-logo">JS</div>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <div class="cover-left">
+                    <h3>Formação BackEnd</h3>
+                    <h1>Metodologias Ágeis e Scrum para Desenvolvedores</h1>
+                    <h4>Módulo: JavaScript Backend</h4>
+                    <p>Prof. Tiago Segato</p>
+                </div>
+                <div class="cover-right">
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" height="200">
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">1</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Visão Geral da Aula -->
+    <div class="slide" id="slide-2">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Visão Geral da Aula</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Nesta aula, exploraremos os conceitos fundamentais das Metodologias Ágeis, com foco no framework Scrum, essencial para o desenvolvimento de software moderno.</p>
+                <h3>Tópicos Abordados:</h3>
+                <ul>
+                    <li>O que são metodologias Ágeis</li>
+                    <li>Intro - Scrum</li>
+                    <li>Quem é o Product Owner?</li>
+                    <li>Responsabilidades do Product Owner</li>
+                    <li>Quem é o Scrum Master?</li>
+                    <li>Responsabilidades do Scrum Master</li>
+                    <li>O que o Scrum Master não é</li>
+                    <li>Dev Team e Scrum Team</li>
+                    <li>Ciclo de vida Scrum</li>
+                    <li>Product Backlog</li>
+                    <li>Product Backlog priorizado</li>
+                    <li>Sprint Planning</li>
+                    <li>Sprint Backlog</li>
+                    <li>Daily Scrum</li>
+                    <li>Sprint Review</li>
+                    <li>Sprint Retrospective</li>
+                </ul>
+                <blockquote>"Agilidade é a capacidade de criar e responder à mudança para lucrar em um ambiente incerto e turbulento."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">2</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: O que são Metodologias Ágeis? -->
+    <div class="slide" id="slide-3">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>O que são Metodologias Ágeis?</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Metodologias Ágeis são abordagens iterativas e incrementais para o desenvolvimento de software, focadas na entrega contínua de valor e na adaptação a mudanças.</p>
+                <h3>Valores do Manifesto Ágil:</h3>
+                <ul>
+                    <li><strong>Indivíduos e interações</strong> mais que processos e ferramentas</li>
+                    <li><strong>Software em funcionamento</strong> mais que documentação abrangente</li>
+                    <li><strong>Colaboração com o cliente</strong> mais que negociação de contratos</li>
+                    <li><strong>Responder a mudanças</strong> mais que seguir um plano</li>
+                </ul>
+                <h3>Princípios do Manifesto Ágil:</h3>
+                <ul>
+                    <li>Nossa maior prioridade é satisfazer o cliente através da entrega contínua e antecipada de software de valor.</li>
+                    <li>Aceitar mudanças nos requisitos, mesmo no fim do desenvolvimento. Processos ágeis tiram vantagem das mudanças para dar vantagem competitiva ao cliente.</li>
+                    <li>Entregar software funcionando frequentemente, de algumas semanas a alguns meses, com preferência a prazos mais curtos.</li>
+                    <li>Pessoas de negócio e desenvolvedores devem trabalhar juntos diariamente durante todo o projeto.</li>
+                    <li>Construir projetos em torno de indivíduos motivados. Dê a eles o ambiente e o suporte de que precisam e confie neles para fazer o trabalho.</li>
+                    <li>O método mais eficiente e eficaz de transmitir informações para e entre uma equipe de desenvolvimento é a conversa face a face.</li>
+                    <li>Software funcionando é a medida primária de progresso.</li>
+                    <li>Processos ágeis promovem desenvolvimento sustentável. Os patrocinadores, desenvolvedores e usuários devem ser capazes de manter um ritmo constante indefinidamente.</li>
+                    <li>A atenção contínua à excelência técnica e bom design aumenta a agilidade.</li>
+                    <li>Simplicidade – a arte de maximizar a quantidade de trabalho não feito – é essencial.</li>
+                    <li>As melhores arquiteturas, requisitos e designs emergem de equipes auto-organizáveis.</li>
+                    <li>Em intervalos regulares, a equipe reflete sobre como se tornar mais eficaz e então ajusta e otimiza seu comportamento de acordo.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">3</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Introdução ao Scrum -->
+    <div class="slide" id="slide-4">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Introdução ao Scrum</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Scrum é um framework ágil para gerenciar projetos complexos, especialmente no desenvolvimento de software. Ele promove a colaboração, a auto-organização e a entrega iterativa.</p>
+                <h3>Pilares do Scrum:</h3>
+                <ul>
+                    <li><strong>Transparência:</strong> Todos os aspectos do processo devem ser visíveis para todos os envolvidos.</li>
+                    <li><strong>Inspeção:</strong> O progresso e os artefatos devem ser inspecionados frequentemente para detectar desvios indesejados.</li>
+                    <li><strong>Adaptação:</strong> Se um desvio for detectado, o processo ou o produto deve ser ajustado o mais rápido possível.</li>
+                </ul>
+                <h3>Valores do Scrum:</h3>
+                <ul>
+                    <li><strong>Comprometimento:</strong> Pessoas se comprometem pessoalmente a atingir os objetivos da equipe.</li>
+                    <li><strong>Foco:</strong> Todos se concentram no trabalho da Sprint e nos objetivos da equipe.</li>
+                    <li><strong>Abertura:</strong> A equipe e os stakeholders são abertos sobre o trabalho e os desafios.</li>
+                    <li><strong>Respeito:</strong> Os membros da equipe se respeitam como indivíduos capazes e independentes.</li>
+                    <li><strong>Coragem:</strong> Ter a coragem de fazer a coisa certa e trabalhar em problemas difíceis.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">4</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: O Papel do Product Owner -->
+    <div class="slide" id="slide-5">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>O Papel do Product Owner</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>O Product Owner (PO) é o responsável por maximizar o valor do produto resultante do trabalho do Time de Desenvolvimento.</p>
+                <h3>Responsabilidades do Product Owner:</h3>
+                <ul>
+                    <li><strong>Gerenciamento do Product Backlog:</strong> Criar, refinar e priorizar os itens do Product Backlog.</li>
+                    <li><strong>Visão do Produto:</strong> Articular claramente a visão do produto e garantir que todos a compreendam.</li>
+                    <li><strong>Stakeholders:</strong> Ser a ponte entre o Time de Desenvolvimento e os stakeholders (clientes, usuários, gerência).</li>
+                    <li><strong>Disponibilidade:</strong> Estar disponível para o Time de Desenvolvimento para esclarecer dúvidas sobre os itens do Product Backlog.</li>
+                    <li><strong>Aceitação:</strong> Decidir se o trabalho entregue pelo Time de Desenvolvimento é aceitável.</li>
+                </ul>
+                <blockquote>"O Product Owner é a voz do cliente e do negócio dentro do Time Scrum."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">5</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: O Papel do Scrum Master -->
+    <div class="slide" id="slide-6">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>O Papel do Scrum Master</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>O Scrum Master é um líder-servidor para o Time Scrum e para a organização. Ele ajuda a todos a entender a teoria, práticas, regras e valores do Scrum.</p>
+                <h3>Responsabilidades do Scrum Master:</h3>
+                <ul>
+                    <li><strong>Facilitador:</strong> Facilita os eventos Scrum e ajuda a equipe a manter o foco.</li>
+                    <li><strong>Removedor de Impedimentos:</strong> Identifica e remove obstáculos que impedem o progresso da equipe.</li>
+                    <li><strong>Coach:</strong> Orienta o Time de Desenvolvimento e o Product Owner sobre as melhores práticas do Scrum.</li>
+                    <li><strong>Guardião do Processo:</strong> Garante que o Scrum seja compreendido e aplicado corretamente.</li>
+                    <li><strong>Promotor da Auto-organização:</strong> Ajuda a equipe a se tornar auto-organizada e multifuncional.</li>
+                </ul>
+                <blockquote>"O Scrum Master é o guardião do Scrum, garantindo que o framework seja seguido e que a equipe possa entregar valor."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">6</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: O que o Scrum Master Não É -->
+    <div class="slide" id="slide-7">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>O que o Scrum Master Não É</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>É comum haver equívocos sobre o papel do Scrum Master. Ele não é:</p>
+                <ul>
+                    <li><strong>Gerente de Projeto Tradicional:</strong> Não gerencia pessoas ou o escopo do projeto de forma tradicional.</li>
+                    <li><strong>Secretário:</strong> Não é responsável por registrar todas as decisões ou atas de reunião.</li>
+                    <li><strong>Líder Técnico:</strong> Não toma decisões técnicas pela equipe.</li>
+                    <li><strong>Pessoa de Suporte:</strong> Embora remova impedimentos, não é um suporte técnico direto.</li>
+                    <li><strong>Ditador:</strong> Não impõe regras ou decisões à equipe.</li>
+                </ul>
+                <blockquote>"O Scrum Master empodera a equipe, não a controla."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">7</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Dev Team e Scrum Team -->
+    <div class="slide" id="slide-8">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Dev Team e Scrum Team</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Time de Desenvolvimento (Dev Team)</h3>
+                        <ul>
+                            <li>Profissionais que entregam um Incremento "Pronto" a cada Sprint.</li>
+                            <li>Auto-organizado e multifuncional.</li>
+                            <li>Não há hierarquias internas.</li>
+                            <li>Responsável por como o trabalho é feito.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Time Scrum</h3>
+                        <p>Composto por:</p>
+                        <ul>
+                            <li>Product Owner</li>
+                            <li>Scrum Master</li>
+                            <li>Time de Desenvolvimento</li>
+                        </ul>
+                        <p>É uma unidade coesa de profissionais focada em um objetivo comum: entregar um produto de valor.</p>
+                    </div>
+                </div>
+                <blockquote>"O Time Scrum é a unidade fundamental do Scrum, trabalhando em conjunto para alcançar o objetivo da Sprint."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">8</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Ciclo de Vida do Scrum -->
+    <div class="slide" id="slide-9">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Ciclo de Vida do Scrum</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>O Scrum opera em ciclos de tempo fixo chamados Sprints, geralmente de 1 a 4 semanas.</p>
+                <h3>Etapas Principais:</h3>
+                <ol>
+                    <li><strong>Sprint Planning:</strong> O Time Scrum planeja o trabalho a ser realizado na Sprint.</li>
+                    <li><strong>Daily Scrum:</strong> Reunião diária de 15 minutos para sincronização e planejamento do dia.</li>
+                    <li><strong>Desenvolvimento:</strong> O Time de Desenvolvimento trabalha nos itens do Sprint Backlog.</li>
+                    <li><strong>Sprint Review:</strong> O Time Scrum e os stakeholders inspecionam o Incremento e adaptam o Product Backlog.</li>
+                    <li><strong>Sprint Retrospective:</strong> O Time Scrum inspeciona a si mesmo e cria um plano para melhorias na próxima Sprint.</li>
+                </ol>
+                <blockquote>"O ciclo de vida do Scrum é um loop contínuo de planejamento, execução, inspeção e adaptação."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">9</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Product Backlog e Product Backlog Priorizado -->
+    <div class="slide" id="slide-10">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Product Backlog e Product Backlog Priorizado</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Product Backlog</h3>
+                        <ul>
+                            <li>Lista ordenada de tudo o que é conhecido por ser necessário no produto.</li>
+                            <li>É dinâmico e evolui constantemente.</li>
+                            <li>Contém funcionalidades, requisitos, melhorias e correções.</li>
+                            <li>É de responsabilidade do Product Owner.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Product Backlog Priorizado</h3>
+                        <ul>
+                            <li>O Product Backlog é continuamente refinado e priorizado pelo Product Owner.</li>
+                            <li>A priorização é baseada em valor, risco, dependências e esforço.</li>
+                            <li>Os itens de maior prioridade são mais detalhados e prontos para serem trabalhados nas Sprints.</li>
+                        </ul>
+                    </div>
+                </div>
+                <blockquote>"O Product Backlog é a única fonte de trabalho para o Time Scrum."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">10</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Sprint Planning e Sprint Backlog -->
+    <div class="slide" id="slide-11">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Sprint Planning e Sprint Backlog</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Sprint Planning</h3>
+                        <ul>
+                            <li>Evento que inicia a Sprint.</li>
+                            <li>O Time Scrum colabora para definir o Objetivo da Sprint e selecionar os itens do Product Backlog.</li>
+                            <li>Responde a duas perguntas: O que será entregue nesta Sprint? Como o trabalho será feito?</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Sprint Backlog</h3>
+                        <ul>
+                            <li>Conjunto de itens do Product Backlog selecionados para a Sprint, mais o plano para entregá-los.</li>
+                            <li>É um plano altamente visível e em tempo real do trabalho que o Time de Desenvolvimento pretende realizar.</li>
+                            <li>Pertence exclusivamente ao Time de Desenvolvimento.</li>
+                        </ul>
+                    </div>
+                </div>
+                <blockquote>"O Sprint Planning define o que será feito e o Sprint Backlog detalha como."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">11</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Daily Scrum -->
+    <div class="slide" id="slide-12">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Daily Scrum</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>A Daily Scrum é uma reunião diária de 15 minutos para o Time de Desenvolvimento inspecionar o progresso em direção ao Objetivo da Sprint e adaptar o Sprint Backlog, se necessário.</p>
+                <h3>Propósito:</h3>
+                <ul>
+                    <li>Sincronizar as atividades e criar um plano para as próximas 24 horas.</li>
+                    <li>Identificar impedimentos.</li>
+                    <li>Promover a auto-organização da equipe.</li>
+                </ul>
+                <h3>Formato:</h3>
+                <ul>
+                    <li>Realizada no mesmo horário e local todos os dias.</li>
+                    <li>Apenas o Time de Desenvolvimento participa ativamente.</li>
+                    <li>Cada membro responde a perguntas como: O que fiz ontem que ajudou o Time de Desenvolvimento a atingir o Objetivo da Sprint? O que farei hoje para ajudar o Time de Desenvolvimento a atingir o Objetivo da Sprint? Há algum impedimento que me impeça ou ao Time de Desenvolvimento de atingir o Objetivo da Sprint?</li>
+                </ul>
+                <blockquote>"A Daily Scrum é a oportunidade diária da equipe para se alinhar e planejar o caminho para o sucesso da Sprint."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">12</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Sprint Review -->
+    <div class="slide" id="slide-13">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Sprint Review</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>A Sprint Review é um evento no final da Sprint para inspecionar o Incremento e adaptar o Product Backlog, se necessário.</p>
+                <h3>Propósito:</h3>
+                <ul>
+                    <li>Demonstrar o trabalho "Pronto" realizado na Sprint.</li>
+                    <li>Coletar feedback dos stakeholders.</li>
+                    <li>Colaborar sobre o que fazer a seguir para otimizar o valor.</li>
+                </ul>
+                <h3>Participantes:</h3>
+                <ul>
+                    <li>Time Scrum (Product Owner, Scrum Master, Time de Desenvolvimento)</li>
+                    <li>Stakeholders convidados pelo Product Owner</li>
+                </ul>
+                <blockquote>"A Sprint Review é a oportunidade de inspecionar o produto e colaborar para o futuro."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">13</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Sprint Retrospective -->
+    <div class="slide" id="slide-14">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Sprint Retrospective</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>A Sprint Retrospective é uma oportunidade para o Time Scrum inspecionar a si mesmo e criar um plano para melhorias que serão implementadas na próxima Sprint.</p>
+                <h3>Propósito:</h3>
+                <ul>
+                    <li>Inspecionar como a última Sprint foi em relação a indivíduos, interações, processos e ferramentas.</li>
+                    <li>Identificar o que correu bem e o que pode ser melhorado.</li>
+                    <li>Criar um plano de ações para implementar melhorias na próxima Sprint.</li>
+                </ul>
+                <h3>Foco:</h3>
+                <ul>
+                    <li>Pessoas e relacionamentos.</li>
+                    <li>Processos e ferramentas.</li>
+                    <li>Definição de Pronto.</li>
+                </ul>
+                <blockquote>"A Sprint Retrospective é o motor da melhoria contínua no Scrum."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">14</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Conclusão -->
+    <div class="slide" id="slide-15">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Conclusão</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>As Metodologias Ágeis, com o Scrum como um framework proeminente, oferecem uma abordagem flexível e eficaz para o desenvolvimento de software. Compreender os papéis, eventos e artefatos do Scrum é fundamental para equipes que buscam entregar valor de forma contínua e adaptável.</p>
+                <h3>Pontos Chave:</h3>
+                <ul>
+                    <li>Agilidade foca em indivíduos, software funcionando, colaboração e resposta a mudanças.</li>
+                    <li>Scrum é um framework com pilares de Transparência, Inspeção e Adaptação.</li>
+                    <li>Os papéis de Product Owner, Scrum Master e Time de Desenvolvimento são cruciais.</li>
+                    <li>Eventos como Sprint Planning, Daily Scrum, Sprint Review e Sprint Retrospective impulsionam o ciclo.</li>
+                    <li>Artefatos como Product Backlog e Sprint Backlog guiam o trabalho.</li>
+                </ul>
+                <blockquote>"Dominar as Metodologias Ágeis e o Scrum é um diferencial para qualquer desenvolvedor no mercado atual."</blockquote>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">15</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn">Anterior</button>
+        <button id="nextBtn">Próximo</button>
+        <button id="printBtn">Imprimir / PDF</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            updateSlideNumber();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function updateSlideNumber() {
+            const slideNumberElement = slides[currentSlide].querySelector('.slide-number');
+            if (slideNumberElement) {
+                slideNumberElement.textContent = currentSlide + 1;
+            }
+        }
+
+        document.getElementById("nextBtn").addEventListener("click", nextSlide);
+        document.getElementById("prevBtn").addEventListener("click", prevSlide);
+        document.getElementById("printBtn").addEventListener("click", function() { window.print(); });
+
+        // Initialize first slide
+        updateSlideNumber();
+    </script>
+</body>
+</html>
+

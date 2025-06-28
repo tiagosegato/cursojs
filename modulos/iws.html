@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução a WebServices | Prof. Tiago Segato</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>JavaScript BackEnd</h1>
+            </div>
+            <nav class="main-nav">
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../sobre.html">Sobre o Curso</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active">Módulos <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="lpjs.html">Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html">Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html" class="active">Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Projeto <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../ead.html">Conteúdo EaD</a></li>
+                    <li><a href="../recursos.html">Recursos</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Módulo 5: Introdução a WebServices</h1>
+            <p>Conceitos, protocolos e implementação de serviços web</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="content-layout">
+                <div class="main-content">
+                    <h2>Visão Geral do Módulo</h2>
+                    <p>Neste módulo, você aprenderá os conceitos fundamentais de WebServices, incluindo os diferentes tipos, protocolos e padrões utilizados na comunicação entre sistemas. Você compreenderá como os serviços web funcionam e como implementá-los em aplicações JavaScript, especialmente no contexto de desenvolvimento backend.</p>
+                    
+                    <div class="module-info">
+                        <div class="module-info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Carga Horária</h3>
+                                <p>12 horas</p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-book"></i>
+                            <div>
+                                <h3>Material de aula</h3>
+                                <p><a href="../aulas/m6-ws.html" class="btn btn-sm" target="_blank">Acessar slides</a></p>
+                            </div>
+                        </div>
+                        <div class="module-info-item">
+                            <i class="fas fa-code-branch"></i>
+                            <div>
+                                <h3>Pré-requisitos</h3>
+                                <p>Módulos 1, 2, 3 e 4</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Conteúdo Programático</h2>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>1. Introdução aos WebServices</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>O que são WebServices</li>
+                                    <li>História e evolução dos WebServices</li>
+                                    <li>Importância dos WebServices na arquitetura de sistemas</li>
+                                    <li>Vantagens e desvantagens dos WebServices</li>
+                                    <li>Cenários de uso e aplicações práticas</li>
+                                    <li>Interoperabilidade entre sistemas heterogêneos</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>2. Arquitetura de WebServices</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Arquitetura cliente-servidor</li>
+                                    <li>Arquitetura orientada a serviços (SOA)</li>
+                                    <li>Arquitetura de microsserviços</li>
+                                    <li>Componentes de um WebService</li>
+                                    <li>Protocolos de comunicação</li>
+                                    <li>Formatos de dados (XML, JSON)</li>
+                                    <li>Comparação entre diferentes arquiteturas</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>3. Tipos de WebServices</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>SOAP (Simple Object Access Protocol)
+                                        <ul>
+                                            <li>Estrutura e componentes</li>
+                                            <li>Envelope SOAP</li>
+                                            <li>WSDL (Web Services Description Language)</li>
+                                            <li>Vantagens e desvantagens</li>
+                                        </ul>
+                                    </li>
+                                    <li>REST (Representational State Transfer)
+                                        <ul>
+                                            <li>Princípios e restrições</li>
+                                            <li>Recursos e URIs</li>
+                                            <li>Métodos HTTP</li>
+                                            <li>Vantagens e desvantagens</li>
+                                        </ul>
+                                    </li>
+                                    <li>GraphQL
+                                        <ul>
+                                            <li>Conceitos básicos</li>
+                                            <li>Queries e mutations</li>
+                                            <li>Schemas e tipos</li>
+                                            <li>Vantagens e desvantagens</li>
+                                        </ul>
+                                    </li>
+                                    <li>gRPC
+                                        <ul>
+                                            <li>Conceitos básicos</li>
+                                            <li>Protocol Buffers</li>
+                                            <li>Vantagens e desvantagens</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>4. REST em Detalhes</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Princípios REST
+                                        <ul>
+                                            <li>Interface uniforme</li>
+                                            <li>Stateless</li>
+                                            <li>Cacheable</li>
+                                            <li>Sistema em camadas</li>
+                                            <li>Código sob demanda (opcional)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Recursos e URIs
+                                        <ul>
+                                            <li>Identificação de recursos</li>
+                                            <li>Estrutura de URIs</li>
+                                            <li>Boas práticas na definição de URIs</li>
+                                        </ul>
+                                    </li>
+                                    <li>Métodos HTTP
+                                        <ul>
+                                            <li>GET: recuperação de recursos</li>
+                                            <li>POST: criação de recursos</li>
+                                            <li>PUT: atualização completa de recursos</li>
+                                            <li>PATCH: atualização parcial de recursos</li>
+                                            <li>DELETE: remoção de recursos</li>
+                                            <li>HEAD e OPTIONS</li>
+                                        </ul>
+                                    </li>
+                                    <li>Códigos de status HTTP
+                                        <ul>
+                                            <li>2xx: sucesso</li>
+                                            <li>3xx: redirecionamento</li>
+                                            <li>4xx: erro do cliente</li>
+                                            <li>5xx: erro do servidor</li>
+                                        </ul>
+                                    </li>
+                                    <li>Representações de recursos (JSON, XML)</li>
+                                    <li>HATEOAS (Hypermedia as the Engine of Application State)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>5. Segurança em WebServices</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Autenticação e autorização
+                                        <ul>
+                                            <li>Basic Authentication</li>
+                                            <li>Digest Authentication</li>
+                                            <li>OAuth 2.0</li>
+                                            <li>JWT (JSON Web Tokens)</li>
+                                            <li>API Keys</li>
+                                        </ul>
+                                    </li>
+                                    <li>HTTPS e TLS/SSL</li>
+                                    <li>Vulnerabilidades comuns
+                                        <ul>
+                                            <li>Injeção de SQL</li>
+                                            <li>Cross-Site Scripting (XSS)</li>
+                                            <li>Cross-Site Request Forgery (CSRF)</li>
+                                            <li>Exposição de dados sensíveis</li>
+                                        </ul>
+                                    </li>
+                                    <li>Boas práticas de segurança
+                                        <ul>
+                                            <li>Validação de entrada</li>
+                                            <li>Sanitização de saída</li>
+                                            <li>Rate limiting</li>
+                                            <li>CORS (Cross-Origin Resource Sharing)</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>6. Documentação de APIs</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Importância da documentação</li>
+                                    <li>Especificações e padrões
+                                        <ul>
+                                            <li>OpenAPI (Swagger)</li>
+                                            <li>RAML (RESTful API Modeling Language)</li>
+                                            <li>API Blueprint</li>
+                                        </ul>
+                                    </li>
+                                    <li>Ferramentas de documentação
+                                        <ul>
+                                            <li>Swagger UI</li>
+                                            <li>ReDoc</li>
+                                            <li>Postman</li>
+                                        </ul>
+                                    </li>
+                                    <li>Documentação como código</li>
+                                    <li>Boas práticas na documentação de APIs</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>7. Consumo de WebServices</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Consumo de APIs REST em JavaScript
+                                        <ul>
+                                            <li>XMLHttpRequest</li>
+                                            <li>Fetch API</li>
+                                            <li>Axios</li>
+                                            <li>Tratamento de respostas</li>
+                                            <li>Tratamento de erros</li>
+                                        </ul>
+                                    </li>
+                                    <li>Consumo de APIs SOAP
+                                        <ul>
+                                            <li>Bibliotecas para SOAP em JavaScript</li>
+                                            <li>Parsing de XML</li>
+                                        </ul>
+                                    </li>
+                                    <li>Consumo de APIs GraphQL
+                                        <ul>
+                                            <li>Construção de queries</li>
+                                            <li>Bibliotecas para GraphQL</li>
+                                        </ul>
+                                    </li>
+                                    <li>Autenticação ao consumir APIs</li>
+                                    <li>Estratégias de cache</li>
+                                    <li>Tratamento de paginação</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>8. Criação de WebServices com JavaScript</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Criação de APIs REST com Node.js
+                                        <ul>
+                                            <li>Frameworks e bibliotecas (Express, Koa, Fastify)</li>
+                                            <li>Definição de rotas</li>
+                                            <li>Middleware</li>
+                                            <li>Manipulação de requisições e respostas</li>
+                                        </ul>
+                                    </li>
+                                    <li>Implementação de CRUD
+                                        <ul>
+                                            <li>Criação de recursos (POST)</li>
+                                            <li>Leitura de recursos (GET)</li>
+                                            <li>Atualização de recursos (PUT/PATCH)</li>
+                                            <li>Remoção de recursos (DELETE)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Validação de dados</li>
+                                    <li>Tratamento de erros</li>
+                                    <li>Implementação de autenticação e autorização</li>
+                                    <li>Documentação automática</li>
+                                    <li>Testes de APIs</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>9. Versionamento de APIs</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Importância do versionamento</li>
+                                    <li>Estratégias de versionamento
+                                        <ul>
+                                            <li>Versionamento na URL</li>
+                                            <li>Versionamento no header</li>
+                                            <li>Versionamento por content negotiation</li>
+                                            <li>Versionamento por parâmetro de query</li>
+                                        </ul>
+                                    </li>
+                                    <li>Compatibilidade retroativa</li>
+                                    <li>Depreciação de APIs</li>
+                                    <li>Comunicação de mudanças</li>
+                                    <li>Boas práticas de versionamento</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>10. Tendências e Futuro dos WebServices</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>APIs assíncronas e event-driven</li>
+                                    <li>WebSockets e comunicação em tempo real</li>
+                                    <li>Serverless APIs</li>
+                                    <li>API Gateways</li>
+                                    <li>APIs como produtos</li>
+                                    <li>Monetização de APIs</li>
+                                    <li>Métricas e análise de APIs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Exemplos Práticos</h2>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 1: Consumindo uma API REST com Fetch</h3>
+                        <pre><code>// Exemplo de consumo de API REST para obter produtos
+// Utilizando a Fetch API nativa do JavaScript
+
+// Função para buscar todos os produtos
+async function buscarProdutos() {
+  try {
+    // Fazendo a requisição GET para a API
+    const response = await fetch('https://api.exemplo.com/produtos');
+    
+    // Verificando se a resposta foi bem-sucedida
+    if (!response.ok) {
+      throw new Error(`Erro HTTP: ${response.status}`);
+    }
+    
+    // Convertendo a resposta para JSON
+    const produtos = await response.json();
+    
+    // Exibindo os produtos
+    console.log('Produtos encontrados:', produtos.length);
+    produtos.forEach(produto => {
+      console.log(`${produto.codigo} - ${produto.descricao} - R$ ${produto.valorUnitario.toFixed(2)}`);
+    });
+    
+    return produtos;
+  } catch (error) {
+    console.error('Erro ao buscar produtos:', error.message);
+    return [];
+  }
+}
+
+// Função para buscar um produto específico por código
+async function buscarProdutoPorCodigo(codigo) {
+  try {
+    const response = await fetch(`https://api.exemplo.com/produtos/${codigo}`);
+    
+    if (!response.ok) {
+      if (response.status === 404) {
+        console.log(`Produto com código ${codigo} não encontrado.`);
+        return null;
+      }
+      throw new Error(`Erro HTTP: ${response.status}`);
+    }
+    
+    const produto = await response.json();
+    console.log('Produto encontrado:');
+    console.log(`Código: ${produto.codigo}`);
+    console.log(`Descrição: ${produto.descricao}`);
+    console.log(`Unidade: ${produto.unidade}`);
+    console.log(`Valor Unitário: R$ ${produto.valorUnitario.toFixed(2)}`);
+    console.log(`Estoque: ${produto.estoque} ${produto.unidade}`);
+    
+    return produto;
+  } catch (error) {
+    console.error(`Erro ao buscar produto ${codigo}:`, error.message);
+    return null;
+  }
+}
+
+// Função para criar um novo produto
+async function criarProduto(dadosProduto) {
+  try {
+    const response = await fetch('https://api.exemplo.com/produtos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer seu-token-aqui' // Token de autenticação
+      },
+      body: JSON.stringify(dadosProduto)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Erro HTTP: ${response.status}`);
+    }
+    
+    const produtoCriado = await response.json();
+    console.log('Produto criado com sucesso:');
+    console.log(`Código: ${produtoCriado.codigo}`);
+    console.log(`Descrição: ${produtoCriado.descricao}`);
+    
+    return produtoCriado;
+  } catch (error) {
+    console.error('Erro ao criar produto:', error.message);
+    return null;
+  }
+}
+
+// Função para atualizar um produto existente
+async function atualizarProduto(codigo, dadosAtualizados) {
+  try {
+    const response = await fetch(`https://api.exemplo.com/produtos/${codigo}`, {
+      method: 'PUT', // ou 'PATCH' para atualização parcial
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer seu-token-aqui'
+      },
+      body: JSON.stringify(dadosAtualizados)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Erro HTTP: ${response.status}`);
+    }
+    
+    const produtoAtualizado = await response.json();
+    console.log('Produto atualizado com sucesso:');
+    console.log(`Código: ${produtoAtualizado.codigo}`);
+    console.log(`Descrição: ${produtoAtualizado.descricao}`);
+    
+    return produtoAtualizado;
+  } catch (error) {
+    console.error(`Erro ao atualizar produto ${codigo}:`, error.message);
+    return null;
+  }
+}
+
+// Função para excluir um produto
+async function excluirProduto(codigo) {
+  try {
+    const response = await fetch(`https://api.exemplo.com/produtos/${codigo}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer seu-token-aqui'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Erro HTTP: ${response.status}`);
+    }
+    
+    console.log(`Produto ${codigo} excluído com sucesso.`);
+    return true;
+  } catch (error) {
+    console.error(`Erro ao excluir produto ${codigo}:`, error.message);
+    return false;
+  }
+}
+
+// Exemplo de uso das funções
+async function exemploDeUso() {
+  // Buscando todos os produtos
+  console.log('Buscando todos os produtos...');
+  const produtos = await buscarProdutos();
+  
+  // Buscando um produto específico
+  console.log('\nBuscando produto específico...');
+  const produto = await buscarProdutoPorCodigo(25);
+  
+  // Criando um novo produto
+  console.log('\nCriando novo produto...');
+  const novoProduto = {
+    codigo: 40,
+    unidade: 'UN',
+    descricao: 'Produto Novo',
+    valorUnitario: 1.50,
+    estoque: 100
+  };
+  await criarProduto(novoProduto);
+  
+  // Atualizando um produto
+  console.log('\nAtualizando produto...');
+  const dadosAtualizados = {
+    descricao: 'Produto Atualizado',
+    valorUnitario: 1.75
+  };
+  await atualizarProduto(40, dadosAtualizados);
+  
+  // Excluindo um produto
+  console.log('\nExcluindo produto...');
+  await excluirProduto(40);
+}
+
+// Executando o exemplo
+exemploDeUso();</code></pre>
+                    </div>
+                    
+                    <div class="code-example">
+                        <h3>Exemplo 2: Criando uma API REST com Express</h3>
+                        <pre><code>// Exemplo de criação de API REST para produtos com Express
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+// Criando a aplicação Express
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(cors()); // Habilita CORS
+app.use(bodyParser.json()); // Parse de JSON
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Simulando um banco de dados com um array
+let produtos = [
+  { codigo: 25, unidade: 'Kg', descricao: 'Queijo', valorUnitario: 0.97, estoque: 50 },
+  { codigo: 31, unidade: 'BAR', descricao: 'Chocolate', valorUnitario: 0.87, estoque: 100 },
+  { codigo: 78, unidade: 'L', descricao: 'Vinho', valorUnitario: 2.00, estoque: 30 }
+];
+
+// Middleware para logging de requisições
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url} - ${new Date().toISOString()}`);
+  next();
+});
+
+// Middleware para verificar se o produto existe
+function verificarProdutoExistente(req, res, next) {
+  const codigo = parseInt(req.params.codigo);
+  const produto = produtos.find(p => p.codigo === codigo);
+  
+  if (!produto) {
+    return res.status(404).json({ 
+      erro: true, 
+      mensagem: `Produto com código ${codigo} não encontrado.` 
+    });
+  }
+  
+  req.produto = produto;
+  next();
+}
+
+// Rotas da API
+
+// GET /api/produtos - Listar todos os produtos
+app.get('/api/produtos', (req, res) => {
+  // Implementando filtros via query params
+  let resultado = [...produtos];
+  
+  // Filtro por descrição
+  if (req.query.descricao) {
+    const termo = req.query.descricao.toLowerCase();
+    resultado = resultado.filter(p => 
+      p.descricao.toLowerCase().includes(termo)
+    );
+  }
+  
+  // Filtro por valor mínimo
+  if (req.query.valorMinimo) {
+    const valorMinimo = parseFloat(req.query.valorMinimo);
+    resultado = resultado.filter(p => p.valorUnitario >= valorMinimo);
+  }
+  
+  // Filtro por valor máximo
+  if (req.query.valorMaximo) {
+    const valorMaximo = parseFloat(req.query.valorMaximo);
+    resultado = resultado.filter(p => p.valorUnitario <= valorMaximo);
+  }
+  
+  // Ordenação
+  if (req.query.ordenarPor) {
+    const campo = req.query.ordenarPor;
+    const ordem = req.query.ordem === 'desc' ? -1 : 1;
+    
+    resultado.sort((a, b) => {
+      if (a[campo] < b[campo]) return -1 * ordem;
+      if (a[campo] > b[campo]) return 1 * ordem;
+      return 0;
+    });
+  }
+  
+  res.json(resultado);
+});
+
+// GET /api/produtos/:codigo - Buscar um produto específico
+app.get('/api/produtos/:codigo', verificarProdutoExistente, (req, res) => {
+  res.json(req.produto);
+});
+
+// POST /api/produtos - Criar um novo produto
+app.post('/api/produtos', (req, res) => {
+  // Validação básica
+  const { codigo, unidade, descricao, valorUnitario } = req.body;
+  
+  if (!codigo || !unidade || !descricao || valorUnitario === undefined) {
+    return res.status(400).json({ 
+      erro: true, 
+      mensagem: 'Dados incompletos. Código, unidade, descrição e valor unitário são obrigatórios.' 
+    });
+  }
+  
+  // Verificar se o código já existe
+  if (produtos.some(p => p.codigo === codigo)) {
+    return res.status(409).json({ 
+      erro: true, 
+      mensagem: `Produto com código ${codigo} já existe.` 
+    });
+  }
+  
+  // Criar o novo produto
+  const novoProduto = {
+    codigo,
+    unidade,
+    descricao,
+    valorUnitario: parseFloat(valorUnitario),
+    estoque: req.body.estoque || 0
+  };
+  
+  produtos.push(novoProduto);
+  
+  res.status(201).json(novoProduto);
+});
+
+// PUT /api/produtos/:codigo - Atualizar um produto existente
+app.put('/api/produtos/:codigo', verificarProdutoExistente, (req, res) => {
+  const codigo = parseInt(req.params.codigo);
+  const index = produtos.findIndex(p => p.codigo === codigo);
+  
+  // Validação básica
+  const { unidade, descricao, valorUnitario } = req.body;
+  
+  if (!unidade || !descricao || valorUnitario === undefined) {
+    return res.status(400).json({ 
+      erro: true, 
+      mensagem: 'Dados incompletos. Unidade, descrição e valor unitário são obrigatórios.' 
+    });
+  }
+  
+  // Atualizar o produto
+  const produtoAtualizado = {
+    codigo, // Mantém o código original
+    unidade,
+    descricao,
+    valorUnitario: parseFloat(valorUnitario),
+    estoque: req.body.estoque !== undefined ? req.body.estoque : produtos[index].estoque
+  };
+  
+  produtos[index] = produtoAtualizado;
+  
+  res.json(produtoAtualizado);
+});
+
+// PATCH /api/produtos/:codigo - Atualizar parcialmente um produto
+app.patch('/api/produtos/:codigo', verificarProdutoExistente, (req, res) => {
+  const codigo = parseInt(req.params.codigo);
+  const index = produtos.findIndex(p => p.codigo === codigo);
+  
+  // Atualizar apenas os campos fornecidos
+  const produtoAtualizado = { ...produtos[index] };
+  
+  if (req.body.unidade !== undefined) {
+    produtoAtualizado.unidade = req.body.unidade;
+  }
+  
+  if (req.body.descricao !== undefined) {
+    produtoAtualizado.descricao = req.body.descricao;
+  }
+  
+  if (req.body.valorUnitario !== undefined) {
+    produtoAtualizado.valorUnitario = parseFloat(req.body.valorUnitario);
+  }
+  
+  if (req.body.estoque !== undefined) {
+    produtoAtualizado.estoque = parseInt(req.body.estoque);
+  }
+  
+  produtos[index] = produtoAtualizado;
+  
+  res.json(produtoAtualizado);
+});
+
+// DELETE /api/produtos/:codigo - Excluir um produto
+app.delete('/api/produtos/:codigo', verificarProdutoExistente, (req, res) => {
+  const codigo = parseInt(req.params.codigo);
+  produtos = produtos.filter(p => p.codigo !== codigo);
+  
+  res.status(204).end(); // No Content
+});
+
+// Rota para gerenciar estoque
+app.post('/api/produtos/:codigo/estoque', verificarProdutoExistente, (req, res) => {
+  const { operacao, quantidade } = req.body;
+  const codigo = parseInt(req.params.codigo);
+  const index = produtos.findIndex(p => p.codigo === codigo);
+  
+  if (!operacao || !quantidade) {
+    return res.status(400).json({ 
+      erro: true, 
+      mensagem: 'Operação e quantidade são obrigatórios.' 
+    });
+  }
+  
+  const qtd = parseInt(quantidade);
+  
+  if (isNaN(qtd) || qtd <= 0) {
+    return res.status(400).json({ 
+      erro: true, 
+      mensagem: 'Quantidade deve ser um número positivo.' 
+    });
+  }
+  
+  if (operacao === 'adicionar') {
+    produtos[index].estoque += qtd;
+    res.json({ 
+      mensagem: `Estoque do produto ${produtos[index].descricao} aumentado em ${qtd} ${produtos[index].unidade}.`,
+      estoqueAtual: produtos[index].estoque
+    });
+  } else if (operacao === 'remover') {
+    if (produtos[index].estoque < qtd) {
+      return res.status(400).json({ 
+        erro: true, 
+        mensagem: 'Estoque insuficiente.' 
+      });
+    }
+    
+    produtos[index].estoque -= qtd;
+    res.json({ 
+      mensagem: `Estoque do produto ${produtos[index].descricao} reduzido em ${qtd} ${produtos[index].unidade}.`,
+      estoqueAtual: produtos[index].estoque
+    });
+  } else {
+    return res.status(400).json({ 
+      erro: true, 
+      mensagem: 'Operação inválida. Use "adicionar" ou "remover".' 
+    });
+  }
+});
+
+// Middleware para tratamento de erros
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ 
+    erro: true, 
+    mensagem: 'Erro interno do servidor.' 
+  });
+});
+
+// Middleware para rotas não encontradas
+app.use((req, res) => {
+  res.status(404).json({ 
+    erro: true, 
+    mensagem: 'Rota não encontrada.' 
+  });
+});
+
+// Iniciando o servidor
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`API disponível em http://localhost:${PORT}/api/produtos`);
+});</code></pre>
+                    </div>
+                    
+                    <h2>Exercícios Práticos</h2>
+                    <p>Para fixar os conceitos aprendidos neste módulo, recomendamos a realização dos seguintes exercícios:</p>
+                    
+                    <ol>
+                        <li>Crie um cliente JavaScript que consuma uma API pública (como a API do GitHub, OpenWeatherMap, etc.) utilizando a Fetch API.</li>
+                        <li>Implemente uma API REST simples com Express para gerenciar produtos, incluindo operações CRUD completas.</li>
+                        <li>Adicione autenticação JWT à sua API de produtos, protegendo rotas que modificam dados.</li>
+                        <li>Implemente paginação, ordenação e filtragem na listagem de produtos da sua API.</li>
+                        <li>Documente sua API utilizando Swagger/OpenAPI.</li>
+                        <li>Crie testes automatizados para sua API utilizando ferramentas como Jest e Supertest.</li>
+                        <li>Implemente versionamento na sua API (por exemplo, /api/v1/produtos).</li>
+                        <li>Crie um middleware para logging de requisições e respostas.</li>
+                        <li>Implemente validação de dados nas rotas de criação e atualização de produtos.</li>
+                        <li>Crie uma interface web simples que consuma sua API de produtos.</li>
+                    </ol>
+                    
+                    <p>Você encontrará mais exercícios e desafios na seção de <a href="../exercicios.html">Exercícios</a>.</p>
+                    
+                    <div class="cta mt-5">
+                        <h3>Pronto para avançar?</h3>
+                        <p>Após dominar os conceitos de WebServices, você estará preparado para avançar para o próximo módulo.</p>
+                        <a href="nodejs.html" class="btn btn-primary">Próximo Módulo: Node.js</a>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-nav">
+                        <h3>Módulos do Curso</h3>
+                        <ul>
+                            <li><a href="lpjs.html">1. Lógica de Programação com JavaScript</a></li>
+                            <li><a href="git.html">2. Git, GitHub e GitLab</a></li>
+                            <li><a href="jstob.html">3. JavaScript e Orientação a Objetos</a></li>
+                            <li><a href="pds.html">4. Padrões de Desenvolvimento de Software</a></li>
+                            <li><a href="iws.html" class="active">5. Introdução a WebServices</a></li>
+                            <li><a href="nodejs.html">6. Node.js</a></li>
+                            <li><a href="nbd.html">7. Noções de Banco de Dados</a></li>
+                            <li><a href="scrum.html">8. Metodologias Ágeis e Scrum</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-nav">
+                        <h3>Recursos Adicionais</h3>
+                        <div class="recursos-links">
+                            <a href="../recursos.html#videos" class="recurso-link">
+                                <i class="fas fa-video"></i> Vídeos Recomendados
+                            </a>
+                            <a href="../exercicios.html#modulo5" class="recurso-link">
+                                <i class="fas fa-code"></i> Exercícios Práticos
+                            </a>
+                            <a href="https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API" target="_blank" class="recurso-link">
+                                <i class="fas fa-book"></i> Documentação Fetch API
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-nav">
+                        <h3>Projeto Relacionado</h3>
+                        <div class="projeto-preview">
+                            <h4>Sistema de Vendas</h4>
+                            <p>Os conceitos de WebServices serão aplicados na criação da API REST para o sistema de vendas, permitindo a comunicação entre o frontend e o backend.</p>
+                            <a href="../projeto/index.html" class="btn btn-outline btn-sm">Ver Projeto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Prof. Tiago Segato</h2>
+                    <p>Desenvolvimento Backend com JavaScript: Do Zero à Aplicação Completa</p>
+                    <div class="social-links mt-3">
+                        <a href="https://www.linkedin.com/in/tiagosegato/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiagosegato" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.youtube.com/@tiagosegato" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@tiagosegato" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/tiagosegato/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../sobre.html">Sobre o Curso</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../recursos.html">Recursos</a></li>
+                            <li><a href="../contato.html">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Módulos</h3>
+                        <ul>
+                            <li><a href="lpjs.html">Lógica de Programação</a></li>
+                            <li><a href="git.html">Git e GitHub</a></li>
+                            <li><a href="jstob.html">JavaScript e OO</a></li>
+                            <li><a href="pds.html">Padrões de Desenvolvimento</a></li>
+                            <li><a href="iws.html">WebServices</a></li>
+                            <li><a href="nodejs.html">Node.js</a></li>
+                            <li><a href="nbd.html">Banco de Dados</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Projeto</h3>
+                        <ul>
+                            <li><a href="../projeto/index.html">Visão Geral</a></li>
+                            <li><a href="../projeto/requisitos.html">Requisitos</a></li>
+                            <li><a href="../projeto/modelagem.html">Modelagem</a></li>
+                            <li><a href="../projeto/arquitetura.html">Arquitetura</a></li>
+                            <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Prof. Tiago Segato. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="https://tiagosegato.com/" target="_blank" aria-label="Website"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:contato@tiagosegato.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
