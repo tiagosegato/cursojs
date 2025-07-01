@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 7: Node.js + Express</title>
+    <style>
+        :root {
+            --primary-color: #4682A0; /* Azul para destaque */
+            --secondary-color: #323330; /* Cinza escuro JavaScript */
+            --accent-color: #4682A0; /* Azul para destaque */
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --background-color: #ffffff;
+            --code-background: #f1f1f1;
+            --header-color: #4682A0; /* Azul para cabeçalhos */
+            --footer-color: #4682A0; /* Azul para rodapés */
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .slide {
+            display: none;
+            height: 100vh;
+            box-sizing: border-box;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slide-header {
+            background-color: var(--header-color);
+            padding: 1rem 2rem;
+            border-bottom: 5px solid var(--secondary-color);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .slide-body {
+            flex: 1;
+            padding: 2rem;
+            background-color: white;
+            overflow-y: auto;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            padding-bottom: 4rem; /* Espaço extra para evitar sobreposição com os botões */
+        }
+        
+        .slide-footer {
+            background-color: var(--footer-color);
+            padding: 0.5rem 2rem;
+            border-top: 5px solid var(--secondary-color);
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .slide-number {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 2rem;
+            padding: 0.5rem;
+            width: auto; /* Ajustado para caber texto */
+            min-width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            white-space: nowrap;
+        }
+        
+        .bfd-logo {
+            height: 60px;
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+        
+        ul, ol {
+            margin-left: 1.5rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-background);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background-color: var(--code-background);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        
+        blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+            margin-left: 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .controls {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        button {
+            background-color: var(--secondary-color);
+            color: var(--accent-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        button:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .cover-slide .slide-content {
+            background-color: white;
+            color: var(--secondary-color);
+        }
+        
+        .cover-slide .slide-header {
+            background-color: var(--primary-color);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .cover-slide .slide-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .cover-slide h1 {
+            color: var(--secondary-color);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cover-slide h3 {
+            color: var(--secondary-color);
+            font-weight: normal;
+            margin-bottom: 2rem;
+        }
+        
+        .cover-slide h4 {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        @media print {
+            .slide {
+                display: block;
+                page-break-after: always;
+                height: auto;
+            }
+            
+            .controls, .slide-number {
+                display: none;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentSlide = 1;
+            const totalSlides = document.querySelectorAll('.slide').length;
+            
+            function showSlide(slideNumber) {
+                document.querySelectorAll('.slide').forEach(slide => slide.classList.remove('active'));
+                const activeSlide = document.getElementById('slide-' + slideNumber);
+                if (activeSlide) {
+                    activeSlide.classList.add('active');
+                }
+                currentSlide = slideNumber;
+            }
+
+            window.nextSlide = function() {
+                if (currentSlide < totalSlides) {
+                    showSlide(currentSlide + 1);
+                }
+            };
+
+            window.prevSlide = function() {
+                if (currentSlide > 1) {
+                    showSlide(currentSlide - 1);
+                }
+            };
+
+            window.printSlides = function() {
+                window.print();
+            };
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    e.preventDefault();
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevSlide();
+                }
+            });
+
+            showSlide(1);
+        });
+    </script>
+</head>
+<body>
+
+    <!-- Slide 1: Capa -->
+    <div class="slide cover-slide active" id="slide-1">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <div class="js-logo">JS</div>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <h3>Formação BackEnd</h3>
+                <h1>Node.js + Express</h1>
+                <h4>Módulo 7: Guia Completo: Desenvolvendo APIs com Node.js e Express</h4>
+                <p>Prof. Tiago Segato</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">1</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Visão Geral do Módulo -->
+    <div class="slide" id="slide-2">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Visão Geral do Módulo</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Bem-vindo ao Módulo 7! Neste módulo, exploraremos o universo do Node.js e Express para construção de APIs. Abordaremos desde a configuração do ambiente até a criação de uma API RESTful completa, incluindo persistência de dados, middlewares, autenticação e preparação para produção.</p>
+                <h3>O que você vai aprender:</h3>
+                <ul>
+                    <li>Introdução ao Node.js e seu papel no backend.</li>
+                    <li>Configuração do ambiente de desenvolvimento.</li>
+                    <li>Diferenças entre Frontend, Backend e o papel das APIs.</li>
+                    <li>Utilização do framework Express.js para construção de APIs.</li>
+                    <li>Conceitos de roteamento, endpoints e métodos HTTP.</li>
+                    <li>Ferramentas para teste de APIs.</li>
+                    <li>Construção de uma API CRUD completa.</li>
+                    <li>Persistência de dados com Banco de Dados e Sequelize.</li>
+                    <li>Middlewares, validação e tratamento de erros.</li>
+                    <li>Autenticação de usuário com Token JWT.</li>
+                    <li>Preparação para o ambiente de produção (CORS, variáveis de ambiente, SSL, Deploy).</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">2</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Introdução ao Node.js -->
+    <div class="slide" id="slide-3">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>1.1. Introdução ao Node.js</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Até pouco tempo atrás, o JavaScript vivia exclusivamente dentro dos navegadores de internet (como Chrome, Firefox) para criar interatividade em páginas web (o frontend).</p>
+                <h3>O que é Node.js?</h3>
+                <ul>
+                    <li>É um <strong>ambiente de execução</strong> que permite rodar código JavaScript no lado do servidor (no backend).</li>
+                    <li><strong>Não é uma nova linguagem de programação.</strong> É o mesmo JavaScript que você já conhece.</li>
+                    <li><strong>Não é um framework.</strong> É a plataforma sobre a qual construiremos nossas aplicações.</li>
+                    <li><strong>É rápido e eficiente.</strong> Foi construído sobre o motor V8 do Google Chrome.</li>
+                    <li>Isso permitiu que desenvolvedores usassem uma única linguagem (JavaScript) tanto para o frontend quanto para o backend, simplificando o desenvolvimento.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">3</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Configuração do Ambiente (IDE) -->
+    <div class="slide" id="slide-4">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>1.2. Configuração do Ambiente (IDE)</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Para escrever nosso código, usaremos um <strong>Editor de Código</strong> ou <strong>IDE (Ambiente de Desenvolvimento Integrado)</strong>.</p>
+                <h3>Recomendação:</h3> 
+                <p><strong>Visual Studio Code (VS Code)</strong>. É gratuito, poderoso e possui um ecossistema gigante de extensões.</p>
+                <h3>Terminal Integrado:</h3>
+                <p>O VS Code possui um terminal embutido (<code>Ctrl + '</code>) para rodar comandos como <code>npm install</code> e <code>node index.js</code>.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">4</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Frontend, Backend e APIs -->
+    <div class="slide" id="slide-5">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>1.3. Frontend, Backend e APIs</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Imagine que uma aplicação web é um <strong>restaurante</strong>.</p>
+                <ul>
+                    <li><strong>Frontend (O Salão):</strong> É a parte com a qual o usuário interage diretamente (telas, botões, formulários). É o que você vê. Tecnologias: HTML, CSS, JavaScript (React, Vue, Angular).</li>
+                    <li><strong>Backend (A Cozinha):</strong> É a parte que funciona nos "bastidores". Processa regras de negócio, acessa o banco de dados e cuida da segurança. É o cérebro da operação. Tecnologias: Node.js, Python, Java.</li>
+                    <li><strong>API (O Garçom):</strong> É o intermediário que permite a comunicação entre o Frontend e o Backend. A <strong>API (Application Programming Interface)</strong> é um conjunto de regras e protocolos que define como as duas partes devem se comunicar.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">5</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Framework Express.js -->
+    <div class="slide" id="slide-6">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>1.4. Framework Express.js</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Node.js puro é muito "cru". Seria como construir um carro do zero, fabricando cada parafuso.</p>
+                <h3>O que é o Express.js?</h3>
+                <p>É um <strong>framework web minimalista e flexível para Node.js</strong>. Ele nos fornece um conjunto de ferramentas para construir APIs de forma muito mais rápida e organizada, como gerenciamento de rotas e de requisições/respostas.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">6</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Roteamento e Endpoints -->
+    <div class="slide" id="slide-7">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>1.5. Roteamento e Endpoints</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Uma <strong>rota</strong> é um "caminho" em nosso servidor que executa uma função específica. A combinação do <strong>método HTTP</strong> e do <strong>caminho</strong> forma o que chamamos de <strong>endpoint</strong>.</p>
+                <h3>Métodos HTTP (Verbos):</h3>
+                <ul>
+                    <li><code>GET</code>: Para <strong>buscar</strong> dados.</li>
+                    <li><code>POST</code>: Para <strong>criar</strong> um novo dado.</li>
+                    <li><code>PUT</code> / <code>PATCH</code>: Para <strong>atualizar</strong> um dado existente.</li>
+                    <li><code>DELETE</code>: Para <strong>remover</strong> um dado.</li>
+                </ul>
+                <h3>Caminho (Path):</h3>
+                <p>O endereço do recurso (ex: <code>/tarefas</code>, <code>/usuarios</code>).</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">7</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Ferramentas de Teste de API -->
+    <div class="slide" id="slide-8">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>1.6. Ferramentas de Teste de API</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Enquanto o frontend não existe, como testamos nossa API? Usamos <strong>Clientes de API (API Clients)</strong>.</p>
+                <h3>Ferramentas Populares:</h3>
+                <ul>
+                    <li><strong>Postman:</strong> O mais conhecido e robusto.</li>
+                    <li><strong>Insomnia:</strong> Uma alternativa mais leve e moderna.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">8</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Construindo a Primeira API -->
+    <div class="slide" id="slide-9">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Parte 2: Construindo a Primeira API</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Vamos construir uma API para gerenciar uma lista de tarefas. Para simplificar, usaremos um array em memória como nosso "banco de dados" inicial.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">9</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Preparação do Ambiente -->
+    <div class="slide" id="slide-10">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>2.2. Preparação do Ambiente</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <h3>1. Crie uma pasta e navegue até ela:</h3>
+                <pre><code>mkdir gerenciador-tarefas-api
+cd gerenciador-tarefas-api</code></pre>
+                <h3>2. Inicie o projeto e instale o Express:</h3>
+                <pre><code>npm init -y
+npm install express</code></pre>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">10</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Criando o Servidor Básico -->
+    <div class="slide" id="slide-11">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>2.3. Criando o Servidor Básico</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Crie um arquivo <code>index.js</code> com o seguinte código:</p>
+                <pre><code>const express = require('express');
+const app = express();
+const PORT = 3000;
+
+// Middleware para o Express entender JSON
+app.use(express.json());
+
+// Nosso "banco de dados" em memória
+let tarefas = [
+  { id: 1, titulo: "Aprender Node.js", concluida: false },
+  { id: 2, titulo: "Criar projeto com Express", concluida: true },
+];
+
+app.get('/', (req, res) => {
+  res.send('&lt;h1&gt;API de Tarefas está funcionando!&lt;/h1&gt;');
+});
+
+// Implementação do CRUD virá aqui...
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta http://localhost:${PORT}`);
+});</code></pre>
+                <p>Execute com <code>node index.js</code>.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">11</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Implementando o CRUD (Parte 1) -->
+    <div class="slide" id="slide-12">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>2.4. Implementando o CRUD</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Adicione as seguintes rotas ao seu <code>index.js</code>:</p>
+                <pre><code>// Listar todas as tarefas (GET /tarefas)
+app.get('/tarefas', (req, res) => {
+  res.json(tarefas);
+});
+
+// Obter uma tarefa por ID (GET /tarefas/:id)
+app.get('/tarefas/:id', (req, res) => {
+  const tarefa = tarefas.find(t => t.id === parseInt(req.params.id));
+  if (!tarefa) return res.status(404).json({ mensagem: "Tarefa não encontrada!" });
+  res.json(tarefa);
+});</code></pre>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">12</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Implementando o CRUD (Parte 2) -->
+    <div class="slide" id="slide-13">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>2.4. Implementando o CRUD</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Continuando as rotas CRUD:</p>
+                <pre><code>// Criar uma nova tarefa (POST /tarefas)
+app.post('/tarefas', (req, res) => {
+  const novaTarefa = {
+    id: tarefas.length > 0 ? tarefas[tarefas.length - 1].id + 1 : 1,
+    titulo: req.body.titulo,
+    concluida: false
+  };
+  tarefas.push(novaTarefa);
+  res.status(201).json(novaTarefa);
+});
+
+// Atualizar uma tarefa (PUT /tarefas/:id)
+app.put('/tarefas/:id', (req, res) => {
+  const indice = tarefas.findIndex(t => t.id === parseInt(req.params.id));
+  if (indice === -1) return res.status(404).json({ mensagem: "Tarefa não encontrada!" });
+  
+  tarefas[indice].titulo = req.body.titulo || tarefas[indice].titulo;
+  tarefas[indice].concluida = typeof req.body.concluida === 'boolean' ? req.body.concluida : tarefas[indice].concluida;
+  
+  res.json(tarefas[indice]);
+});</code></pre>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">13</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Implementando o CRUD (Parte 3) -->
+    <div class="slide" id="slide-14">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>2.4. Implementando o CRUD</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Finalizando as rotas CRUD:</p>
+                <pre><code>// Deletar uma tarefa (DELETE /tarefas/:id)
+app.delete('/tarefas/:id', (req, res) => {
+  const indice = tarefas.findIndex(t => t.id === parseInt(req.params.id));
+  if (indice === -1) return res.status(404).json({ mensagem: "Tarefa não encontrada!" });
+
+  tarefas.splice(indice, 1);
+  res.status(204).send();
+});</code></pre>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">14</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Testando a API -->
+    <div class="slide" id="slide-15">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>2.5. Testando a API</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Use o Postman ou Insomnia para testar os endpoints que você criou.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">15</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 16: Módulos de Aprofundamento -->
+    <div class="slide" id="slide-16">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Parte 3: Módulos de Aprofundamento</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Esta seção aborda tópicos mais avançados para aprimorar sua API.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">16</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 17: Persistência de Dados com Banco de Dados e Sequelize -->
+    <div class="slide" id="slide-17">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Módulo 1: Persistência de Dados</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Operações de banco de dados são <strong>assíncronas</strong>. O Node.js não espera por elas.</p>
+                <h3>Programação Assíncrona:</h3>
+                <ul>
+                    <li><strong>Callbacks:</strong> O jeito antigo, leva ao "Callback Hell".</li>
+                    <li><strong>Promises:</strong> Uma "promessa" de um resultado futuro, melhora a legibilidade com <code>.then()</code> e <code>.catch()</code>.</li>
+                    <li><strong>Async/Await:</strong> A forma mais moderna. Escrevemos código assíncrono que parece síncrono. Usaremos este método.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">17</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 18: Integrando o Sequelize com SQLite -->
+    <div class="slide" id="slide-18">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Integrando o Sequelize com SQLite</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <h3>1. Instale as dependências:</h3>
+                <pre><code>npm install sequelize sqlite3
+npm install --save-dev sequelize-cli</code></pre>
+                <h3>2. Inicialize o Sequelize:</h3>
+                <pre><code>npx sequelize-cli init</code></pre>
+                <h3>3. Configure a conexão (<code>config/config.json</code>):</h3>
+                <pre><code>{
+  "development": {
+    "dialect": "sqlite",
+    "storage": "database.sqlite"
+  }
+}</code></pre>
+                <h3>4. Crie o Modelo e a Migration:</h3>
+                <pre><code>npx sequelize-cli model:generate --name Tarefa --attributes titulo:string,concluida:boolean</code></pre>
+                <h3>5. Execute a Migration para criar a tabela:</h3>
+                <pre><code>npx sequelize-cli db:migrate</code></pre>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">18</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 19: Refatorando o CRUD para usar o Banco de Dados -->
+    <div class="slide" id="slide-19">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Refatorando o CRUD</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Substitua as funções das rotas pelas versões <code>async</code> que usam os métodos do Sequelize.</p>
+                <pre><code>// index.js
+const { Tarefa } = require('./models');
+
+// GET /tarefas
+app.get('/tarefas', async (req, res) => {
+  const tarefas = await Tarefa.findAll();
+  res.json(tarefas);
+});
+
+// POST /tarefas
+app.post('/tarefas', async (req, res) => {
+  const novaTarefa = await Tarefa.create(req.body);
+  res.status(201).json(novaTarefa);
+});
+
+// E assim por diante para PUT e DELETE...</code></pre>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">19</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 20: Middlewares, Validação e Tratamento de Erros -->
+    <div class="slide" id="slide-20">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Módulo 2: Middlewares e Erros</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Um <strong>Middleware</strong> é uma função que intercepta o ciclo de requisição-resposta.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">20</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 21: Criando um Middleware de Log -->
+    <div class="slide" id="slide-21">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Criando um Middleware de Log</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <pre><code>// Em index.js
+const logMiddleware = (req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next(); // Passa para o próximo middleware
+};
+app.use(logMiddleware);</code></pre>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">21</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 22: Middleware Centralizado para Tratamento de Erros -->
+    <div class="slide" id="slide-22">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Tratamento de Erros</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <h3>1. Instale <code>express-async-errors</code>:</h3>
+                <pre><code>npm install express-async-errors</code></pre>
+                <h3>2. Importe no topo do <code>index.js</code>:</h3>
+                <pre><code>require('express-async-errors');</code></pre>
+                <h3>3. Adicione este middleware <strong>no final do arquivo</strong>, antes de <code>app.listen</code>:</h3>
+                <pre><code>app.use((error, req, res, next) => {
+  console.error(error.stack);
+  res.status(500).json({ mensagem: "Ocorreu um erro interno no servidor." });
+});</code></pre>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">22</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 23: Autenticação de Usuário com Token JWT -->
+    <div class="slide" id="slide-23">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Módulo 3: Autenticação com JWT</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Vamos proteger nossas rotas para que apenas usuários logados possam acessá-las.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">23</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 24: Instalação e Modelo de Usuário -->
+    <div class="slide" id="slide-24">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Instalação e Modelo de Usuário</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <h3>1. Instale as dependências:</h3>
+                <pre><code>npm install jsonwebtoken bcryptjs</code></pre>
+                <h3>2. Crie o modelo <code>Usuario</code>:</h3>
+                <pre><code>npx sequelize-cli model:generate --name Usuario --attributes email:string,senha:string
+npx sequelize-cli db:migrate</code></pre>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">24</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 25: Rotas de Registro e Login -->
+    <div class="slide" id="slide-25">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Rotas de Registro e Login</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <ul>
+                    <li><strong>Registro (<code>POST /auth/registrar</code>):</strong> Recebe <code>email</code> e <code>senha</code>, criptografa a senha com <code>bcrypt.hash()</code> e salva o novo usuário.</li>
+                    <li><strong>Login (<code>POST /auth/login</code>):</strong> Recebe <code>email</code> e <code>senha</code>, busca o usuário, compara a senha com <code>bcrypt.compare()</code>. Se for válida, gera um token com <code>jwt.sign()</code>.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">25</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 26: Middleware de Autenticação -->
+    <div class="slide" id="slide-26">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Middleware de Autenticação</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Crie um Middleware de Autenticação (<code>authMiddleware.js</code>):</p>
+                <ul>
+                    <li>Ele verifica se o header <code>Authorization</code> existe e contém um token válido.</li>
+                    <li>Usa <code>jwt.verify()</code> para validar o token.</li>
+                    <li>Se for válido, anexa o ID do usuário ao objeto <code>req</code> (<code>req.usuarioId = decoded.id;</code>) e chama <code>next()</code>.</li>
+                    <li>Se não, retorna um erro 401 (Não Autorizado).</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">26</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 27: Protegendo Rotas -->
+    <div class="slide" id="slide-27">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Protegendo Rotas</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <pre><code>// index.js
+const authMiddleware = require('./authMiddleware');
+app.use('/tarefas', authMiddleware); // Protege todas as rotas de tarefas</code></pre>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">27</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 28: Estudos de Caso e Desafios -->
+    <div class="slide" id="slide-28">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Módulo 4: Estudos de Caso e Desafios</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Esta seção apresenta desafios práticos para consolidar o aprendizado.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">28</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 29: Desafio 1: Associar Tarefas a Usuários -->
+    <div class="slide" id="slide-29">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Desafio 1: Tarefas e Usuários</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <ul>
+                    <li>Adicione <code>usuarioId</code> ao modelo <code>Tarefa</code>.</li>
+                    <li>Crie a associação no Sequelize (<code>Usuario.hasMany(Tarefa)</code>).</li>
+                    <li>Refatore as rotas de tarefas para que um usuário só possa ver e manipular as suas próprias tarefas.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">29</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 30: Desafio 2: API de um Blog -->
+    <div class="slide" id="slide-30">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Desafio 2: API de um Blog</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <ul>
+                    <li>Crie modelos para <code>Post</code> e <code>Comentario</code> com as devidas associações.</li>
+                    <li>Implemente o CRUD completo para Posts (apenas o autor pode editar/deletar).</li>
+                    <li>Permita que qualquer usuário logado possa criar comentários.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">30</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 31: Desafio 3: API de uma Biblioteca -->
+    <div class="slide" id="slide-31">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Desafio 3: API de uma Biblioteca</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <ul>
+                    <li>Modelos: <code>Livro</code>, <code>Usuario</code>, <code>Emprestimo</code>.</li>
+                    <li>Implemente a lógica de negócio para não permitir o empréstimo de um livro já emprestado.</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">31</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 32: Preparando para o Ambiente de Produção -->
+    <div class="slide" id="slide-32">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Módulo 5: Ambiente de Produção</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Esta seção aborda as configurações necessárias para preparar sua API para o ambiente de produção.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">32</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 33: CORS (Cross-Origin Resource Sharing) -->
+    <div class="slide" id="slide-33">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>CORS</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Permite que seu frontend (em outro domínio) acesse sua API.</p>
+                <pre><code>npm install cors</code></pre>
+                <pre><code>// Em index.js
+const cors = require('cors');
+app.use(cors()); // Em produção, restrinja a origem: app.use(cors({ origin: 'http://meu-frontend.com' }));</code></pre>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">33</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 34: Variáveis de Ambiente com .env -->
+    <div class="slide" id="slide-34">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Variáveis de Ambiente (.env)</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Nunca coloque dados sensíveis (senhas, segredos JWT) no código.</p>
+                <ol>
+                    <li>Instale <code>dotenv</code>: <code>npm install dotenv</code>.</li>
+                    <li>Crie um arquivo <code>.env</code> na raiz do projeto:
+                        <pre><code>PORT=3001
+JWT_SECRET=meu_segredo_super_secreto</code></pre>
+                    </li>
+                    <li>Adicione <code>.env</code> ao seu arquivo <code>.gitignore</code>.</li>
+                    <li>Carregue as variáveis no topo do <code>index.js</code>: <code>require('dotenv').config();</code>.</li>
+                    <li>Use-as com <code>process.env.NOME_DA_VARIAVEL</code>.</li>
+                </ol>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">34</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 35: SSL (HTTPS) e Deploy em uma VPS -->
+    <div class="slide" id="slide-35">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>SSL e Deploy em VPS</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <ul>
+                    <li><strong>SSL:</strong> Criptografa a comunicação. Essencial. Em produção, geralmente é gerenciado por um <strong>Reverse Proxy</strong> como o <strong>Nginx</strong>.</li>
+                    <li><strong>Deploy em VPS (Visão Geral):</strong>
+                        <ol>
+                            <li><strong>Configurar Servidor:</strong> Instale Node.js, Git, Nginx.</li>
+                            <li><strong>Transferir Código:</strong> Use Git para clonar seu projeto.</li>
+                            <li><strong>Gerenciador de Processos:</strong> Use o <strong>PM2</strong> (<code>npm install -g pm2</code>) para manter sua aplicação rodando 24/7 (<code>pm2 start index.js</code>).</li>
+                            <li><strong>Configurar Reverse Proxy (Nginx):</strong> Configure o Nginx para direcionar o tráfego da internet (porta 80/443) para a porta da sua aplicação Node (ex: 3000).</li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">35</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controles de Navegação -->
+    <div class="controls">
+        <button onclick="prevSlide()">Anterior</button>
+        <button onclick="nextSlide()">Próximo</button>
+        <button onclick="printSlides()">Imprimir</button>
+    </div>
+
+</body>
+</html>
+
+
