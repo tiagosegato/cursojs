@@ -257,6 +257,39 @@
             align-items: center;
         }
         
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        
+        .analogy-box {
+            background-color: #fff9e6;
+            border: 2px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--code-background);
+            font-weight: bold;
+        }
+        
         @media print {
             .slide {
                 display: block;
@@ -314,8 +347,8 @@
                 <p>Bem-vindo ao Módulo 1: Lógica de Programação com JavaScript! Este módulo é a sua porta de entrada para o mundo do desenvolvimento web.</p>
                 <h3>O que você vai aprender:</h3>
                 <ul>
+                    <li>Como a web funciona: cliente-servidor, APIs e o fluxo de dados.</li>
                     <li>Os fundamentos da lógica de programação, essenciais para qualquer linguagem.</li>
-                    <li>Como o JavaScript funciona no navegador e interage com HTML.</li>
                     <li>Criar seus primeiros programas e entender como o código ganha vida.</li>
                     <li>Manipular variáveis, tomar decisões com condicionais e repetir tarefas com loops.</li>
                     <li>Organizar seu código com funções, tornando-o mais legível e reutilizável.</li>
@@ -329,43 +362,39 @@
         </div>
     </div>
 
-    <!-- Slide 3: Introdução à Web e Suas Tecnologias -->
+    <!-- Slide 3: Como Funciona a Internet e a Web -->
     <div class="slide" id="slide-3">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Introdução à Web e Suas Tecnologias</h2>
+                    <h2>Como Funciona a Internet e a Web</h2>
                     <!-- Placeholder for logo image -->
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>A World Wide Web é um sistema complexo construído sobre algumas tecnologias fundamentais:</p>
-                <div class="two-column">
-                    <div class="column">
-                        <h3>HTML (HyperText Markup Language)</h3>
-                        <p>A espinha dorsal da web. Define a estrutura e o conteúdo das páginas.</p>
-                        <div class="code-block">&lt;h1&gt;Olá, Mundo!&lt;/h1&gt;
-&lt;p&gt;Este é um parágrafo.&lt;/p&gt;</div>
-                        
-                        <h3>CSS (Cascading Style Sheets)</h3>
-                        <p>Responsável pela apresentação e estilo visual das páginas HTML.</p>
-                        <div class="code-block">h1 {
-    color: blue;
-    font-size: 24px;
-}</div>
-                    </div>
-                    <div class="column">
-                        <h3>JavaScript (JS)</h3>
-                        <p>Torna as páginas interativas e dinâmicas. É a linguagem de programação do navegador.</p>
-                        <div class="code-block">document.getElementById("meuBotao")
-    .addEventListener("click", function() {
-        alert("Botão clicado!");
-    });</div>
-                        
-                        <h3>Como funciona?</h3>
-                        <p>O navegador requisita uma página (HTML), que pode referenciar arquivos CSS e JS. O navegador então interpreta esses arquivos para renderizar a página visual e interativa para o usuário.</p>
-                    </div>
+                <p><strong>Pergunta:</strong> "Quando vocês digitam google.com no navegador e apertam Enter, o que acontece nos bastidores?"</p>
+                
+                <div class="analogy-box">
+                    <h3>🌐 Analogia: A Internet como uma Cidade</h3>
+                    <p>Pense na <strong>Internet</strong> como um gigantesco sistema de estradas conectando cidades (computadores) ao redor do mundo. A <strong>Web</strong> é um dos serviços que usa essas estradas, como o sistema de correios.</p>
+                </div>
+
+                <h3>Internet vs Web:</h3>
+                <ul>
+                    <li><strong>Internet:</strong> A infraestrutura física (cabos, satélites, torres) que conecta computadores globalmente.</li>
+                    <li><strong>Web:</strong> Um sistema de documentos interligados que roda sobre a Internet.</li>
+                    <li><strong>Outros serviços da Internet:</strong> E-mail, FTP, jogos online, streaming.</li>
+                </ul>
+
+                <h3>O Modelo Cliente-Servidor:</h3>
+                <div class="analogy-box">
+                    <h3>🍽️ Analogia: Restaurante</h3>
+                    <ul>
+                        <li><strong>Cliente:</strong> Você no restaurante (navegador) fazendo um pedido</li>
+                        <li><strong>Servidor:</strong> A cozinha que prepara e serve o pedido</li>
+                        <li><strong>Regra:</strong> O Cliente pede, o Servidor serve</li>
+                    </ul>
                 </div>
             </div>
             <div class="slide-footer">
@@ -375,39 +404,56 @@
         </div>
     </div>
 
-    <!-- Slide 4: Papel do Desenvolvedor Front-end e Back-end -->
+    <!-- Slide 4: Glossário Técnico da Web -->
     <div class="slide" id="slide-4">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Papel do Desenvolvedor Front-end e Back-end</h2>
+                    <h2>Glossário Técnico da Web</h2>
                     <!-- Placeholder for logo image -->
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>No desenvolvimento web, as responsabilidades são frequentemente divididas entre Front-end e Back-end:</p>
                 <div class="two-column">
                     <div class="column">
-                        <h3>Desenvolvedor Front-end</h3>
-                        <p>Focado na parte da aplicação com a qual o usuário interage diretamente (o "cliente" ou navegador).</p>
+                        <h3>Componentes Básicos:</h3>
                         <ul>
-                            <li><strong>Tecnologias:</strong> HTML, CSS, JavaScript (e frameworks como React, Angular, Vue.js).</li>
-                            <li><strong>Responsabilidades:</strong> Interface do usuário (UI), experiência do usuário (UX), responsividade, interatividade.</li>
-                            <li><strong>Objetivo:</strong> Criar interfaces atraentes, intuitivas e eficientes.</li>
+                            <li><strong>Domínio:</strong> Nome amigável (google.com)</li>
+                            <li><strong>IP:</strong> Endereço real do servidor (142.251.128.142)</li>
+                            <li><strong>DNS:</strong> "Lista telefônica" que traduz domínio em IP</li>
+                            <li><strong>HTTP/HTTPS:</strong> Protocolo de comunicação web</li>
+                            <li><strong>Request/Response:</strong> Pedido e resposta entre cliente e servidor</li>
+                        </ul>
+
+                        <h3>Infraestrutura:</h3>
+                        <ul>
+                            <li><strong>Servidor Web:</strong> Software que responde a requests (Apache, Nginx)</li>
+                            <li><strong>Hospedagem:</strong> Serviço de aluguel de infraestrutura</li>
+                            <li><strong>ISP:</strong> Provedor de internet (Vivo, Claro)</li>
                         </ul>
                     </div>
                     <div class="column">
-                        <h3>Desenvolvedor Back-end</h3>
-                        <p>Trabalha nos "bastidores" da aplicação, lidando com o servidor, banco de dados e lógica de negócios.</p>
+                        <h3>Ferramentas de Desenvolvimento:</h3>
                         <ul>
-                            <li><strong>Tecnologias:</strong> Node.js (com JavaScript), Python, Java, Ruby, PHP, bancos de dados (SQL, NoSQL).</li>
-                            <li><strong>Responsabilidades:</strong> APIs, lógica de servidor, gerenciamento de dados, segurança, performance.</li>
-                            <li><strong>Objetivo:</strong> Garantir que a aplicação funcione corretamente, seja segura e escalável.</li>
+                            <li><strong>Editor de Código:</strong> VS Code, Sublime Text</li>
+                            <li><strong>Navegador:</strong> Chrome, Firefox (com DevTools)</li>
+                            <li><strong>Linguagens:</strong> HTML, CSS, JavaScript</li>
                         </ul>
+
+                        <div class="highlight-box">
+                            <h3>A Jornada de um Clique:</h3>
+                            <ol>
+                                <li>Digita domínio no navegador</li>
+                                <li>DNS traduz domínio em IP</li>
+                                <li>Navegador envia Request HTTP</li>
+                                <li>Servidor processa e envia Response</li>
+                                <li>Navegador renderiza a página</li>
+                            </ol>
+                            <p><em>Tudo isso em menos de 1 segundo!</em></p>
+                        </div>
                     </div>
                 </div>
-                <p><strong>Desenvolvedor Full-stack:</strong> Profissional que possui habilidades tanto em Front-end quanto em Back-end.</p>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">4</div>
@@ -416,32 +462,73 @@
         </div>
     </div>
 
-    <!-- Slide 5: Algoritmo e Suas Representações -->
+    <!-- Slide 5: Frontend vs Backend -->
     <div class="slide" id="slide-5">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Algoritmo e Suas Representações</h2>
+                    <h2>Frontend vs Backend: Os Arquitetos da Web</h2>
                     <!-- Placeholder for logo image -->
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>Um algoritmo é uma sequência finita de passos bem definidos para resolver um problema ou realizar uma tarefa.</p>
-                <h3>Representações de Algoritmos:</h3>
-                <ul>
-                    <li><strong>Descrição Narrativa:</strong> Usando linguagem natural para descrever os passos. Ex: "Para somar dois números, pegue o primeiro número, adicione o segundo número a ele, e o resultado é a soma."</li>
-                    <li><strong>Fluxograma:</strong> Representação gráfica usando símbolos padronizados para ilustrar o fluxo de controle do algoritmo.</li>
-                    <li><strong>Pseudocódigo:</strong> Uma linguagem informal, semelhante a uma linguagem de programação, mas mais flexível e focada na lógica. Ex:
-                        <div class="code-block">INÍCIO
-  LER numero1
-  LER numero2
-  soma = numero1 + numero2
-  ESCREVER soma
-FIM</div>
-                    </li>
-                </ul>
-                <p>Entender algoritmos é crucial, pois eles são a base de qualquer programa de computador.</p>
+                <div class="analogy-box">
+                    <h3>🎭 Analogia: Peça de Teatro</h3>
+                    <ul>
+                        <li><strong>Frontend:</strong> O palco - tudo que a plateia vê e interage</li>
+                        <li><strong>Backend:</strong> Os bastidores - estrutura que faz tudo funcionar</li>
+                    </ul>
+                </div>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Desenvolvedor Frontend</h3>
+                        <p><strong>Foco:</strong> Interface e experiência do usuário</p>
+                        
+                        <h4>Responsabilidades:</h4>
+                        <ul>
+                            <li>Criar interfaces atraentes e intuitivas</li>
+                            <li>Garantir responsividade (mobile/desktop)</li>
+                            <li>Implementar interatividade</li>
+                            <li>Otimizar performance visual</li>
+                            <li>Consumir dados de APIs</li>
+                        </ul>
+
+                        <h4>Tecnologias:</h4>
+                        <ul>
+                            <li><strong>HTML:</strong> Estrutura da página</li>
+                            <li><strong>CSS:</strong> Aparência e layout</li>
+                            <li><strong>JavaScript:</strong> Interatividade</li>
+                            <li><strong>Frameworks:</strong> React, Angular, Vue.js</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Desenvolvedor Backend</h3>
+                        <p><strong>Foco:</strong> Lógica de negócios e dados</p>
+                        
+                        <h4>Responsabilidades:</h4>
+                        <ul>
+                            <li>Gerenciar bancos de dados</li>
+                            <li>Desenvolver lógica de negócios</li>
+                            <li>Criar e documentar APIs</li>
+                            <li>Garantir segurança do sistema</li>
+                            <li>Otimizar performance do servidor</li>
+                        </ul>
+
+                        <h4>Tecnologias:</h4>
+                        <ul>
+                            <li><strong>Linguagens:</strong> Node.js, Python, Java, C#</li>
+                            <li><strong>Bancos:</strong> MySQL, PostgreSQL, MongoDB</li>
+                            <li><strong>Infraestrutura:</strong> AWS, Docker, Nginx</li>
+                            <li><strong>Frameworks:</strong> Express, Django, Spring</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Full-Stack:</strong> Desenvolvedor que atua tanto no Frontend quanto no Backend</p>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">5</div>
@@ -450,8 +537,131 @@ FIM</div>
         </div>
     </div>
 
-    <!-- Slide 6: Ferramentas e Ambientes de Desenvolvimento -->
+    <!-- Slide 6: Fluxo de uma Aplicação Web Moderna -->
     <div class="slide" id="slide-6">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Fluxo de uma Aplicação Web Moderna</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p><strong>Exemplo Prático:</strong> Buscar "livros de JS" no Mercado Livre</p>
+
+                <div class="highlight-box">
+                    <h3>🔄 Fluxo de Dados Completo:</h3>
+                    <ol>
+                        <li><strong>Frontend:</strong> Usuário digita "livros de JS" e clica "Buscar"</li>
+                        <li><strong>Request API:</strong> JavaScript envia requisição para a API</li>
+                        <li><strong>Backend:</strong> Servidor recebe e processa a requisição</li>
+                        <li><strong>Banco de Dados:</strong> Consulta produtos relacionados</li>
+                        <li><strong>Response:</strong> Dados formatados em JSON retornam</li>
+                        <li><strong>Frontend:</strong> Página atualiza dinamicamente sem recarregar</li>
+                    </ol>
+                </div>
+
+                <h3>Conceitos Importantes:</h3>
+                <ul>
+                    <li><strong>API (Application Programming Interface):</strong> Conjunto de regras que o Frontend usa para "conversar" com o Backend</li>
+                    <li><strong>JSON:</strong> Formato leve para troca de dados entre sistemas</li>
+                    <li><strong>SPA (Single Page Application):</strong> Aplicações que atualizam conteúdo sem recarregar a página</li>
+                    <li><strong>CRUD:</strong> Create, Read, Update, Delete - operações básicas em dados</li>
+                </ul>
+
+                <div class="code-block">// Exemplo de requisição API em JavaScript
+fetch('/api/produtos?busca=livros+js')
+  .then(response => response.json())
+  .then(produtos => {
+    // Atualizar interface com os produtos
+    exibirProdutos(produtos);
+  });</div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">6</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Algoritmos e Suas Representações -->
+    <div class="slide" id="slide-7">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Algoritmos e Suas Representações</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Um <strong>algoritmo</strong> é uma sequência finita de passos lógicos e bem definidos para resolver um problema ou executar uma tarefa.</p>
+
+                <div class="analogy-box">
+                    <h3>🍳 Analogia: Receita de Cozinha</h3>
+                    <p>Assim como uma receita tem ingredientes e passo-a-passo, um algoritmo tem dados de entrada e instruções sequenciais.</p>
+                </div>
+
+                <h3>Exemplo: Calcular Média e Verificar Aprovação</h3>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h4>1. Descrição Narrativa:</h4>
+                        <ol>
+                            <li>Receber a primeira nota</li>
+                            <li>Receber a segunda nota</li>
+                            <li>Somar as duas notas</li>
+                            <li>Dividir por 2 (média)</li>
+                            <li>Se média ≥ 7: "Aprovado"</li>
+                            <li>Se não: "Reprovado"</li>
+                        </ol>
+
+                        <h4>2. Fluxograma:</h4>
+                        <ul>
+                            <li><strong>[Início]</strong> → Elipse</li>
+                            <li><strong>[Ler Nota]</strong> → Paralelogramo</li>
+                            <li><strong>[Processar]</strong> → Retângulo</li>
+                            <li><strong>[Decisão]</strong> → Losango</li>
+                            <li><strong>[Fim]</strong> → Elipse</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>3. Pseudocódigo:</h4>
+                        <div class="code-block">ALGORITMO "CalculaMedia"
+
+VAR
+  nota1, nota2, media: REAL
+
+INÍCIO
+  ESCREVA "Digite a 1ª nota:"
+  LEIA nota1
+  
+  ESCREVA "Digite a 2ª nota:"
+  LEIA nota2
+  
+  media ← (nota1 + nota2) / 2
+  
+  SE media >= 7 ENTÃO
+    ESCREVA "Aprovado! Média:", media
+  SENÃO
+    ESCREVA "Reprovado! Média:", media
+  FIMSE
+FIM</div>
+                    </div>
+                </div>
+
+                <p><strong>Importante:</strong> Planejar o algoritmo antes de codificar evita erros e torna o desenvolvimento mais eficiente.</p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">7</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Ferramentas e Ambientes de Desenvolvimento -->
+    <div class="slide" id="slide-8">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
@@ -461,84 +671,60 @@ FIM</div>
                 </div>
             </div>
             <div class="slide-body">
-                <p>Para desenvolver com JavaScript, algumas ferramentas são essenciais:</p>
-                <ul>
-                    <li><strong>Navegador Web:</strong> O ambiente principal onde o JavaScript do lado do cliente é executado. Ferramentas de desenvolvedor embutidas (Console, Debugger, Inspector) são cruciais. (Ex: Chrome, Firefox, Edge).</li>
-                    <li><strong>Editor de Código ou IDE (Ambiente de Desenvolvimento Integrado):</strong> Programas para escrever, editar e gerenciar código. (Ex: VS Code, Sublime Text, WebStorm).</li>
-                    <li><strong>Node.js:</strong> Permite executar JavaScript fora do navegador, no lado do servidor. Útil para ferramentas de build, automação e desenvolvimento back-end.</li>
-                    <li><strong>Controle de Versão (Git):</strong> Ferramenta para rastrear mudanças no código, colaborar com outros desenvolvedores e gerenciar diferentes versões do projeto. (Plataformas como GitHub, GitLab, Bitbucket).</li>
-                </ul>
-                <p>Configurar um bom ambiente de desenvolvimento aumenta a produtividade e facilita o processo de criação de software.</p>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">6</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
+                <h3>Ferramentas Essenciais para JavaScript:</h3>
 
-    <!-- Slide 7: Definição de Memória -->
-    <div class="slide" id="slide-7">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>Definição de Memória</h2>
-                    <!-- Placeholder for logo image -->
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                <div class="two-column">
+                    <div class="column">
+                        <h4>🌐 Navegador Web</h4>
+                        <ul>
+                            <li><strong>Exemplos:</strong> Chrome, Firefox, Edge</li>
+                            <li><strong>Função:</strong> Ambiente principal de execução JS</li>
+                            <li><strong>DevTools (F12):</strong>
+                                <ul>
+                                    <li>Console para testar código</li>
+                                    <li>Debugger para encontrar erros</li>
+                                    <li>Inspector de elementos</li>
+                                    <li>Network para monitorar requests</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h4>⚙️ Node.js</h4>
+                        <ul>
+                            <li>Executa JS fora do navegador</li>
+                            <li>Desenvolvimento backend</li>
+                            <li>Ferramentas de build e automação</li>
+                            <li>Gerenciador de pacotes (npm)</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>📝 Editor de Código/IDE</h4>
+                        <ul>
+                            <li><strong>VS Code:</strong> Mais popular, gratuito</li>
+                            <li><strong>WebStorm:</strong> IDE completa (paga)</li>
+                            <li><strong>Sublime Text:</strong> Leve e rápido</li>
+                        </ul>
+                        
+                        <h4>Recursos Importantes:</h4>
+                        <ul>
+                            <li><strong>Syntax Highlighting:</strong> Colore o código</li>
+                            <li><strong>IntelliSense:</strong> Autocomplete inteligente</li>
+                            <li><strong>Extensões:</strong> Funcionalidades extras</li>
+                            <li><strong>Terminal integrado</strong></li>
+                        </ul>
+
+                        <h4>🔧 Controle de Versão</h4>
+                        <ul>
+                            <li><strong>Git:</strong> Sistema de versionamento</li>
+                            <li><strong>GitHub/GitLab:</strong> Repositórios online</li>
+                            <li><strong>Benefícios:</strong> Histórico, colaboração, backup</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="slide-body">
-                <p>Em computação, memória refere-se à capacidade de um sistema de armazenar dados e instruções, temporária ou permanentemente.</p>
-                <h3>Tipos de Memória (Conceitual):</h3>
-                <ul>
-                    <li><strong>Memória Principal (RAM - Random Access Memory):</strong> Memória volátil usada pelo processador para armazenar dados e programas em execução. É rápida, mas perde seu conteúdo quando a energia é desligada.</li>
-                    <li><strong>Memória Secundária (Armazenamento):</strong> Memória não volátil usada para armazenamento de longo prazo de arquivos e programas (Ex: HDs, SSDs, pen drives).</li>
-                </ul>
-                <h3>Gerenciamento de Memória em JavaScript:</h3>
-                <p>JavaScript possui um sistema de gerenciamento automático de memória, incluindo um "coletor de lixo" (garbage collector).</p>
-                <ul>
-                    <li><strong>Alocação:</strong> Quando você cria variáveis, objetos ou arrays, o JavaScript aloca espaço na memória para eles.</li>
-                    <li><strong>Coleta de Lixo:</strong> O coletor de lixo periodicamente identifica e libera memória que não está mais sendo usada pelo programa, prevenindo vazamentos de memória.</li>
-                </ul>
-                <p>Embora automático, entender como a memória funciona ajuda a escrever código mais eficiente.</p>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">7</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Slide 8: Definição de Variáveis -->
-    <div class="slide" id="slide-8">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>Definição de Variáveis</h2>
-                    <!-- Placeholder for logo image -->
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                <div class="highlight-box">
+                    <p><strong>Dica:</strong> Configure um bom ambiente de desenvolvimento para aumentar sua produtividade e facilitar o aprendizado!</p>
                 </div>
-            </div>
-            <div class="slide-body">
-                <p>Variáveis são "contêineres" nomeados usados para armazenar dados na memória que podem ser referenciados e manipulados em um programa.</p>
-                <h3>Declarando Variáveis em JavaScript:</h3>
-                <ul>
-                    <li><strong><code>var</code> (Legado):</strong> Forma mais antiga de declarar variáveis. Possui escopo de função ou global. Evite em código moderno.
-                        <div class="code-block">var nome = "João";</div>
-                    </li>
-                    <li><strong><code>let</code> (Moderno):</strong> Permite declarar variáveis com escopo de bloco. O valor pode ser reatribuído.
-                        <div class="code-block">let idade = 30;
-idade = 31; // Válido</div>
-                    </li>
-                    <li><strong><code>const</code> (Moderno):</strong> Permite declarar constantes com escopo de bloco. O valor não pode ser reatribuído após a inicialização (para tipos primitivos; para objetos, a referência é constante, mas o conteúdo pode mudar).
-                        <div class="code-block">const PI = 3.14159;
-// PI = 3.14; // Erro!
-
-const pessoa = { nome: "Ana" };
-pessoa.nome = "Maria"; // Válido</div>
-                    </li>
-                </ul>
-                <p>Escolher entre <code>let</code> e <code>const</code> depende se o valor da variável precisará mudar.</p>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">8</div>
@@ -547,28 +733,67 @@ pessoa.nome = "Maria"; // Válido</div>
         </div>
     </div>
 
-    <!-- Slide 9: Conceitos Básicos de Lógica de Programação -->
+    <!-- Slide 9: Memória em Programação -->
     <div class="slide" id="slide-9">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Conceitos Básicos de Lógica de Programação</h2>
+                    <h2>Memória em Programação</h2>
                     <!-- Placeholder for logo image -->
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>Lógica de programação é a organização coerente de instruções para que um programa execute uma tarefa específica.</p>
-                <h3>Elementos Fundamentais:</h3>
-                <ul>
-                    <li><strong>Sequência:</strong> Instruções são executadas na ordem em que aparecem.</li>
-                    <li><strong>Decisão (Condicionais):</strong> Permitem que o programa escolha diferentes caminhos de execução com base em condições (Ex: <code>if</code>, <code>else if</code>, <code>else</code>, <code>switch</code>).</li>
-                    <li><strong>Repetição (Loops):</strong> Permitem que um bloco de código seja executado múltiplas vezes (Ex: <code>for</code>, <code>while</code>, <code>do...while</code>).</li>
-                    <li><strong>Entrada e Saída de Dados:</strong> Como o programa recebe informações (Ex: do usuário, de um arquivo) e como ele apresenta resultados (Ex: na tela, em um arquivo).</li>
-                    <li><strong>Operadores:</strong> Símbolos que realizam operações sobre valores (Ex: aritméticos <code>+</code>, <code>-</code>; lógicos <code>&&</code>, <code>||</code>; comparação <code>></code>, <code>===</code>).</li>
-                    <li><strong>Tipos de Dados:</strong> Classificação dos valores que uma variável pode armazenar (Ex: números, strings, booleanos).</li>
-                </ul>
-                <p>Dominar esses conceitos é essencial para construir qualquer tipo de software.</p>
+                <p>Quando nosso código executa, ele precisa de espaço para armazenar informações. Esse espaço é a <strong>memória</strong> do computador.</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Tipos de Memória:</h3>
+                        <h4>🧠 Stack (Pilha)</h4>
+                        <ul>
+                            <li><strong>Característica:</strong> LIFO (Last-In, First-Out)</li>
+                            <li><strong>Armazena:</strong> Tipos primitivos (Number, String, Boolean)</li>
+                            <li><strong>Armazena:</strong> Referências para objetos</li>
+                            <li><strong>Velocidade:</strong> Acesso muito rápido</li>
+                            <li><strong>Organização:</strong> Estruturada e ordenada</li>
+                        </ul>
+
+                        <h4>🏗️ Heap (Monte)</h4>
+                        <ul>
+                            <li><strong>Armazena:</strong> Objetos e Arrays complexos</li>
+                            <li><strong>Velocidade:</strong> Acesso mais lento</li>
+                            <li><strong>Organização:</strong> Menos estruturada</li>
+                            <li><strong>Tamanho:</strong> Maior capacidade</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Gerenciamento em JavaScript:</h3>
+                        
+                        <div class="highlight-box">
+                            <h4>🗑️ Garbage Collection (Coleta de Lixo)</h4>
+                            <p>JavaScript possui gerenciamento <strong>automático</strong> de memória:</p>
+                            <ul>
+                                <li>Identifica memória não utilizada</li>
+                                <li>Libera automaticamente</li>
+                                <li>Previne vazamentos de memória</li>
+                                <li>Desenvolvedor não precisa se preocupar</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-block">// Exemplo de uso de memória
+let numero = 42;        // Stack
+let texto = "Olá";      // Stack
+let obj = {             // Referência na Stack
+    nome: "João",       // Objeto no Heap
+    idade: 30
+};
+
+// Quando obj sai de escopo,
+// o Garbage Collector limpa automaticamente</div>
+                    </div>
+                </div>
+
+                <p><strong>Vantagem do JavaScript:</strong> Como programador, você foca na lógica, não no gerenciamento de memória!</p>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">9</div>
@@ -577,43 +802,73 @@ pessoa.nome = "Maria"; // Válido</div>
         </div>
     </div>
 
-    <!-- Slide 10: Estruturas de Controle (Condicionais) -->
+    <!-- Slide 10: Variáveis em JavaScript -->
     <div class="slide" id="slide-10">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Estruturas de Controle (Condicionais)</h2>
+                    <h2>Variáveis em JavaScript</h2>
                     <!-- Placeholder for logo image -->
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>Estruturas condicionais permitem que seu programa tome decisões e execute diferentes blocos de código com base em certas condições serem verdadeiras ou falsas.</p>
-                <h3><code>if</code>, <code>else if</code>, <code>else</code>:</h3>
-                <div class="code-block">let temperatura = 25;
+                <p>Variáveis são <strong>"contêineres"</strong> nomeados na memória onde armazenamos dados para usar em nosso programa.</p>
 
-if (temperatura > 30) {
-    console.log("Está muito quente!");
-} else if (temperatura > 20) {
-    console.log("Temperatura agradável.");
-} else {
-    console.log("Está frio!");
-}</div>
-                <h3><code>switch</code>:</h3>
-                <p>Útil para múltiplas verificações contra um único valor.</p>
-                <div class="code-block">let diaDaSemana = "segunda";
+                <div class="analogy-box">
+                    <h3>📦 Analogia: Caixas Etiquetadas</h3>
+                    <p>Imagine variáveis como caixas com etiquetas. Você pode guardar diferentes tipos de objetos e encontrá-los pelo nome da etiqueta.</p>
+                </div>
 
-switch (diaDaSemana) {
-    case "sábado":
-    case "domingo":
-        console.log("Fim de semana!");
-        break;
-    case "segunda":
-        console.log("Início da semana de trabalho.");
-        break;
-    default:
-        console.log("Dia útil.");
-}</div>
+                <h3>Formas de Declarar Variáveis:</h3>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h4>❌ var (Legado - Evitar)</h4>
+                        <div class="code-block">var nome = "João";
+var nome = "Maria"; // Permite redeclaração
+nome = "Pedro";     // Permite reatribuição
+console.log(nome);  // "Pedro"</div>
+                        <p><strong>Problemas:</strong> Escopo confuso, permite redeclaração</p>
+
+                        <h4>✅ let (Moderno)</h4>
+                        <div class="code-block">let idade = 25;
+// let idade = 30; // ❌ Erro! Não redeclara
+idade = 26;        // ✅ Permite reatribuição
+console.log(idade); // 26</div>
+                        <p><strong>Use quando:</strong> O valor pode mudar</p>
+                    </div>
+                    <div class="column">
+                        <h4>✅ const (Moderno)</h4>
+                        <div class="code-block">const PI = 3.14159;
+// PI = 3.14; // ❌ Erro! Não reatribui
+
+// Para objetos: referência constante
+const user = { nome: "Ana" };
+user.nome = "Ana Silva"; // ✅ Conteúdo pode mudar
+// user = { nome: "Carlos" }; // ❌ Erro!
+console.log(user.nome); // "Ana Silva"</div>
+                        <p><strong>Use quando:</strong> O valor não deve mudar</p>
+
+                        <div class="highlight-box">
+                            <h4>🎯 Regra de Ouro:</h4>
+                            <ol>
+                                <li>Use <strong>const</strong> por padrão</li>
+                                <li>Use <strong>let</strong> se precisar reatribuir</li>
+                                <li>Evite <strong>var</strong> completamente</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Regras para Nomes de Variáveis:</h3>
+                <ul>
+                    <li>✅ Começar com letra, $ ou _</li>
+                    <li>❌ Não começar com números</li>
+                    <li>✅ Usar camelCase: <code>minhaVariavel</code></li>
+                    <li>❌ Não usar espaços ou palavras reservadas</li>
+                    <li>✅ Nomes descritivos: <code>userAge</code> em vez de <code>x</code></li>
+                </ul>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">10</div>
@@ -622,37 +877,83 @@ switch (diaDaSemana) {
         </div>
     </div>
 
-    <!-- Slide 11: Estruturas de Controle (Loops) -->
+    <!-- Slide 11: Tipos de Dados em JavaScript -->
     <div class="slide" id="slide-11">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Estruturas de Controle (Loops)</h2>
+                    <h2>Tipos de Dados em JavaScript</h2>
                     <!-- Placeholder for logo image -->
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>Estruturas de repetição (loops) permitem executar um bloco de código várias vezes.</p>
-                <h3><code>for</code> loop:</h3>
-                <p>Ideal quando o número de iterações é conhecido.</p>
-                <div class="code-block">for (let i = 0; i < 5; i++) {
-    console.log("Iteração número: " + i);
+                <p>JavaScript possui diferentes tipos de dados para representar informações. Vamos conhecer os principais:</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Tipos Primitivos:</h3>
+                        
+                        <h4>📝 String (Texto)</h4>
+                        <div class="code-block">let nome = "Ana";
+let sobrenome = 'Silva';
+let saudacao = `Olá, ${nome}!`; // Template Literal
+console.log(saudacao); // "Olá, Ana!"</div>
+
+                        <h4>🔢 Number (Números)</h4>
+                        <div class="code-block">let idade = 30;          // Inteiro
+let preco = 19.99;       // Decimal
+let infinito = Infinity; // Valor especial
+let naoNumero = NaN;     // Not-a-Number
+console.log("texto" * 2); // NaN</div>
+
+                        <h4>✅❌ Boolean (Lógico)</h4>
+                        <div class="code-block">let ativo = true;
+let logado = false;
+let maiorIdade = idade >= 18; // true ou false</div>
+                    </div>
+                    <div class="column">
+                        <h4>🚫 Null e Undefined</h4>
+                        <div class="code-block">let usuario = null;      // Ausência intencional
+let sobrenome;           // undefined (não definido)
+console.log(sobrenome);  // undefined</div>
+
+                        <h3>Tipos Complexos:</h3>
+                        
+                        <h4>📋 Object (Objeto)</h4>
+                        <div class="code-block">let carro = {
+    marca: "Fiat",
+    modelo: "Uno",
+    ano: 2010,
+    acelerar: function() {
+        console.log("Vruum!");
+    }
+};</div>
+
+                        <h4>📚 Array (Lista)</h4>
+                        <div class="code-block">let frutas = ["Maçã", "Banana", "Uva"];
+console.log(frutas[0]);    // "Maçã"
+console.log(frutas.length); // 3</div>
+
+                        <h4>⚙️ Function (Função)</h4>
+                        <div class="code-block">function somar(a, b) {
+    return a + b;
 }</div>
-                <h3><code>while</code> loop:</h3>
-                <p>Executa enquanto uma condição for verdadeira. A condição é verificada antes da execução do bloco.</p>
-                <div class="code-block">let contador = 0;
-while (contador < 3) {
-    console.log("Contador (while): " + contador);
-    contador++;
-}</div>
-                <h3><code>do...while</code> loop:</h3>
-                <p>Similar ao <code>while</code>, mas o bloco de código é executado pelo menos uma vez, pois a condição é verificada após a execução.</p>
-                <div class="code-block">let j = 0;
-do {
-    console.log("Contador (do...while): " + j);
-    j++;
-} while (j < 3);</div>
+                    </div>
+                </div>
+
+                <h3>Conversão de Tipos:</h3>
+                <div class="code-block">// String para Number
+let numString = "10";
+let num = Number(numString); // 10
+
+// Number para String  
+let valor = 123;
+let strValor = String(valor); // "123"
+
+// Verificar tipo
+console.log(typeof num);      // "number"
+console.log(typeof strValor); // "string"</div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">11</div>
@@ -661,45 +962,91 @@ do {
         </div>
     </div>
 
-    <!-- Slide 12: Funções e Modularização -->
+    <!-- Slide 12: Operadores em JavaScript -->
     <div class="slide" id="slide-12">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Funções e Modularização</h2>
+                    <h2>Operadores em JavaScript</h2>
                     <!-- Placeholder for logo image -->
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>Funções são blocos de código reutilizáveis que realizam uma tarefa específica. Modularização é a prática de dividir um programa em partes menores e independentes (módulos ou funções).</p>
-                <h3>Declarando Funções:</h3>
-                <div class="code-block">// Declaração de função
-function somar(a, b) {
-    return a + b;
-}
+                <p>Operadores são símbolos que executam operações sobre valores (operandos).</p>
 
-// Chamando a função
-let resultado = somar(5, 3);
-console.log(resultado); // 8</div>
-                <h3>Arrow Functions (ES6+):</h3>
-                <p>Uma sintaxe mais concisa para criar funções.</p>
-                <div class="code-block">const multiplicar = (x, y) => {
-    return x * y;
-};
+                <div class="two-column">
+                    <div class="column">
+                        <h3>🧮 Aritméticos</h3>
+                        <div class="code-block">let a = 10, b = 3;
+console.log(a + b);  // 13 (adição)
+console.log(a - b);  // 7  (subtração)
+console.log(a * b);  // 30 (multiplicação)
+console.log(a / b);  // 3.33... (divisão)
+console.log(a % b);  // 1  (módulo/resto)
+console.log(a ** b); // 1000 (exponenciação)</div>
 
-// Ou ainda mais conciso para retornos simples
-const subtrair = (a, b) => a - b;
+                        <h3>📝 Atribuição</h3>
+                        <div class="code-block">let x = 5;
+x += 3;  // x = x + 3; (agora x = 8)
+x -= 2;  // x = x - 2; (agora x = 6)
+x *= 2;  // x = x * 2; (agora x = 12)
+x /= 4;  // x = x / 4; (agora x = 3)
+x++;     // x = x + 1; (agora x = 4)
+x--;     // x = x - 1; (agora x = 3)</div>
 
-console.log(multiplicar(4, 2)); // 8
-console.log(subtrair(10, 7));  // 3</div>
-                <h3>Benefícios da Modularização:</h3>
-                <ul>
-                    <li><strong>Reutilização de Código:</strong> Evita repetição.</li>
-                    <li><strong>Legibilidade:</strong> Código mais fácil de entender.</li>
-                    <li><strong>Manutenção:</strong> Alterações em uma parte não afetam outras drasticamente.</li>
-                    <li><strong>Testabilidade:</strong> Módulos menores são mais fáceis de testar.</li>
-                </ul>
+                        <h3>⚖️ Relacionais (Comparação)</h3>
+                        <div class="code-block">console.log(5 > 3);      // true
+console.log(10 <= 10);   // true
+console.log(5 == "5");   // true (só valor)
+console.log(5 === "5");  // false (valor E tipo)
+console.log(5 != "6");   // true
+console.log(5 !== "5");  // true</div>
+                        
+                        <div class="highlight-box">
+                            <p><strong>Dica:</strong> Sempre use <code>===</code> e <code>!==</code> para evitar conversões inesperadas!</p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <h3>🧠 Lógicos</h3>
+                        <div class="code-block">let temIdade = true;
+let temIngresso = false;
+
+// AND (&&) - Ambos devem ser true
+console.log(temIdade && temIngresso); // false
+
+// OR (||) - Pelo menos um deve ser true  
+console.log(temIdade || temIngresso); // true
+
+// NOT (!) - Inverte o valor
+console.log(!temIdade);               // false</div>
+
+                        <h3>❓ Ternário (Condicional)</h3>
+                        <p>Forma compacta de if/else:</p>
+                        <div class="code-block">let idade = 18;
+let status = idade >= 18 ? "Adulto" : "Menor";
+console.log(status); // "Adulto"
+
+// Equivale a:
+// if (idade >= 18) {
+//     status = "Adulto";
+// } else {
+//     status = "Menor";
+// }</div>
+
+                        <h3>📊 Precedência de Operadores</h3>
+                        <table>
+                            <tr><th>Precedência</th><th>Operadores</th></tr>
+                            <tr><td>Altíssima</td><td><code>()</code></td></tr>
+                            <tr><td>Alta</td><td><code>**</code></td></tr>
+                            <tr><td>Média</td><td><code>* / %</code></td></tr>
+                            <tr><td>Média</td><td><code>+ -</code></td></tr>
+                            <tr><td>Baixa</td><td><code>&lt; &gt; &lt;= &gt;=</code></td></tr>
+                            <tr><td>Baixa</td><td><code>=== !==</code></td></tr>
+                            <tr><td>Baixíssima</td><td><code>&& ||</code></td></tr>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">12</div>
@@ -708,8 +1055,469 @@ console.log(subtrair(10, 7));  // 3</div>
         </div>
     </div>
 
-    <!-- Slide 13: Conclusão do Módulo 1 -->
+    <!-- Slide 13: Estruturas Condicionais -->
     <div class="slide" id="slide-13">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Estruturas Condicionais</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Estruturas condicionais permitem que o programa tome decisões e execute diferentes caminhos baseados em condições.</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>🔍 Condição Simples (if)</h3>
+                        <div class="code-block">let temperatura = 30;
+
+if (temperatura > 25) {
+    console.log("Está calor!");
+}
+// Se a condição for false, nada acontece</div>
+
+                        <h3>⚖️ Condição Composta (if/else)</h3>
+                        <div class="code-block">let idade = 16;
+
+if (idade >= 18) {
+    console.log("Pode entrar na festa.");
+} else {
+    console.log("Entrada não permitida.");
+}</div>
+
+                        <h3>🔄 Condições Múltiplas (if/else if/else)</h3>
+                        <div class="code-block">let nota = 8.5;
+
+if (nota >= 9) {
+    console.log("Ótimo!");
+} else if (nota >= 7) {
+    console.log("Bom, aprovado!");
+} else if (nota >= 5) {
+    console.log("Recuperação.");
+} else {
+    console.log("Reprovado.");
+}</div>
+                    </div>
+                    <div class="column">
+                        <h3>🔀 Switch/Case</h3>
+                        <p>Ideal para testar uma variável contra múltiplos valores fixos:</p>
+                        <div class="code-block">let diaSemana = 3; // 1=Dom, 2=Seg, etc.
+let nomeDia;
+
+switch (diaSemana) {
+    case 1:
+        nomeDia = "Domingo";
+        break;
+    case 2:
+        nomeDia = "Segunda";
+        break;
+    case 3:
+        nomeDia = "Terça";
+        break;
+    case 4:
+        nomeDia = "Quarta";
+        break;
+    case 5:
+        nomeDia = "Quinta";
+        break;
+    case 6:
+        nomeDia = "Sexta";
+        break;
+    case 7:
+        nomeDia = "Sábado";
+        break;
+    default:
+        nomeDia = "Dia inválido";
+}
+
+console.log(nomeDia); // "Terça"</div>
+
+                        <div class="highlight-box">
+                            <p><strong>Importante:</strong> Não esqueça do <code>break</code> no switch, senão o código continua executando os próximos cases!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">13</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Estruturas de Repetição (Loops) -->
+    <div class="slide" id="slide-14">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Estruturas de Repetição (Loops)</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Loops permitem executar um bloco de código repetidamente, evitando escrever o mesmo código várias vezes.</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>🔄 For Loop</h3>
+                        <p>Usado quando sabemos o número de repetições:</p>
+                        <div class="code-block">// Contar de 1 a 5
+for (let i = 1; i <= 5; i++) {
+    console.log("Contagem:", i);
+}
+
+// Resultado:
+// Contagem: 1
+// Contagem: 2  
+// Contagem: 3
+// Contagem: 4
+// Contagem: 5</div>
+
+                        <p><strong>Estrutura do for:</strong></p>
+                        <div class="code-block">for (inicialização; condição; incremento) {
+    // código a repetir
+}</div>
+
+                        <h3>🔄 For...of (Arrays)</h3>
+                        <p>Para iterar sobre arrays:</p>
+                        <div class="code-block">let frutas = ["Maçã", "Banana", "Uva"];
+
+for (let fruta of frutas) {
+    console.log("Fruta:", fruta);
+}
+
+// Resultado:
+// Fruta: Maçã
+// Fruta: Banana
+// Fruta: Uva</div>
+                    </div>
+                    <div class="column">
+                        <h3>⚡ While Loop</h3>
+                        <p>Executa enquanto a condição for verdadeira. Teste no início:</p>
+                        <div class="code-block">let contador = 1;
+
+while (contador <= 5) {
+    console.log("Contador (while):", contador);
+    contador++; // Importante: incrementar!
+}
+
+// Resultado igual ao for anterior</div>
+
+                        <h3>🔁 Do...While Loop</h3>
+                        <p>Executa pelo menos uma vez. Teste no final:</p>
+                        <div class="code-block">let senha;
+
+do {
+    // Simulando entrada do usuário
+    senha = prompt("Digite a senha:");
+    console.log("Tentando senha...");
+} while (senha !== "123");
+
+console.log("Acesso concedido!");</div>
+
+                        <div class="highlight-box">
+                            <h3>⚠️ Cuidado com Loops Infinitos!</h3>
+                            <div class="code-block">// ❌ EVITE ISSO:
+let x = 0;
+while (x < 10) {
+    console.log(x);
+    // Esqueceu de incrementar x!
+    // Loop infinito!
+}</div>
+                            <p>Sempre certifique-se de que a condição do loop eventualmente se torne falsa!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">14</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Funções em JavaScript -->
+    <div class="slide" id="slide-15">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Funções em JavaScript</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Funções são blocos de código reutilizáveis que executam uma tarefa específica.</p>
+
+                <div class="analogy-box">
+                    <h3>🏭 Analogia: Máquina na Fábrica</h3>
+                    <p>Uma função é como uma máquina: recebe matéria-prima (parâmetros), processa e produz um resultado (retorno).</p>
+                </div>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>📝 Declaração de Função</h3>
+                        <div class="code-block">// Declarando a função
+function somar(a, b) {
+    let resultado = a + b;
+    return resultado;
+}
+
+// Chamando (invocando) a função
+let total = somar(10, 5);
+console.log(total); // 15
+
+// Reutilizando a função
+console.log(somar(3, 7));   // 10
+console.log(somar(100, 50)); // 150</div>
+
+                        <h3>🎯 Função sem Retorno</h3>
+                        <div class="code-block">function saudar(nome) {
+    console.log(`Olá, ${nome}!`);
+    // Não tem return - retorna undefined
+}
+
+saudar("Ana");    // "Olá, Ana!"
+saudar("Carlos"); // "Olá, Carlos!"</div>
+
+                        <h3>🔧 Parâmetros Padrão</h3>
+                        <div class="code-block">function cumprimentar(nome = "Visitante") {
+    return `Bem-vindo, ${nome}!`;
+}
+
+console.log(cumprimentar());      // "Bem-vindo, Visitante!"
+console.log(cumprimentar("João")); // "Bem-vindo, João!"</div>
+                    </div>
+                    <div class="column">
+                        <h3>➡️ Arrow Functions (ES6+)</h3>
+                        <p>Sintaxe mais concisa para funções:</p>
+                        <div class="code-block">// Função tradicional
+function multiplicar(a, b) {
+    return a * b;
+}
+
+// Arrow function equivalente
+const multiplicar2 = (a, b) => {
+    return a * b;
+};
+
+// Arrow function mais concisa (uma linha)
+const multiplicar3 = (a, b) => a * b;
+
+// Usando
+console.log(multiplicar3(4, 5)); // 20</div>
+
+                        <h3>✨ Benefícios das Funções</h3>
+                        <ul>
+                            <li><strong>📦 Reutilização:</strong> Escreva uma vez, use várias</li>
+                            <li><strong>🧹 Organização:</strong> Código mais limpo e estruturado</li>
+                            <li><strong>🔍 Abstração:</strong> Esconde complexidade</li>
+                            <li><strong>🧪 Testabilidade:</strong> Mais fácil de testar</li>
+                            <li><strong>🐛 Debugging:</strong> Mais fácil de encontrar erros</li>
+                        </ul>
+
+                        <div class="highlight-box">
+                            <h4>💡 Dica de Boas Práticas:</h4>
+                            <ul>
+                                <li>Use nomes descritivos</li>
+                                <li>Funções devem fazer uma coisa bem</li>
+                                <li>Mantenha funções pequenas</li>
+                                <li>Evite muitos parâmetros</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">15</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 16: Modularização -->
+    <div class="slide" id="slide-16">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Modularização</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Modularização é a prática de dividir o código em arquivos separados (módulos), onde cada módulo tem uma responsabilidade específica.</p>
+
+                <div class="analogy-box">
+                    <h3>🏗️ Analogia: Construção de um Prédio</h3>
+                    <p>Em vez de construir tudo em um bloco único, dividimos em partes: fundação, estrutura, elétrica, hidráulica. Cada equipe cuida da sua especialidade.</p>
+                </div>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>✨ Vantagens da Modularização</h3>
+                        <ul>
+                            <li><strong>🔧 Manutenção:</strong> Mais fácil encontrar e corrigir bugs</li>
+                            <li><strong>♻️ Reutilização:</strong> Módulos podem ser usados em vários projetos</li>
+                            <li><strong>👥 Colaboração:</strong> Equipes trabalham em módulos diferentes</li>
+                            <li><strong>📚 Organização:</strong> Código mais estruturado e legível</li>
+                            <li><strong>🧪 Testabilidade:</strong> Módulos menores são mais fáceis de testar</li>
+                        </ul>
+
+                        <h3>📁 Estrutura de Projeto</h3>
+                        <div class="code-block">projeto/
+├── index.html
+├── js/
+│   ├── main.js
+│   ├── utils.js
+│   └── calculadora.js
+├── css/
+│   └── style.css
+└── assets/
+    └── images/</div>
+                    </div>
+                    <div class="column">
+                        <h3>📤 Export/Import (ES6 Modules)</h3>
+                        
+                        <h4>Arquivo: utils.js</h4>
+                        <div class="code-block">// Exportando uma função
+export function somar(a, b) {
+    return a + b;
+}
+
+// Exportando uma constante
+export const PI = 3.14159;
+
+// Exportando múltiplas funções
+export function subtrair(a, b) {
+    return a - b;
+}
+
+export function multiplicar(a, b) {
+    return a * b;
+}</div>
+
+                        <h4>Arquivo: main.js</h4>
+                        <div class="code-block">// Importando funções específicas
+import { somar, PI, subtrair } from './utils.js';
+
+// Usando as funções importadas
+let resultado = somar(10, 5);
+console.log(`Resultado: ${resultado}`); // 15
+
+console.log(`PI = ${PI}`); // 3.14159
+
+// Importando tudo de uma vez
+import * as Utils from './utils.js';
+console.log(Utils.multiplicar(4, 3)); // 12</div>
+
+                        <div class="highlight-box">
+                            <h4>⚠️ Importante para o Navegador:</h4>
+                            <p>Para usar módulos no HTML:</p>
+                            <div class="code-block">&lt;script type="module" src="main.js">&lt;/script></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">16</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 17: Recursos de Ajuda e Próximos Passos -->
+    <div class="slide" id="slide-17">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Recursos de Ajuda e Próximos Passos</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <div class="two-column">
+                    <div class="column">
+                        <h3>📚 Sites de Referência</h3>
+                        <ul>
+                            <li><strong>MDN Web Docs (Mozilla):</strong> A referência definitiva do JavaScript
+                                <br><small>developer.mozilla.org</small>
+                            </li>
+                            <li><strong>W3Schools:</strong> Ótimo para exemplos rápidos e tutoriais
+                                <br><small>w3schools.com</small>
+                            </li>
+                            <li><strong>JavaScript.info:</strong> Tutorial moderno e completo
+                                <br><small>javascript.info</small>
+                            </li>
+                        </ul>
+
+                        <h3>🛠️ Ferramentas de Prática</h3>
+                        <ul>
+                            <li><strong>CodePen:</strong> Editor online para experimentar</li>
+                            <li><strong>JSFiddle:</strong> Playground para JavaScript</li>
+                            <li><strong>Replit:</strong> IDE online completa</li>
+                            <li><strong>GitHub:</strong> Para versionar seus projetos</li>
+                        </ul>
+
+                        <h3>🎯 Desafios de Programação</h3>
+                        <ul>
+                            <li><strong>HackerRank:</strong> Problemas de lógica</li>
+                            <li><strong>LeetCode:</strong> Algoritmos e estruturas de dados</li>
+                            <li><strong>Codewars:</strong> Katas de programação</li>
+                            <li><strong>FreeCodeCamp:</strong> Projetos práticos</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>🚀 Próximos Passos</h3>
+                        
+                        <div class="highlight-box">
+                            <h4>1. 💪 Pratique Constantemente</h4>
+                            <ul>
+                                <li>Resolva exercícios de lógica diariamente</li>
+                                <li>Crie pequenos projetos pessoais</li>
+                                <li>Refaça os exemplos desta aula</li>
+                            </ul>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4>2. 🏗️ Projetos Sugeridos</h4>
+                            <ul>
+                                <li>Calculadora simples</li>
+                                <li>Lista de tarefas (To-Do)</li>
+                                <li>Conversor de temperaturas</li>
+                                <li>Jogo de adivinhação</li>
+                                <li>Validador de CPF</li>
+                            </ul>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4>3. 📖 Continue Aprendendo</h4>
+                            <ul>
+                                <li>DOM Manipulation</li>
+                                <li>Async/Await e Promises</li>
+                                <li>APIs e Fetch</li>
+                                <li>Frameworks (React, Vue, Angular)</li>
+                                <li>Node.js para Backend</li>
+                            </ul>
+                        </div>
+
+                        <blockquote>"A programação é uma jornada de aprendizado contínuo. Cada erro é uma lição, cada projeto é um passo adiante."</blockquote>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">17</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 18: Conclusão do Módulo 1 -->
+    <div class="slide" id="slide-18">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
@@ -719,24 +1527,60 @@ console.log(subtrair(10, 7));  // 3</div>
                 </div>
             </div>
             <div class="slide-body">
-                <h3>Parabéns!</h3>
+                <h3>🎉 Parabéns!</h3>
                 <p>Você concluiu o Módulo 1: Lógica de Programação com JavaScript. Agora você tem uma base sólida sobre:</p>
-                <ul>
-                    <li>O que é a web e como o JavaScript se encaixa nela.</li>
-                    <li>A importância dos algoritmos e como representá-los.</li>
-                    <li>Ferramentas essenciais para o desenvolvimento.</li>
-                    <li>Como a memória funciona e o papel das variáveis.</li>
-                    <li>Os pilares da lógica de programação: sequência, decisão e repetição.</li>
-                    <li>Como criar e usar funções para modularizar seu código.</li>
-                </ul>
-                <h3>Próximos Passos:</h3>
-                <p>Continue praticando! Crie pequenos projetos, resolva desafios de lógica e explore mais a fundo cada um dos conceitos aprendidos. A programação é uma jornada de aprendizado contínuo.</p>
+                
+                <div class="two-column">
+                    <div class="column">
+                        <h4>🌐 Fundamentos da Web:</h4>
+                        <ul>
+                            <li>Como a Internet e a Web funcionam</li>
+                            <li>Modelo Cliente-Servidor</li>
+                            <li>Diferenças entre Frontend e Backend</li>
+                            <li>Fluxo de uma aplicação web moderna</li>
+                        </ul>
+
+                        <h4>🧠 Lógica de Programação:</h4>
+                        <ul>
+                            <li>Algoritmos e suas representações</li>
+                            <li>Sequência, decisão e repetição</li>
+                            <li>Estruturas condicionais (if, switch)</li>
+                            <li>Estruturas de repetição (for, while)</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>⚙️ JavaScript Essencial:</h4>
+                        <ul>
+                            <li>Variáveis (let, const) e tipos de dados</li>
+                            <li>Operadores (aritméticos, lógicos, comparação)</li>
+                            <li>Funções e modularização</li>
+                            <li>Ferramentas de desenvolvimento</li>
+                        </ul>
+
+                        <h4>💼 Conceitos Técnicos:</h4>
+                        <ul>
+                            <li>Gerenciamento de memória</li>
+                            <li>Boas práticas de programação</li>
+                            <li>Import/Export de módulos</li>
+                            <li>Recursos para continuar aprendendo</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div style="text-align: center; margin-top: 2rem;">
-                    <h3>Sucesso na sua jornada de aprendizado!</h3>
+                    <div class="highlight-box">
+                        <h3>🎯 Sua Jornada Continua!</h3>
+                        <p>A programação é uma jornada de aprendizado contínuo. Continue praticando, criando projetos e explorando novos conceitos.</p>
+                        <p><strong>Lembre-se:</strong> Todo programador experiente já foi iniciante. A persistência e a prática constante são as chaves do sucesso!</p>
+                    </div>
+                    
+                    <h2 style="color: var(--accent-color); margin-top: 2rem;">
+                        🚀 Sucesso na sua jornada de desenvolvimento!
+                    </h2>
                 </div>
             </div>
             <div class="slide-footer">
-                <div class="slide-number">13</div>
+                <div class="slide-number">18</div>
                 <div>Programa de Formação Acelerada</div>
             </div>
         </div>
@@ -777,6 +1621,12 @@ console.log(subtrair(10, 7));  // 3</div>
         document.getElementById("nextBtn").addEventListener("click", nextSlide);
         document.getElementById("prevBtn").addEventListener("click", prevSlide);
         document.getElementById("printBtn").addEventListener("click", function() { window.print(); });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
 
         // Initialize first slide
         updateSlideNumber();
