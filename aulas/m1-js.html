@@ -570,13 +570,6 @@
                     <li><strong>CRUD:</strong> Create, Read, Update, Delete - operações básicas em dados</li>
                 </ul>
 
-                <div class="code-block">// Exemplo de requisição API em JavaScript
-fetch('/api/produtos?busca=livros+js')
-  .then(response => response.json())
-  .then(produtos => {
-    // Atualizar interface com os produtos
-    exibirProdutos(produtos);
-  });</div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">6</div>
@@ -797,6 +790,122 @@ let obj = {             // Referência na Stack
             </div>
             <div class="slide-footer">
                 <div class="slide-number">9</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Mergulhando no JavaScript -->
+    <div class="slide" id="slide-9">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Mergulhando no JavaScript: Nosso Primeiro Contato</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                
+                <h3>O que é JavaScript?</h3>
+                <p>De forma simples, <strong>JavaScript (ou JS)</strong> é a linguagem de programação que dá vida e interatividade às páginas da web. Se o HTML é o esqueleto de uma página e o CSS é a pele e as roupas, o JavaScript é o sistema nervoso e os músculos, permitindo que a página reaja às ações do usuário.</p>
+
+                <p>Mas o JS é muito mais do que isso. Suas principais características são:</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h4>🔧 Características Técnicas:</h4>
+                        <ul>
+                            <li><strong>Linguagem Interpretada:</strong> Diferente de linguagens compiladas (como C++ ou Java), o JavaScript não precisa ser transformado em um arquivo executável antes de rodar.</li>
+                            <li><strong>Manipulação do DOM:</strong> O DOM (Document Object Model) é a representação da estrutura de uma página HTML como uma árvore de objetos.</li>
+                            <li><strong>Orientação a Objetos:</strong> Permite organizar o código em "objetos", que encapsulam dados e comportamentos.</li>
+                            <li><strong>Evolui com ECMAScript:</strong> Padrão que garante consistência entre navegadores.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h4>🌟 Capacidades Modernas:</h4>
+                        <ul>
+                            <li><strong>Pode ser Tipada (TypeScript):</strong> Para projetos grandes, adiciona tipagem estática.</li>
+                            <li><strong>Client-side e Server-side:</strong> Roda no navegador e no servidor (Node.js).</li>
+                            <li><strong>Ecossistema Rico:</strong> Inúmeras bibliotecas e frameworks.</li>
+                            <li><strong>Multiplataforma:</strong> Web, mobile, desktop, IoT.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Por que usar JavaScript?</h3>
+                    <ul>
+                        <li><strong>Linguagem padrão dos navegadores:</strong> Todo navegador moderno entende JavaScript nativamente.</li>
+                        <li><strong>Ecossistema gigantesco:</strong> Inúmeros frameworks e bibliotecas disponíveis.</li>
+                        <li><strong>Desenvolvimento FullStack:</strong> Uma linguagem para frontend, backend, mobile e desktop.</li>
+                        <li><strong>Amplamente utilizada:</strong> De startups a gigantes como Google, Facebook, Netflix.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">9</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Nosso Primeiro Código -->
+    <div class="slide" id="slide-10">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Nosso Primeiro Código: Quebrando a Maldição!</h2>
+                    <!-- Placeholder for logo image -->
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Na programação, existe uma tradição (e uma brincadeira) de que o primeiro programa em qualquer nova linguagem deve ser um "Hello, World!" para "quebrar a maldição" e garantir uma jornada de aprendizado tranquila.</p>
+
+                <h3>Passo a Passo: Rodando seu primeiro index.js</h3>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h4>1. Instale as Ferramentas:</h4>
+                        <ul>
+                            <li><strong>VS Code:</strong> Baixe em code.visualstudio.com</li>
+                            <li><strong>Node.js:</strong> Baixe a versão LTS em nodejs.org</li>
+                        </ul>
+
+                        <h4>2. Configure o Projeto:</h4>
+                        <ol>
+                            <li>Crie uma nova pasta: <code>aula-javascript</code></li>
+                            <li>Abra a pasta no VS Code</li>
+                            <li>Crie um arquivo: <code>index.js</code></li>
+                        </ol>
+
+                        <h4>3. Escreva o Código Mágico:</h4>
+                        <div class="code-block">console.log("Hello, World! A maldição foi quebrada.");</div>
+                    </div>
+                    <div class="column">
+                        <h4>4. Execute o Código:</h4>
+                        <ol>
+                            <li>Abra o terminal integrado do VS Code</li>
+                            <li>Digite o comando:</li>
+                        </ol>
+                        <div class="code-block">node index.js</div>
+                        
+                        <h4>5. Resultado:</h4>
+                        <div class="code-block">Hello, World! A maldição foi quebrada.</div>
+
+                        <div class="highlight-box">
+                            <h4>🎉 Parabéns!</h4>
+                            <p>Você acabou de configurar seu ambiente de desenvolvimento e executou seu primeiro programa em JavaScript!</p>
+                            <p>O comando <code>console.log()</code> é uma das ferramentas mais importantes para testar e depurar nosso código.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p><strong>Agora que quebramos o gelo (e a maldição!), estamos prontos para mergulhar nos conceitos fundamentais da linguagem. Vamos falar sobre variáveis!</strong></p>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">10</div>
                 <div>Programa de Formação Acelerada</div>
             </div>
         </div>
