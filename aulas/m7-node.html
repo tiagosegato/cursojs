@@ -7,7 +7,7 @@
     <style>
         :root {
             --primary-color: #4682A0; /* Azul para destaque */
-            --secondary-color: #323330; /* Cinza escuro JavaScript */
+            --secondary-color: #343746; /* Cinza escuro */
             --accent-color: #4682A0; /* Azul para destaque */
             --text-color: #333;
             --light-text: #f8f9fa;
@@ -18,7 +18,7 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Avenir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--background-color);
@@ -78,6 +78,7 @@
         .slide-number {
             font-weight: bold;
             font-size: 1.2rem;
+            color: white;
         }
         
         .logo-container {
@@ -87,38 +88,44 @@
             width: 100%;
         }
         
+        .js-logo {
             background-color: var(--accent-color);
             color: var(--secondary-color);
             font-weight: bold;
             font-size: 2rem;
             padding: 0.5rem;
-            width: auto; /* Ajustado para caber texto */
-            min-width: 60px;
+            width: 60px;
             height: 60px;
             text-align: center;
             line-height: 60px;
-            white-space: nowrap;
         }
         
         .bfd-logo {
-            height: 60px;
+            height: 30px;
+        }
+        
+        .cover-slide .bfd-logo {
+            height: 50px;
         }
         
         h1 {
             color: var(--secondary-color);
             margin-top: 0;
             font-size: 2.5rem;
+            font-family: 'Advent Pro', sans-serif;
         }
         
         h2 {
-            color: var(--secondary-color);
+            color: white;
             font-size: 1.8rem;
             margin: 0;
+            font-family: 'Advent Pro', sans-serif;
         }
         
         h3 {
             color: var(--accent-color);
             font-size: 1.5rem;
+            font-family: 'Advent Pro', sans-serif;
         }
         
         ul, ol {
@@ -169,7 +176,7 @@
         
         button {
             background-color: var(--secondary-color);
-            color: var(--accent-color);
+            color: var(--primary-color);
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 5px;
@@ -179,6 +186,26 @@
         
         button:hover {
             background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        .code-block {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--code-background);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            white-space: pre;
         }
         
         .cover-slide .slide-content {
@@ -194,10 +221,9 @@
         
         .cover-slide .slide-body {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
+            text-align: left;
             padding: 2rem;
         }
         
@@ -217,7 +243,58 @@
             color: var(--accent-color);
             font-style: italic;
         }
-
+        
+        .cover-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex: 1;
+        }
+        
+        .cover-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+        
+        .highlight-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        
+        .analogy-box {
+            background-color: #fff9e6;
+            border: 2px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--code-background);
+            font-weight: bold;
+        }
+        
+        .slide-footer div:last-child {
+            color: white;
+        }
+        
         @media print {
             .slide {
                 display: block;
@@ -230,52 +307,8 @@
             }
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let currentSlide = 1;
-            const totalSlides = document.querySelectorAll('.slide').length;
-            
-            function showSlide(slideNumber) {
-                document.querySelectorAll('.slide').forEach(slide => slide.classList.remove('active'));
-                const activeSlide = document.getElementById('slide-' + slideNumber);
-                if (activeSlide) {
-                    activeSlide.classList.add('active');
-                }
-                currentSlide = slideNumber;
-            }
-
-            window.nextSlide = function() {
-                if (currentSlide < totalSlides) {
-                    showSlide(currentSlide + 1);
-                }
-            };
-
-            window.prevSlide = function() {
-                if (currentSlide > 1) {
-                    showSlide(currentSlide - 1);
-                }
-            };
-
-            window.printSlides = function() {
-                window.print();
-            };
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowRight' || e.key === ' ') {
-                    e.preventDefault();
-                    nextSlide();
-                } else if (e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    prevSlide();
-                }
-            });
-
-            showSlide(1);
-        });
-    </script>
 </head>
 <body>
-
     <!-- Slide 1: Capa -->
     <div class="slide cover-slide active" id="slide-1">
         <div class="slide-content">
@@ -286,10 +319,15 @@
                 </div>
             </div>
             <div class="slide-body">
-                <h3>Formação BackEnd</h3>
-                <h1>Node.js + Express</h1>
-                <h4>Módulo 7: Guia Completo: Desenvolvendo APIs com Node.js e Express</h4>
-                <p>Prof. Tiago Segato</p>
+                <div class="cover-left">
+                    <h3>Formação BackEnd</h3>
+                    <h1>Node.js + Express</h1>
+                    <h4>Módulo 7: Desenvolvendo APIs com Node.js e Express</h4>
+                    <p>Prof. Tiago Segato</p>
+                </div>
+                <div class="cover-right">
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">1</div>
@@ -298,30 +336,42 @@
         </div>
     </div>
 
-    <!-- Slide 2: Visão Geral do Módulo -->
+    <!-- Slide 2: Sumário -->
     <div class="slide" id="slide-2">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Visão Geral do Módulo</h2>
+                    <h2>Sumário</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>Bem-vindo ao Módulo 7! Neste módulo, exploraremos o universo do Node.js e Express para construção de APIs. Abordaremos desde a configuração do ambiente até a criação de uma API RESTful completa, incluindo persistência de dados, middlewares, autenticação e preparação para produção.</p>
-                <h3>O que você vai aprender:</h3>
+                <h3>Parte 1: A Base Teórica (Aula Introdutória)</h3>
                 <ul>
-                    <li>Introdução ao Node.js e seu papel no backend.</li>
-                    <li>Configuração do ambiente de desenvolvimento.</li>
-                    <li>Diferenças entre Frontend, Backend e o papel das APIs.</li>
-                    <li>Utilização do framework Express.js para construção de APIs.</li>
-                    <li>Conceitos de roteamento, endpoints e métodos HTTP.</li>
-                    <li>Ferramentas para teste de APIs.</li>
-                    <li>Construção de uma API CRUD completa.</li>
-                    <li>Persistência de dados com Banco de Dados e Sequelize.</li>
-                    <li>Middlewares, validação e tratamento de erros.</li>
-                    <li>Autenticação de usuário com Token JWT.</li>
-                    <li>Preparação para o ambiente de produção (CORS, variáveis de ambiente, SSL, Deploy).</li>
+                    <li>Introdução ao Node.js</li>
+                    <li>Configuração do Ambiente (IDE)</li>
+                    <li>Frontend, Backend e APIs: A Grande Divisão</li>
+                    <li>Framework Express.js</li>
+                    <li>Roteamento e Endpoints</li>
+                    <li>Ferramentas de Teste de API</li>
+                </ul>
+
+                <h3>Parte 2: Construindo a Primeira API (Tutorial Prático)</h3>
+                <ul>
+                    <li>Criando um Gerenciador de Tarefas</li>
+                    <li>Preparação do Ambiente</li>
+                    <li>Criando o Servidor Básico</li>
+                    <li>Implementando o CRUD (Create, Read, Update, Delete)</li>
+                    <li>Testando a API com um Cliente HTTP</li>
+                </ul>
+
+                <h3>Parte 3: Módulos de Aprofundamento</h3>
+                <ul>
+                    <li>Persistência de Dados com Banco de Dados e Sequelize</li>
+                    <li>Middlewares, Validação e Tratamento de Erros</li>
+                    <li>Autenticação de Usuário com Token JWT</li>
+                    <li>Estudos de Caso e Desafios</li>
+                    <li>Preparando para o Ambiente de Produção</li>
                 </ul>
             </div>
             <div class="slide-footer">
@@ -336,20 +386,26 @@
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>1.1. Introdução ao Node.js</h2>
+                    <h2>Introdução ao Node.js</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
                 <p>Até pouco tempo atrás, o JavaScript vivia exclusivamente dentro dos navegadores de internet (como Chrome, Firefox) para criar interatividade em páginas web (o frontend).</p>
+
                 <h3>O que é Node.js?</h3>
-                <ul>
-                    <li>É um <strong>ambiente de execução</strong> que permite rodar código JavaScript no lado do servidor (no backend).</li>
-                    <li><strong>Não é uma nova linguagem de programação.</strong> É o mesmo JavaScript que você já conhece.</li>
-                    <li><strong>Não é um framework.</strong> É a plataforma sobre a qual construiremos nossas aplicações.</li>
-                    <li><strong>É rápido e eficiente.</strong> Foi construído sobre o motor V8 do Google Chrome.</li>
-                    <li>Isso permitiu que desenvolvedores usassem uma única linguagem (JavaScript) tanto para o frontend quanto para o backend, simplificando o desenvolvimento.</li>
-                </ul>
+                <p>Node.js é um <strong>ambiente de execução</strong> que permite rodar código JavaScript no lado do servidor (no backend).</p>
+
+                <div class="highlight-box">
+                    <h3>Características do Node.js:</h3>
+                    <ul>
+                        <li><strong>Não é uma nova linguagem de programação.</strong> É o mesmo JavaScript que você já conhece.</li>
+                        <li><strong>Não é um framework.</strong> É a plataforma sobre a qual construiremos nossas aplicações.</li>
+                        <li><strong>É rápido e eficiente.</strong> Foi construído sobre o motor V8 do Google Chrome.</li>
+                    </ul>
+                </div>
+
+                <p>Isso permitiu que desenvolvedores usassem uma única linguagem (JavaScript) tanto para o frontend quanto para o backend, simplificando o desenvolvimento.</p>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">3</div>
@@ -358,21 +414,39 @@
         </div>
     </div>
 
-    <!-- Slide 4: Configuração do Ambiente (IDE) -->
+    <!-- Slide 4: Configuração do Ambiente -->
     <div class="slide" id="slide-4">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>1.2. Configuração do Ambiente (IDE)</h2>
+                    <h2>Configuração do Ambiente (IDE)</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
                 <p>Para escrever nosso código, usaremos um <strong>Editor de Código</strong> ou <strong>IDE (Ambiente de Desenvolvimento Integrado)</strong>.</p>
-                <h3>Recomendação:</h3> 
-                <p><strong>Visual Studio Code (VS Code)</strong>. É gratuito, poderoso e possui um ecossistema gigante de extensões.</p>
-                <h3>Terminal Integrado:</h3>
-                <p>O VS Code possui um terminal embutido (<code>Ctrl + '</code>) para rodar comandos como <code>npm install</code> e <code>node index.js</code>.</p>
+
+                <div class="highlight-box">
+                    <h3>Recomendação: Visual Studio Code (VS Code)</h3>
+                    <ul>
+                        <li>É gratuito</li>
+                        <li>Poderoso e leve</li>
+                        <li>Possui um ecossistema gigante de extensões</li>
+                        <li>Terminal integrado (<code>Ctrl + '</code>)</li>
+                    </ul>
+                </div>
+
+                <h3>Terminal Integrado</h3>
+                <p>O VS Code possui um terminal embutido para rodar comandos como:</p>
+                <div class="code-block">npm install
+node index.js</div>
+
+                <h3>Extensões Úteis</h3>
+                <ul>
+                    <li><strong>Node.js Extension Pack:</strong> Conjunto de extensões para desenvolvimento Node.js</li>
+                    <li><strong>REST Client:</strong> Para testar APIs diretamente no VS Code</li>
+                    <li><strong>Thunder Client:</strong> Alternativa ao Postman integrada ao VS Code</li>
+                </ul>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">4</div>
@@ -386,17 +460,56 @@
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>1.3. Frontend, Backend e APIs</h2>
+                    <h2>Frontend, Backend e APIs: A Grande Divisão</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>Imagine que uma aplicação web é um <strong>restaurante</strong>.</p>
-                <ul>
-                    <li><strong>Frontend (O Salão):</strong> É a parte com a qual o usuário interage diretamente (telas, botões, formulários). É o que você vê. Tecnologias: HTML, CSS, JavaScript (React, Vue, Angular).</li>
-                    <li><strong>Backend (A Cozinha):</strong> É a parte que funciona nos "bastidores". Processa regras de negócio, acessa o banco de dados e cuida da segurança. É o cérebro da operação. Tecnologias: Node.js, Python, Java.</li>
-                    <li><strong>API (O Garçom):</strong> É o intermediário que permite a comunicação entre o Frontend e o Backend. A <strong>API (Application Programming Interface)</strong> é um conjunto de regras e protocolos que define como as duas partes devem se comunicar.</li>
-                </ul>
+                <div class="analogy-box">
+                    <h3>🍽️ Analogia: Restaurante</h3>
+                    <p>Imagine que uma aplicação web é um <strong>restaurante</strong>.</p>
+                </div>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Frontend (O Salão)</h3>
+                        <ul>
+                            <li>É a parte com a qual o usuário interage diretamente</li>
+                            <li>Telas, botões, formulários</li>
+                            <li>É o que você vê</li>
+                            <li><strong>Tecnologias:</strong> HTML, CSS, JavaScript (React, Vue, Angular)</li>
+                        </ul>
+
+                        <h3>Backend (A Cozinha)</h3>
+                        <ul>
+                            <li>É a parte que funciona nos "bastidores"</li>
+                            <li>Processa regras de negócio</li>
+                            <li>Acessa o banco de dados</li>
+                            <li>Cuida da segurança</li>
+                            <li>É o cérebro da operação</li>
+                            <li><strong>Tecnologias:</strong> Node.js, Python, Java</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>API (O Garçom)</h3>
+                        <ul>
+                            <li>É o intermediário que permite a comunicação entre o Frontend e o Backend</li>
+                            <li><strong>API (Application Programming Interface)</strong> é um conjunto de regras e protocolos</li>
+                            <li>Define como as duas partes devem se comunicar</li>
+                        </ul>
+
+                        <div class="highlight-box">
+                            <h3>Fluxo de Comunicação:</h3>
+                            <ol>
+                                <li>Usuário clica em um botão (Frontend)</li>
+                                <li>Frontend faz uma requisição para a API</li>
+                                <li>API processa a requisição (Backend)</li>
+                                <li>Backend retorna os dados</li>
+                                <li>Frontend exibe os dados para o usuário</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">5</div>
@@ -410,14 +523,41 @@
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>1.4. Framework Express.js</h2>
+                    <h2>Framework Express.js: Não Reinvente a Roda</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
                 <p>Node.js puro é muito "cru". Seria como construir um carro do zero, fabricando cada parafuso.</p>
+
                 <h3>O que é o Express.js?</h3>
-                <p>É um <strong>framework web minimalista e flexível para Node.js</strong>. Ele nos fornece um conjunto de ferramentas para construir APIs de forma muito mais rápida e organizada, como gerenciamento de rotas e de requisições/respostas.</p>
+                <p>É um <strong>framework web minimalista e flexível para Node.js</strong>. Ele nos fornece um conjunto de ferramentas para construir APIs de forma muito mais rápida e organizada.</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Funcionalidades do Express:</h3>
+                        <ul>
+                            <li>Gerenciamento de rotas</li>
+                            <li>Middleware para processamento de requisições</li>
+                            <li>Tratamento de requisições e respostas</li>
+                            <li>Integração com template engines</li>
+                            <li>Servir arquivos estáticos</li>
+                            <li>Tratamento de erros</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Vantagens do Express:</h3>
+                        <ul>
+                            <li><strong>Simplicidade:</strong> Fácil de aprender e usar</li>
+                            <li><strong>Flexibilidade:</strong> Não impõe estruturas rígidas</li>
+                            <li><strong>Performance:</strong> Rápido e eficiente</li>
+                            <li><strong>Comunidade:</strong> Grande ecossistema de plugins</li>
+                            <li><strong>Documentação:</strong> Bem documentado</li>
+                        </ul>
+
+                        <div class="code-block">npm install express</div>
+                    </div>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">6</div>
@@ -431,21 +571,55 @@
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>1.5. Roteamento e Endpoints</h2>
+                    <h2>Roteamento e Endpoints: Os Endereços da Nossa API</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
                 <p>Uma <strong>rota</strong> é um "caminho" em nosso servidor que executa uma função específica. A combinação do <strong>método HTTP</strong> e do <strong>caminho</strong> forma o que chamamos de <strong>endpoint</strong>.</p>
-                <h3>Métodos HTTP (Verbos):</h3>
-                <ul>
-                    <li><code>GET</code>: Para <strong>buscar</strong> dados.</li>
-                    <li><code>POST</code>: Para <strong>criar</strong> um novo dado.</li>
-                    <li><code>PUT</code> / <code>PATCH</code>: Para <strong>atualizar</strong> um dado existente.</li>
-                    <li><code>DELETE</code>: Para <strong>remover</strong> um dado.</li>
-                </ul>
-                <h3>Caminho (Path):</h3>
-                <p>O endereço do recurso (ex: <code>/tarefas</code>, <code>/usuarios</code>).</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Métodos HTTP (Verbos)</h3>
+                        <p>A ação que queremos realizar:</p>
+                        <ul>
+                            <li><strong>GET:</strong> Para <strong>buscar</strong> dados</li>
+                            <li><strong>POST:</strong> Para <strong>criar</strong> um novo dado</li>
+                            <li><strong>PUT/PATCH:</strong> Para <strong>atualizar</strong> um dado existente</li>
+                            <li><strong>DELETE:</strong> Para <strong>remover</strong> um dado</li>
+                        </ul>
+
+                        <h3>Caminho (Path)</h3>
+                        <p>O endereço do recurso:</p>
+                        <ul>
+                            <li><code>/tarefas</code></li>
+                            <li><code>/usuarios</code></li>
+                            <li><code>/produtos</code></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Exemplos de Endpoints</h3>
+                        <div class="code-block">GET /tarefas
+// Buscar todas as tarefas
+
+POST /tarefas
+// Criar uma nova tarefa
+
+GET /tarefas/1
+// Buscar tarefa com ID 1
+
+PUT /tarefas/1
+// Atualizar tarefa com ID 1
+
+DELETE /tarefas/1
+// Deletar tarefa com ID 1</div>
+
+                        <div class="highlight-box">
+                            <h3>Padrão RESTful</h3>
+                            <p>Seguimos convenções para tornar nossa API previsível e fácil de usar.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">7</div>
@@ -459,17 +633,55 @@
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>1.6. Ferramentas de Teste de API</h2>
+                    <h2>Ferramentas de Teste de API</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
                 <p>Enquanto o frontend não existe, como testamos nossa API? Usamos <strong>Clientes de API (API Clients)</strong>.</p>
-                <h3>Ferramentas Populares:</h3>
-                <ul>
-                    <li><strong>Postman:</strong> O mais conhecido e robusto.</li>
-                    <li><strong>Insomnia:</strong> Uma alternativa mais leve e moderna.</li>
-                </ul>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Ferramentas Populares:</h3>
+                        <ul>
+                            <li><strong>Postman:</strong> O mais conhecido e robusto</li>
+                            <li><strong>Insomnia:</strong> Uma alternativa mais leve e moderna</li>
+                            <li><strong>Thunder Client:</strong> Extensão do VS Code</li>
+                            <li><strong>REST Client:</strong> Extensão do VS Code</li>
+                            <li><strong>curl:</strong> Ferramenta de linha de comando</li>
+                        </ul>
+
+                        <h3>Funcionalidades:</h3>
+                        <ul>
+                            <li>Enviar requisições HTTP</li>
+                            <li>Definir headers e parâmetros</li>
+                            <li>Visualizar respostas</li>
+                            <li>Salvar coleções de requisições</li>
+                            <li>Automatizar testes</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Exemplo com curl:</h3>
+                        <div class="code-block"># GET - Buscar todas as tarefas
+curl http://localhost:3000/tarefas
+
+# POST - Criar nova tarefa
+curl -X POST \
+  http://localhost:3000/tarefas \
+  -H "Content-Type: application/json" \
+  -d '{"titulo": "Nova tarefa"}'
+
+# PUT - Atualizar tarefa
+curl -X PUT \
+  http://localhost:3000/tarefas/1 \
+  -H "Content-Type: application/json" \
+  -d '{"titulo": "Tarefa atualizada"}'
+
+# DELETE - Deletar tarefa
+curl -X DELETE \
+  http://localhost:3000/tarefas/1</div>
+                    </div>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">8</div>
@@ -478,17 +690,43 @@
         </div>
     </div>
 
-    <!-- Slide 9: Construindo a Primeira API -->
+    <!-- Slide 9: Criando um Gerenciador de Tarefas -->
     <div class="slide" id="slide-9">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Parte 2: Construindo a Primeira API</h2>
+                    <h2>Criando um Gerenciador de Tarefas</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
                 <p>Vamos construir uma API para gerenciar uma lista de tarefas. Para simplificar, usaremos um array em memória como nosso "banco de dados" inicial.</p>
+
+                <h3>Funcionalidades da API:</h3>
+                <ul>
+                    <li>Listar todas as tarefas</li>
+                    <li>Buscar uma tarefa específica por ID</li>
+                    <li>Criar uma nova tarefa</li>
+                    <li>Atualizar uma tarefa existente</li>
+                    <li>Deletar uma tarefa</li>
+                </ul>
+
+                <h3>Estrutura de uma Tarefa:</h3>
+                <div class="code-block">{
+  "id": 1,
+  "titulo": "Aprender Node.js",
+  "concluida": false
+}</div>
+
+                <div class="highlight-box">
+                    <h3>CRUD Operations</h3>
+                    <ul>
+                        <li><strong>C</strong>reate - Criar</li>
+                        <li><strong>R</strong>ead - Ler</li>
+                        <li><strong>U</strong>pdate - Atualizar</li>
+                        <li><strong>D</strong>elete - Deletar</li>
+                    </ul>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">9</div>
@@ -502,17 +740,33 @@
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>2.2. Preparação do Ambiente</h2>
+                    <h2>Preparação do Ambiente</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <h3>1. Crie uma pasta e navegue até ela:</h3>
-                <pre><code>mkdir gerenciador-tarefas-api
-cd gerenciador-tarefas-api</code></pre>
-                <h3>2. Inicie o projeto e instale o Express:</h3>
-                <pre><code>npm init -y
-npm install express</code></pre>
+                <h3>Passo 1: Criar o Projeto</h3>
+                <div class="code-block">mkdir gerenciador-tarefas-api
+cd gerenciador-tarefas-api</div>
+
+                <h3>Passo 2: Inicializar o Projeto Node.js</h3>
+                <div class="code-block">npm init -y</div>
+                <p>Este comando cria o arquivo <code>package.json</code> com as configurações padrão.</p>
+
+                <h3>Passo 3: Instalar o Express</h3>
+                <div class="code-block">npm install express</div>
+
+                <h3>Estrutura do Projeto:</h3>
+                <div class="code-block">gerenciador-tarefas-api/
+├── package.json
+├── package-lock.json
+├── node_modules/
+└── index.js (vamos criar)</div>
+
+                <div class="highlight-box">
+                    <h3>Dica:</h3>
+                    <p>O arquivo <code>package.json</code> contém as informações do projeto e suas dependências. O <code>node_modules</code> contém os pacotes instalados.</p>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">10</div>
@@ -526,13 +780,14 @@ npm install express</code></pre>
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>2.3. Criando o Servidor Básico</h2>
+                    <h2>Criando o Servidor Básico</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
                 <p>Crie um arquivo <code>index.js</code> com o seguinte código:</p>
-                <pre><code>const express = require('express');
+
+                <div class="code-block">const express = require('express');
 const app = express();
 const PORT = 3000;
 
@@ -553,8 +808,12 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta http://localhost:${PORT}`);
-});</code></pre>
-                <p>Execute com <code>node index.js</code>.</p>
+});</div>
+
+                <h3>Para executar:</h3>
+                <div class="code-block">node index.js</div>
+
+                <p>Acesse <code>http://localhost:3000</code> no navegador para verificar se está funcionando.</p>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">11</div>
@@ -563,28 +822,39 @@ app.listen(PORT, () => {
         </div>
     </div>
 
-    <!-- Slide 12: Implementando o CRUD (Parte 1) -->
+    <!-- Slide 12: Implementando o CRUD - READ -->
     <div class="slide" id="slide-12">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>2.4. Implementando o CRUD</h2>
+                    <h2>Implementando o CRUD - READ</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>Adicione as seguintes rotas ao seu <code>index.js</code>:</p>
-                <pre><code>// Listar todas as tarefas (GET /tarefas)
-app.get('/tarefas', (req, res) => {
+                <h3>Listar todas as tarefas (GET /tarefas)</h3>
+                <div class="code-block">app.get('/tarefas', (req, res) => {
   res.json(tarefas);
-});
+});</div>
 
-// Obter uma tarefa por ID (GET /tarefas/:id)
-app.get('/tarefas/:id', (req, res) => {
+                <h3>Obter uma tarefa por ID (GET /tarefas/:id)</h3>
+                <div class="code-block">app.get('/tarefas/:id', (req, res) => {
   const tarefa = tarefas.find(t => t.id === parseInt(req.params.id));
-  if (!tarefa) return res.status(404).json({ mensagem: "Tarefa não encontrada!" });
+  if (!tarefa) {
+    return res.status(404).json({ mensagem: "Tarefa não encontrada!" });
+  }
   res.json(tarefa);
-});</code></pre>
+});</div>
+
+                <div class="highlight-box">
+                    <h3>Explicação:</h3>
+                    <ul>
+                        <li><code>req.params.id</code> - Captura o parâmetro da URL</li>
+                        <li><code>parseInt()</code> - Converte string para número</li>
+                        <li><code>find()</code> - Busca o primeiro elemento que atende à condição</li>
+                        <li><code>status(404)</code> - Define o código de status HTTP</li>
+                    </ul>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">12</div>
@@ -593,19 +863,18 @@ app.get('/tarefas/:id', (req, res) => {
         </div>
     </div>
 
-    <!-- Slide 13: Implementando o CRUD (Parte 2) -->
+    <!-- Slide 13: Implementando o CRUD - CREATE -->
     <div class="slide" id="slide-13">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>2.4. Implementando o CRUD</h2>
+                    <h2>Implementando o CRUD - CREATE</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>Continuando as rotas CRUD:</p>
-                <pre><code>// Criar uma nova tarefa (POST /tarefas)
-app.post('/tarefas', (req, res) => {
+                <h3>Criar uma nova tarefa (POST /tarefas)</h3>
+                <div class="code-block">app.post('/tarefas', (req, res) => {
   const novaTarefa = {
     id: tarefas.length > 0 ? tarefas[tarefas.length - 1].id + 1 : 1,
     titulo: req.body.titulo,
@@ -613,18 +882,25 @@ app.post('/tarefas', (req, res) => {
   };
   tarefas.push(novaTarefa);
   res.status(201).json(novaTarefa);
-});
+});</div>
 
-// Atualizar uma tarefa (PUT /tarefas/:id)
-app.put('/tarefas/:id', (req, res) => {
-  const indice = tarefas.findIndex(t => t.id === parseInt(req.params.id));
-  if (indice === -1) return res.status(404).json({ mensagem: "Tarefa não encontrada!" });
-  
-  tarefas[indice].titulo = req.body.titulo || tarefas[indice].titulo;
-  tarefas[indice].concluida = typeof req.body.concluida === 'boolean' ? req.body.concluida : tarefas[indice].concluida;
-  
-  res.json(tarefas[indice]);
-});</code></pre>
+                <div class="highlight-box">
+                    <h3>Explicação:</h3>
+                    <ul>
+                        <li><code>req.body</code> - Dados enviados no corpo da requisição</li>
+                        <li>Geramos um ID automaticamente (último ID + 1)</li>
+                        <li><code>push()</code> - Adiciona o elemento ao final do array</li>
+                        <li><code>status(201)</code> - Código para "Created" (Criado)</li>
+                    </ul>
+                </div>
+
+                <h3>Exemplo de requisição:</h3>
+                <div class="code-block">POST /tarefas
+Content-Type: application/json
+
+{
+  "titulo": "Estudar Express.js"
+}</div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">13</div>
@@ -633,25 +909,40 @@ app.put('/tarefas/:id', (req, res) => {
         </div>
     </div>
 
-    <!-- Slide 14: Implementando o CRUD (Parte 3) -->
+    <!-- Slide 14: Implementando o CRUD - UPDATE -->
     <div class="slide" id="slide-14">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>2.4. Implementando o CRUD</h2>
+                    <h2>Implementando o CRUD - UPDATE</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>Finalizando as rotas CRUD:</p>
-                <pre><code>// Deletar uma tarefa (DELETE /tarefas/:id)
-app.delete('/tarefas/:id', (req, res) => {
+                <h3>Atualizar uma tarefa (PUT /tarefas/:id)</h3>
+                <div class="code-block">app.put('/tarefas/:id', (req, res) => {
   const indice = tarefas.findIndex(t => t.id === parseInt(req.params.id));
-  if (indice === -1) return res.status(404).json({ mensagem: "Tarefa não encontrada!" });
+  if (indice === -1) {
+    return res.status(404).json({ mensagem: "Tarefa não encontrada!" });
+  }
+  
+  tarefas[indice].titulo = req.body.titulo || tarefas[indice].titulo;
+  tarefas[indice].concluida = typeof req.body.concluida === 'boolean' 
+    ? req.body.concluida 
+    : tarefas[indice].concluida;
+  
+  res.json(tarefas[indice]);
+});</div>
 
-  tarefas.splice(indice, 1);
-  res.status(204).send();
-});</code></pre>
+                <div class="highlight-box">
+                    <h3>Explicação:</h3>
+                    <ul>
+                        <li><code>findIndex()</code> - Retorna o índice do elemento encontrado</li>
+                        <li><code>||</code> - Operador OR: usa o valor existente se o novo for undefined</li>
+                        <li><code>typeof</code> - Verifica o tipo da variável</li>
+                        <li>Permite atualização parcial dos campos</li>
+                    </ul>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">14</div>
@@ -660,17 +951,44 @@ app.delete('/tarefas/:id', (req, res) => {
         </div>
     </div>
 
-    <!-- Slide 15: Testando a API -->
+    <!-- Slide 15: Implementando o CRUD - DELETE -->
     <div class="slide" id="slide-15">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>2.5. Testando a API</h2>
+                    <h2>Implementando o CRUD - DELETE</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>Use o Postman ou Insomnia para testar os endpoints que você criou.</p>
+                <h3>Deletar uma tarefa (DELETE /tarefas/:id)</h3>
+                <div class="code-block">app.delete('/tarefas/:id', (req, res) => {
+  const indice = tarefas.findIndex(t => t.id === parseInt(req.params.id));
+  if (indice === -1) {
+    return res.status(404).json({ mensagem: "Tarefa não encontrada!" });
+  }
+
+  tarefas.splice(indice, 1);
+  res.status(204).send();
+});</div>
+
+                <div class="highlight-box">
+                    <h3>Explicação:</h3>
+                    <ul>
+                        <li><code>splice(indice, 1)</code> - Remove 1 elemento na posição especificada</li>
+                        <li><code>status(204)</code> - Código para "No Content" (Sem Conteúdo)</li>
+                        <li><code>send()</code> - Envia resposta vazia</li>
+                    </ul>
+                </div>
+
+                <h3>Resumo dos Status Codes:</h3>
+                <ul>
+                    <li><strong>200:</strong> OK (sucesso geral)</li>
+                    <li><strong>201:</strong> Created (recurso criado)</li>
+                    <li><strong>204:</strong> No Content (sucesso sem conteúdo)</li>
+                    <li><strong>404:</strong> Not Found (recurso não encontrado)</li>
+                    <li><strong>500:</strong> Internal Server Error (erro do servidor)</li>
+                </ul>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">15</div>
@@ -679,17 +997,52 @@ app.delete('/tarefas/:id', (req, res) => {
         </div>
     </div>
 
-    <!-- Slide 16: Módulos de Aprofundamento -->
+    <!-- Slide 16: Testando a API -->
     <div class="slide" id="slide-16">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Parte 3: Módulos de Aprofundamento</h2>
+                    <h2>Testando a API</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <p>Esta seção aborda tópicos mais avançados para aprimorar sua API.</p>
+                <p>Use o Postman, Insomnia ou Thunder Client para testar os endpoints que você criou.</p>
+
+                <h3>Sequência de Testes:</h3>
+                <ol>
+                    <li><strong>GET /tarefas</strong> - Listar todas as tarefas</li>
+                    <li><strong>POST /tarefas</strong> - Criar uma nova tarefa</li>
+                    <li><strong>GET /tarefas/1</strong> - Buscar tarefa específica</li>
+                    <li><strong>PUT /tarefas/1</strong> - Atualizar tarefa</li>
+                    <li><strong>DELETE /tarefas/1</strong> - Deletar tarefa</li>
+                </ol>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Exemplo de Teste com Postman:</h3>
+                        <ol>
+                            <li>Abra o Postman</li>
+                            <li>Crie uma nova requisição</li>
+                            <li>Selecione o método HTTP</li>
+                            <li>Digite a URL: <code>http://localhost:3000/tarefas</code></li>
+                            <li>Para POST/PUT, adicione o JSON no Body</li>
+                            <li>Clique em "Send"</li>
+                        </ol>
+                    </div>
+                    <div class="column">
+                        <h3>Exemplo de Body para POST:</h3>
+                        <div class="code-block">{
+  "titulo": "Aprender MongoDB"
+}</div>
+
+                        <h3>Exemplo de Body para PUT:</h3>
+                        <div class="code-block">{
+  "titulo": "Aprender MongoDB Avançado",
+  "concluida": true
+}</div>
+                    </div>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">16</div>
@@ -698,23 +1051,57 @@ app.delete('/tarefas/:id', (req, res) => {
         </div>
     </div>
 
-    <!-- Slide 17: Persistência de Dados com Banco de Dados e Sequelize -->
+    <!-- Slide 17: Programação Assíncrona -->
     <div class="slide" id="slide-17">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Módulo 1: Persistência de Dados</h2>
+                    <h2>Programação Assíncrona</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
                 <p>Operações de banco de dados são <strong>assíncronas</strong>. O Node.js não espera por elas.</p>
-                <h3>Programação Assíncrona:</h3>
-                <ul>
-                    <li><strong>Callbacks:</strong> O jeito antigo, leva ao "Callback Hell".</li>
-                    <li><strong>Promises:</strong> Uma "promessa" de um resultado futuro, melhora a legibilidade com <code>.then()</code> e <code>.catch()</code>.</li>
-                    <li><strong>Async/Await:</strong> A forma mais moderna. Escrevemos código assíncrono que parece síncrono. Usaremos este método.</li>
-                </ul>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Callbacks (Jeito Antigo)</h3>
+                        <div class="code-block">fs.readFile('arquivo.txt', (err, data) => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(data);
+  }
+});</div>
+                        <p>Problema: "Callback Hell" - código aninhado e difícil de ler.</p>
+
+                        <h3>Promises (Melhor)</h3>
+                        <div class="code-block">readFile('arquivo.txt')
+  .then(data => console.log(data))
+  .catch(err => console.error(err));</div>
+                    </div>
+                    <div class="column">
+                        <h3>Async/Await (Moderno)</h3>
+                        <div class="code-block">async function lerArquivo() {
+  try {
+    const data = await readFile('arquivo.txt');
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+}</div>
+
+                        <div class="highlight-box">
+                            <h3>Vantagens do Async/Await:</h3>
+                            <ul>
+                                <li>Código mais limpo e legível</li>
+                                <li>Parece código síncrono</li>
+                                <li>Melhor tratamento de erros</li>
+                                <li>Facilita debugging</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">17</div>
@@ -723,32 +1110,36 @@ app.delete('/tarefas/:id', (req, res) => {
         </div>
     </div>
 
-    <!-- Slide 18: Integrando o Sequelize com SQLite -->
+    <!-- Slide 18: Integrando Sequelize com SQLite -->
     <div class="slide" id="slide-18">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Integrando o Sequelize com SQLite</h2>
+                    <h2>Integrando Sequelize com SQLite</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <h3>1. Instale as dependências:</h3>
-                <pre><code>npm install sequelize sqlite3
-npm install --save-dev sequelize-cli</code></pre>
-                <h3>2. Inicialize o Sequelize:</h3>
-                <pre><code>npx sequelize-cli init</code></pre>
-                <h3>3. Configure a conexão (<code>config/config.json</code>):</h3>
-                <pre><code>{
+                <h3>Passo 1: Instalar as dependências</h3>
+                <div class="code-block">npm install sequelize sqlite3
+npm install --save-dev sequelize-cli</div>
+
+                <h3>Passo 2: Inicializar o Sequelize</h3>
+                <div class="code-block">npx sequelize-cli init</div>
+
+                <h3>Passo 3: Configurar a conexão (config/config.json)</h3>
+                <div class="code-block">{
   "development": {
     "dialect": "sqlite",
     "storage": "database.sqlite"
   }
-}</code></pre>
-                <h3>4. Crie o Modelo e a Migration:</h3>
-                <pre><code>npx sequelize-cli model:generate --name Tarefa --attributes titulo:string,concluida:boolean</code></pre>
-                <h3>5. Execute a Migration para criar a tabela:</h3>
-                <pre><code>npx sequelize-cli db:migrate</code></pre>
+}</div>
+
+                <h3>Passo 4: Criar o Modelo e a Migration</h3>
+                <div class="code-block">npx sequelize-cli model:generate --name Tarefa --attributes titulo:string,concluida:boolean</div>
+
+                <h3>Passo 5: Executar a Migration</h3>
+                <div class="code-block">npx sequelize-cli db:migrate</div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">18</div>
@@ -757,33 +1148,73 @@ npm install --save-dev sequelize-cli</code></pre>
         </div>
     </div>
 
-    <!-- Slide 19: Refatorando o CRUD para usar o Banco de Dados -->
+    <!-- Slide 19: Refatorando o CRUD para usar Banco de Dados -->
     <div class="slide" id="slide-19">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Refatorando o CRUD</h2>
+                    <h2>Refatorando o CRUD para usar Banco de Dados</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
                 <p>Substitua as funções das rotas pelas versões <code>async</code> que usam os métodos do Sequelize.</p>
-                <pre><code>// index.js
+
+                <div class="code-block">// index.js
 const { Tarefa } = require('./models');
 
 // GET /tarefas
 app.get('/tarefas', async (req, res) => {
-  const tarefas = await Tarefa.findAll();
-  res.json(tarefas);
+  try {
+    const tarefas = await Tarefa.findAll();
+    res.json(tarefas);
+  } catch (error) {
+    res.status(500).json({ mensagem: 'Erro interno do servidor' });
+  }
 });
 
 // POST /tarefas
 app.post('/tarefas', async (req, res) => {
-  const novaTarefa = await Tarefa.create(req.body);
-  res.status(201).json(novaTarefa);
+  try {
+    const novaTarefa = await Tarefa.create(req.body);
+    res.status(201).json(novaTarefa);
+  } catch (error) {
+    res.status(500).json({ mensagem: 'Erro interno do servidor' });
+  }
 });
 
-// E assim por diante para PUT e DELETE...</code></pre>
+// PUT /tarefas/:id
+app.put('/tarefas/:id', async (req, res) => {
+  try {
+    const [updated] = await Tarefa.update(req.body, {
+      where: { id: req.params.id }
+    });
+    if (updated) {
+      const tarefaAtualizada = await Tarefa.findByPk(req.params.id);
+      res.json(tarefaAtualizada);
+    } else {
+      res.status(404).json({ mensagem: 'Tarefa não encontrada' });
+    }
+  } catch (error) {
+    res.status(500).json({ mensagem: 'Erro interno do servidor' });
+  }
+});
+
+// DELETE /tarefas/:id
+app.delete('/tarefas/:id', async (req, res) => {
+  try {
+    const deleted = await Tarefa.destroy({
+      where: { id: req.params.id }
+    });
+    if (deleted) {
+      res.status(204).send();
+    } else {
+      res.status(404).json({ mensagem: 'Tarefa não encontrada' });
+    }
+  } catch (error) {
+    res.status(500).json({ mensagem: 'Erro interno do servidor' });
+  }
+});</div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">19</div>
@@ -792,17 +1223,61 @@ app.post('/tarefas', async (req, res) => {
         </div>
     </div>
 
-    <!-- Slide 20: Middlewares, Validação e Tratamento de Erros -->
+    <!-- Slide 20: Middlewares -->
     <div class="slide" id="slide-20">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Módulo 2: Middlewares e Erros</h2>
+                    <h2>Middlewares</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
                 <p>Um <strong>Middleware</strong> é uma função que intercepta o ciclo de requisição-resposta.</p>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Criando um Middleware de Log</h3>
+                        <div class="code-block">// Em index.js
+const logMiddleware = (req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next(); // Passa para o próximo middleware
+};
+
+app.use(logMiddleware);</div>
+
+                        <h3>Middleware de Tratamento de Erros</h3>
+                        <div class="code-block">// Instalar express-async-errors
+npm install express-async-errors
+
+// No topo do index.js
+require('express-async-errors');
+
+// No final do arquivo, antes de app.listen
+app.use((error, req, res, next) => {
+  console.error(error.stack);
+  res.status(500).json({ 
+    mensagem: "Ocorreu um erro interno no servidor." 
+  });
+});</div>
+                    </div>
+                    <div class="column">
+                        <h3>Fluxo do Middleware</h3>
+                        <div class="analogy-box">
+                            <h3>🔄 Analogia: Linha de Produção</h3>
+                            <p>Cada middleware é como uma estação em uma linha de produção. A requisição passa por cada estação (middleware) até chegar ao destino final (rota).</p>
+                        </div>
+
+                        <h3>Tipos de Middleware:</h3>
+                        <ul>
+                            <li><strong>Application-level:</strong> <code>app.use()</code></li>
+                            <li><strong>Router-level:</strong> <code>router.use()</code></li>
+                            <li><strong>Error-handling:</strong> 4 parâmetros</li>
+                            <li><strong>Built-in:</strong> <code>express.json()</code></li>
+                            <li><strong>Third-party:</strong> <code>cors</code>, <code>helmet</code></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">20</div>
@@ -811,22 +1286,79 @@ app.post('/tarefas', async (req, res) => {
         </div>
     </div>
 
-    <!-- Slide 21: Criando um Middleware de Log -->
+    <!-- Slide 21: Autenticação com JWT -->
     <div class="slide" id="slide-21">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Criando um Middleware de Log</h2>
+                    <h2>Autenticação com JWT</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <pre><code>// Em index.js
-const logMiddleware = (req, res, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-  next(); // Passa para o próximo middleware
-};
-app.use(logMiddleware);</code></pre>
+                <p>Vamos proteger nossas rotas para que apenas usuários logados possam acessá-las.</p>
+
+                <h3>Passo 1: Instalar as dependências</h3>
+                <div class="code-block">npm install jsonwebtoken bcryptjs</div>
+
+                <h3>Passo 2: Criar o modelo Usuario</h3>
+                <div class="code-block">npx sequelize-cli model:generate --name Usuario --attributes email:string,senha:string
+npx sequelize-cli db:migrate</div>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Rota de Registro</h3>
+                        <div class="code-block">const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+app.post('/auth/registrar', async (req, res) => {
+  try {
+    const { email, senha } = req.body;
+    const senhaHash = await bcrypt.hash(senha, 10);
+    
+    const usuario = await Usuario.create({
+      email,
+      senha: senhaHash
+    });
+    
+    res.status(201).json({ 
+      mensagem: 'Usuário criado com sucesso',
+      usuario: { id: usuario.id, email: usuario.email }
+    });
+  } catch (error) {
+    res.status(500).json({ mensagem: 'Erro interno' });
+  }
+});</div>
+                    </div>
+                    <div class="column">
+                        <h3>Rota de Login</h3>
+                        <div class="code-block">app.post('/auth/login', async (req, res) => {
+  try {
+    const { email, senha } = req.body;
+    const usuario = await Usuario.findOne({ where: { email } });
+    
+    if (!usuario) {
+      return res.status(401).json({ mensagem: 'Credenciais inválidas' });
+    }
+    
+    const senhaValida = await bcrypt.compare(senha, usuario.senha);
+    if (!senhaValida) {
+      return res.status(401).json({ mensagem: 'Credenciais inválidas' });
+    }
+    
+    const token = jwt.sign(
+      { id: usuario.id }, 
+      'seu_segredo_jwt', 
+      { expiresIn: '1h' }
+    );
+    
+    res.json({ token });
+  } catch (error) {
+    res.status(500).json({ mensagem: 'Erro interno' });
+  }
+});</div>
+                    </div>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">21</div>
@@ -835,99 +1367,8 @@ app.use(logMiddleware);</code></pre>
         </div>
     </div>
 
-    <!-- Slide 22: Middleware Centralizado para Tratamento de Erros -->
+    <!-- Slide 22: Middleware de Autenticação -->
     <div class="slide" id="slide-22">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>Tratamento de Erros</h2>
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
-                </div>
-            </div>
-            <div class="slide-body">
-                <h3>1. Instale <code>express-async-errors</code>:</h3>
-                <pre><code>npm install express-async-errors</code></pre>
-                <h3>2. Importe no topo do <code>index.js</code>:</h3>
-                <pre><code>require('express-async-errors');</code></pre>
-                <h3>3. Adicione este middleware <strong>no final do arquivo</strong>, antes de <code>app.listen</code>:</h3>
-                <pre><code>app.use((error, req, res, next) => {
-  console.error(error.stack);
-  res.status(500).json({ mensagem: "Ocorreu um erro interno no servidor." });
-});</code></pre>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">22</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 23: Autenticação de Usuário com Token JWT -->
-    <div class="slide" id="slide-23">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>Módulo 3: Autenticação com JWT</h2>
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
-                </div>
-            </div>
-            <div class="slide-body">
-                <p>Vamos proteger nossas rotas para que apenas usuários logados possam acessá-las.</p>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">23</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 24: Instalação e Modelo de Usuário -->
-    <div class="slide" id="slide-24">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>Instalação e Modelo de Usuário</h2>
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
-                </div>
-            </div>
-            <div class="slide-body">
-                <h3>1. Instale as dependências:</h3>
-                <pre><code>npm install jsonwebtoken bcryptjs</code></pre>
-                <h3>2. Crie o modelo <code>Usuario</code>:</h3>
-                <pre><code>npx sequelize-cli model:generate --name Usuario --attributes email:string,senha:string
-npx sequelize-cli db:migrate</code></pre>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">24</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 25: Rotas de Registro e Login -->
-    <div class="slide" id="slide-25">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>Rotas de Registro e Login</h2>
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
-                </div>
-            </div>
-            <div class="slide-body">
-                <ul>
-                    <li><strong>Registro (<code>POST /auth/registrar</code>):</strong> Recebe <code>email</code> e <code>senha</code>, criptografa a senha com <code>bcrypt.hash()</code> e salva o novo usuário.</li>
-                    <li><strong>Login (<code>POST /auth/login</code>):</strong> Recebe <code>email</code> e <code>senha</code>, busca o usuário, compara a senha com <code>bcrypt.compare()</code>. Se for válida, gera um token com <code>jwt.sign()</code>.</li>
-                </ul>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">25</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 26: Middleware de Autenticação -->
-    <div class="slide" id="slide-26">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
@@ -936,13 +1377,243 @@ npx sequelize-cli db:migrate</code></pre>
                 </div>
             </div>
             <div class="slide-body">
-                <p>Crie um Middleware de Autenticação (<code>authMiddleware.js</code>):</p>
+                <h3>Criar um Middleware de Autenticação (authMiddleware.js)</h3>
+                <div class="code-block">const jwt = require('jsonwebtoken');
+
+const authMiddleware = (req, res, next) => {
+  const token = req.header('Authorization')?.replace('Bearer ', '');
+  
+  if (!token) {
+    return res.status(401).json({ mensagem: 'Token não fornecido' });
+  }
+  
+  try {
+    const decoded = jwt.verify(token, 'seu_segredo_jwt');
+    req.usuarioId = decoded.id;
+    next();
+  } catch (error) {
+    res.status(401).json({ mensagem: 'Token inválido' });
+  }
+};
+
+module.exports = authMiddleware;</div>
+
+                <h3>Proteger as rotas</h3>
+                <div class="code-block">// index.js
+const authMiddleware = require('./authMiddleware');
+
+// Protege todas as rotas de tarefas
+app.use('/tarefas', authMiddleware);</div>
+
+                <h3>Como usar no cliente</h3>
+                <div class="code-block">// Header da requisição
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">22</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 23: Desafios -->
+    <div class="slide" id="slide-23">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Desafios</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <h3>Desafio 1 (Fácil): Associar Tarefas a Usuários</h3>
                 <ul>
-                    <li>Ele verifica se o header <code>Authorization</code> existe e contém um token válido.</li>
-                    <li>Usa <code>jwt.verify()</code> para validar o token.</li>
-                    <li>Se for válido, anexa o ID do usuário ao objeto <code>req</code> (<code>req.usuarioId = decoded.id;</code>) e chama <code>next()</code>.</li>
-                    <li>Se não, retorna um erro 401 (Não Autorizado).</li>
+                    <li>Adicione <code>usuarioId</code> ao modelo <code>Tarefa</code></li>
+                    <li>Crie a associação no Sequelize (<code>Usuario.hasMany(Tarefa)</code>)</li>
+                    <li>Refatore as rotas de tarefas para que um usuário só possa ver e manipular as suas próprias tarefas</li>
                 </ul>
+
+                <h3>Desafio 2 (Médio): API de um Blog</h3>
+                <ul>
+                    <li>Crie modelos para <code>Post</code> e <code>Comentario</code> com as devidas associações</li>
+                    <li>Implemente o CRUD completo para Posts (apenas o autor pode editar/deletar)</li>
+                    <li>Permita que qualquer usuário logado possa criar comentários</li>
+                </ul>
+
+                <h3>Desafio 3 (Avançado): API de uma Biblioteca</h3>
+                <ul>
+                    <li>Modelos: <code>Livro</code>, <code>Usuario</code>, <code>Emprestimo</code></li>
+                    <li>Implemente a lógica de negócio para não permitir o empréstimo de um livro já emprestado</li>
+                    <li>Adicione funcionalidades como reserva de livros e histórico de empréstimos</li>
+                </ul>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">23</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 24: CORS -->
+    <div class="slide" id="slide-24">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>CORS (Cross-Origin Resource Sharing)</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Permite que seu frontend (em outro domínio) acesse sua API.</p>
+
+                <h3>Instalação e Configuração</h3>
+                <div class="code-block">npm install cors</div>
+
+                <div class="code-block">// Em index.js
+const cors = require('cors');
+
+// Desenvolvimento - permite qualquer origem
+app.use(cors());
+
+// Produção - restringe a origem
+app.use(cors({ 
+  origin: 'http://meu-frontend.com' 
+}));</div>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>O que é CORS?</h3>
+                        <p>É uma política de segurança dos navegadores que bloqueia requisições entre domínios diferentes por padrão.</p>
+
+                        <h3>Exemplo de Erro CORS:</h3>
+                        <div class="code-block">Access to fetch at 'http://localhost:3000/tarefas' 
+from origin 'http://localhost:3001' 
+has been blocked by CORS policy</div>
+                    </div>
+                    <div class="column">
+                        <h3>Configurações Avançadas:</h3>
+                        <div class="code-block">app.use(cors({
+  origin: ['http://localhost:3001', 'https://meuapp.com'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));</div>
+
+                        <div class="highlight-box">
+                            <h3>Dica de Segurança:</h3>
+                            <p>Em produção, sempre especifique as origens permitidas. Nunca use <code>*</code> em produção!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">24</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 25: Variáveis de Ambiente -->
+    <div class="slide" id="slide-25">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Variáveis de Ambiente com .env</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <p>Nunca coloque dados sensíveis (senhas, segredos JWT) no código.</p>
+
+                <h3>Passo 1: Instalar dotenv</h3>
+                <div class="code-block">npm install dotenv</div>
+
+                <h3>Passo 2: Criar arquivo .env na raiz do projeto</h3>
+                <div class="code-block">PORT=3001
+JWT_SECRET=meu_segredo_super_secreto
+DB_HOST=localhost
+DB_USER=usuario
+DB_PASS=senha123</div>
+
+                <h3>Passo 3: Carregar as variáveis no index.js</h3>
+                <div class="code-block">// No topo do index.js
+require('dotenv').config();
+
+// Usar as variáveis
+const PORT = process.env.PORT || 3000;
+const JWT_SECRET = process.env.JWT_SECRET;</div>
+
+                <div class="highlight-box">
+                    <h3>Importante:</h3>
+                    <ul>
+                        <li>Adicione <code>.env</code> ao seu arquivo <code>.gitignore</code></li>
+                        <li>Crie um arquivo <code>.env.example</code> com as variáveis (sem valores)</li>
+                        <li>Documente as variáveis necessárias no README</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="slide-number">25</div>
+                <div>Programa de Formação Acelerada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 26: Deploy em Produção -->
+    <div class="slide" id="slide-26">
+        <div class="slide-content">
+            <div class="slide-header">
+                <div class="logo-container">
+                    <h2>Deploy em Produção</h2>
+                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
+                </div>
+            </div>
+            <div class="slide-body">
+                <h3>SSL (HTTPS)</h3>
+                <p>Criptografa a comunicação. Essencial em produção. Geralmente é gerenciado por um <strong>Reverse Proxy</strong> como o <strong>Nginx</strong>.</p>
+
+                <h3>Deploy em VPS (Visão Geral):</h3>
+                <ol>
+                    <li><strong>Configurar Servidor:</strong> Instale Node.js, Git, Nginx</li>
+                    <li><strong>Transferir Código:</strong> Use Git para clonar seu projeto</li>
+                    <li><strong>Gerenciador de Processos:</strong> Use o PM2</li>
+                    <li><strong>Configurar Reverse Proxy (Nginx):</strong> Direcione o tráfego</li>
+                </ol>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h3>Instalar PM2</h3>
+                        <div class="code-block">npm install -g pm2
+
+# Iniciar aplicação
+pm2 start index.js
+
+# Ver status
+pm2 status
+
+# Logs
+pm2 logs
+
+# Reiniciar
+pm2 restart index</div>
+                    </div>
+                    <div class="column">
+                        <h3>Configuração Nginx Básica</h3>
+                        <div class="code-block">server {
+    listen 80;
+    server_name meudominio.com;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}</div>
+                    </div>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">26</div>
@@ -951,19 +1622,41 @@ npx sequelize-cli db:migrate</code></pre>
         </div>
     </div>
 
-    <!-- Slide 27: Protegendo Rotas -->
+    <!-- Slide 27: Conclusão -->
     <div class="slide" id="slide-27">
         <div class="slide-content">
             <div class="slide-header">
                 <div class="logo-container">
-                    <h2>Protegendo Rotas</h2>
+                    <h2>Conclusão</h2>
                     <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
                 </div>
             </div>
             <div class="slide-body">
-                <pre><code>// index.js
-const authMiddleware = require('./authMiddleware');
-app.use('/tarefas', authMiddleware); // Protege todas as rotas de tarefas</code></pre>
+                <h3>O que aprendemos:</h3>
+                <ul>
+                    <li>Fundamentos do Node.js e Express</li>
+                    <li>Criação de APIs RESTful</li>
+                    <li>Operações CRUD com banco de dados</li>
+                    <li>Programação assíncrona com async/await</li>
+                    <li>Middlewares e tratamento de erros</li>
+                    <li>Autenticação com JWT</li>
+                    <li>Preparação para produção</li>
+                </ul>
+
+                <h3>Próximos Passos:</h3>
+                <ul>
+                    <li>Pratique criando diferentes tipos de APIs</li>
+                    <li>Explore outros bancos de dados (MongoDB, PostgreSQL)</li>
+                    <li>Aprenda sobre testes automatizados</li>
+                    <li>Estude arquiteturas mais avançadas (microserviços)</li>
+                    <li>Implemente cache com Redis</li>
+                    <li>Explore GraphQL como alternativa ao REST</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h3>Lembre-se:</h3>
+                    <p>A prática leva à perfeição. Continue construindo projetos e experimentando novas tecnologias!</p>
+                </div>
             </div>
             <div class="slide-footer">
                 <div class="slide-number">27</div>
@@ -972,201 +1665,45 @@ app.use('/tarefas', authMiddleware); // Protege todas as rotas de tarefas</code>
         </div>
     </div>
 
-    <!-- Slide 28: Estudos de Caso e Desafios -->
-    <div class="slide" id="slide-28">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>Módulo 4: Estudos de Caso e Desafios</h2>
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
-                </div>
-            </div>
-            <div class="slide-body">
-                <p>Esta seção apresenta desafios práticos para consolidar o aprendizado.</p>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">28</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 29: Desafio 1: Associar Tarefas a Usuários -->
-    <div class="slide" id="slide-29">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>Desafio 1: Tarefas e Usuários</h2>
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
-                </div>
-            </div>
-            <div class="slide-body">
-                <ul>
-                    <li>Adicione <code>usuarioId</code> ao modelo <code>Tarefa</code>.</li>
-                    <li>Crie a associação no Sequelize (<code>Usuario.hasMany(Tarefa)</code>).</li>
-                    <li>Refatore as rotas de tarefas para que um usuário só possa ver e manipular as suas próprias tarefas.</li>
-                </ul>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">29</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 30: Desafio 2: API de um Blog -->
-    <div class="slide" id="slide-30">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>Desafio 2: API de um Blog</h2>
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
-                </div>
-            </div>
-            <div class="slide-body">
-                <ul>
-                    <li>Crie modelos para <code>Post</code> e <code>Comentario</code> com as devidas associações.</li>
-                    <li>Implemente o CRUD completo para Posts (apenas o autor pode editar/deletar).</li>
-                    <li>Permita que qualquer usuário logado possa criar comentários.</li>
-                </ul>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">30</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 31: Desafio 3: API de uma Biblioteca -->
-    <div class="slide" id="slide-31">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>Desafio 3: API de uma Biblioteca</h2>
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
-                </div>
-            </div>
-            <div class="slide-body">
-                <ul>
-                    <li>Modelos: <code>Livro</code>, <code>Usuario</code>, <code>Emprestimo</code>.</li>
-                    <li>Implemente a lógica de negócio para não permitir o empréstimo de um livro já emprestado.</li>
-                </ul>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">31</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 32: Preparando para o Ambiente de Produção -->
-    <div class="slide" id="slide-32">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>Módulo 5: Ambiente de Produção</h2>
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
-                </div>
-            </div>
-            <div class="slide-body">
-                <p>Esta seção aborda as configurações necessárias para preparar sua API para o ambiente de produção.</p>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">32</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 33: CORS (Cross-Origin Resource Sharing) -->
-    <div class="slide" id="slide-33">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>CORS</h2>
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
-                </div>
-            </div>
-            <div class="slide-body">
-                <p>Permite que seu frontend (em outro domínio) acesse sua API.</p>
-                <pre><code>npm install cors</code></pre>
-                <pre><code>// Em index.js
-const cors = require('cors');
-app.use(cors()); // Em produção, restrinja a origem: app.use(cors({ origin: 'http://meu-frontend.com' }));</code></pre>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">33</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 34: Variáveis de Ambiente com .env -->
-    <div class="slide" id="slide-34">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>Variáveis de Ambiente (.env)</h2>
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
-                </div>
-            </div>
-            <div class="slide-body">
-                <p>Nunca coloque dados sensíveis (senhas, segredos JWT) no código.</p>
-                <ol>
-                    <li>Instale <code>dotenv</code>: <code>npm install dotenv</code>.</li>
-                    <li>Crie um arquivo <code>.env</code> na raiz do projeto:
-                        <pre><code>PORT=3001
-JWT_SECRET=meu_segredo_super_secreto</code></pre>
-                    </li>
-                    <li>Adicione <code>.env</code> ao seu arquivo <code>.gitignore</code>.</li>
-                    <li>Carregue as variáveis no topo do <code>index.js</code>: <code>require('dotenv').config();</code>.</li>
-                    <li>Use-as com <code>process.env.NOME_DA_VARIAVEL</code>.</li>
-                </ol>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">34</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 35: SSL (HTTPS) e Deploy em uma VPS -->
-    <div class="slide" id="slide-35">
-        <div class="slide-content">
-            <div class="slide-header">
-                <div class="logo-container">
-                    <h2>SSL e Deploy em VPS</h2>
-                    <img src="images/logoBFD.webp" alt="Logo Bolsa Futuro Digital" class="bfd-logo">
-                </div>
-            </div>
-            <div class="slide-body">
-                <ul>
-                    <li><strong>SSL:</strong> Criptografa a comunicação. Essencial. Em produção, geralmente é gerenciado por um <strong>Reverse Proxy</strong> como o <strong>Nginx</strong>.</li>
-                    <li><strong>Deploy em VPS (Visão Geral):</strong>
-                        <ol>
-                            <li><strong>Configurar Servidor:</strong> Instale Node.js, Git, Nginx.</li>
-                            <li><strong>Transferir Código:</strong> Use Git para clonar seu projeto.</li>
-                            <li><strong>Gerenciador de Processos:</strong> Use o <strong>PM2</strong> (<code>npm install -g pm2</code>) para manter sua aplicação rodando 24/7 (<code>pm2 start index.js</code>).</li>
-                            <li><strong>Configurar Reverse Proxy (Nginx):</strong> Configure o Nginx para direcionar o tráfego da internet (porta 80/443) para a porta da sua aplicação Node (ex: 3000).</li>
-                        </ol>
-                    </li>
-                </ul>
-            </div>
-            <div class="slide-footer">
-                <div class="slide-number">35</div>
-                <div>Programa de Formação Acelerada</div>
-            </div>
-        </div>
-    </div>
-
     <!-- Controles de Navegação -->
     <div class="controls">
-        <button onclick="prevSlide()">Anterior</button>
+        <button onclick="previousSlide()">Anterior</button>
         <button onclick="nextSlide()">Próximo</button>
-        <button onclick="printSlides()">Imprimir</button>
+        <button onclick="window.print()">Imprimir</button>
     </div>
 
+    <script>
+        let currentSlide = 1;
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            if (n > totalSlides) currentSlide = 1;
+            if (n < 1) currentSlide = totalSlides;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide - 1].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // Navegação por teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+
+        // Inicializar
+        showSlide(currentSlide);
+    </script>
 </body>
 </html>
-
 

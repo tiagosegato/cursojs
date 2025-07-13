@@ -44,7 +44,6 @@
                             <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
                         </ul>
                     </li>
-                    <li><a href="../ead.html">Conteúdo EaD</a></li>
                     <li><a href="../recursos.html">Recursos</a></li>
                     <li><a href="../contato.html">Contato</a></li>
                 </ul>
@@ -76,10 +75,12 @@
                         </div>
                         <div class="module-info-item">
                             <i class="fas fa-book"></i>
-                            <div>
-                                <h3>Material de aula</h3>
-                                <p><a href="../aulas/m1-js.html" class="btn btn-sm" target="_blank">Acessar slides</a></p>
-                            </div>
+                            <a href="../aulas/m1-js.html" class="btn-sm" target="_blank">
+                                <div>
+                                    <h3>Material de aula</h3>
+                                    <p>Acessar Conteúdo</p>
+                                </div>
+                            </a>
                         </div>
                         <div class="module-info-item">
                             <i class="fas fa-code-branch"></i>
@@ -260,205 +261,6 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    
-                    <h2>Exemplos Práticos</h2>
-                    
-                    <div class="code-example">
-                        <h3>Exemplo 1: Manipulação de Produtos</h3>
-                        <pre><code>// Criando um array de produtos
-const produtos = [
-  { codigo: 25, unidade: 'Kg', descricao: 'Queijo', valor_unitario: 0.97 },
-  { codigo: 31, unidade: 'BAR', descricao: 'Chocolate', valor_unitario: 0.87 },
-  { codigo: 78, unidade: 'L', descricao: 'Vinho', valor_unitario: 2.00 },
-  { codigo: 22, unidade: 'M', descricao: 'Linho', valor_unitario: 0.11 },
-  { codigo: 30, unidade: 'SAC', descricao: 'Açúcar', valor_unitario: 0.30 }
-];
-
-// Função para calcular o valor total de um produto com base na quantidade
-function calcularValorTotal(produto, quantidade) {
-  return produto.valor_unitario * quantidade;
-}
-
-// Função para encontrar um produto pelo código
-function encontrarProduto(codigo) {
-  return produtos.find(produto => produto.codigo === codigo);
-}
-
-// Função para listar todos os produtos
-function listarProdutos() {
-  console.log('Lista de Produtos:');
-  console.log('------------------');
-  
-  produtos.forEach(produto => {
-    console.log(`Código: ${produto.codigo}`);
-    console.log(`Descrição: ${produto.descricao}`);
-    console.log(`Unidade: ${produto.unidade}`);
-    console.log(`Valor Unitário: R$ ${produto.valor_unitario.toFixed(2)}`);
-    console.log('------------------');
-  });
-}
-
-// Função para filtrar produtos por valor
-function filtrarProdutosPorValor(valorMinimo, valorMaximo) {
-  return produtos.filter(produto => 
-    produto.valor_unitario >= valorMinimo && 
-    produto.valor_unitario <= valorMaximo
-  );
-}
-
-// Função para calcular o valor total de uma lista de produtos
-function calcularValorTotalPedido(itensPedido) {
-  return itensPedido.reduce((total, item) => {
-    const produto = encontrarProduto(item.codigoProduto);
-    if (produto) {
-      return total + calcularValorTotal(produto, item.quantidade);
-    }
-    return total;
-  }, 0);
-}
-
-// Exemplo de uso
-listarProdutos();
-
-const produtoEncontrado = encontrarProduto(78);
-console.log(`Produto encontrado: ${produtoEncontrado.descricao}`);
-
-const valorTotal = calcularValorTotal(produtoEncontrado, 10);
-console.log(`Valor total para 10 unidades: R$ ${valorTotal.toFixed(2)}`);
-
-const produtosBaratos = filtrarProdutosPorValor(0, 0.50);
-console.log('Produtos com valor até R$ 0,50:');
-produtosBaratos.forEach(produto => console.log(`- ${produto.descricao}: R$ ${produto.valor_unitario.toFixed(2)}`));
-
-const itensPedido = [
-  { codigoProduto: 25, quantidade: 5 },
-  { codigoProduto: 31, quantidade: 2 },
-  { codigoProduto: 78, quantidade: 1 }
-];
-
-const valorTotalPedido = calcularValorTotalPedido(itensPedido);
-console.log(`Valor total do pedido: R$ ${valorTotalPedido.toFixed(2)}`);</code></pre>
-                    </div>
-                    
-                    <div class="code-example">
-                        <h3>Exemplo 2: Estruturas de Controle com Produtos</h3>
-                        <pre><code>// Array de produtos
-const produtos = [
-  { codigo: 25, unidade: 'Kg', descricao: 'Queijo', valor_unitario: 0.97 },
-  { codigo: 31, unidade: 'BAR', descricao: 'Chocolate', valor_unitario: 0.87 },
-  { codigo: 78, unidade: 'L', descricao: 'Vinho', valor_unitario: 2.00 },
-  { codigo: 22, unidade: 'M', descricao: 'Linho', valor_unitario: 0.11 },
-  { codigo: 30, unidade: 'SAC', descricao: 'Açúcar', valor_unitario: 0.30 }
-];
-
-// Exemplo de estrutura condicional
-function verificarEstoqueProduto(codigo, quantidadeDesejada) {
-  const produto = produtos.find(p => p.codigo === codigo);
-  
-  if (!produto) {
-    console.log(`Produto com código ${codigo} não encontrado.`);
-    return;
-  }
-  
-  // Simulando um estoque
-  const estoque = Math.floor(Math.random() * 50);
-  
-  if (estoque === 0) {
-    console.log(`O produto ${produto.descricao} está em falta.`);
-  } else if (estoque < quantidadeDesejada) {
-    console.log(`Estoque insuficiente para ${produto.descricao}. Disponível: ${estoque} unidades.`);
-  } else {
-    console.log(`Produto ${produto.descricao} disponível em estoque. Quantidade: ${estoque} unidades.`);
-  }
-}
-
-// Exemplo de estrutura de repetição
-function listarProdutosPorCategoria() {
-  // Simulando categorias
-  const categorias = {
-    'Alimentos': [25, 30],
-    'Bebidas': [78],
-    'Outros': [31, 22]
-  };
-  
-  for (const categoria in categorias) {
-    console.log(`\nCategoria: ${categoria}`);
-    console.log('------------------------');
-    
-    const codigosProdutos = categorias[categoria];
-    
-    for (let i = 0; i < codigosProdutos.length; i++) {
-      const produto = produtos.find(p => p.codigo === codigosProdutos[i]);
-      if (produto) {
-        console.log(`${i+1}. ${produto.descricao} - R$ ${produto.valor_unitario.toFixed(2)} por ${produto.unidade}`);
-      }
-    }
-  }
-}
-
-// Exemplo de switch-case
-function verificarUnidadeProduto(codigo) {
-  const produto = produtos.find(p => p.codigo === codigo);
-  
-  if (!produto) {
-    console.log(`Produto com código ${codigo} não encontrado.`);
-    return;
-  }
-  
-  switch (produto.unidade) {
-    case 'Kg':
-      console.log(`${produto.descricao} é vendido por quilo.`);
-      break;
-    case 'L':
-      console.log(`${produto.descricao} é vendido por litro.`);
-      break;
-    case 'BAR':
-      console.log(`${produto.descricao} é vendido por barra.`);
-      break;
-    case 'M':
-      console.log(`${produto.descricao} é vendido por metro.`);
-      break;
-    case 'SAC':
-      console.log(`${produto.descricao} é vendido por saco.`);
-      break;
-    default:
-      console.log(`${produto.descricao} é vendido por unidade não especificada.`);
-  }
-}
-
-// Exemplo de loop while
-function simularVendaProdutos() {
-  let totalVendas = 0;
-  let produtosVendidos = 0;
-  
-  while (totalVendas < 100 && produtosVendidos < 10) {
-    // Seleciona um produto aleatório
-    const indiceAleatorio = Math.floor(Math.random() * produtos.length);
-    const produto = produtos[indiceAleatorio];
-    
-    // Simula uma quantidade aleatória
-    const quantidade = Math.floor(Math.random() * 5) + 1;
-    
-    // Calcula o valor da venda
-    const valorVenda = produto.valor_unitario * quantidade;
-    
-    console.log(`Venda: ${quantidade} ${produto.unidade} de ${produto.descricao} - R$ ${valorVenda.toFixed(2)}`);
-    
-    totalVendas += valorVenda;
-    produtosVendidos += quantidade;
-  }
-  
-  console.log(`\nSimulação encerrada.`);
-  console.log(`Total de vendas: R$ ${totalVendas.toFixed(2)}`);
-  console.log(`Produtos vendidos: ${produtosVendidos} unidades`);
-}
-
-// Executando os exemplos
-verificarEstoqueProduto(78, 10);
-listarProdutosPorCategoria();
-verificarUnidadeProduto(25);
-simularVendaProdutos();</code></pre>
                     </div>
                     
                     <h2>Exercícios Práticos</h2>

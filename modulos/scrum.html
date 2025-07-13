@@ -44,7 +44,6 @@
                             <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
                         </ul>
                     </li>
-                    <li><a href="../ead.html">Conteúdo EaD</a></li>
                     <li><a href="../recursos.html">Recursos</a></li>
                     <li><a href="../contato.html">Contato</a></li>
                 </ul>
@@ -76,10 +75,12 @@
                         </div>
                         <div class="module-info-item">
                             <i class="fas fa-book"></i>
-                            <div>
-                                <h3>Material de aula</h3>
-                                <p><a href="../aulas/m8-scrum.html" class="btn btn-sm" target="_blank">Acessar slides</a></p>
-                            </div>
+                            <a href="../aulas/m8-scrum.html" class="btn-sm" target="_blank">
+                                <div>
+                                    <h3>Material de aula</h3>
+                                    <p>Acessar Conteúdo</p>
+                                </div>
+                            </a>
                         </div>
                         <div class="module-info-item">
                             <i class="fas fa-code-branch"></i>
@@ -622,239 +623,7 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <h2>Exemplos Práticos</h2>
-                    
-                    <div class="code-example">
-                        <h3>Exemplo 1: Product Backlog para Sistema de Vendas</h3>
-                        <pre><code>// Exemplo de Product Backlog para um Sistema de Vendas
-
-// Épico: Gerenciamento de Produtos
-- Como gerente de estoque, eu quero cadastrar novos produtos no sistema, para que possam ser vendidos.
-  * Critérios de Aceitação:
-    - Deve ser possível informar código, descrição, unidade, valor unitário e estoque inicial
-    - O sistema deve validar se o código já existe
-    - O sistema deve validar se todos os campos obrigatórios foram preenchidos
-    - O produto deve ser salvo no banco de dados
-  * Estimativa: 5 pontos
-  * Prioridade: Alta
-
-- Como gerente de estoque, eu quero editar informações de produtos existentes, para manter os dados atualizados.
-  * Critérios de Aceitação:
-    - Deve ser possível alterar descrição, unidade e valor unitário
-    - O sistema deve validar se todos os campos obrigatórios foram preenchidos
-    - As alterações devem ser salvas no banco de dados
-  * Estimativa: 3 pontos
-  * Prioridade: Alta
-
-- Como gerente de estoque, eu quero visualizar a lista de todos os produtos, para ter uma visão geral do estoque.
-  * Critérios de Aceitação:
-    - A lista deve mostrar código, descrição, unidade, valor unitário e quantidade em estoque
-    - Deve ser possível ordenar por qualquer coluna
-    - Deve ser possível filtrar por descrição ou código
-  * Estimativa: 3 pontos
-  * Prioridade: Alta
-
-- Como gerente de estoque, eu quero atualizar o estoque de produtos, para manter o controle de entradas e saídas.
-  * Critérios de Aceitação:
-    - Deve ser possível adicionar ou remover quantidades do estoque
-    - O sistema deve impedir que o estoque fique negativo
-    - O sistema deve registrar a data e o usuário que fez a alteração
-  * Estimativa: 5 pontos
-  * Prioridade: Alta
-
-// Épico: Gerenciamento de Clientes
-- Como vendedor, eu quero cadastrar novos clientes, para registrar suas compras.
-  * Critérios de Aceitação:
-    - Deve ser possível informar nome, email, telefone e endereço
-    - O sistema deve validar se o email já existe
-    - O sistema deve validar se todos os campos obrigatórios foram preenchidos
-    - O cliente deve ser salvo no banco de dados
-  * Estimativa: 5 pontos
-  * Prioridade: Alta
-
-- Como vendedor, eu quero editar informações de clientes existentes, para manter os dados atualizados.
-  * Critérios de Aceitação:
-    - Deve ser possível alterar nome, email, telefone e endereço
-    - O sistema deve validar se o email já existe
-    - O sistema deve validar se todos os campos obrigatórios foram preenchidos
-    - As alterações devem ser salvas no banco de dados
-  * Estimativa: 3 pontos
-  * Prioridade: Média
-
-- Como vendedor, eu quero visualizar a lista de todos os clientes, para facilitar o atendimento.
-  * Critérios de Aceitação:
-    - A lista deve mostrar nome, email, telefone e data de cadastro
-    - Deve ser possível ordenar por qualquer coluna
-    - Deve ser possível filtrar por nome ou email
-  * Estimativa: 3 pontos
-  * Prioridade: Média
-
-// Épico: Registro de Vendas
-- Como vendedor, eu quero registrar uma nova venda, para controlar as saídas de produtos e faturamento.
-  * Critérios de Aceitação:
-    - Deve ser possível selecionar um cliente existente
-    - Deve ser possível adicionar múltiplos produtos à venda
-    - Deve ser possível definir a quantidade de cada produto
-    - O sistema deve calcular automaticamente o subtotal de cada item e o total da venda
-    - O sistema deve validar se há estoque suficiente para cada produto
-    - O sistema deve atualizar o estoque após a confirmação da venda
-    - A venda deve ser salva no banco de dados
-  * Estimativa: 8 pontos
-  * Prioridade: Alta
-
-- Como vendedor, eu quero visualizar o histórico de vendas, para acompanhar o desempenho.
-  * Critérios de Aceitação:
-    - A lista deve mostrar data, cliente, valor total e status da venda
-    - Deve ser possível filtrar por período, cliente ou status
-    - Deve ser possível ordenar por qualquer coluna
-  * Estimativa: 5 pontos
-  * Prioridade: Média
-
-- Como vendedor, eu quero visualizar os detalhes de uma venda específica, para verificar os itens vendidos.
-  * Critérios de Aceitação:
-    - Deve mostrar data, cliente, valor total e status da venda
-    - Deve listar todos os itens da venda com código, descrição, quantidade, valor unitário e subtotal
-    - Deve ser possível imprimir ou exportar os detalhes da venda
-  * Estimativa: 5 pontos
-  * Prioridade: Média
-
-// Épico: Relatórios
-- Como gerente, eu quero gerar relatórios de vendas por período, para analisar o desempenho do negócio.
-  * Critérios de Aceitação:
-    - Deve ser possível selecionar o período de análise
-    - O relatório deve mostrar o total de vendas, quantidade de vendas e ticket médio
-    - Deve ser possível visualizar os dados em formato de gráfico
-    - Deve ser possível exportar o relatório em PDF ou Excel
-  * Estimativa: 8 pontos
-  * Prioridade: Baixa
-
-- Como gerente de estoque, eu quero gerar relatórios de produtos mais vendidos, para otimizar o estoque.
-  * Critérios de Aceitação:
-    - Deve ser possível selecionar o período de análise
-    - O relatório deve mostrar os produtos, quantidade vendida e valor total
-    - Deve ser possível ordenar por quantidade ou valor
-    - Deve ser possível exportar o relatório em PDF ou Excel
-  * Estimativa: 8 pontos
-  * Prioridade: Baixa</code></pre>
-                    </div>
-                    
-                    <div class="code-example">
-                        <h3>Exemplo 2: Sprint Backlog para Sistema de Vendas</h3>
-                        <pre><code>// Exemplo de Sprint Backlog para a primeira Sprint do Sistema de Vendas
-
-Sprint 1: Gerenciamento de Produtos
-Objetivo da Sprint: Implementar as funcionalidades básicas de gerenciamento de produtos.
-Duração: 2 semanas
-Capacidade da equipe: 30 pontos
-
-Histórias selecionadas:
-1. Como gerente de estoque, eu quero cadastrar novos produtos no sistema, para que possam ser vendidos. (5 pontos)
-2. Como gerente de estoque, eu quero editar informações de produtos existentes, para manter os dados atualizados. (3 pontos)
-3. Como gerente de estoque, eu quero visualizar a lista de todos os produtos, para ter uma visão geral do estoque. (3 pontos)
-4. Como gerente de estoque, eu quero atualizar o estoque de produtos, para manter o controle de entradas e saídas. (5 pontos)
-
-Tarefas:
-
-História 1: Cadastro de produtos (5 pontos)
-- Criar tabela 'produtos' no banco de dados (Responsável: Ana, 2h)
-- Desenvolver API para cadastro de produtos (Responsável: Carlos, 4h)
-- Implementar validações de entrada (Responsável: Carlos, 2h)
-- Criar interface de usuário para cadastro (Responsável: Mariana, 4h)
-- Integrar frontend com backend (Responsável: Mariana, 2h)
-- Escrever testes unitários (Responsável: Carlos, 2h)
-- Escrever testes de integração (Responsável: Ana, 2h)
-- Revisar código e documentar (Responsável: Equipe, 1h)
-
-História 2: Edição de produtos (3 pontos)
-- Desenvolver API para edição de produtos (Responsável: Carlos, 3h)
-- Implementar validações de entrada (Responsável: Carlos, 1h)
-- Criar interface de usuário para edição (Responsável: Mariana, 3h)
-- Integrar frontend com backend (Responsável: Mariana, 1h)
-- Escrever testes unitários (Responsável: Carlos, 1h)
-- Escrever testes de integração (Responsável: Ana, 1h)
-- Revisar código e documentar (Responsável: Equipe, 1h)
-
-História 3: Listagem de produtos (3 pontos)
-- Desenvolver API para listagem de produtos (Responsável: Ana, 2h)
-- Implementar filtros e ordenação (Responsável: Ana, 2h)
-- Criar interface de usuário para listagem (Responsável: Mariana, 3h)
-- Implementar paginação (Responsável: Mariana, 2h)
-- Integrar frontend com backend (Responsável: Mariana, 1h)
-- Escrever testes unitários (Responsável: Ana, 1h)
-- Escrever testes de integração (Responsável: Carlos, 1h)
-- Revisar código e documentar (Responsável: Equipe, 1h)
-
-História 4: Atualização de estoque (5 pontos)
-- Desenvolver API para atualização de estoque (Responsável: Carlos, 3h)
-- Implementar validações de estoque (Responsável: Carlos, 2h)
-- Criar interface de usuário para atualização de estoque (Responsável: Mariana, 3h)
-- Implementar registro de histórico de alterações (Responsável: Ana, 3h)
-- Integrar frontend com backend (Responsável: Mariana, 1h)
-- Escrever testes unitários (Responsável: Carlos, 2h)
-- Escrever testes de integração (Responsável: Ana, 2h)
-- Revisar código e documentar (Responsável: Equipe, 1h)
-
-Definição de Pronto:
-- Código implementado e revisado
-- Testes unitários e de integração passando
-- Documentação atualizada
-- Interface de usuário funcional e responsiva
-- Aprovado pelo Product Owner</code></pre>
-                    </div>
-                    
-                    <div class="code-example">
-                        <h3>Exemplo 3: Quadro Kanban para Sistema de Vendas</h3>
-                        <pre><code>// Exemplo de Quadro Kanban para o Sistema de Vendas
-
-+----------------+----------------+----------------+----------------+----------------+
-|    BACKLOG     |   EM ANÁLISE   |  EM PROGRESSO  |   EM TESTE     |   CONCLUÍDO    |
-| (Sem limite)   |  (Limite: 3)   |  (Limite: 5)   |  (Limite: 3)   |                |
-+----------------+----------------+----------------+----------------+----------------+
-| [Alta]         | [Alta]         | [Alta]         | [Alta]         | [Alta]         |
-| Relatório de   | Cadastro de    | Edição de      | Visualização   | Atualização de |
-| vendas por     | produtos       | produtos       | de produtos    | estoque        |
-| período        |                |                |                |                |
-|                |                |                |                |                |
-| [Alta]         | [Média]        | [Alta]         |                | [Alta]         |
-| Relatório de   | Visualização   | Cadastro de    |                | Visualização   |
-| produtos mais  | de clientes    | clientes       |                | de vendas      |
-| vendidos       |                |                |                |                |
-|                |                |                |                |                |
-| [Média]        |                | [Alta]         |                | [Média]        |
-| Edição de      |                | Registro de    |                | Detalhes de    |
-| clientes       |                | vendas         |                | vendas         |
-|                |                |                |                |                |
-+----------------+----------------+----------------+----------------+----------------+
-
-// Políticas do Kanban:
-
-// Políticas de Entrada:
-// - Itens só podem entrar em "Em Análise" se tiverem descrição clara, critérios de aceitação e estimativa
-// - Prioridade Alta tem precedência sobre Média e Baixa
-
-// Políticas de Desenvolvimento:
-// - Desenvolvedores só podem trabalhar em um item por vez
-// - Itens em progresso devem ter um responsável designado
-// - Código deve seguir os padrões definidos no guia de estilo
-
-// Políticas de Teste:
-// - Todos os itens devem ter testes unitários e de integração
-// - Testes devem ser automatizados quando possível
-// - Bugs encontrados têm prioridade sobre novos desenvolvimentos
-
-// Políticas de Conclusão:
-// - Item só é considerado concluído quando atende a todos os critérios de aceitação
-// - Item concluído deve ser revisado pelo Product Owner
-// - Documentação deve ser atualizada antes de considerar o item concluído
-
-// Classes de Serviço:
-// - Expedited: Bugs críticos que bloqueiam o uso do sistema (tempo máximo: 1 dia)
-// - Fixed Date: Itens com data de entrega fixa (identificados com prazo)
-// - Standard: Itens regulares de desenvolvimento (maioria dos itens)
-// - Intangible: Melhorias técnicas e refatorações (identificados com [TECH])</code></pre>
-                    </div>
-                    
+                
                     <h2>Exercícios Práticos</h2>
                     <p>Para fixar os conceitos aprendidos neste módulo, recomendamos a realização dos seguintes exercícios:</p>
                     

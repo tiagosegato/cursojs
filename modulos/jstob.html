@@ -44,7 +44,6 @@
                             <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
                         </ul>
                     </li>
-                    <li><a href="../ead.html">Conteúdo EaD</a></li>
                     <li><a href="../recursos.html">Recursos</a></li>
                     <li><a href="../contato.html">Contato</a></li>
                 </ul>
@@ -76,10 +75,12 @@
                         </div>
                         <div class="module-info-item">
                             <i class="fas fa-book"></i>
-                            <div>
-                                <h3>Material de aula</h3>
-                                <p><a href="../aulas/m3-poo.html" class="btn btn-sm" target="_blank">Acessar slides</a></p>
-                            </div>
+                            <a href="../aulas/m3-poo.html" class="btn-sm" target="_blank">
+                                <div>
+                                    <h3>Material de aula</h3>
+                                    <p>Acessar Conteúdo</p>
+                                </div>
+                            </a>
                         </div>
                         <div class="module-info-item">
                             <i class="fas fa-code-branch"></i>
@@ -123,21 +124,6 @@
                                     <li>Object.create() e a cadeia de protótipos</li>
                                     <li>Desestruturação de objetos para acessar dados (Ex: `const { nome_cliente, cidade } = cliente;`)</li>
                                 </ul>
-                                <div class="code-example">
-                                    <pre><code>// Exemplo de objeto literal representando um produto
-const produto1 = {
-  codigo_produto: 25,
-  unidade: 'Kg',
-  descricao_produto: 'Queijo',
-  val_unit: 0.97,
-  mostrarDetalhes: function() {
-    console.log(`Produto: ${this.descricao_produto} (${this.codigo_produto}) - R$ ${this.val_unit}/${this.unidade}`);
-  }
-};
-
-produto1.mostrarDetalhes(); // Saída: Produto: Queijo (25) - R$ 0.97/Kg
-console.log(produto1.val_unit); // Saída: 0.97</code></pre>
-                                </div>
                             </div>
                         </div>
                         
@@ -169,25 +155,6 @@ console.log(produto1.val_unit); // Saída: 0.97</code></pre>
                                     <li>A propriedade `prototype` para adicionar métodos compartilhados</li>
                                     <li>Herança baseada em protótipos (`Object.setPrototypeOf` ou `Object.create`)</li>
                                 </ul>
-                                <div class="code-example">
-                                    <pre><code>// Exemplo com Função Construtora para Vendedor
-function Vendedor(codigo, nome, salario, comissao) {
-  this.codigo_vendedor = codigo;
-  this.nome_vendedor = nome;
-  this.salario_fixo = salario;
-  this.faixa_comissao = comissao;
-}
-
-Vendedor.prototype.apresentar = function() {
-  console.log(`Vendedor: ${this.nome_vendedor} (Cód: ${this.codigo_vendedor}), Salário: R$ ${this.salario_fixo}`);
-};
-
-const vendedor1 = new Vendedor(209, 'José', 1800.00, 'C');
-const vendedor2 = new Vendedor(111, 'Carlos', 2490.00, 'A');
-
-vendedor1.apresentar();
-vendedor2.apresentar();</code></pre>
-                                </div>
                             </div>
                         </div>
                         
@@ -204,39 +171,6 @@ vendedor2.apresentar();</code></pre>
                                     <li>Métodos e propriedades estáticas (pertencem à classe, não à instância)</li>
                                     <li>Getters e setters para controlar acesso a propriedades</li>
                                 </ul>
-                                <div class="code-example">
-                                    <pre><code>// Exemplo com Classe para Produto
-class Produto {
-  constructor(codigo, unidade, descricao, valor) {
-    this.codigo_produto = codigo;
-    this.unidade = unidade;
-    this.descricao_produto = descricao;
-    this.val_unit = valor;
-  }
-
-  // Método de instância
-  obterPrecoFormatado() {
-    return `R$ ${this.val_unit.toFixed(2).replace('.', ',')}`;
-  }
-
-  // Getter
-  get descricaoMaiuscula() {
-    return this.descricao_produto.toUpperCase();
-  }
-
-  // Método estático
-  static info() {
-    console.log("Classe para representar produtos do sistema de vendas.");
-  }
-}
-
-const produtoA = new Produto(31, 'BAR', 'Chocolate', 0.87);
-const produtoB = new Produto(78, 'L', 'Vinho', 2.00);
-
-console.log(produtoA.obterPrecoFormatado()); // Saída: R$ 0,87
-console.log(produtoB.descricaoMaiuscula); // Saída: VINHO
-Produto.info(); // Saída: Classe para representar produtos do sistema de vendas.</code></pre>
-                                </div>
                             </div>
                         </div>
                         
@@ -253,44 +187,6 @@ Produto.info(); // Saída: Classe para representar produtos do sistema de vendas
                                     <li>Exemplo conceitual: `PedidoOnline extends Pedido` (não aplicável diretamente ao script)</li>
                                     <li>Composição como alternativa à herança em muitos casos</li>
                                 </ul>
-                                 <div class="code-example">
-                                    <pre><code>// Exemplo Simples de Herança (Conceitual)
-class Entidade {
-    constructor(codigo) {
-        if (new.target === Entidade) {
-            throw new Error("Não é possível instanciar Entidade diretamente.");
-        }
-        this.codigo = codigo;
-        console.log(`Criando entidade com código ${codigo}`);
-    }
-
-    identificar() {
-        console.log(`Entidade com código: ${this.codigo}`);
-    }
-}
-
-class Cliente extends Entidade {
-    constructor(codigo, nome) {
-        super(codigo); // Chama o construtor de Entidade
-        this.nome_cliente = nome;
-        console.log(`Criando cliente ${nome}`);
-    }
-
-    // Sobrescrevendo o método identificar
-    identificar() {
-        super.identificar(); // Chama o método da classe pai
-        console.log(`Nome do Cliente: ${this.nome_cliente}`);
-    }
-}
-
-const clienteAna = new Cliente(720, 'Ana');
-clienteAna.identificar();
-// Saída:
-// Criando entidade com código 720
-// Criando cliente Ana
-// Entidade com código: 720
-// Nome do Cliente: Ana</code></pre>
-                                </div>
                             </div>
                         </div>
                         
@@ -306,57 +202,6 @@ clienteAna.identificar();
                                     <li>Campos privados com `#` (hash) - sintaxe mais recente</li>
                                     <li>Getters e Setters para acesso controlado</li>
                                 </ul>
-                                <div class="code-example">
-                                    <pre><code>class Pedido {
-  #itens = []; // Campo privado
-  #status = 'aberto'; // Campo privado
-
-  constructor(numero, clienteCodigo, vendedorCodigo) {
-    this.num_pedido = numero;
-    this.codigo_cliente = clienteCodigo;
-    this.codigo_vendedor = vendedorCodigo;
-    this.prazo_entrega = 15; // Valor padrão
-  }
-
-  adicionarItem(item) {
-    if (this.#status !== 'aberto') {
-        console.error("Não é possível adicionar itens a um pedido fechado/cancelado.");
-        return;
-    }
-    this.#itens.push(item);
-    console.log(`Item ${item.codigo_produto} adicionado ao pedido ${this.num_pedido}`);
-  }
-
-  listarItens() {
-    console.log(`Itens do Pedido ${this.num_pedido}:`);
-    this.#itens.forEach(item => console.log(` - Produto ${item.codigo_produto}, Qtd: ${item.quantidade}`));
-  }
-
-  // Getter para status
-  get status() {
-    return this.#status;
-  }
-
-  // Setter (exemplo simples, poderia ter mais lógica)
-  set status(novoStatus) {
-      if (['aberto', 'faturado', 'cancelado'].includes(novoStatus)) {
-          this.#status = novoStatus;
-          console.log(`Status do pedido ${this.num_pedido} alterado para ${novoStatus}`);
-      } else {
-          console.error("Status inválido.");
-      }
-  }
-}
-
-const pedido121 = new Pedido(121, 410, 209);
-pedido121.adicionarItem({ codigo_produto: 25, quantidade: 10 });
-pedido121.adicionarItem({ codigo_produto: 31, quantidade: 35 });
-pedido121.listarItens();
-console.log(pedido121.status); // Acessando via getter
-pedido121.status = 'faturado'; // Modificando via setter
-// pedido121.#itens; // Erro! Não pode acessar campo privado diretamente
-</code></pre>
-                                </div>
                             </div>
                         </div>
                         
@@ -372,32 +217,6 @@ pedido121.status = 'faturado'; // Modificando via setter
                                     <li>Polimorfismo Ad-hoc (Duck Typing - "Se anda como um pato e grasna como um pato...").</li>
                                     <li>Exemplo: Uma função `imprimirDetalhes` que funciona para `Cliente` e `Vendedor`.</li>
                                 </ul>
-                                 <div class="code-example">
-                                    <pre><code>class Cliente {
-    constructor(codigo, nome) { this.codigo_cliente = codigo; this.nome_cliente = nome; }
-    getDetalhes() { return `Cliente: ${this.nome_cliente} (Cód: ${this.codigo_cliente})`; }
-}
-
-class Vendedor {
-    constructor(codigo, nome) { this.codigo_vendedor = codigo; this.nome_vendedor = nome; }
-    getDetalhes() { return `Vendedor: ${this.nome_vendedor} (Cód: ${this.codigo_vendedor})`; }
-}
-
-function imprimirEntidade(entidade) {
-    // Verifica se a entidade tem o método getDetalhes (Duck Typing)
-    if (typeof entidade.getDetalhes === 'function') {
-        console.log(entidade.getDetalhes());
-    } else {
-        console.log("Entidade não possui método getDetalhes.");
-    }
-}
-
-const cli = new Cliente(110, 'Jorge');
-const vend = new Vendedor(240, 'Antônio');
-
-imprimirEntidade(cli);   // Saída: Cliente: Jorge (Cód: 110)
-imprimirEntidade(vend);  // Saída: Vendedor: Antônio (Cód: 240)</code></pre>
-                                </div>
                             </div>
                         </div>
                         

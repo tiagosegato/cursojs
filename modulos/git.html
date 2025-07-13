@@ -44,7 +44,6 @@
                             <li><a href="../projeto/passo-a-passo.html">Passo a Passo</a></li>
                         </ul>
                     </li>
-                    <li><a href="../ead.html">Conteúdo EaD</a></li>
                     <li><a href="../recursos.html">Recursos</a></li>
                     <li><a href="../contato.html">Contato</a></li>
                 </ul>
@@ -76,10 +75,12 @@
                         </div>
                         <div class="module-info-item">
                             <i class="fas fa-book"></i>
-                            <div>
-                                <h3>Material de aula</h3>
-                                <p><a href="../aulas/m2-git.html" class="btn btn-sm" target="_blank">Acessar slides</a></p>
-                            </div>
+                            <a href="../aulas/m2-git.html" class="btn-sm" target="_blank">
+                                <div>
+                                    <h3>Material de aula</h3>
+                                    <p>Acessar Conteúdo</p>
+                                </div>
+                            </a>
                         </div>
                         <div class="module-info-item">
                             <i class="fas fa-code-branch"></i>
@@ -225,209 +226,6 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    
-                    <h2>Exemplos Práticos</h2>
-                    
-                    <div class="code-example">
-                        <h3>Exemplo 1: Configuração Inicial do Git</h3>
-                        <pre><code># Configurando nome de usuário e email
-git config --global user.name "Seu Nome"
-git config --global user.email "seu.email@exemplo.com"
-
-# Verificando as configurações
-git config --list
-
-# Configurando o editor padrão
-git config --global core.editor "code --wait"  # Para VS Code
-
-# Configurando aliases úteis
-git config --global alias.st status
-git config --global alias.co checkout
-git config --global alias.br branch
-git config --global alias.ci commit</code></pre>
-                    </div>
-                    
-                    <div class="code-example">
-                        <h3>Exemplo 2: Criando um Repositório para o Sistema de Vendas</h3>
-                        <pre><code># Criando um novo diretório para o projeto
-mkdir sistema-vendas
-cd sistema-vendas
-
-# Inicializando o repositório Git
-git init
-
-# Criando um arquivo README.md
-echo "# Sistema de Vendas" > README.md
-echo "" >> README.md
-echo "Sistema de gerenciamento de vendas desenvolvido com Node.js e Express." >> README.md
-
-# Adicionando o arquivo ao staging area
-git add README.md
-
-# Criando o primeiro commit
-git commit -m "Inicialização do projeto: Sistema de Vendas"
-
-# Criando um arquivo para o modelo de Produto
-mkdir models
-echo "// Modelo de Produto para o Sistema de Vendas" > models/Produto.js
-echo "" >> models/Produto.js
-echo "class Produto {" >> models/Produto.js
-echo "  constructor(codigo, unidade, descricao, valor_unitario) {" >> models/Produto.js
-echo "    this.codigo = codigo;" >> models/Produto.js
-echo "    this.unidade = unidade;" >> models/Produto.js
-echo "    this.descricao = descricao;" >> models/Produto.js
-echo "    this.valor_unitario = valor_unitario;" >> models/Produto.js
-echo "  }" >> models/Produto.js
-echo "}" >> models/Produto.js
-echo "" >> models/Produto.js
-echo "module.exports = Produto;" >> models/Produto.js
-
-# Adicionando o arquivo de modelo ao staging area
-git add models/Produto.js
-
-# Criando um novo commit
-git commit -m "Adiciona modelo de Produto"
-
-# Verificando o histórico de commits
-git log --oneline</code></pre>
-                    </div>
-                    
-                    <div class="code-example">
-                        <h3>Exemplo 3: Trabalhando com Branches no Projeto de Vendas</h3>
-                        <pre><code># Criando uma nova branch para desenvolver a funcionalidade de listagem de produtos
-git checkout -b feature/listagem-produtos
-
-# Criando um arquivo para o controlador de produtos
-mkdir controllers
-echo "// Controlador de Produtos" > controllers/ProdutoController.js
-echo "" >> controllers/ProdutoController.js
-echo "const Produto = require('../models/Produto');" >> controllers/ProdutoController.js
-echo "" >> controllers/ProdutoController.js
-echo "class ProdutoController {" >> controllers/ProdutoController.js
-echo "  constructor() {" >> controllers/ProdutoController.js
-echo "    this.produtos = [" >> controllers/ProdutoController.js
-echo "      new Produto(25, 'Kg', 'Queijo', 0.97)," >> controllers/ProdutoController.js
-echo "      new Produto(31, 'BAR', 'Chocolate', 0.87)," >> controllers/ProdutoController.js
-echo "      new Produto(78, 'L', 'Vinho', 2.00)," >> controllers/ProdutoController.js
-echo "      new Produto(22, 'M', 'Linho', 0.11)," >> controllers/ProdutoController.js
-echo "      new Produto(30, 'SAC', 'Açúcar', 0.30)" >> controllers/ProdutoController.js
-echo "    ];" >> controllers/ProdutoController.js
-echo "  }" >> controllers/ProdutoController.js
-echo "" >> controllers/ProdutoController.js
-echo "  listarTodos() {" >> controllers/ProdutoController.js
-echo "    return this.produtos;" >> controllers/ProdutoController.js
-echo "  }" >> controllers/ProdutoController.js
-echo "}" >> controllers/ProdutoController.js
-echo "" >> controllers/ProdutoController.js
-echo "module.exports = ProdutoController;" >> controllers/ProdutoController.js
-
-# Adicionando o arquivo ao staging area
-git add controllers/ProdutoController.js
-
-# Criando um commit na branch feature
-git commit -m "Adiciona controlador de produtos com método de listagem"
-
-# Voltando para a branch principal
-git checkout main
-
-# Criando outra branch para desenvolver a funcionalidade de busca de produtos
-git checkout -b feature/busca-produtos
-
-# Modificando o controlador para adicionar a funcionalidade de busca
-echo "// Controlador de Produtos" > controllers/ProdutoController.js
-echo "" >> controllers/ProdutoController.js
-echo "const Produto = require('../models/Produto');" >> controllers/ProdutoController.js
-echo "" >> controllers/ProdutoController.js
-echo "class ProdutoController {" >> controllers/ProdutoController.js
-echo "  constructor() {" >> controllers/ProdutoController.js
-echo "    this.produtos = [" >> controllers/ProdutoController.js
-echo "      new Produto(25, 'Kg', 'Queijo', 0.97)," >> controllers/ProdutoController.js
-echo "      new Produto(31, 'BAR', 'Chocolate', 0.87)," >> controllers/ProdutoController.js
-echo "      new Produto(78, 'L', 'Vinho', 2.00)," >> controllers/ProdutoController.js
-echo "      new Produto(22, 'M', 'Linho', 0.11)," >> controllers/ProdutoController.js
-echo "      new Produto(30, 'SAC', 'Açúcar', 0.30)" >> controllers/ProdutoController.js
-echo "    ];" >> controllers/ProdutoController.js
-echo "  }" >> controllers/ProdutoController.js
-echo "" >> controllers/ProdutoController.js
-echo "  listarTodos() {" >> controllers/ProdutoController.js
-echo "    return this.produtos;" >> controllers/ProdutoController.js
-echo "  }" >> controllers/ProdutoController.js
-echo "" >> controllers/ProdutoController.js
-echo "  buscarPorCodigo(codigo) {" >> controllers/ProdutoController.js
-echo "    return this.produtos.find(produto => produto.codigo === codigo);" >> controllers/ProdutoController.js
-echo "  }" >> controllers/ProdutoController.js
-echo "" >> controllers/ProdutoController.js
-echo "  buscarPorDescricao(termo) {" >> controllers/ProdutoController.js
-echo "    return this.produtos.filter(produto => " >> controllers/ProdutoController.js
-echo "      produto.descricao.toLowerCase().includes(termo.toLowerCase())" >> controllers/ProdutoController.js
-echo "    );" >> controllers/ProdutoController.js
-echo "  }" >> controllers/ProdutoController.js
-echo "}" >> controllers/ProdutoController.js
-echo "" >> controllers/ProdutoController.js
-echo "module.exports = ProdutoController;" >> controllers/ProdutoController.js
-
-# Adicionando as alterações ao staging area
-git add controllers/ProdutoController.js
-
-# Criando um commit na branch de busca
-git commit -m "Adiciona métodos de busca por código e descrição"
-
-# Voltando para a branch principal
-git checkout main
-
-# Mesclando a branch de listagem
-git merge feature/listagem-produtos
-
-# Mesclando a branch de busca (pode gerar conflitos que precisarão ser resolvidos)
-git merge feature/busca-produtos</code></pre>
-                    </div>
-                    
-                    <div class="code-example">
-                        <h3>Exemplo 4: Configurando um Repositório Remoto no GitHub</h3>
-                        <pre><code># Criando um repositório no GitHub (via interface web)
-# Após criar o repositório, conecte seu repositório local ao remoto
-
-# Adicionando o repositório remoto
-git remote add origin https://github.com/seu-usuario/sistema-vendas.git
-
-# Verificando os repositórios remotos configurados
-git remote -v
-
-# Enviando o código para o repositório remoto
-git push -u origin main
-
-# Criando um arquivo .gitignore para ignorar arquivos desnecessários
-echo "# Arquivos e diretórios a serem ignorados pelo Git" > .gitignore
-echo "" >> .gitignore
-echo "# Dependências" >> .gitignore
-echo "node_modules/" >> .gitignore
-echo "package-lock.json" >> .gitignore
-echo "" >> .gitignore
-echo "# Arquivos de ambiente" >> .gitignore
-echo ".env" >> .gitignore
-echo ".env.local" >> .gitignore
-echo "" >> .gitignore
-echo "# Logs" >> .gitignore
-echo "logs/" >> .gitignore
-echo "*.log" >> .gitignore
-echo "" >> .gitignore
-echo "# Diretório de build" >> .gitignore
-echo "dist/" >> .gitignore
-echo "build/" >> .gitignore
-echo "" >> .gitignore
-echo "# Arquivos do sistema" >> .gitignore
-echo ".DS_Store" >> .gitignore
-echo "Thumbs.db" >> .gitignore
-
-# Adicionando o .gitignore ao staging area
-git add .gitignore
-
-# Criando um commit
-git commit -m "Adiciona arquivo .gitignore"
-
-# Enviando as alterações para o repositório remoto
-git push origin main</code></pre>
                     </div>
                     
                     <h2>Exercícios Práticos</h2>
